@@ -1,0 +1,17 @@
+enum TraitType {
+  impulsive,
+  calm,
+  generous,
+  ambitious,
+  loyal,
+  selfish,
+  brave,
+  shy,
+  creative,
+  stubborn,
+  kind,
+  pessimistic,
+  optimistic,
+  curious,
+  lazy,
+}

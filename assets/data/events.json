@@ -1,0 +1,1028 @@
+[
+  {
+    "id": "homeless_encounter",
+    "title": "A Stranger in the Cold",
+    "description": "You pass by a shivering figure huddled in a doorway. Their eyes meet yours—tired, hopeful, resigned. The winter wind bites at both of you.",
+    "triggerConditions": {
+      "minAge": 10,
+      "maxAge": 80,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.2
+    },
+    "choices": [
+      {
+        "description": "Give them your coat and buy them a warm meal.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"compassion": 0.15, "integrity": 0.05},
+          "healthChange": -2,
+          "moneyChange": -20,
+          "traitChance": {"kind": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Avert your eyes and walk past quickly.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"compassion": -0.08, "integrity": -0.03},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Call a shelter and wait with them until help arrives.",
+        "consequences": {
+          "skillChanges": {"communication": 1},
+          "hiddenMetricChanges": {"compassion": 0.2, "integrity": 0.1, "discipline": 0.05},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"kind": 0.15, "calm": 0.05},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "charity_drive",
+    "title": "The Charity Drive",
+    "description": "Your community is organizing a charity drive for families in need. Flyers are everywhere, and volunteers are signing up at the town hall.",
+    "triggerConditions": {
+      "minAge": 15,
+      "maxAge": 60,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.25
+    },
+    "choices": [
+      {
+        "description": "Lead the drive and recruit others to help.",
+        "consequences": {
+          "skillChanges": {"communication": 3, "creativity": 1},
+          "hiddenMetricChanges": {"compassion": 0.2, "integrity": 0.1, "courage": 0.05},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"generous": 0.15, "ambitious": 0.05},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Donate money anonymously and move on.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"compassion": 0.1, "humility": 0.1},
+          "healthChange": 0,
+          "moneyChange": -50,
+          "traitChance": {"generous": 0.08},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Ignore it—you have your own problems.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"compassion": -0.12, "humility": -0.05},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"selfish": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "injured_animal",
+    "title": "The Injured Creature",
+    "description": "You find a small animal—a bird or a cat—lying injured by the roadside. It's still breathing but clearly in pain. No one else is around.",
+    "triggerConditions": {
+      "minAge": 5,
+      "maxAge": 50,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.18
+    },
+    "choices": [
+      {
+        "description": "Carefully take it to a vet, paying for treatment.",
+        "consequences": {
+          "skillChanges": {"emotionalStability": 1},
+          "hiddenMetricChanges": {"compassion": 0.2, "integrity": 0.08},
+          "healthChange": 0,
+          "moneyChange": -35,
+          "traitChance": {"kind": 0.15},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Try to help it yourself with what you have.",
+        "consequences": {
+          "skillChanges": {"creativity": 1, "emotionalStability": 2},
+          "hiddenMetricChanges": {"compassion": 0.15, "curiosity": 0.05},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"kind": 0.1, "curious": 0.08},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Leave it—nature will take its course.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"compassion": -0.15},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"selfish": 0.12},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "street_fight_witness",
+    "title": "Violence in the Alley",
+    "description": "You round a corner and see two people—one is clearly the aggressor, the other is backed against a wall. You're the only witness.",
+    "triggerConditions": {
+      "minAge": 16,
+      "maxAge": 60,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.15
+    },
+    "choices": [
+      {
+        "description": "Intervene and try to stop the fight.",
+        "consequences": {
+          "skillChanges": {"communication": 2, "fitness": 1},
+          "hiddenMetricChanges": {"courage": 0.25, "compassion": 0.1},
+          "healthChange": -5,
+          "moneyChange": 0,
+          "traitChance": {"brave": 0.2},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Call the authorities and stay to give a statement.",
+        "consequences": {
+          "skillChanges": {"communication": 1},
+          "hiddenMetricChanges": {"courage": 0.1, "integrity": 0.15, "discipline": 0.05},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"calm": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Walk away—it's not your business.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"courage": -0.15, "compassion": -0.1},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"shy": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "public_speaking",
+    "title": "The Stage Awaits",
+    "description": "You've been asked to give a speech in front of a large audience. The room will be packed. Your palms are already sweating.",
+    "triggerConditions": {
+      "minAge": 14,
+      "maxAge": 70,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.22
+    },
+    "choices": [
+      {
+        "description": "Accept and prepare thoroughly—you'll face the fear.",
+        "consequences": {
+          "skillChanges": {"communication": 4, "emotionalStability": 2},
+          "hiddenMetricChanges": {"courage": 0.2, "discipline": 0.15},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"brave": 0.15},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Accept but wing it—confidence is key.",
+        "consequences": {
+          "skillChanges": {"communication": 2},
+          "hiddenMetricChanges": {"courage": 0.1, "humility": -0.05},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"impulsive": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Decline—you're not ready for that.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"courage": -0.12},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"shy": 0.15},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "stand_up_to_bully",
+    "title": "The Bully",
+    "description": "Someone has been tormenting a classmate for weeks. Today they've cornered their victim again. Everyone is watching to see what happens.",
+    "triggerConditions": {
+      "minAge": 8,
+      "maxAge": 25,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.2
+    },
+    "choices": [
+      {
+        "description": "Confront the bully directly and defend the victim.",
+        "consequences": {
+          "skillChanges": {"communication": 2, "fitness": 1},
+          "hiddenMetricChanges": {"courage": 0.25, "compassion": 0.1},
+          "healthChange": -3,
+          "moneyChange": 0,
+          "traitChance": {"brave": 0.2, "loyal": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Get a teacher—let authority handle it.",
+        "consequences": {
+          "skillChanges": {"communication": 1},
+          "hiddenMetricChanges": {"courage": 0.05, "integrity": 0.1},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"calm": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Look away—you don't want to get involved.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"courage": -0.15, "compassion": -0.08},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"shy": 0.12},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "party_before_exam",
+    "title": "The Night Before",
+    "description": "Your friends are throwing a party tonight. Your most important exam is tomorrow morning. The invitation is burning a hole in your pocket.",
+    "triggerConditions": {
+      "minAge": 14,
+      "maxAge": 25,
+      "requiredTraits": [],
+      "forbiddenTraits": ["lazy"],
+      "minHealth": 0,
+      "baseChance": 0.28
+    },
+    "choices": [
+      {
+        "description": "Stay home and study—the exam matters more.",
+        "consequences": {
+          "skillChanges": {"intelligence": 2},
+          "hiddenMetricChanges": {"discipline": 0.2, "integrity": 0.05},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"calm": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Go for an hour, then come back to study.",
+        "consequences": {
+          "skillChanges": {"communication": 1, "intelligence": 1},
+          "hiddenMetricChanges": {"discipline": 0.08, "curiosity": 0.05},
+          "healthChange": -2,
+          "moneyChange": 0,
+          "traitChance": {},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Forget the exam—you'll wing it. Party all night.",
+        "consequences": {
+          "skillChanges": {"communication": 2},
+          "hiddenMetricChanges": {"discipline": -0.2, "integrity": -0.1},
+          "healthChange": -5,
+          "moneyChange": -15,
+          "traitChance": {"impulsive": 0.15, "lazy": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "shortcut_at_work",
+    "title": "The Easy Way Out",
+    "description": "A colleague suggests cutting corners on a project to meet the deadline. No one would notice, they say. The proper way would take twice as long.",
+    "triggerConditions": {
+      "minAge": 18,
+      "maxAge": 65,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.2
+    },
+    "choices": [
+      {
+        "description": "Refuse—do the job properly, even if it's late.",
+        "consequences": {
+          "skillChanges": {"intelligence": 1},
+          "hiddenMetricChanges": {"discipline": 0.2, "integrity": 0.25},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"stubborn": 0.05, "loyal": 0.08},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Take the shortcut—everyone does it sometimes.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"discipline": -0.15, "integrity": -0.2},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"impulsive": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Report the suggestion to your supervisor.",
+        "consequences": {
+          "skillChanges": {"communication": 1},
+          "hiddenMetricChanges": {"integrity": 0.2, "courage": 0.1, "discipline": 0.05},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"brave": 0.08},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "tempting_offer",
+    "title": "A Questionable Opportunity",
+    "description": "Someone offers you a deal that would solve your money problems overnight. It's technically legal but morally gray. They need an answer soon.",
+    "triggerConditions": {
+      "minAge": 20,
+      "maxAge": 60,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.15
+    },
+    "choices": [
+      {
+        "description": "Decline—your principles aren't for sale.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"discipline": 0.2, "integrity": 0.25, "humility": 0.05},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"stubborn": 0.08},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Take the deal—you need the money.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"discipline": -0.15, "integrity": -0.2},
+          "healthChange": 0,
+          "moneyChange": 150,
+          "traitChance": {"ambitious": 0.1, "selfish": 0.12},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Ask for time to think—then seek advice from someone you trust.",
+        "consequences": {
+          "skillChanges": {"communication": 1},
+          "hiddenMetricChanges": {"discipline": 0.1, "integrity": 0.1, "humility": 0.1},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"calm": 0.08},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "ethical_dilemma",
+    "title": "The Gray Area",
+    "description": "You've discovered something that could hurt people if revealed—but keeping it secret could also cause harm. There's no clear right answer.",
+    "triggerConditions": {
+      "minAge": 16,
+      "maxAge": 80,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.12
+    },
+    "choices": [
+      {
+        "description": "Reveal the truth and accept the consequences.",
+        "consequences": {
+          "skillChanges": {"communication": 2, "emotionalStability": 1},
+          "hiddenMetricChanges": {"integrity": 0.2, "courage": 0.15, "curiosity": 0.1},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"brave": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Keep it secret—sometimes ignorance is kinder.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"compassion": 0.1, "integrity": -0.05},
+          "healthChange": -2,
+          "moneyChange": 0,
+          "traitChance": {"calm": 0.05},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Seek counsel from someone wiser before deciding.",
+        "consequences": {
+          "skillChanges": {"intelligence": 1, "communication": 1},
+          "hiddenMetricChanges": {"curiosity": 0.15, "humility": 0.15, "integrity": 0.05},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"curious": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "mentor_opportunity",
+    "title": "A Guiding Hand",
+    "description": "Someone experienced has taken an interest in you. They offer to teach you what they know—but it will require dedication and humility to learn.",
+    "triggerConditions": {
+      "minAge": 25,
+      "maxAge": 70,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.18
+    },
+    "choices": [
+      {
+        "description": "Accept gratefully and commit to learning.",
+        "consequences": {
+          "skillChanges": {"intelligence": 2, "communication": 1},
+          "hiddenMetricChanges": {"curiosity": 0.2, "humility": 0.2, "discipline": 0.1},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"curious": 0.15},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Thank them but decline—you prefer to learn on your own.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"humility": -0.1, "curiosity": 0.05},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"stubborn": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Accept but only take what's useful—you know your path.",
+        "consequences": {
+          "skillChanges": {"intelligence": 1},
+          "hiddenMetricChanges": {"curiosity": 0.1, "humility": 0.05},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"ambitious": 0.08},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "life_lesson",
+    "title": "The Hard Truth",
+    "description": "Something you believed about yourself or the world has been proven wrong. The realization is uncomfortable but undeniable.",
+    "triggerConditions": {
+      "minAge": 30,
+      "maxAge": 80,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.1
+    },
+    "choices": [
+      {
+        "description": "Embrace the lesson and grow from it.",
+        "consequences": {
+          "skillChanges": {"emotionalStability": 2, "intelligence": 1},
+          "hiddenMetricChanges": {"curiosity": 0.2, "humility": 0.25},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"optimistic": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Reject it—you're not ready to change.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"humility": -0.15, "curiosity": -0.1},
+          "healthChange": -3,
+          "moneyChange": 0,
+          "traitChance": {"stubborn": 0.15},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Share the lesson with others who might benefit.",
+        "consequences": {
+          "skillChanges": {"communication": 2},
+          "hiddenMetricChanges": {"curiosity": 0.15, "humility": 0.2, "compassion": 0.1},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"kind": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "spontaneous_trip",
+    "title": "The Open Road",
+    "description": "A friend suggests dropping everything and taking a spontaneous trip. No plans, no itinerary—just adventure. You have responsibilities, but the idea is intoxicating.",
+    "triggerConditions": {
+      "minAge": 18,
+      "maxAge": 50,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.2
+    },
+    "choices": [
+      {
+        "description": "Say yes—life is too short for endless planning.",
+        "consequences": {
+          "skillChanges": {"communication": 2, "creativity": 1},
+          "hiddenMetricChanges": {"curiosity": 0.15},
+          "healthChange": 2,
+          "moneyChange": -80,
+          "traitChance": {"optimistic": 0.12, "impulsive": 0.08},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Compromise—plan a shorter, structured trip together.",
+        "consequences": {
+          "skillChanges": {"communication": 1},
+          "hiddenMetricChanges": {"discipline": 0.05, "curiosity": 0.08},
+          "healthChange": 1,
+          "moneyChange": -40,
+          "traitChance": {"calm": 0.08},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Decline—you have too much to do.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"discipline": 0.1},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"stubborn": 0.05},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "creative_contest",
+    "title": "Show Your Talent",
+    "description": "A local contest is accepting entries—art, writing, music, whatever you create. The prize isn't much, but the chance to share your work is real.",
+    "triggerConditions": {
+      "minAge": 12,
+      "maxAge": 40,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.22
+    },
+    "choices": [
+      {
+        "description": "Enter with something you've been working on.",
+        "consequences": {
+          "skillChanges": {"creativity": 3, "communication": 1},
+          "hiddenMetricChanges": {"courage": 0.1, "curiosity": 0.1},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"creative": 0.15},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Create something new just for this.",
+        "consequences": {
+          "skillChanges": {"creativity": 4, "intelligence": 1},
+          "hiddenMetricChanges": {"curiosity": 0.15, "courage": 0.08},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"creative": 0.12, "curious": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Skip it—you're not ready for that kind of exposure.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"courage": -0.08},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"shy": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "surprise_party",
+    "title": "The Surprise",
+    "description": "Your friends have secretly planned a surprise party for you. You've just walked in. Balloons, cake, and familiar faces everywhere.",
+    "triggerConditions": {
+      "minAge": 10,
+      "maxAge": 60,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.25
+    },
+    "choices": [
+      {
+        "description": "Embrace it fully—dance, laugh, enjoy every moment.",
+        "consequences": {
+          "skillChanges": {"communication": 2, "emotionalStability": 1},
+          "hiddenMetricChanges": {},
+          "healthChange": 3,
+          "moneyChange": 0,
+          "traitChance": {"optimistic": 0.12},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Thank everyone warmly but stay somewhat reserved.",
+        "consequences": {
+          "skillChanges": {"communication": 1},
+          "hiddenMetricChanges": {},
+          "healthChange": 1,
+          "moneyChange": 0,
+          "traitChance": {"calm": 0.08},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Feel overwhelmed and need a moment alone.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"shy": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "recognition_ceremony",
+    "title": "In the Spotlight",
+    "description": "You're being honored at a ceremony. People are applauding. Speeches are being made about your achievements. All eyes are on you.",
+    "triggerConditions": {
+      "minAge": 15,
+      "maxAge": 70,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.15
+    },
+    "choices": [
+      {
+        "description": "Accept graciously and thank those who helped you.",
+        "consequences": {
+          "skillChanges": {"communication": 1},
+          "hiddenMetricChanges": {"humility": 0.2, "integrity": 0.05},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"kind": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Bask in it—you earned this.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"humility": -0.15, "ambition": 0.1},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"ambitious": 0.12},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Deflect credit to your team and mentors.",
+        "consequences": {
+          "skillChanges": {"communication": 2},
+          "hiddenMetricChanges": {"humility": 0.25, "compassion": 0.1},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"kind": 0.15, "loyal": 0.08},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "failure_setback",
+    "title": "When Things Fall Apart",
+    "description": "Something you worked hard for has failed. A project, a relationship, a goal—it's over. The disappointment is heavy.",
+    "triggerConditions": {
+      "minAge": 16,
+      "maxAge": 65,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.2
+    },
+    "choices": [
+      {
+        "description": "Accept it, learn from it, and move forward.",
+        "consequences": {
+          "skillChanges": {"emotionalStability": 2},
+          "hiddenMetricChanges": {"humility": 0.2, "curiosity": 0.1},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"optimistic": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Blame others and refuse to accept responsibility.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"humility": -0.2, "integrity": -0.1},
+          "healthChange": -3,
+          "moneyChange": 0,
+          "traitChance": {"stubborn": 0.12},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Let it crush you for a while—you need to grieve.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"humility": 0.05},
+          "healthChange": -5,
+          "moneyChange": 0,
+          "traitChance": {"pessimistic": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "credit_sharing",
+    "title": "Whose Idea Was It?",
+    "description": "A project you contributed to is getting praise. Your contribution was significant, but so were others'. The boss is asking who led the effort.",
+    "triggerConditions": {
+      "minAge": 18,
+      "maxAge": 60,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.18
+    },
+    "choices": [
+      {
+        "description": "Share credit equally with the team.",
+        "consequences": {
+          "skillChanges": {"communication": 1},
+          "hiddenMetricChanges": {"humility": 0.2, "integrity": 0.15},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"kind": 0.12, "loyal": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Claim it was mostly your work.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"humility": -0.2, "integrity": -0.15},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"ambitious": 0.1, "selfish": 0.15},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Deflect to the person who had the original idea.",
+        "consequences": {
+          "skillChanges": {"communication": 1},
+          "hiddenMetricChanges": {"humility": 0.25, "compassion": 0.1},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"kind": 0.15},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  }
+]

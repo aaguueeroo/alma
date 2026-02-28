@@ -1,0 +1,86 @@
+{
+  "@@locale": "en",
+  "appTitle": "Alma",
+  "newGame": "New Game",
+  "loadGame": "Load Game",
+  "achievements": "Achievements",
+  "settings": "Settings",
+  "soulWorld": "Soul World",
+  "livesRemaining": "{count, plural, =1{1 life remaining} other{{count} lives remaining}}",
+  "@livesRemaining": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "soulSubjects": "Soul Subjects",
+  "chooseLife": "Choose a Life",
+  "startLife": "Start Life",
+  "nextYear": "Next Year",
+  "timeRemaining": "Time Remaining: {time}",
+  "@timeRemaining": {
+    "placeholders": {
+      "time": {
+        "type": "int"
+      }
+    }
+  },
+  "year": "Year {year}",
+  "@year": {
+    "placeholders": {
+      "year": {
+        "type": "int"
+      }
+    }
+  },
+  "age": "Age {age}",
+  "@age": {
+    "placeholders": {
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "skills": "Skills",
+  "traits": "Traits",
+  "habits": "Habits",
+  "relationships": "Relationships",
+  "education": "Education",
+  "work": "Work",
+  "health": "Health",
+  "social": "Social",
+  "intelligence": "Intelligence",
+  "creativity": "Creativity",
+  "communication": "Communication",
+  "emotionalStability": "Emotional Stability",
+  "fitness": "Fitness",
+  "compassion": "Compassion",
+  "discipline": "Discipline",
+  "courage": "Courage",
+  "wisdom": "Wisdom",
+  "fun": "Fun",
+  "humility": "Humility",
+  "nirvana": "Nirvana",
+  "nirvanaMessage": "Your soul has achieved enlightenment.",
+  "gameOver": "Game Over",
+  "gameOverMessage": "Your soul has exhausted all its lives.",
+  "lifeSummary": "Life Summary",
+  "death": "Death",
+  "deleteSoul": "Delete Soul",
+  "confirmDelete": "Are you sure you want to delete this soul?",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "save": "Save",
+  "back": "Back",
+  "emptySaveSlot": "Empty Slot",
+  "saveSlots": "Save Slots",
+  "returnToMenu": "Return to Menu",
+  "noSoulsYet": "No souls yet. Create one to get started!",
+  "createSoul": "Create Soul",
+  "soulName": "Soul Name",
+  "passed": "Passed",
+  "notPassed": "Not Passed",
+  "actions": "Actions",
+  "performAction": "Perform Action"
+}

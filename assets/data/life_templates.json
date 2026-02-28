@@ -1,0 +1,205 @@
+[
+  {
+    "id": "the_scholar",
+    "name": "The Scholar",
+    "description": "Born into an academic family in Japan, you were raised with books and knowledge. Your mind is sharp but your body has been neglected.",
+    "country": "Japan",
+    "familyBackground": "academic family",
+    "startingSkills": {
+      "intelligence": 60,
+      "creativity": 45,
+      "communication": 30,
+      "emotionalStability": 30,
+      "fitness": 15
+    },
+    "startingTraits": ["curious"],
+    "startingSections": [
+      {
+        "type": "education",
+        "performance": 70,
+        "contextLabel": "Elementary School"
+      },
+      {
+        "type": "work",
+        "performance": 45,
+        "contextLabel": ""
+      },
+      {
+        "type": "health",
+        "performance": 40,
+        "contextLabel": ""
+      },
+      {
+        "type": "social",
+        "performance": 50,
+        "contextLabel": ""
+      }
+    ],
+    "startingNpcs": [
+      {
+        "id": "npc_scholar_mother",
+        "name": "Mother",
+        "role": "parent",
+        "visibleTraits": [],
+        "hiddenTraits": [],
+        "compatibilityFactor": 0.5
+      },
+      {
+        "id": "npc_scholar_father",
+        "name": "Father",
+        "role": "parent",
+        "visibleTraits": [],
+        "hiddenTraits": [],
+        "compatibilityFactor": 0.5
+      },
+      {
+        "id": "npc_scholar_sister",
+        "name": "Sister",
+        "role": "sibling",
+        "visibleTraits": [],
+        "hiddenTraits": [],
+        "compatibilityFactor": 0.5
+      }
+    ],
+    "startingHealth": 85,
+    "startingMoney": 0
+  },
+  {
+    "id": "the_survivor",
+    "name": "The Survivor",
+    "description": "Growing up in a low-income neighborhood in Brazil, you learned to be tough and resourceful. Your body is strong but life has tested your emotions.",
+    "country": "Brazil",
+    "familyBackground": "low-income family",
+    "startingSkills": {
+      "intelligence": 30,
+      "creativity": 30,
+      "communication": 40,
+      "emotionalStability": 15,
+      "fitness": 55
+    },
+    "startingTraits": ["brave"],
+    "startingSections": [
+      {
+        "type": "education",
+        "performance": 30,
+        "contextLabel": ""
+      },
+      {
+        "type": "work",
+        "performance": 45,
+        "contextLabel": ""
+      },
+      {
+        "type": "health",
+        "performance": 60,
+        "contextLabel": ""
+      },
+      {
+        "type": "social",
+        "performance": 50,
+        "contextLabel": ""
+      }
+    ],
+    "startingNpcs": [
+      {
+        "id": "npc_survivor_mother",
+        "name": "Mother",
+        "role": "parent",
+        "visibleTraits": [],
+        "hiddenTraits": [],
+        "compatibilityFactor": 0.5
+      },
+      {
+        "id": "npc_survivor_brother",
+        "name": "Older Brother",
+        "role": "sibling",
+        "visibleTraits": [],
+        "hiddenTraits": [],
+        "compatibilityFactor": 0.5
+      },
+      {
+        "id": "npc_survivor_friend",
+        "name": "Neighborhood Friend",
+        "role": "friend",
+        "visibleTraits": [],
+        "hiddenTraits": [],
+        "compatibilityFactor": 0.5
+      }
+    ],
+    "startingHealth": 75,
+    "startingMoney": 0
+  },
+  {
+    "id": "the_heir",
+    "name": "The Heir",
+    "description": "Born into wealth in the UK, you have enjoyed every privilege. Your family expects great things, and your social connections run deep.",
+    "country": "UK",
+    "familyBackground": "wealthy family",
+    "startingSkills": {
+      "intelligence": 32,
+      "creativity": 30,
+      "communication": 40,
+      "emotionalStability": 35,
+      "fitness": 33
+    },
+    "startingTraits": ["ambitious"],
+    "startingSections": [
+      {
+        "type": "education",
+        "performance": 45,
+        "contextLabel": ""
+      },
+      {
+        "type": "work",
+        "performance": 55,
+        "contextLabel": ""
+      },
+      {
+        "type": "health",
+        "performance": 45,
+        "contextLabel": ""
+      },
+      {
+        "type": "social",
+        "performance": 60,
+        "contextLabel": ""
+      }
+    ],
+    "startingNpcs": [
+      {
+        "id": "npc_heir_father",
+        "name": "Father",
+        "role": "parent",
+        "visibleTraits": [],
+        "hiddenTraits": [],
+        "compatibilityFactor": 0.5
+      },
+      {
+        "id": "npc_heir_mother",
+        "name": "Mother",
+        "role": "parent",
+        "visibleTraits": [],
+        "hiddenTraits": [],
+        "compatibilityFactor": 0.5
+      },
+      {
+        "id": "npc_heir_butler",
+        "name": "Butler",
+        "role": "mentor",
+        "visibleTraits": [],
+        "hiddenTraits": [],
+        "compatibilityFactor": 0.5
+      },
+      {
+        "id": "npc_heir_friend",
+        "name": "Childhood Friend",
+        "role": "friend",
+        "visibleTraits": [],
+        "hiddenTraits": [],
+        "compatibilityFactor": 0.5
+      }
+    ],
+    "startingHealth": 90,
+    "startingMoney": 500
+  }
+]

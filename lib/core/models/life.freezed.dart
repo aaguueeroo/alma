@@ -1,0 +1,1013 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'life.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+// dart format off
+T _$identity<T>(T value) => value;
+
+/// @nodoc
+mixin _$Life {
+
+ String get id; String get soulId; int get seed; String get templateId; LifeState get state; bool get isComplete; LifeSummary? get summary;
+/// Create a copy of Life
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LifeCopyWith<Life> get copyWith => _$LifeCopyWithImpl<Life>(this as Life, _$identity);
+
+  /// Serializes this Life to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Life&&(identical(other.id, id) || other.id == id)&&(identical(other.soulId, soulId) || other.soulId == soulId)&&(identical(other.seed, seed) || other.seed == seed)&&(identical(other.templateId, templateId) || other.templateId == templateId)&&(identical(other.state, state) || other.state == state)&&(identical(other.isComplete, isComplete) || other.isComplete == isComplete)&&(identical(other.summary, summary) || other.summary == summary));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,soulId,seed,templateId,state,isComplete,summary);
+
+@override
+String toString() {
+  return 'Life(id: $id, soulId: $soulId, seed: $seed, templateId: $templateId, state: $state, isComplete: $isComplete, summary: $summary)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $LifeCopyWith<$Res>  {
+  factory $LifeCopyWith(Life value, $Res Function(Life) _then) = _$LifeCopyWithImpl;
+@useResult
+$Res call({
+ String id, String soulId, int seed, String templateId, LifeState state, bool isComplete, LifeSummary? summary
+});
+
+
+$LifeStateCopyWith<$Res> get state;$LifeSummaryCopyWith<$Res>? get summary;
+
+}
+/// @nodoc
+class _$LifeCopyWithImpl<$Res>
+    implements $LifeCopyWith<$Res> {
+  _$LifeCopyWithImpl(this._self, this._then);
+
+  final Life _self;
+  final $Res Function(Life) _then;
+
+/// Create a copy of Life
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? soulId = null,Object? seed = null,Object? templateId = null,Object? state = null,Object? isComplete = null,Object? summary = freezed,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,soulId: null == soulId ? _self.soulId : soulId // ignore: cast_nullable_to_non_nullable
+as String,seed: null == seed ? _self.seed : seed // ignore: cast_nullable_to_non_nullable
+as int,templateId: null == templateId ? _self.templateId : templateId // ignore: cast_nullable_to_non_nullable
+as String,state: null == state ? _self.state : state // ignore: cast_nullable_to_non_nullable
+as LifeState,isComplete: null == isComplete ? _self.isComplete : isComplete // ignore: cast_nullable_to_non_nullable
+as bool,summary: freezed == summary ? _self.summary : summary // ignore: cast_nullable_to_non_nullable
+as LifeSummary?,
+  ));
+}
+/// Create a copy of Life
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$LifeStateCopyWith<$Res> get state {
+  
+  return $LifeStateCopyWith<$Res>(_self.state, (value) {
+    return _then(_self.copyWith(state: value));
+  });
+}/// Create a copy of Life
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$LifeSummaryCopyWith<$Res>? get summary {
+    if (_self.summary == null) {
+    return null;
+  }
+
+  return $LifeSummaryCopyWith<$Res>(_self.summary!, (value) {
+    return _then(_self.copyWith(summary: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [Life].
+extension LifePatterns on Life {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Life value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Life() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Life value)  $default,){
+final _that = this;
+switch (_that) {
+case _Life():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Life value)?  $default,){
+final _that = this;
+switch (_that) {
+case _Life() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String soulId,  int seed,  String templateId,  LifeState state,  bool isComplete,  LifeSummary? summary)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Life() when $default != null:
+return $default(_that.id,_that.soulId,_that.seed,_that.templateId,_that.state,_that.isComplete,_that.summary);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String soulId,  int seed,  String templateId,  LifeState state,  bool isComplete,  LifeSummary? summary)  $default,) {final _that = this;
+switch (_that) {
+case _Life():
+return $default(_that.id,_that.soulId,_that.seed,_that.templateId,_that.state,_that.isComplete,_that.summary);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String soulId,  int seed,  String templateId,  LifeState state,  bool isComplete,  LifeSummary? summary)?  $default,) {final _that = this;
+switch (_that) {
+case _Life() when $default != null:
+return $default(_that.id,_that.soulId,_that.seed,_that.templateId,_that.state,_that.isComplete,_that.summary);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _Life implements Life {
+  const _Life({required this.id, required this.soulId, required this.seed, required this.templateId, required this.state, this.isComplete = false, this.summary});
+  factory _Life.fromJson(Map<String, dynamic> json) => _$LifeFromJson(json);
+
+@override final  String id;
+@override final  String soulId;
+@override final  int seed;
+@override final  String templateId;
+@override final  LifeState state;
+@override@JsonKey() final  bool isComplete;
+@override final  LifeSummary? summary;
+
+/// Create a copy of Life
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LifeCopyWith<_Life> get copyWith => __$LifeCopyWithImpl<_Life>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$LifeToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Life&&(identical(other.id, id) || other.id == id)&&(identical(other.soulId, soulId) || other.soulId == soulId)&&(identical(other.seed, seed) || other.seed == seed)&&(identical(other.templateId, templateId) || other.templateId == templateId)&&(identical(other.state, state) || other.state == state)&&(identical(other.isComplete, isComplete) || other.isComplete == isComplete)&&(identical(other.summary, summary) || other.summary == summary));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,soulId,seed,templateId,state,isComplete,summary);
+
+@override
+String toString() {
+  return 'Life(id: $id, soulId: $soulId, seed: $seed, templateId: $templateId, state: $state, isComplete: $isComplete, summary: $summary)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$LifeCopyWith<$Res> implements $LifeCopyWith<$Res> {
+  factory _$LifeCopyWith(_Life value, $Res Function(_Life) _then) = __$LifeCopyWithImpl;
+@override @useResult
+$Res call({
+ String id, String soulId, int seed, String templateId, LifeState state, bool isComplete, LifeSummary? summary
+});
+
+
+@override $LifeStateCopyWith<$Res> get state;@override $LifeSummaryCopyWith<$Res>? get summary;
+
+}
+/// @nodoc
+class __$LifeCopyWithImpl<$Res>
+    implements _$LifeCopyWith<$Res> {
+  __$LifeCopyWithImpl(this._self, this._then);
+
+  final _Life _self;
+  final $Res Function(_Life) _then;
+
+/// Create a copy of Life
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? soulId = null,Object? seed = null,Object? templateId = null,Object? state = null,Object? isComplete = null,Object? summary = freezed,}) {
+  return _then(_Life(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,soulId: null == soulId ? _self.soulId : soulId // ignore: cast_nullable_to_non_nullable
+as String,seed: null == seed ? _self.seed : seed // ignore: cast_nullable_to_non_nullable
+as int,templateId: null == templateId ? _self.templateId : templateId // ignore: cast_nullable_to_non_nullable
+as String,state: null == state ? _self.state : state // ignore: cast_nullable_to_non_nullable
+as LifeState,isComplete: null == isComplete ? _self.isComplete : isComplete // ignore: cast_nullable_to_non_nullable
+as bool,summary: freezed == summary ? _self.summary : summary // ignore: cast_nullable_to_non_nullable
+as LifeSummary?,
+  ));
+}
+
+/// Create a copy of Life
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$LifeStateCopyWith<$Res> get state {
+  
+  return $LifeStateCopyWith<$Res>(_self.state, (value) {
+    return _then(_self.copyWith(state: value));
+  });
+}/// Create a copy of Life
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$LifeSummaryCopyWith<$Res>? get summary {
+    if (_self.summary == null) {
+    return null;
+  }
+
+  return $LifeSummaryCopyWith<$Res>(_self.summary!, (value) {
+    return _then(_self.copyWith(summary: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$LifeState {
+
+ int get currentYear; int get age; int get health; int get money; int get timeRemaining; SkillSet get skills; List<TraitType> get traits; List<Habit> get habits; List<Relationship> get relationships; List<Section> get sections; HiddenMetrics get hiddenMetrics; int get eventsTriggeredThisYear; GameEvent? get pendingEvent; bool get isDead; String? get causeOfDeath;
+/// Create a copy of LifeState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LifeStateCopyWith<LifeState> get copyWith => _$LifeStateCopyWithImpl<LifeState>(this as LifeState, _$identity);
+
+  /// Serializes this LifeState to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LifeState&&(identical(other.currentYear, currentYear) || other.currentYear == currentYear)&&(identical(other.age, age) || other.age == age)&&(identical(other.health, health) || other.health == health)&&(identical(other.money, money) || other.money == money)&&(identical(other.timeRemaining, timeRemaining) || other.timeRemaining == timeRemaining)&&(identical(other.skills, skills) || other.skills == skills)&&const DeepCollectionEquality().equals(other.traits, traits)&&const DeepCollectionEquality().equals(other.habits, habits)&&const DeepCollectionEquality().equals(other.relationships, relationships)&&const DeepCollectionEquality().equals(other.sections, sections)&&(identical(other.hiddenMetrics, hiddenMetrics) || other.hiddenMetrics == hiddenMetrics)&&(identical(other.eventsTriggeredThisYear, eventsTriggeredThisYear) || other.eventsTriggeredThisYear == eventsTriggeredThisYear)&&(identical(other.pendingEvent, pendingEvent) || other.pendingEvent == pendingEvent)&&(identical(other.isDead, isDead) || other.isDead == isDead)&&(identical(other.causeOfDeath, causeOfDeath) || other.causeOfDeath == causeOfDeath));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,currentYear,age,health,money,timeRemaining,skills,const DeepCollectionEquality().hash(traits),const DeepCollectionEquality().hash(habits),const DeepCollectionEquality().hash(relationships),const DeepCollectionEquality().hash(sections),hiddenMetrics,eventsTriggeredThisYear,pendingEvent,isDead,causeOfDeath);
+
+@override
+String toString() {
+  return 'LifeState(currentYear: $currentYear, age: $age, health: $health, money: $money, timeRemaining: $timeRemaining, skills: $skills, traits: $traits, habits: $habits, relationships: $relationships, sections: $sections, hiddenMetrics: $hiddenMetrics, eventsTriggeredThisYear: $eventsTriggeredThisYear, pendingEvent: $pendingEvent, isDead: $isDead, causeOfDeath: $causeOfDeath)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $LifeStateCopyWith<$Res>  {
+  factory $LifeStateCopyWith(LifeState value, $Res Function(LifeState) _then) = _$LifeStateCopyWithImpl;
+@useResult
+$Res call({
+ int currentYear, int age, int health, int money, int timeRemaining, SkillSet skills, List<TraitType> traits, List<Habit> habits, List<Relationship> relationships, List<Section> sections, HiddenMetrics hiddenMetrics, int eventsTriggeredThisYear, GameEvent? pendingEvent, bool isDead, String? causeOfDeath
+});
+
+
+$SkillSetCopyWith<$Res> get skills;$HiddenMetricsCopyWith<$Res> get hiddenMetrics;$GameEventCopyWith<$Res>? get pendingEvent;
+
+}
+/// @nodoc
+class _$LifeStateCopyWithImpl<$Res>
+    implements $LifeStateCopyWith<$Res> {
+  _$LifeStateCopyWithImpl(this._self, this._then);
+
+  final LifeState _self;
+  final $Res Function(LifeState) _then;
+
+/// Create a copy of LifeState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? currentYear = null,Object? age = null,Object? health = null,Object? money = null,Object? timeRemaining = null,Object? skills = null,Object? traits = null,Object? habits = null,Object? relationships = null,Object? sections = null,Object? hiddenMetrics = null,Object? eventsTriggeredThisYear = null,Object? pendingEvent = freezed,Object? isDead = null,Object? causeOfDeath = freezed,}) {
+  return _then(_self.copyWith(
+currentYear: null == currentYear ? _self.currentYear : currentYear // ignore: cast_nullable_to_non_nullable
+as int,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
+as int,health: null == health ? _self.health : health // ignore: cast_nullable_to_non_nullable
+as int,money: null == money ? _self.money : money // ignore: cast_nullable_to_non_nullable
+as int,timeRemaining: null == timeRemaining ? _self.timeRemaining : timeRemaining // ignore: cast_nullable_to_non_nullable
+as int,skills: null == skills ? _self.skills : skills // ignore: cast_nullable_to_non_nullable
+as SkillSet,traits: null == traits ? _self.traits : traits // ignore: cast_nullable_to_non_nullable
+as List<TraitType>,habits: null == habits ? _self.habits : habits // ignore: cast_nullable_to_non_nullable
+as List<Habit>,relationships: null == relationships ? _self.relationships : relationships // ignore: cast_nullable_to_non_nullable
+as List<Relationship>,sections: null == sections ? _self.sections : sections // ignore: cast_nullable_to_non_nullable
+as List<Section>,hiddenMetrics: null == hiddenMetrics ? _self.hiddenMetrics : hiddenMetrics // ignore: cast_nullable_to_non_nullable
+as HiddenMetrics,eventsTriggeredThisYear: null == eventsTriggeredThisYear ? _self.eventsTriggeredThisYear : eventsTriggeredThisYear // ignore: cast_nullable_to_non_nullable
+as int,pendingEvent: freezed == pendingEvent ? _self.pendingEvent : pendingEvent // ignore: cast_nullable_to_non_nullable
+as GameEvent?,isDead: null == isDead ? _self.isDead : isDead // ignore: cast_nullable_to_non_nullable
+as bool,causeOfDeath: freezed == causeOfDeath ? _self.causeOfDeath : causeOfDeath // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+/// Create a copy of LifeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SkillSetCopyWith<$Res> get skills {
+  
+  return $SkillSetCopyWith<$Res>(_self.skills, (value) {
+    return _then(_self.copyWith(skills: value));
+  });
+}/// Create a copy of LifeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$HiddenMetricsCopyWith<$Res> get hiddenMetrics {
+  
+  return $HiddenMetricsCopyWith<$Res>(_self.hiddenMetrics, (value) {
+    return _then(_self.copyWith(hiddenMetrics: value));
+  });
+}/// Create a copy of LifeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$GameEventCopyWith<$Res>? get pendingEvent {
+    if (_self.pendingEvent == null) {
+    return null;
+  }
+
+  return $GameEventCopyWith<$Res>(_self.pendingEvent!, (value) {
+    return _then(_self.copyWith(pendingEvent: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [LifeState].
+extension LifeStatePatterns on LifeState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _LifeState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _LifeState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _LifeState value)  $default,){
+final _that = this;
+switch (_that) {
+case _LifeState():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _LifeState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _LifeState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int currentYear,  int age,  int health,  int money,  int timeRemaining,  SkillSet skills,  List<TraitType> traits,  List<Habit> habits,  List<Relationship> relationships,  List<Section> sections,  HiddenMetrics hiddenMetrics,  int eventsTriggeredThisYear,  GameEvent? pendingEvent,  bool isDead,  String? causeOfDeath)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _LifeState() when $default != null:
+return $default(_that.currentYear,_that.age,_that.health,_that.money,_that.timeRemaining,_that.skills,_that.traits,_that.habits,_that.relationships,_that.sections,_that.hiddenMetrics,_that.eventsTriggeredThisYear,_that.pendingEvent,_that.isDead,_that.causeOfDeath);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int currentYear,  int age,  int health,  int money,  int timeRemaining,  SkillSet skills,  List<TraitType> traits,  List<Habit> habits,  List<Relationship> relationships,  List<Section> sections,  HiddenMetrics hiddenMetrics,  int eventsTriggeredThisYear,  GameEvent? pendingEvent,  bool isDead,  String? causeOfDeath)  $default,) {final _that = this;
+switch (_that) {
+case _LifeState():
+return $default(_that.currentYear,_that.age,_that.health,_that.money,_that.timeRemaining,_that.skills,_that.traits,_that.habits,_that.relationships,_that.sections,_that.hiddenMetrics,_that.eventsTriggeredThisYear,_that.pendingEvent,_that.isDead,_that.causeOfDeath);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int currentYear,  int age,  int health,  int money,  int timeRemaining,  SkillSet skills,  List<TraitType> traits,  List<Habit> habits,  List<Relationship> relationships,  List<Section> sections,  HiddenMetrics hiddenMetrics,  int eventsTriggeredThisYear,  GameEvent? pendingEvent,  bool isDead,  String? causeOfDeath)?  $default,) {final _that = this;
+switch (_that) {
+case _LifeState() when $default != null:
+return $default(_that.currentYear,_that.age,_that.health,_that.money,_that.timeRemaining,_that.skills,_that.traits,_that.habits,_that.relationships,_that.sections,_that.hiddenMetrics,_that.eventsTriggeredThisYear,_that.pendingEvent,_that.isDead,_that.causeOfDeath);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _LifeState implements LifeState {
+  const _LifeState({required this.currentYear, required this.age, required this.health, required this.money, required this.timeRemaining, required this.skills, required final  List<TraitType> traits, required final  List<Habit> habits, required final  List<Relationship> relationships, required final  List<Section> sections, required this.hiddenMetrics, this.eventsTriggeredThisYear = 0, this.pendingEvent, this.isDead = false, this.causeOfDeath}): _traits = traits,_habits = habits,_relationships = relationships,_sections = sections;
+  factory _LifeState.fromJson(Map<String, dynamic> json) => _$LifeStateFromJson(json);
+
+@override final  int currentYear;
+@override final  int age;
+@override final  int health;
+@override final  int money;
+@override final  int timeRemaining;
+@override final  SkillSet skills;
+ final  List<TraitType> _traits;
+@override List<TraitType> get traits {
+  if (_traits is EqualUnmodifiableListView) return _traits;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_traits);
+}
+
+ final  List<Habit> _habits;
+@override List<Habit> get habits {
+  if (_habits is EqualUnmodifiableListView) return _habits;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_habits);
+}
+
+ final  List<Relationship> _relationships;
+@override List<Relationship> get relationships {
+  if (_relationships is EqualUnmodifiableListView) return _relationships;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_relationships);
+}
+
+ final  List<Section> _sections;
+@override List<Section> get sections {
+  if (_sections is EqualUnmodifiableListView) return _sections;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_sections);
+}
+
+@override final  HiddenMetrics hiddenMetrics;
+@override@JsonKey() final  int eventsTriggeredThisYear;
+@override final  GameEvent? pendingEvent;
+@override@JsonKey() final  bool isDead;
+@override final  String? causeOfDeath;
+
+/// Create a copy of LifeState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LifeStateCopyWith<_LifeState> get copyWith => __$LifeStateCopyWithImpl<_LifeState>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$LifeStateToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LifeState&&(identical(other.currentYear, currentYear) || other.currentYear == currentYear)&&(identical(other.age, age) || other.age == age)&&(identical(other.health, health) || other.health == health)&&(identical(other.money, money) || other.money == money)&&(identical(other.timeRemaining, timeRemaining) || other.timeRemaining == timeRemaining)&&(identical(other.skills, skills) || other.skills == skills)&&const DeepCollectionEquality().equals(other._traits, _traits)&&const DeepCollectionEquality().equals(other._habits, _habits)&&const DeepCollectionEquality().equals(other._relationships, _relationships)&&const DeepCollectionEquality().equals(other._sections, _sections)&&(identical(other.hiddenMetrics, hiddenMetrics) || other.hiddenMetrics == hiddenMetrics)&&(identical(other.eventsTriggeredThisYear, eventsTriggeredThisYear) || other.eventsTriggeredThisYear == eventsTriggeredThisYear)&&(identical(other.pendingEvent, pendingEvent) || other.pendingEvent == pendingEvent)&&(identical(other.isDead, isDead) || other.isDead == isDead)&&(identical(other.causeOfDeath, causeOfDeath) || other.causeOfDeath == causeOfDeath));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,currentYear,age,health,money,timeRemaining,skills,const DeepCollectionEquality().hash(_traits),const DeepCollectionEquality().hash(_habits),const DeepCollectionEquality().hash(_relationships),const DeepCollectionEquality().hash(_sections),hiddenMetrics,eventsTriggeredThisYear,pendingEvent,isDead,causeOfDeath);
+
+@override
+String toString() {
+  return 'LifeState(currentYear: $currentYear, age: $age, health: $health, money: $money, timeRemaining: $timeRemaining, skills: $skills, traits: $traits, habits: $habits, relationships: $relationships, sections: $sections, hiddenMetrics: $hiddenMetrics, eventsTriggeredThisYear: $eventsTriggeredThisYear, pendingEvent: $pendingEvent, isDead: $isDead, causeOfDeath: $causeOfDeath)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$LifeStateCopyWith<$Res> implements $LifeStateCopyWith<$Res> {
+  factory _$LifeStateCopyWith(_LifeState value, $Res Function(_LifeState) _then) = __$LifeStateCopyWithImpl;
+@override @useResult
+$Res call({
+ int currentYear, int age, int health, int money, int timeRemaining, SkillSet skills, List<TraitType> traits, List<Habit> habits, List<Relationship> relationships, List<Section> sections, HiddenMetrics hiddenMetrics, int eventsTriggeredThisYear, GameEvent? pendingEvent, bool isDead, String? causeOfDeath
+});
+
+
+@override $SkillSetCopyWith<$Res> get skills;@override $HiddenMetricsCopyWith<$Res> get hiddenMetrics;@override $GameEventCopyWith<$Res>? get pendingEvent;
+
+}
+/// @nodoc
+class __$LifeStateCopyWithImpl<$Res>
+    implements _$LifeStateCopyWith<$Res> {
+  __$LifeStateCopyWithImpl(this._self, this._then);
+
+  final _LifeState _self;
+  final $Res Function(_LifeState) _then;
+
+/// Create a copy of LifeState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? currentYear = null,Object? age = null,Object? health = null,Object? money = null,Object? timeRemaining = null,Object? skills = null,Object? traits = null,Object? habits = null,Object? relationships = null,Object? sections = null,Object? hiddenMetrics = null,Object? eventsTriggeredThisYear = null,Object? pendingEvent = freezed,Object? isDead = null,Object? causeOfDeath = freezed,}) {
+  return _then(_LifeState(
+currentYear: null == currentYear ? _self.currentYear : currentYear // ignore: cast_nullable_to_non_nullable
+as int,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
+as int,health: null == health ? _self.health : health // ignore: cast_nullable_to_non_nullable
+as int,money: null == money ? _self.money : money // ignore: cast_nullable_to_non_nullable
+as int,timeRemaining: null == timeRemaining ? _self.timeRemaining : timeRemaining // ignore: cast_nullable_to_non_nullable
+as int,skills: null == skills ? _self.skills : skills // ignore: cast_nullable_to_non_nullable
+as SkillSet,traits: null == traits ? _self._traits : traits // ignore: cast_nullable_to_non_nullable
+as List<TraitType>,habits: null == habits ? _self._habits : habits // ignore: cast_nullable_to_non_nullable
+as List<Habit>,relationships: null == relationships ? _self._relationships : relationships // ignore: cast_nullable_to_non_nullable
+as List<Relationship>,sections: null == sections ? _self._sections : sections // ignore: cast_nullable_to_non_nullable
+as List<Section>,hiddenMetrics: null == hiddenMetrics ? _self.hiddenMetrics : hiddenMetrics // ignore: cast_nullable_to_non_nullable
+as HiddenMetrics,eventsTriggeredThisYear: null == eventsTriggeredThisYear ? _self.eventsTriggeredThisYear : eventsTriggeredThisYear // ignore: cast_nullable_to_non_nullable
+as int,pendingEvent: freezed == pendingEvent ? _self.pendingEvent : pendingEvent // ignore: cast_nullable_to_non_nullable
+as GameEvent?,isDead: null == isDead ? _self.isDead : isDead // ignore: cast_nullable_to_non_nullable
+as bool,causeOfDeath: freezed == causeOfDeath ? _self.causeOfDeath : causeOfDeath // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+/// Create a copy of LifeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SkillSetCopyWith<$Res> get skills {
+  
+  return $SkillSetCopyWith<$Res>(_self.skills, (value) {
+    return _then(_self.copyWith(skills: value));
+  });
+}/// Create a copy of LifeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$HiddenMetricsCopyWith<$Res> get hiddenMetrics {
+  
+  return $HiddenMetricsCopyWith<$Res>(_self.hiddenMetrics, (value) {
+    return _then(_self.copyWith(hiddenMetrics: value));
+  });
+}/// Create a copy of LifeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$GameEventCopyWith<$Res>? get pendingEvent {
+    if (_self.pendingEvent == null) {
+    return null;
+  }
+
+  return $GameEventCopyWith<$Res>(_self.pendingEvent!, (value) {
+    return _then(_self.copyWith(pendingEvent: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$LifeSummary {
+
+ int get ageAtDeath; String get causeOfDeath; SkillSet get finalSkills; List<TraitType> get finalTraits; Map<String, double> get subjectContributions;
+/// Create a copy of LifeSummary
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LifeSummaryCopyWith<LifeSummary> get copyWith => _$LifeSummaryCopyWithImpl<LifeSummary>(this as LifeSummary, _$identity);
+
+  /// Serializes this LifeSummary to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LifeSummary&&(identical(other.ageAtDeath, ageAtDeath) || other.ageAtDeath == ageAtDeath)&&(identical(other.causeOfDeath, causeOfDeath) || other.causeOfDeath == causeOfDeath)&&(identical(other.finalSkills, finalSkills) || other.finalSkills == finalSkills)&&const DeepCollectionEquality().equals(other.finalTraits, finalTraits)&&const DeepCollectionEquality().equals(other.subjectContributions, subjectContributions));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,ageAtDeath,causeOfDeath,finalSkills,const DeepCollectionEquality().hash(finalTraits),const DeepCollectionEquality().hash(subjectContributions));
+
+@override
+String toString() {
+  return 'LifeSummary(ageAtDeath: $ageAtDeath, causeOfDeath: $causeOfDeath, finalSkills: $finalSkills, finalTraits: $finalTraits, subjectContributions: $subjectContributions)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $LifeSummaryCopyWith<$Res>  {
+  factory $LifeSummaryCopyWith(LifeSummary value, $Res Function(LifeSummary) _then) = _$LifeSummaryCopyWithImpl;
+@useResult
+$Res call({
+ int ageAtDeath, String causeOfDeath, SkillSet finalSkills, List<TraitType> finalTraits, Map<String, double> subjectContributions
+});
+
+
+$SkillSetCopyWith<$Res> get finalSkills;
+
+}
+/// @nodoc
+class _$LifeSummaryCopyWithImpl<$Res>
+    implements $LifeSummaryCopyWith<$Res> {
+  _$LifeSummaryCopyWithImpl(this._self, this._then);
+
+  final LifeSummary _self;
+  final $Res Function(LifeSummary) _then;
+
+/// Create a copy of LifeSummary
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? ageAtDeath = null,Object? causeOfDeath = null,Object? finalSkills = null,Object? finalTraits = null,Object? subjectContributions = null,}) {
+  return _then(_self.copyWith(
+ageAtDeath: null == ageAtDeath ? _self.ageAtDeath : ageAtDeath // ignore: cast_nullable_to_non_nullable
+as int,causeOfDeath: null == causeOfDeath ? _self.causeOfDeath : causeOfDeath // ignore: cast_nullable_to_non_nullable
+as String,finalSkills: null == finalSkills ? _self.finalSkills : finalSkills // ignore: cast_nullable_to_non_nullable
+as SkillSet,finalTraits: null == finalTraits ? _self.finalTraits : finalTraits // ignore: cast_nullable_to_non_nullable
+as List<TraitType>,subjectContributions: null == subjectContributions ? _self.subjectContributions : subjectContributions // ignore: cast_nullable_to_non_nullable
+as Map<String, double>,
+  ));
+}
+/// Create a copy of LifeSummary
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SkillSetCopyWith<$Res> get finalSkills {
+  
+  return $SkillSetCopyWith<$Res>(_self.finalSkills, (value) {
+    return _then(_self.copyWith(finalSkills: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [LifeSummary].
+extension LifeSummaryPatterns on LifeSummary {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _LifeSummary value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _LifeSummary() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _LifeSummary value)  $default,){
+final _that = this;
+switch (_that) {
+case _LifeSummary():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _LifeSummary value)?  $default,){
+final _that = this;
+switch (_that) {
+case _LifeSummary() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int ageAtDeath,  String causeOfDeath,  SkillSet finalSkills,  List<TraitType> finalTraits,  Map<String, double> subjectContributions)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _LifeSummary() when $default != null:
+return $default(_that.ageAtDeath,_that.causeOfDeath,_that.finalSkills,_that.finalTraits,_that.subjectContributions);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int ageAtDeath,  String causeOfDeath,  SkillSet finalSkills,  List<TraitType> finalTraits,  Map<String, double> subjectContributions)  $default,) {final _that = this;
+switch (_that) {
+case _LifeSummary():
+return $default(_that.ageAtDeath,_that.causeOfDeath,_that.finalSkills,_that.finalTraits,_that.subjectContributions);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int ageAtDeath,  String causeOfDeath,  SkillSet finalSkills,  List<TraitType> finalTraits,  Map<String, double> subjectContributions)?  $default,) {final _that = this;
+switch (_that) {
+case _LifeSummary() when $default != null:
+return $default(_that.ageAtDeath,_that.causeOfDeath,_that.finalSkills,_that.finalTraits,_that.subjectContributions);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _LifeSummary implements LifeSummary {
+  const _LifeSummary({required this.ageAtDeath, required this.causeOfDeath, required this.finalSkills, required final  List<TraitType> finalTraits, required final  Map<String, double> subjectContributions}): _finalTraits = finalTraits,_subjectContributions = subjectContributions;
+  factory _LifeSummary.fromJson(Map<String, dynamic> json) => _$LifeSummaryFromJson(json);
+
+@override final  int ageAtDeath;
+@override final  String causeOfDeath;
+@override final  SkillSet finalSkills;
+ final  List<TraitType> _finalTraits;
+@override List<TraitType> get finalTraits {
+  if (_finalTraits is EqualUnmodifiableListView) return _finalTraits;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_finalTraits);
+}
+
+ final  Map<String, double> _subjectContributions;
+@override Map<String, double> get subjectContributions {
+  if (_subjectContributions is EqualUnmodifiableMapView) return _subjectContributions;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(_subjectContributions);
+}
+
+
+/// Create a copy of LifeSummary
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LifeSummaryCopyWith<_LifeSummary> get copyWith => __$LifeSummaryCopyWithImpl<_LifeSummary>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$LifeSummaryToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LifeSummary&&(identical(other.ageAtDeath, ageAtDeath) || other.ageAtDeath == ageAtDeath)&&(identical(other.causeOfDeath, causeOfDeath) || other.causeOfDeath == causeOfDeath)&&(identical(other.finalSkills, finalSkills) || other.finalSkills == finalSkills)&&const DeepCollectionEquality().equals(other._finalTraits, _finalTraits)&&const DeepCollectionEquality().equals(other._subjectContributions, _subjectContributions));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,ageAtDeath,causeOfDeath,finalSkills,const DeepCollectionEquality().hash(_finalTraits),const DeepCollectionEquality().hash(_subjectContributions));
+
+@override
+String toString() {
+  return 'LifeSummary(ageAtDeath: $ageAtDeath, causeOfDeath: $causeOfDeath, finalSkills: $finalSkills, finalTraits: $finalTraits, subjectContributions: $subjectContributions)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$LifeSummaryCopyWith<$Res> implements $LifeSummaryCopyWith<$Res> {
+  factory _$LifeSummaryCopyWith(_LifeSummary value, $Res Function(_LifeSummary) _then) = __$LifeSummaryCopyWithImpl;
+@override @useResult
+$Res call({
+ int ageAtDeath, String causeOfDeath, SkillSet finalSkills, List<TraitType> finalTraits, Map<String, double> subjectContributions
+});
+
+
+@override $SkillSetCopyWith<$Res> get finalSkills;
+
+}
+/// @nodoc
+class __$LifeSummaryCopyWithImpl<$Res>
+    implements _$LifeSummaryCopyWith<$Res> {
+  __$LifeSummaryCopyWithImpl(this._self, this._then);
+
+  final _LifeSummary _self;
+  final $Res Function(_LifeSummary) _then;
+
+/// Create a copy of LifeSummary
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? ageAtDeath = null,Object? causeOfDeath = null,Object? finalSkills = null,Object? finalTraits = null,Object? subjectContributions = null,}) {
+  return _then(_LifeSummary(
+ageAtDeath: null == ageAtDeath ? _self.ageAtDeath : ageAtDeath // ignore: cast_nullable_to_non_nullable
+as int,causeOfDeath: null == causeOfDeath ? _self.causeOfDeath : causeOfDeath // ignore: cast_nullable_to_non_nullable
+as String,finalSkills: null == finalSkills ? _self.finalSkills : finalSkills // ignore: cast_nullable_to_non_nullable
+as SkillSet,finalTraits: null == finalTraits ? _self._finalTraits : finalTraits // ignore: cast_nullable_to_non_nullable
+as List<TraitType>,subjectContributions: null == subjectContributions ? _self._subjectContributions : subjectContributions // ignore: cast_nullable_to_non_nullable
+as Map<String, double>,
+  ));
+}
+
+/// Create a copy of LifeSummary
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SkillSetCopyWith<$Res> get finalSkills {
+  
+  return $SkillSetCopyWith<$Res>(_self.finalSkills, (value) {
+    return _then(_self.copyWith(finalSkills: value));
+  });
+}
+}
+
+// dart format on

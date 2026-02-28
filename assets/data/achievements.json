@@ -1,0 +1,72 @@
+[
+  {
+    "id": "ach_first_life",
+    "key": "first_life",
+    "name": "First Life",
+    "description": "Complete your first life",
+    "unlockedAt": null
+  },
+  {
+    "id": "ach_nirvana",
+    "key": "nirvana",
+    "name": "Nirvana",
+    "description": "Achieve Nirvana",
+    "unlockedAt": null
+  },
+  {
+    "id": "ach_centenarian",
+    "key": "centenarian",
+    "name": "Centenarian",
+    "description": "Live to 100",
+    "unlockedAt": null
+  },
+  {
+    "id": "ach_social_butterfly",
+    "key": "social_butterfly",
+    "name": "Social Butterfly",
+    "description": "Have 5+ relationships in one life",
+    "unlockedAt": null
+  },
+  {
+    "id": "ach_jack_of_all_trades",
+    "key": "jack_of_all_trades",
+    "name": "Jack of All Trades",
+    "description": "Get all skills above 50",
+    "unlockedAt": null
+  },
+  {
+    "id": "ach_creature_of_habit",
+    "key": "creature_of_habit",
+    "name": "Creature of Habit",
+    "description": "Form 3 habits in one life",
+    "unlockedAt": null
+  },
+  {
+    "id": "ach_compassionate_soul",
+    "key": "compassionate_soul",
+    "name": "Compassionate Soul",
+    "description": "Pass the Compassion subject",
+    "unlockedAt": null
+  },
+  {
+    "id": "ach_brave_soul",
+    "key": "brave_soul",
+    "name": "Brave Soul",
+    "description": "Pass the Courage subject",
+    "unlockedAt": null
+  },
+  {
+    "id": "ach_wise_soul",
+    "key": "wise_soul",
+    "name": "Wise Soul",
+    "description": "Pass the Wisdom subject",
+    "unlockedAt": null
+  },
+  {
+    "id": "ach_perfect_life",
+    "key": "perfect_life",
+    "name": "Perfect Life",
+    "description": "Pass all subjects in a single life",
+    "unlockedAt": null
+  }
+]
