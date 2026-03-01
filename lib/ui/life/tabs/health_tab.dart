@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/action.dart';
+import 'package:alma/core/models/game_log.dart';
+import 'package:alma/core/models/enums/log_category.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/ui/life/widgets/person_header_widget.dart';
+import 'package:alma/ui/life/widgets/log_list_widget.dart';
 import 'package:alma/ui/life/widgets/action_tile_widget.dart';
 import 'package:alma/ui/shared/stat_bar_widget.dart';
 
@@ -68,6 +71,16 @@ class HealthTab extends StatelessWidget {
                 onTap: () => onActionTap(action),
               );
             }),
+          kVerticalGap32,
+          LogListWidget(
+            title: l10n.eventLog,
+            emptyMessage: l10n.noEventsRecorded,
+            gameLogs: state.logs
+                .where((GameLog log) => log.category == LogCategory.health)
+                .toList()
+                .reversed
+                .toList(),
+          ),
         ],
       ),
     );

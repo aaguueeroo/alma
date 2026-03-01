@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:alma/core/models/game_log.dart';
 import 'package:alma/core/models/relationship.dart';
 import 'package:alma/core/models/enums/npc_role.dart';
 import 'package:alma/app/constants/spacing.dart';
@@ -13,10 +14,12 @@ class RelationDetailWidget extends StatelessWidget {
     super.key,
     required this.relationship,
     required this.onBack,
+    this.logs = const [],
   });
 
   final Relationship relationship;
   final VoidCallback onBack;
+  final List<GameLog> logs;
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +72,7 @@ class RelationDetailWidget extends StatelessWidget {
                 LogListWidget(
                   title: l10n.eventLog,
                   emptyMessage: l10n.noInteractionsRecorded,
+                  gameLogs: logs,
                 ),
                 kVerticalGap32,
                 Text(

@@ -280,5 +280,19 @@
   "promotionGranted": "Promoted!",
   "promotionDenied": "Promotion Denied",
   "ok": "OK",
-  "actionsThisYear": "Actions done this year"
+  "actionsThisYear": "Actions done this year",
+
+  "logAgePrefix": "[Age {age}]",
+  "@logAgePrefix": {
+    "placeholders": {
+      "age": {"type": "int"}
+    }
+  },
+  "lifeLog": "Life Log",
+  "noLogsRecorded": "No logs recorded yet",
+  "filterEducation": "Education",
+  "filterEvent": "Event",
+  "filterLife": "Life",
+  "filterHealth": "Health",
+  "filterSocial": "Social"
 }

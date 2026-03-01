@@ -14,6 +14,7 @@
     "choices": [
       {
         "description": "Give them your coat and buy them a warm meal.",
+        "logMessage": "Someone was in need on the street and you opened your heart to them.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {"compassion": 0.15, "integrity": 0.05},
@@ -28,6 +29,7 @@
       },
       {
         "description": "Avert your eyes and walk past quickly.",
+        "logMessage": "You passed by someone in need without stopping.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {"compassion": -0.08, "integrity": -0.03},
@@ -42,6 +44,7 @@
       },
       {
         "description": "Call a shelter and wait with them until help arrives.",
+        "logMessage": "Someone was in need on the street; you found them help and stayed until it arrived.",
         "consequences": {
           "skillChanges": {"communication": 1},
           "hiddenMetricChanges": {"compassion": 0.2, "integrity": 0.1, "discipline": 0.05},
@@ -71,6 +74,7 @@
     "choices": [
       {
         "description": "Lead the drive and recruit others to help.",
+        "logMessage": "Your community rallied for a cause and you led the effort.",
         "consequences": {
           "skillChanges": {"communication": 3, "creativity": 1},
           "hiddenMetricChanges": {"compassion": 0.2, "integrity": 0.1, "courage": 0.05},
@@ -85,6 +89,7 @@
       },
       {
         "description": "Donate money anonymously and move on.",
+        "logMessage": "You gave to those in need without seeking recognition.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {"compassion": 0.1, "humility": 0.1},
@@ -99,6 +104,7 @@
       },
       {
         "description": "Ignore it—you have your own problems.",
+        "logMessage": "A chance to help your community came and you turned away, caught up in your own troubles.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {"compassion": -0.12, "humility": -0.05},
@@ -128,6 +134,7 @@
     "choices": [
       {
         "description": "Carefully take it to a vet, paying for treatment.",
+        "logMessage": "An injured creature needed care; you took it to a vet and paid for its treatment.",
         "consequences": {
           "skillChanges": {"emotionalStability": 1},
           "hiddenMetricChanges": {"compassion": 0.2, "integrity": 0.08},
@@ -142,6 +149,7 @@
       },
       {
         "description": "Try to help it yourself with what you have.",
+        "logMessage": "An injured creature needed care; you did what you could with what you had.",
         "consequences": {
           "skillChanges": {"creativity": 1, "emotionalStability": 2},
           "hiddenMetricChanges": {"compassion": 0.15, "curiosity": 0.05},
@@ -156,6 +164,7 @@
       },
       {
         "description": "Leave it—nature will take its course.",
+        "logMessage": "An injured creature lay before you; you left it to fate.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {"compassion": -0.15},
@@ -185,6 +194,7 @@
     "choices": [
       {
         "description": "Intervene and try to stop the fight.",
+        "logMessage": "You witnessed violence and chose to step in and try to stop it.",
         "consequences": {
           "skillChanges": {"communication": 2, "fitness": 1},
           "hiddenMetricChanges": {"courage": 0.25, "compassion": 0.1},
@@ -199,6 +209,7 @@
       },
       {
         "description": "Call the authorities and stay to give a statement.",
+        "logMessage": "You witnessed violence; you called for help and stayed to give a statement.",
         "consequences": {
           "skillChanges": {"communication": 1},
           "hiddenMetricChanges": {"courage": 0.1, "integrity": 0.15, "discipline": 0.05},
@@ -213,6 +224,7 @@
       },
       {
         "description": "Walk away—it's not your business.",
+        "logMessage": "You witnessed violence and walked away without getting involved.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {"courage": -0.15, "compassion": -0.1},
@@ -242,6 +254,7 @@
     "choices": [
       {
         "description": "Accept and prepare thoroughly—you'll face the fear.",
+        "logMessage": "You were asked to speak in front of a crowd; you faced your fear and prepared thoroughly.",
         "consequences": {
           "skillChanges": {"communication": 4, "emotionalStability": 2},
           "hiddenMetricChanges": {"courage": 0.2, "discipline": 0.15},
@@ -256,6 +269,7 @@
       },
       {
         "description": "Accept but wing it—confidence is key.",
+        "logMessage": "You were asked to speak in front of a crowd; you said yes and chose to wing it.",
         "consequences": {
           "skillChanges": {"communication": 2},
           "hiddenMetricChanges": {"courage": 0.1, "humility": -0.05},
@@ -270,6 +284,7 @@
       },
       {
         "description": "Decline—you're not ready for that.",
+        "logMessage": "You were asked to speak in front of a crowd and decided you were not ready.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {"courage": -0.12},
@@ -299,6 +314,7 @@
     "choices": [
       {
         "description": "Confront the bully directly and defend the victim.",
+        "logMessage": "Someone was being bullied and you stood up for them.",
         "consequences": {
           "skillChanges": {"communication": 2, "fitness": 1},
           "hiddenMetricChanges": {"courage": 0.25, "compassion": 0.1},
@@ -313,6 +329,7 @@
       },
       {
         "description": "Get a teacher—let authority handle it.",
+        "logMessage": "Someone was being bullied; you brought in a teacher to handle it.",
         "consequences": {
           "skillChanges": {"communication": 1},
           "hiddenMetricChanges": {"courage": 0.05, "integrity": 0.1},
@@ -327,6 +344,7 @@
       },
       {
         "description": "Look away—you don't want to get involved.",
+        "logMessage": "Someone was being bullied and you looked away.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {"courage": -0.15, "compassion": -0.08},
@@ -356,6 +374,7 @@
     "choices": [
       {
         "description": "Stay home and study—the exam matters more.",
+        "logMessage": "The night before a big exam, you chose to stay in and study.",
         "consequences": {
           "skillChanges": {"intelligence": 2},
           "hiddenMetricChanges": {"discipline": 0.2, "integrity": 0.05},
@@ -370,6 +389,7 @@
       },
       {
         "description": "Go for an hour, then come back to study.",
+        "logMessage": "The night before a big exam, you went out for a short while then came back to study.",
         "consequences": {
           "skillChanges": {"communication": 1, "intelligence": 1},
           "hiddenMetricChanges": {"discipline": 0.08, "curiosity": 0.05},
@@ -384,6 +404,7 @@
       },
       {
         "description": "Forget the exam—you'll wing it. Party all night.",
+        "logMessage": "The night before a big exam, you chose to party and take your chances.",
         "consequences": {
           "skillChanges": {"communication": 2},
           "hiddenMetricChanges": {"discipline": -0.2, "integrity": -0.1},
@@ -413,6 +434,7 @@
     "choices": [
       {
         "description": "Refuse—do the job properly, even if it's late.",
+        "logMessage": "A colleague suggested cutting corners; you did the job properly instead.",
         "consequences": {
           "skillChanges": {"intelligence": 1},
           "hiddenMetricChanges": {"discipline": 0.2, "integrity": 0.25},
@@ -427,6 +449,7 @@
       },
       {
         "description": "Take the shortcut—everyone does it sometimes.",
+        "logMessage": "You were tempted to cut corners at work and took the shortcut.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {"discipline": -0.15, "integrity": -0.2},
@@ -441,6 +464,7 @@
       },
       {
         "description": "Report the suggestion to your supervisor.",
+        "logMessage": "A colleague suggested cutting corners; you reported it to your supervisor.",
         "consequences": {
           "skillChanges": {"communication": 1},
           "hiddenMetricChanges": {"integrity": 0.2, "courage": 0.1, "discipline": 0.05},
@@ -470,6 +494,7 @@
     "choices": [
       {
         "description": "Decline—your principles aren't for sale.",
+        "logMessage": "You were offered a morally gray opportunity and turned it down.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {"discipline": 0.2, "integrity": 0.25, "humility": 0.05},
@@ -484,6 +509,7 @@
       },
       {
         "description": "Take the deal—you need the money.",
+        "logMessage": "You were offered a morally gray opportunity and took it because you needed the money.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {"discipline": -0.15, "integrity": -0.2},
@@ -498,6 +524,7 @@
       },
       {
         "description": "Ask for time to think—then seek advice from someone you trust.",
+        "logMessage": "You were offered a morally gray opportunity; you asked for time and sought advice before deciding.",
         "consequences": {
           "skillChanges": {"communication": 1},
           "hiddenMetricChanges": {"discipline": 0.1, "integrity": 0.1, "humility": 0.1},
@@ -527,6 +554,7 @@
     "choices": [
       {
         "description": "Reveal the truth and accept the consequences.",
+        "logMessage": "You discovered a difficult truth and chose to reveal it, accepting the consequences.",
         "consequences": {
           "skillChanges": {"communication": 2, "emotionalStability": 1},
           "hiddenMetricChanges": {"integrity": 0.2, "courage": 0.15, "curiosity": 0.1},
@@ -541,6 +569,7 @@
       },
       {
         "description": "Keep it secret—sometimes ignorance is kinder.",
+        "logMessage": "You discovered a difficult truth and chose to keep it secret, believing silence was kinder.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {"compassion": 0.1, "integrity": -0.05},
@@ -555,6 +584,7 @@
       },
       {
         "description": "Seek counsel from someone wiser before deciding.",
+        "logMessage": "You discovered a difficult truth and sought the counsel of someone wiser before deciding.",
         "consequences": {
           "skillChanges": {"intelligence": 1, "communication": 1},
           "hiddenMetricChanges": {"curiosity": 0.15, "humility": 0.15, "integrity": 0.05},
@@ -584,6 +614,7 @@
     "choices": [
       {
         "description": "Accept gratefully and commit to learning.",
+        "logMessage": "Someone offered to mentor you and you accepted with an open heart.",
         "consequences": {
           "skillChanges": {"intelligence": 2, "communication": 1},
           "hiddenMetricChanges": {"curiosity": 0.2, "humility": 0.2, "discipline": 0.1},
@@ -598,6 +629,7 @@
       },
       {
         "description": "Thank them but decline—you prefer to learn on your own.",
+        "logMessage": "Someone offered to mentor you; you thanked them but preferred to find your own way.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {"humility": -0.1, "curiosity": 0.05},
@@ -612,6 +644,7 @@
       },
       {
         "description": "Accept but only take what's useful—you know your path.",
+        "logMessage": "Someone offered to mentor you; you accepted but took only what served your path.",
         "consequences": {
           "skillChanges": {"intelligence": 1},
           "hiddenMetricChanges": {"curiosity": 0.1, "humility": 0.05},
@@ -641,6 +674,7 @@
     "choices": [
       {
         "description": "Embrace the lesson and grow from it.",
+        "logMessage": "Something you believed was proven wrong; you embraced the lesson and grew from it.",
         "consequences": {
           "skillChanges": {"emotionalStability": 2, "intelligence": 1},
           "hiddenMetricChanges": {"curiosity": 0.2, "humility": 0.25},
@@ -655,6 +689,7 @@
       },
       {
         "description": "Reject it—you're not ready to change.",
+        "logMessage": "You were confronted with a hard truth and were not ready to accept it.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {"humility": -0.15, "curiosity": -0.1},
@@ -669,6 +704,7 @@
       },
       {
         "description": "Share the lesson with others who might benefit.",
+        "logMessage": "You learned a hard lesson and shared it with others who might benefit.",
         "consequences": {
           "skillChanges": {"communication": 2},
           "hiddenMetricChanges": {"curiosity": 0.15, "humility": 0.2, "compassion": 0.1},
@@ -698,6 +734,7 @@
     "choices": [
       {
         "description": "Say yes—life is too short for endless planning.",
+        "logMessage": "A friend suggested a spontaneous trip and you said yes without a second thought.",
         "consequences": {
           "skillChanges": {"communication": 2, "creativity": 1},
           "hiddenMetricChanges": {"curiosity": 0.15},
@@ -712,6 +749,7 @@
       },
       {
         "description": "Compromise—plan a shorter, structured trip together.",
+        "logMessage": "A friend suggested a spontaneous trip; you compromised and planned something shorter together.",
         "consequences": {
           "skillChanges": {"communication": 1},
           "hiddenMetricChanges": {"discipline": 0.05, "curiosity": 0.08},
@@ -726,6 +764,7 @@
       },
       {
         "description": "Decline—you have too much to do.",
+        "logMessage": "A friend suggested a spontaneous trip and you declined; you had too much to do.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {"discipline": 0.1},
@@ -755,6 +794,7 @@
     "choices": [
       {
         "description": "Enter with something you've been working on.",
+        "logMessage": "You entered a creative contest with something you had already been working on.",
         "consequences": {
           "skillChanges": {"creativity": 3, "communication": 1},
           "hiddenMetricChanges": {"courage": 0.1, "curiosity": 0.1},
@@ -769,6 +809,7 @@
       },
       {
         "description": "Create something new just for this.",
+        "logMessage": "A creative contest came along and you made something new just for it.",
         "consequences": {
           "skillChanges": {"creativity": 4, "intelligence": 1},
           "hiddenMetricChanges": {"curiosity": 0.15, "courage": 0.08},
@@ -783,6 +824,7 @@
       },
       {
         "description": "Skip it—you're not ready for that kind of exposure.",
+        "logMessage": "You had a chance to share your work in a contest and decided you were not ready for the exposure.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {"courage": -0.08},
@@ -812,6 +854,7 @@
     "choices": [
       {
         "description": "Embrace it fully—dance, laugh, enjoy every moment.",
+        "logMessage": "Your friends threw you a surprise party and you threw yourself into the moment.",
         "consequences": {
           "skillChanges": {"communication": 2, "emotionalStability": 1},
           "hiddenMetricChanges": {},
@@ -826,6 +869,7 @@
       },
       {
         "description": "Thank everyone warmly but stay somewhat reserved.",
+        "logMessage": "Your friends threw you a surprise party; you thanked everyone warmly but stayed a little reserved.",
         "consequences": {
           "skillChanges": {"communication": 1},
           "hiddenMetricChanges": {},
@@ -840,6 +884,7 @@
       },
       {
         "description": "Feel overwhelmed and need a moment alone.",
+        "logMessage": "Your friends threw you a surprise party and you were overwhelmed; you needed a moment alone.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {},
@@ -869,6 +914,7 @@
     "choices": [
       {
         "description": "Accept graciously and thank those who helped you.",
+        "logMessage": "You were honored at a ceremony and accepted graciously, thanking those who had helped you.",
         "consequences": {
           "skillChanges": {"communication": 1},
           "hiddenMetricChanges": {"humility": 0.2, "integrity": 0.05},
@@ -883,6 +929,7 @@
       },
       {
         "description": "Bask in it—you earned this.",
+        "logMessage": "You were honored at a ceremony and basked in the recognition; you felt you had earned it.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {"humility": -0.15, "ambition": 0.1},
@@ -897,6 +944,7 @@
       },
       {
         "description": "Deflect credit to your team and mentors.",
+        "logMessage": "You were honored at a ceremony and deflected the credit to your team and mentors.",
         "consequences": {
           "skillChanges": {"communication": 2},
           "hiddenMetricChanges": {"humility": 0.25, "compassion": 0.1},
@@ -926,6 +974,7 @@
     "choices": [
       {
         "description": "Accept it, learn from it, and move forward.",
+        "logMessage": "Something you worked hard for failed; you accepted it, learned from it, and moved on.",
         "consequences": {
           "skillChanges": {"emotionalStability": 2},
           "hiddenMetricChanges": {"humility": 0.2, "curiosity": 0.1},
@@ -940,6 +989,7 @@
       },
       {
         "description": "Blame others and refuse to accept responsibility.",
+        "logMessage": "When things fell apart, you blamed others and refused to take responsibility.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {"humility": -0.2, "integrity": -0.1},
@@ -954,6 +1004,7 @@
       },
       {
         "description": "Let it crush you for a while—you need to grieve.",
+        "logMessage": "When things fell apart, you let yourself be crushed for a while; you needed to grieve.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {"humility": 0.05},
@@ -983,6 +1034,7 @@
     "choices": [
       {
         "description": "Share credit equally with the team.",
+        "logMessage": "When credit was up for grabs on a project, you shared it equally with your team.",
         "consequences": {
           "skillChanges": {"communication": 1},
           "hiddenMetricChanges": {"humility": 0.2, "integrity": 0.15},
@@ -997,6 +1049,7 @@
       },
       {
         "description": "Claim it was mostly your work.",
+        "logMessage": "When credit was up for grabs on a project, you claimed it was mostly your work.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {"humility": -0.2, "integrity": -0.15},
@@ -1011,6 +1064,7 @@
       },
       {
         "description": "Deflect to the person who had the original idea.",
+        "logMessage": "When credit was up for grabs on a project, you deflected it to the person who had the original idea.",
         "consequences": {
           "skillChanges": {"communication": 1},
           "hiddenMetricChanges": {"humility": 0.25, "compassion": 0.1},

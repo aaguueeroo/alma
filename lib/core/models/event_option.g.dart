@@ -11,12 +11,14 @@ _EventOption _$EventOptionFromJson(Map<String, dynamic> json) => _EventOption(
   consequences: EventConsequences.fromJson(
     json['consequences'] as Map<String, dynamic>,
   ),
+  logMessage: json['logMessage'] as String?,
 );
 
 Map<String, dynamic> _$EventOptionToJson(_EventOption instance) =>
     <String, dynamic>{
       'description': instance.description,
       'consequences': instance.consequences,
+      'logMessage': instance.logMessage,
     };
 
 _EventConsequences _$EventConsequencesFromJson(

@@ -542,4 +542,30 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get actionsThisYear => 'Actions done this year';
+
+  @override
+  String logAgePrefix(int age) {
+    return '[Age $age]';
+  }
+
+  @override
+  String get lifeLog => 'Life Log';
+
+  @override
+  String get noLogsRecorded => 'No logs recorded yet';
+
+  @override
+  String get filterEducation => 'Education';
+
+  @override
+  String get filterEvent => 'Event';
+
+  @override
+  String get filterLife => 'Life';
+
+  @override
+  String get filterHealth => 'Health';
+
+  @override
+  String get filterSocial => 'Social';
 }

@@ -12,6 +12,7 @@ sealed class EventOption with _$EventOption {
   const factory EventOption({
     required String description,
     required EventConsequences consequences,
+    String? logMessage,
   }) = _EventOption;
 
   factory EventOption.fromJson(Map<String, dynamic> json) =>

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:alma/core/models/game_log.dart';
 import 'package:alma/core/models/relationship.dart';
+import 'package:alma/core/models/enums/log_category.dart';
 import 'package:alma/core/models/enums/npc_role.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/app/constants/durations.dart';
@@ -10,9 +12,14 @@ import 'package:alma/ui/life/widgets/relation_detail_widget.dart';
 enum _RelationFilter { all, family, friends, love, work }
 
 class RelationsTab extends StatefulWidget {
-  const RelationsTab({super.key, required this.relationships});
+  const RelationsTab({
+    super.key,
+    required this.relationships,
+    this.logs = const [],
+  });
 
   final List<Relationship> relationships;
+  final List<GameLog> logs;
 
   @override
   State<RelationsTab> createState() => _RelationsTabState();
@@ -31,11 +38,20 @@ class _RelationsTabState extends State<RelationsTab> {
   }
 
   Widget _buildDetailView() {
+    final String npcId = _selectedRelationship!.npc.id;
+    final List<GameLog> npcLogs = widget.logs
+        .where((GameLog log) =>
+            log.category == LogCategory.social &&
+            log.tags.contains('npc:$npcId'))
+        .toList()
+        .reversed
+        .toList();
     return AnimatedSwitcher(
       duration: kDurationNormal,
       child: RelationDetailWidget(
-        key: ValueKey(_selectedRelationship!.npc.id),
+        key: ValueKey(npcId),
         relationship: _selectedRelationship!,
+        logs: npcLogs,
         onBack: () => setState(() => _selectedRelationship = null),
       ),
     );

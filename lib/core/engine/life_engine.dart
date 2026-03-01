@@ -1,10 +1,13 @@
 import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/life_template.dart';
 import 'package:alma/core/models/action.dart';
+import 'package:alma/core/models/game_log.dart';
 import 'package:alma/core/models/relationship.dart';
 import 'package:alma/core/models/hidden_metrics.dart';
 import 'package:alma/core/models/education_state.dart';
 import 'package:alma/core/models/work_state.dart';
+import 'package:alma/app/constants/log_narratives.dart';
+import 'package:alma/core/models/enums/log_category.dart';
 import 'package:alma/core/simulation/action_processor.dart';
 import 'package:alma/core/engine/event_engine.dart';
 import 'package:alma/core/engine/education_engine.dart';
@@ -51,6 +54,13 @@ class LifeEngine {
       hiddenMetrics: const HiddenMetrics(),
       educationState: const EducationState(),
       workState: const WorkState(),
+      logs: [
+        GameLog(
+          age: kStartingAge,
+          message: LogNarratives.lifeBorn,
+          category: LogCategory.life,
+        ),
+      ],
     );
     return Life(
       id: _uuid.v4(),

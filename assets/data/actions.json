@@ -10,7 +10,8 @@
     "healthEffect": 0,
     "sectionPerformanceEffect": 0,
     "associatedHabit": null,
-    "targetNpcId": null
+    "targetNpcId": null,
+    "logMessage": "You dedicated time to focused studying."
   },
   {
     "id": "attend_class",
@@ -23,7 +24,8 @@
     "healthEffect": 0,
     "sectionPerformanceEffect": 0,
     "associatedHabit": null,
-    "targetNpcId": null
+    "targetNpcId": null,
+    "logMessage": "You attended class and took part in the lesson."
   },
   {
     "id": "research",
@@ -36,7 +38,8 @@
     "healthEffect": 0,
     "sectionPerformanceEffect": 0,
     "associatedHabit": null,
-    "targetNpcId": null
+    "targetNpcId": null,
+    "logMessage": "You dove deep into research and expanded your understanding."
   },
   {
     "id": "take_exam",
@@ -49,7 +52,8 @@
     "healthEffect": 0,
     "sectionPerformanceEffect": 5,
     "associatedHabit": null,
-    "targetNpcId": null
+    "targetNpcId": null,
+    "logMessage": "You sat for an exam and put your knowledge to the test."
   },
   {
     "id": "work_shift",
@@ -62,7 +66,8 @@
     "healthEffect": 0,
     "sectionPerformanceEffect": 0,
     "associatedHabit": null,
-    "targetNpcId": null
+    "targetNpcId": null,
+    "logMessage": "You put in a solid shift at work."
   },
   {
     "id": "network",
@@ -75,7 +80,8 @@
     "healthEffect": 0,
     "sectionPerformanceEffect": 0,
     "associatedHabit": null,
-    "targetNpcId": null
+    "targetNpcId": null,
+    "logMessage": "You networked and built your professional circle."
   },
   {
     "id": "apply_for_job",
@@ -88,7 +94,8 @@
     "healthEffect": 0,
     "sectionPerformanceEffect": 3,
     "associatedHabit": null,
-    "targetNpcId": null
+    "targetNpcId": null,
+    "logMessage": "You applied for a job."
   },
   {
     "id": "side_project",
@@ -101,7 +108,8 @@
     "healthEffect": 0,
     "sectionPerformanceEffect": 0,
     "associatedHabit": null,
-    "targetNpcId": null
+    "targetNpcId": null,
+    "logMessage": "You worked on a side project."
   },
   {
     "id": "exercise",
@@ -114,7 +122,8 @@
     "healthEffect": 5,
     "sectionPerformanceEffect": 0,
     "associatedHabit": "exercise",
-    "targetNpcId": null
+    "targetNpcId": null,
+    "logMessage": "You exercised and strengthened your body."
   },
   {
     "id": "rest",
@@ -127,7 +136,8 @@
     "healthEffect": 10,
     "sectionPerformanceEffect": 0,
     "associatedHabit": null,
-    "targetNpcId": null
+    "targetNpcId": null,
+    "logMessage": "You rested and let your body recover."
   },
   {
     "id": "medical_checkup",
@@ -140,7 +150,8 @@
     "healthEffect": 3,
     "sectionPerformanceEffect": 0,
     "associatedHabit": null,
-    "targetNpcId": null
+    "targetNpcId": null,
+    "logMessage": "You went for a medical checkup."
   },
   {
     "id": "meditate",
@@ -153,7 +164,8 @@
     "healthEffect": 0,
     "sectionPerformanceEffect": 0,
     "associatedHabit": "meditation",
-    "targetNpcId": null
+    "targetNpcId": null,
+    "logMessage": "You meditated and found calm within."
   },
   {
     "id": "spend_time_with_friend",
@@ -166,7 +178,8 @@
     "healthEffect": 0,
     "sectionPerformanceEffect": 0,
     "associatedHabit": null,
-    "targetNpcId": null
+    "targetNpcId": null,
+    "logMessage": "You spent time with a friend."
   },
   {
     "id": "make_new_friend",
@@ -179,7 +192,8 @@
     "healthEffect": 0,
     "sectionPerformanceEffect": 0,
     "associatedHabit": null,
-    "targetNpcId": null
+    "targetNpcId": null,
+    "logMessage": "You put yourself out there and made a new friend."
   },
   {
     "id": "help_someone",
@@ -192,7 +206,8 @@
     "healthEffect": 0,
     "sectionPerformanceEffect": 0,
     "associatedHabit": "volunteering",
-    "targetNpcId": null
+    "targetNpcId": null,
+    "logMessage": "You helped someone in need."
   },
   {
     "id": "party",
@@ -205,6 +220,7 @@
     "healthEffect": 0,
     "sectionPerformanceEffect": 0,
     "associatedHabit": null,
-    "targetNpcId": null
+    "targetNpcId": null,
+    "logMessage": "You went to a party and let loose."
   }
 ]

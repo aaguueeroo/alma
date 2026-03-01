@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$EventOption {
 
- String get description; EventConsequences get consequences;
+ String get description; EventConsequences get consequences; String? get logMessage;
 /// Create a copy of EventOption
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $EventOptionCopyWith<EventOption> get copyWith => _$EventOptionCopyWithImpl<Even
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventOption&&(identical(other.description, description) || other.description == description)&&(identical(other.consequences, consequences) || other.consequences == consequences));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventOption&&(identical(other.description, description) || other.description == description)&&(identical(other.consequences, consequences) || other.consequences == consequences)&&(identical(other.logMessage, logMessage) || other.logMessage == logMessage));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,description,consequences);
+int get hashCode => Object.hash(runtimeType,description,consequences,logMessage);
 
 @override
 String toString() {
-  return 'EventOption(description: $description, consequences: $consequences)';
+  return 'EventOption(description: $description, consequences: $consequences, logMessage: $logMessage)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $EventOptionCopyWith<$Res>  {
   factory $EventOptionCopyWith(EventOption value, $Res Function(EventOption) _then) = _$EventOptionCopyWithImpl;
 @useResult
 $Res call({
- String description, EventConsequences consequences
+ String description, EventConsequences consequences, String? logMessage
 });
 
 
@@ -65,11 +65,12 @@ class _$EventOptionCopyWithImpl<$Res>
 
 /// Create a copy of EventOption
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? description = null,Object? consequences = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? description = null,Object? consequences = null,Object? logMessage = freezed,}) {
   return _then(_self.copyWith(
 description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,consequences: null == consequences ? _self.consequences : consequences // ignore: cast_nullable_to_non_nullable
-as EventConsequences,
+as EventConsequences,logMessage: freezed == logMessage ? _self.logMessage : logMessage // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 /// Create a copy of EventOption
@@ -160,10 +161,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String description,  EventConsequences consequences)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String description,  EventConsequences consequences,  String? logMessage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _EventOption() when $default != null:
-return $default(_that.description,_that.consequences);case _:
+return $default(_that.description,_that.consequences,_that.logMessage);case _:
   return orElse();
 
 }
@@ -181,10 +182,10 @@ return $default(_that.description,_that.consequences);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String description,  EventConsequences consequences)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String description,  EventConsequences consequences,  String? logMessage)  $default,) {final _that = this;
 switch (_that) {
 case _EventOption():
-return $default(_that.description,_that.consequences);}
+return $default(_that.description,_that.consequences,_that.logMessage);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -198,10 +199,10 @@ return $default(_that.description,_that.consequences);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String description,  EventConsequences consequences)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String description,  EventConsequences consequences,  String? logMessage)?  $default,) {final _that = this;
 switch (_that) {
 case _EventOption() when $default != null:
-return $default(_that.description,_that.consequences);case _:
+return $default(_that.description,_that.consequences,_that.logMessage);case _:
   return null;
 
 }
@@ -213,11 +214,12 @@ return $default(_that.description,_that.consequences);case _:
 @JsonSerializable()
 
 class _EventOption implements EventOption {
-  const _EventOption({required this.description, required this.consequences});
+  const _EventOption({required this.description, required this.consequences, this.logMessage});
   factory _EventOption.fromJson(Map<String, dynamic> json) => _$EventOptionFromJson(json);
 
 @override final  String description;
 @override final  EventConsequences consequences;
+@override final  String? logMessage;
 
 /// Create a copy of EventOption
 /// with the given fields replaced by the non-null parameter values.
@@ -232,16 +234,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EventOption&&(identical(other.description, description) || other.description == description)&&(identical(other.consequences, consequences) || other.consequences == consequences));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EventOption&&(identical(other.description, description) || other.description == description)&&(identical(other.consequences, consequences) || other.consequences == consequences)&&(identical(other.logMessage, logMessage) || other.logMessage == logMessage));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,description,consequences);
+int get hashCode => Object.hash(runtimeType,description,consequences,logMessage);
 
 @override
 String toString() {
-  return 'EventOption(description: $description, consequences: $consequences)';
+  return 'EventOption(description: $description, consequences: $consequences, logMessage: $logMessage)';
 }
 
 
@@ -252,7 +254,7 @@ abstract mixin class _$EventOptionCopyWith<$Res> implements $EventOptionCopyWith
   factory _$EventOptionCopyWith(_EventOption value, $Res Function(_EventOption) _then) = __$EventOptionCopyWithImpl;
 @override @useResult
 $Res call({
- String description, EventConsequences consequences
+ String description, EventConsequences consequences, String? logMessage
 });
 
 
@@ -269,11 +271,12 @@ class __$EventOptionCopyWithImpl<$Res>
 
 /// Create a copy of EventOption
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? description = null,Object? consequences = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? description = null,Object? consequences = null,Object? logMessage = freezed,}) {
   return _then(_EventOption(
 description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,consequences: null == consequences ? _self.consequences : consequences // ignore: cast_nullable_to_non_nullable
-as EventConsequences,
+as EventConsequences,logMessage: freezed == logMessage ? _self.logMessage : logMessage // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

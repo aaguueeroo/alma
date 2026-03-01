@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:alma/core/models/life.dart';
+import 'package:alma/core/models/game_log.dart';
 import 'package:alma/core/models/soul.dart';
+import 'package:alma/core/models/enums/log_category.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/app/constants/sizing.dart';
 import 'package:alma/app/theme/app_colors.dart';
+import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/providers/life/life_controller.dart';
 import 'package:alma/providers/soul/soul_controller.dart';
 import 'package:alma/providers/achievement/achievement_controller.dart';
+import 'package:alma/ui/life/widgets/log_list_widget.dart';
 import 'package:alma/ui/shared/back_button_leading.dart';
 import 'package:alma/ui/shared/stat_bar_widget.dart';
 import 'package:alma/ui/shared/trait_tag_widget.dart';
@@ -22,6 +26,7 @@ class LifeSummaryScreen extends ConsumerStatefulWidget {
 
 class _LifeSummaryScreenState extends ConsumerState<LifeSummaryScreen> {
   bool _hasProcessed = false;
+  LogCategory? _selectedLogFilter;
 
   @override
   void initState() {
@@ -82,6 +87,14 @@ class _LifeSummaryScreenState extends ConsumerState<LifeSummaryScreen> {
               ),
               kVerticalGap16,
             ],
+            _LifeLogSection(
+              logs: state.logs,
+              selectedFilter: _selectedLogFilter,
+              onFilterChanged: (LogCategory? filter) {
+                setState(() => _selectedLogFilter = filter);
+              },
+            ),
+            kVerticalGap16,
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -282,5 +295,91 @@ class _SubjectContributionsCard extends StatelessWidget {
       default:
         return AppColors.neutral;
     }
+  }
+}
+
+class _LifeLogSection extends StatelessWidget {
+  const _LifeLogSection({
+    required this.logs,
+    required this.selectedFilter,
+    required this.onFilterChanged,
+  });
+
+  final List<GameLog> logs;
+  final LogCategory? selectedFilter;
+  final ValueChanged<LogCategory?> onFilterChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
+    final List<GameLog> filteredLogs = selectedFilter == null
+        ? logs
+        : logs.where((GameLog log) => log.category == selectedFilter).toList();
+    return Card(
+      child: Padding(
+        padding: kPaddingAll16,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(l10n.lifeLog, style: Theme.of(context).textTheme.titleMedium),
+            kVerticalGap12,
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  FilterChip(
+                    label: Text(l10n.filterAll),
+                    selected: selectedFilter == null,
+                    onSelected: (_) => onFilterChanged(null),
+                  ),
+                  kHorizontalGap8,
+                  FilterChip(
+                    label: Text(l10n.filterLife),
+                    selected: selectedFilter == LogCategory.life,
+                    onSelected: (_) => onFilterChanged(LogCategory.life),
+                  ),
+                  kHorizontalGap8,
+                  FilterChip(
+                    label: Text(l10n.filterEducation),
+                    selected: selectedFilter == LogCategory.education,
+                    onSelected: (_) => onFilterChanged(LogCategory.education),
+                  ),
+                  kHorizontalGap8,
+                  FilterChip(
+                    label: Text(l10n.work),
+                    selected: selectedFilter == LogCategory.work,
+                    onSelected: (_) => onFilterChanged(LogCategory.work),
+                  ),
+                  kHorizontalGap8,
+                  FilterChip(
+                    label: Text(l10n.filterHealth),
+                    selected: selectedFilter == LogCategory.health,
+                    onSelected: (_) => onFilterChanged(LogCategory.health),
+                  ),
+                  kHorizontalGap8,
+                  FilterChip(
+                    label: Text(l10n.filterSocial),
+                    selected: selectedFilter == LogCategory.social,
+                    onSelected: (_) => onFilterChanged(LogCategory.social),
+                  ),
+                  kHorizontalGap8,
+                  FilterChip(
+                    label: Text(l10n.filterEvent),
+                    selected: selectedFilter == LogCategory.event,
+                    onSelected: (_) => onFilterChanged(LogCategory.event),
+                  ),
+                ],
+              ),
+            ),
+            kVerticalGap12,
+            LogListWidget(
+              title: '',
+              emptyMessage: l10n.noLogsRecorded,
+              gameLogs: filteredLogs,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

@@ -6,16 +6,19 @@ import 'package:alma/core/models/skill.dart';
 import 'package:alma/core/models/hidden_metrics.dart';
 import 'package:alma/core/models/moral_impact.dart';
 import 'package:alma/core/models/enums/action_category.dart';
+import 'package:alma/core/models/enums/log_category.dart';
 import 'package:alma/core/models/enums/section_type.dart';
 import 'package:alma/core/engine/time_engine.dart';
 import 'package:alma/core/engine/event_engine.dart';
 import 'package:alma/core/engine/education_engine.dart';
 import 'package:alma/core/engine/work_engine.dart';
+import 'package:alma/core/engine/game_logger.dart';
 import 'package:alma/core/engine/seeded_random.dart';
 import 'package:alma/core/rules/trait_rules.dart';
 import 'package:alma/core/simulation/relationship_processor.dart';
 import 'package:alma/core/simulation/habit_processor.dart';
 import 'package:alma/app/constants/game_constants.dart';
+import 'package:alma/app/constants/log_narratives.dart';
 
 class ActionProcessor {
   ActionProcessor({
@@ -54,6 +57,7 @@ class ActionProcessor {
     state = traitRules.checkEvolution(state, action, rng);
     state = _updateHiddenMetrics(state, action);
     state = _recordMoralImpacts(state, action);
+    state = _logAction(state, action, workJobContext: workJobContext);
     final pendingEvent = eventEngine.checkTriggers(state, rng);
     if (pendingEvent != null) {
       return state.copyWith(pendingEvent: pendingEvent);
@@ -68,6 +72,11 @@ class ActionProcessor {
     state = relationshipProcessor.applyYearlyDecay(state);
     state = habitProcessor.processYearEnd(state);
     state = timeEngine.startNewYear(state);
+    state = GameLogger.addLog(
+      state,
+      message: LogNarratives.lifeTurnedAge(state.age),
+      category: LogCategory.life,
+    );
     state = educationEngine.checkAutoEnrollment(state);
     state = _checkAgeBasedDeath(state, rng);
     return state;
@@ -171,11 +180,55 @@ class ActionProcessor {
     );
   }
 
+  LifeState _logAction(
+    LifeState state,
+    GameAction action, {
+    String? workJobContext,
+  }) {
+    final LogCategory category = _actionCategoryToLogCategory(action.category);
+    final List<String> tags = ['action:${action.id}'];
+    if (workJobContext != null) {
+      tags.add('job:$workJobContext');
+    }
+    if (action.targetNpcId != null) {
+      tags.add('npc:${action.targetNpcId}');
+    }
+    final String message = action.logMessage ??
+        (action.name.isEmpty
+            ? 'You did something.'
+            : 'You ${action.name[0].toLowerCase()}${action.name.length > 1 ? action.name.substring(1) : ''}.');
+    return GameLogger.addLog(
+      state,
+      message: message,
+      category: category,
+      tags: tags,
+    );
+  }
+
+  LogCategory _actionCategoryToLogCategory(ActionCategory category) {
+    return switch (category) {
+      ActionCategory.education => LogCategory.education,
+      ActionCategory.work => LogCategory.work,
+      ActionCategory.health => LogCategory.health,
+      ActionCategory.social => LogCategory.social,
+    };
+  }
+
   LifeState _checkDeathConditions(LifeState state, SeededRandom rng) {
     if (state.health <= 0) {
+      state = GameLogger.addLog(
+        state,
+        message: LogNarratives.lifeDiedHealth,
+        category: LogCategory.life,
+      );
       return state.copyWith(isDead: true, causeOfDeath: 'Health depleted');
     }
     if (state.age >= kMaxAge) {
+      state = GameLogger.addLog(
+        state,
+        message: LogNarratives.lifeDiedOldAge,
+        category: LogCategory.life,
+      );
       return state.copyWith(isDead: true, causeOfDeath: 'Old age');
     }
     return state;
@@ -186,6 +239,11 @@ class ActionProcessor {
       final double deathChance = (state.age - 70) * 0.03;
       final double healthPenalty = (100 - state.health) * 0.005;
       if (rng.chance(deathChance + healthPenalty)) {
+        state = GameLogger.addLog(
+          state,
+          message: LogNarratives.lifeDiedNatural,
+          category: LogCategory.life,
+        );
         return state.copyWith(isDead: true, causeOfDeath: 'Natural causes');
       }
     }

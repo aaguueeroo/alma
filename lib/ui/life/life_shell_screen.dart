@@ -178,6 +178,7 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
       RelationsTab(
         key: const ValueKey<int>(4),
         relationships: state.relationships,
+        logs: state.logs,
       ),
     ];
   }

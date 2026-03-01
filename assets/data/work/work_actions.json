@@ -6,12 +6,15 @@
     "category": "work",
     "timeCost": 22,
     "skillEffects": {},
-    "hiddenMetricEffects": {"discipline": 0.3},
+    "hiddenMetricEffects": {
+      "discipline": 0.3
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": 8,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You work Hard."
   },
   {
     "id": "work_network",
@@ -19,13 +22,18 @@
     "description": "Attend industry events and connect with professionals.",
     "category": "work",
     "timeCost": 5,
-    "skillEffects": {"communication": 2},
-    "hiddenMetricEffects": {"ambition": 0.2},
+    "skillEffects": {
+      "communication": 2
+    },
+    "hiddenMetricEffects": {
+      "ambition": 0.2
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": 3,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You network."
   },
   {
     "id": "work_ask_feedback",
@@ -33,13 +41,16 @@
     "description": "Request constructive criticism from your manager.",
     "category": "work",
     "timeCost": 5,
-    "skillEffects": {"communication": 1},
+    "skillEffects": {
+      "communication": 1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 5,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You ask for Feedback."
   },
   {
     "id": "work_organize",
@@ -48,12 +59,15 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"discipline": 0.2},
+    "hiddenMetricEffects": {
+      "discipline": 0.2
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": 4,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You organize Your Work."
   },
   {
     "id": "work_help_colleague",
@@ -62,12 +76,16 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"compassion": 0.4, "loyalty": 0.2},
+    "hiddenMetricEffects": {
+      "compassion": 0.4,
+      "loyalty": 0.2
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": 2,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You help a Colleague."
   },
   {
     "id": "work_take_course",
@@ -75,13 +93,16 @@
     "description": "Enroll in a course to improve your professional skills.",
     "category": "work",
     "timeCost": 22,
-    "skillEffects": {"intelligence": 2},
+    "skillEffects": {
+      "intelligence": 2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 6,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You take a Professional Course."
   },
   {
     "id": "work_slack_off",
@@ -95,7 +116,8 @@
     "sectionPerformanceEffect": -6,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You slack Off."
   },
   {
     "id": "work_office_politics",
@@ -104,12 +126,16 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"integrity": -0.3, "ambition": 0.2},
+    "hiddenMetricEffects": {
+      "integrity": -0.3,
+      "ambition": 0.2
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": -4,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You office Politics."
   },
   {
     "id": "work_cut_corners",
@@ -118,12 +144,15 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"discipline": -0.2},
+    "hiddenMetricEffects": {
+      "discipline": -0.2
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": -5,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You cut Corners."
   },
   {
     "id": "work_personal_time",
@@ -137,7 +166,8 @@
     "sectionPerformanceEffect": -7,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You use Work Time for Personal Stuff."
   },
   {
     "id": "work_argue_boss",
@@ -145,13 +175,18 @@
     "description": "Stand your ground in a disagreement with your manager.",
     "category": "work",
     "timeCost": 5,
-    "skillEffects": {"emotionalStability": -1},
-    "hiddenMetricEffects": {"courage": 0.3},
+    "skillEffects": {
+      "emotionalStability": -1
+    },
+    "hiddenMetricEffects": {
+      "courage": 0.3
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": -5,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You argue with Your Boss."
   },
   {
     "id": "work_call_in_sick",
@@ -165,7 +200,8 @@
     "sectionPerformanceEffect": -8,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You call in Sick."
   },
   {
     "id": "work_overtime",
@@ -174,12 +210,16 @@
     "category": "work",
     "timeCost": 22,
     "skillEffects": {},
-    "hiddenMetricEffects": {"discipline": 0.3, "ambition": 0.2},
+    "hiddenMetricEffects": {
+      "discipline": 0.3,
+      "ambition": 0.2
+    },
     "healthEffect": -5,
     "sectionPerformanceEffect": 10,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": "fullTime"
+    "workJobType": "fullTime",
+    "logMessage": "You work Overtime."
   },
   {
     "id": "work_lead_project",
@@ -187,13 +227,18 @@
     "description": "Take charge of a team project and coordinate efforts.",
     "category": "work",
     "timeCost": 22,
-    "skillEffects": {"communication": 2},
-    "hiddenMetricEffects": {"courage": 0.2},
+    "skillEffects": {
+      "communication": 2
+    },
+    "hiddenMetricEffects": {
+      "courage": 0.2
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": 8,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": "fullTime"
+    "workJobType": "fullTime",
+    "logMessage": "You lead a Project."
   },
   {
     "id": "work_mentor_intern",
@@ -202,12 +247,16 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"compassion": 0.3, "humility": 0.2},
+    "hiddenMetricEffects": {
+      "compassion": 0.3,
+      "humility": 0.2
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": 4,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": "fullTime"
+    "workJobType": "fullTime",
+    "logMessage": "You mentor an Intern."
   },
   {
     "id": "work_skip_meetings",
@@ -216,12 +265,15 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"discipline": -0.2},
+    "hiddenMetricEffects": {
+      "discipline": -0.2
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": -6,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": "fullTime"
+    "workJobType": "fullTime",
+    "logMessage": "You skip Meetings."
   },
   {
     "id": "work_blame_others",
@@ -230,12 +282,16 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"integrity": -0.4, "loyalty": -0.3},
+    "hiddenMetricEffects": {
+      "integrity": -0.4,
+      "loyalty": -0.3
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": -4,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": "fullTime"
+    "workJobType": "fullTime",
+    "logMessage": "You blame Others."
   },
   {
     "id": "work_resist_change",
@@ -244,12 +300,16 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"courage": 0.1, "curiosity": -0.2},
+    "hiddenMetricEffects": {
+      "courage": 0.1,
+      "curiosity": -0.2
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": -5,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": "fullTime"
+    "workJobType": "fullTime",
+    "logMessage": "You resist New Processes."
   },
   {
     "id": "work_extra_shift",
@@ -263,7 +323,8 @@
     "sectionPerformanceEffect": 7,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": "partTime"
+    "workJobType": "partTime",
+    "logMessage": "You pick Up Extra Shift."
   },
   {
     "id": "work_study_while_working",
@@ -271,13 +332,16 @@
     "description": "Use downtime at work to review study materials.",
     "category": "work",
     "timeCost": 5,
-    "skillEffects": {"intelligence": 2},
+    "skillEffects": {
+      "intelligence": 2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": -2,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": "partTime"
+    "workJobType": "partTime",
+    "logMessage": "You study While Working."
   },
   {
     "id": "work_show_up_late",
@@ -286,12 +350,15 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"discipline": -0.3},
+    "hiddenMetricEffects": {
+      "discipline": -0.3
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": -7,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": "partTime"
+    "workJobType": "partTime",
+    "logMessage": "You show Up Late."
   },
   {
     "id": "work_leave_early",
@@ -305,7 +372,8 @@
     "sectionPerformanceEffect": -6,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": "partTime"
+    "workJobType": "partTime",
+    "logMessage": "You leave Early."
   },
   {
     "id": "work_quality_work",
@@ -314,12 +382,15 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"discipline": 0.3},
+    "hiddenMetricEffects": {
+      "discipline": 0.3
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": 8,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": "casual"
+    "workJobType": "casual",
+    "logMessage": "You do Quality Work."
   },
   {
     "id": "work_go_extra_mile",
@@ -328,12 +399,15 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"ambition": 0.2},
+    "hiddenMetricEffects": {
+      "ambition": 0.2
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": 6,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": "casual"
+    "workJobType": "casual",
+    "logMessage": "You go the Extra Mile."
   },
   {
     "id": "work_rush_job",
@@ -342,12 +416,15 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"discipline": -0.2},
+    "hiddenMetricEffects": {
+      "discipline": -0.2
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": -6,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": "casual"
+    "workJobType": "casual",
+    "logMessage": "You rush the Job."
   },
   {
     "id": "work_half_effort",
@@ -361,7 +438,8 @@
     "sectionPerformanceEffect": -5,
     "associatedHabit": null,
     "workJobId": null,
-    "workJobType": "casual"
+    "workJobType": "casual",
+    "logMessage": "You half-Hearted Effort."
   },
   {
     "id": "work_fix_bug",
@@ -369,13 +447,16 @@
     "description": "Track down and fix a critical production bug.",
     "category": "work",
     "timeCost": 22,
-    "skillEffects": {"intelligence": 1},
+    "skillEffects": {
+      "intelligence": 1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 9,
     "associatedHabit": null,
     "workJobId": "job_software_dev",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You fix Critical Bug."
   },
   {
     "id": "work_refactor",
@@ -384,12 +465,15 @@
     "category": "work",
     "timeCost": 22,
     "skillEffects": {},
-    "hiddenMetricEffects": {"discipline": 0.2},
+    "hiddenMetricEffects": {
+      "discipline": 0.2
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": 6,
     "associatedHabit": null,
     "workJobId": "job_software_dev",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You refactor Codebase."
   },
   {
     "id": "work_deploy_untested",
@@ -398,12 +482,16 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"courage": 0.1, "discipline": -0.3},
+    "hiddenMetricEffects": {
+      "courage": 0.1,
+      "discipline": -0.3
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": -8,
     "associatedHabit": null,
     "workJobId": "job_software_dev",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You deploy Without Testing."
   },
   {
     "id": "work_deep_analysis",
@@ -411,13 +499,16 @@
     "description": "Dive deep into the data to uncover hidden patterns.",
     "category": "work",
     "timeCost": 22,
-    "skillEffects": {"intelligence": 2},
+    "skillEffects": {
+      "intelligence": 2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 8,
     "associatedHabit": null,
     "workJobId": "job_data_analyst",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You deep Data Analysis."
   },
   {
     "id": "work_present_findings",
@@ -425,13 +516,16 @@
     "description": "Prepare and deliver a presentation of your analysis.",
     "category": "work",
     "timeCost": 5,
-    "skillEffects": {"communication": 2},
+    "skillEffects": {
+      "communication": 2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 5,
     "associatedHabit": null,
     "workJobId": "job_data_analyst",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You present Findings."
   },
   {
     "id": "work_fudge_numbers",
@@ -440,12 +534,15 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"integrity": -0.5},
+    "hiddenMetricEffects": {
+      "integrity": -0.5
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": -7,
     "associatedHabit": null,
     "workJobId": "job_data_analyst",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You fudge the Numbers."
   },
   {
     "id": "work_win_case",
@@ -453,13 +550,16 @@
     "description": "Pour everything into winning an important case.",
     "category": "work",
     "timeCost": 22,
-    "skillEffects": {"communication": 1},
+    "skillEffects": {
+      "communication": 1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 10,
     "associatedHabit": null,
     "workJobId": "job_lawyer",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You win a Case."
   },
   {
     "id": "work_pro_bono",
@@ -468,12 +568,16 @@
     "category": "work",
     "timeCost": 22,
     "skillEffects": {},
-    "hiddenMetricEffects": {"compassion": 0.5, "integrity": 0.3},
+    "hiddenMetricEffects": {
+      "compassion": 0.5,
+      "integrity": 0.3
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": 3,
     "associatedHabit": null,
     "workJobId": "job_lawyer",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You pro Bono Work."
   },
   {
     "id": "work_miss_deadline",
@@ -482,12 +586,15 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"discipline": -0.3},
+    "hiddenMetricEffects": {
+      "discipline": -0.3
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": -9,
     "associatedHabit": null,
     "workJobId": "job_lawyer",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You miss a Deadline."
   },
   {
     "id": "work_client_presentation",
@@ -495,13 +602,16 @@
     "description": "Present your legal analysis to a major client.",
     "category": "work",
     "timeCost": 22,
-    "skillEffects": {"communication": 2},
+    "skillEffects": {
+      "communication": 2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 7,
     "associatedHabit": null,
     "workJobId": "job_legal_consultant",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You client Presentation."
   },
   {
     "id": "work_mislead_client",
@@ -510,12 +620,15 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"integrity": -0.4},
+    "hiddenMetricEffects": {
+      "integrity": -0.4
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": -6,
     "associatedHabit": null,
     "workJobId": "job_legal_consultant",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You mislead a Client."
   },
   {
     "id": "work_write_masterpiece",
@@ -523,13 +636,16 @@
     "description": "Pour your soul into a piece of writing.",
     "category": "work",
     "timeCost": 22,
-    "skillEffects": {"creativity": 2},
+    "skillEffects": {
+      "creativity": 2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 9,
     "associatedHabit": null,
     "workJobId": "job_writer",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You write a Masterpiece."
   },
   {
     "id": "work_plagiarize",
@@ -538,12 +654,15 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"integrity": -0.5},
+    "hiddenMetricEffects": {
+      "integrity": -0.5
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": -8,
     "associatedHabit": null,
     "workJobId": "job_writer",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You plagiarize Content."
   },
   {
     "id": "work_thorough_edit",
@@ -552,12 +671,15 @@
     "category": "work",
     "timeCost": 22,
     "skillEffects": {},
-    "hiddenMetricEffects": {"discipline": 0.3},
+    "hiddenMetricEffects": {
+      "discipline": 0.3
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": 8,
     "associatedHabit": null,
     "workJobId": "job_editor",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You thorough Edit."
   },
   {
     "id": "work_rush_edit",
@@ -566,12 +688,15 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"discipline": -0.2},
+    "hiddenMetricEffects": {
+      "discipline": -0.2
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": -7,
     "associatedHabit": null,
     "workJobId": "job_editor",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You rush an Edit."
   },
   {
     "id": "work_organize_exhibition",
@@ -579,13 +704,16 @@
     "description": "Plan and curate a new exhibition for the museum.",
     "category": "work",
     "timeCost": 22,
-    "skillEffects": {"creativity": 1},
+    "skillEffects": {
+      "creativity": 1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 9,
     "associatedHabit": null,
     "workJobId": "job_museum_curator",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You organize Exhibition."
   },
   {
     "id": "work_neglect_collection",
@@ -594,12 +722,15 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"discipline": -0.3},
+    "hiddenMetricEffects": {
+      "discipline": -0.3
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": -7,
     "associatedHabit": null,
     "workJobId": "job_museum_curator",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You neglect the Collection."
   },
   {
     "id": "work_publish_paper",
@@ -607,13 +738,16 @@
     "description": "Write and submit an academic paper on your research.",
     "category": "work",
     "timeCost": 22,
-    "skillEffects": {"intelligence": 2},
+    "skillEffects": {
+      "intelligence": 2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 9,
     "associatedHabit": null,
     "workJobId": "job_historian",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You publish a Paper."
   },
   {
     "id": "work_fabricate_sources",
@@ -622,12 +756,15 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"integrity": -0.5},
+    "hiddenMetricEffects": {
+      "integrity": -0.5
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": -8,
     "associatedHabit": null,
     "workJobId": "job_historian",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You fabricate Sources."
   },
   {
     "id": "work_safety_inspection",
@@ -636,12 +773,15 @@
     "category": "work",
     "timeCost": 22,
     "skillEffects": {},
-    "hiddenMetricEffects": {"integrity": 0.3},
+    "hiddenMetricEffects": {
+      "integrity": 0.3
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": 8,
     "associatedHabit": null,
     "workJobId": "job_civil_engineer",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You thorough Safety Inspection."
   },
   {
     "id": "work_skip_safety",
@@ -650,12 +790,16 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"integrity": -0.4, "courage": -0.2},
+    "hiddenMetricEffects": {
+      "integrity": -0.4,
+      "courage": -0.2
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": -8,
     "associatedHabit": null,
     "workJobId": "job_civil_engineer",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You skip Safety Checks."
   },
   {
     "id": "work_coordinate_teams",
@@ -663,13 +807,16 @@
     "description": "Bring multiple teams together to solve a complex problem.",
     "category": "work",
     "timeCost": 22,
-    "skillEffects": {"communication": 2},
+    "skillEffects": {
+      "communication": 2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 7,
     "associatedHabit": null,
     "workJobId": "job_project_engineer",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You coordinate Teams."
   },
   {
     "id": "work_hide_delays",
@@ -678,12 +825,15 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"integrity": -0.4},
+    "hiddenMetricEffects": {
+      "integrity": -0.4
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": -6,
     "associatedHabit": null,
     "workJobId": "job_project_engineer",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You hide Project Delays."
   },
   {
     "id": "work_save_patient",
@@ -692,12 +842,16 @@
     "category": "work",
     "timeCost": 22,
     "skillEffects": {},
-    "hiddenMetricEffects": {"compassion": 0.4, "courage": 0.3},
+    "hiddenMetricEffects": {
+      "compassion": 0.4,
+      "courage": 0.3
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": 10,
     "associatedHabit": null,
     "workJobId": "job_doctor",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You save a Patient."
   },
   {
     "id": "work_night_shift",
@@ -711,7 +865,8 @@
     "sectionPerformanceEffect": 7,
     "associatedHabit": null,
     "workJobId": "job_doctor",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You night Shift."
   },
   {
     "id": "work_medical_error",
@@ -719,13 +874,18 @@
     "description": "Accidentally prescribe the wrong treatment.",
     "category": "work",
     "timeCost": 5,
-    "skillEffects": {"emotionalStability": -2},
-    "hiddenMetricEffects": {"integrity": -0.2},
+    "skillEffects": {
+      "emotionalStability": -2
+    },
+    "hiddenMetricEffects": {
+      "integrity": -0.2
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": -10,
     "associatedHabit": null,
     "workJobId": "job_doctor",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You make a Medical Error."
   },
   {
     "id": "work_breakthrough",
@@ -733,13 +893,16 @@
     "description": "Make a significant discovery in your clinical trial.",
     "category": "work",
     "timeCost": 22,
-    "skillEffects": {"intelligence": 2},
+    "skillEffects": {
+      "intelligence": 2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 10,
     "associatedHabit": null,
     "workJobId": "job_clinical_researcher",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You research Breakthrough."
   },
   {
     "id": "work_falsify_data",
@@ -748,12 +911,15 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"integrity": -0.6},
+    "hiddenMetricEffects": {
+      "integrity": -0.6
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": -9,
     "associatedHabit": null,
     "workJobId": "job_clinical_researcher",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You falsify Research Data."
   },
   {
     "id": "work_perfect_drinks",
@@ -761,13 +927,16 @@
     "description": "Practice and refine your drink-making skills.",
     "category": "work",
     "timeCost": 5,
-    "skillEffects": {"creativity": 1},
+    "skillEffects": {
+      "creativity": 1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 6,
     "associatedHabit": null,
     "workJobId": "job_bartender",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You perfect Your Cocktails."
   },
   {
     "id": "work_drink_on_job",
@@ -781,7 +950,8 @@
     "sectionPerformanceEffect": -7,
     "associatedHabit": "drinking",
     "workJobId": "job_bartender",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You drink on the Job."
   },
   {
     "id": "work_fast_checkout",
@@ -790,12 +960,15 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"discipline": 0.2},
+    "hiddenMetricEffects": {
+      "discipline": 0.2
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": 5,
     "associatedHabit": null,
     "workJobId": "job_cashier",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You speed Up Checkout."
   },
   {
     "id": "work_skim_register",
@@ -804,12 +977,15 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"integrity": -0.5},
+    "hiddenMetricEffects": {
+      "integrity": -0.5
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": -8,
     "associatedHabit": null,
     "workJobId": "job_cashier",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You skim the Register."
   },
   {
     "id": "work_fast_deliveries",
@@ -818,12 +994,15 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"discipline": 0.2},
+    "hiddenMetricEffects": {
+      "discipline": 0.2
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": 6,
     "associatedHabit": null,
     "workJobId": "job_delivery_driver",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You fast Deliveries."
   },
   {
     "id": "work_damage_packages",
@@ -832,12 +1011,15 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"discipline": -0.2},
+    "hiddenMetricEffects": {
+      "discipline": -0.2
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": -6,
     "associatedHabit": null,
     "workJobId": "job_delivery_driver",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You handle Packages Carelessly."
   },
   {
     "id": "work_great_service",
@@ -845,13 +1027,16 @@
     "description": "Go above and beyond for every table.",
     "category": "work",
     "timeCost": 5,
-    "skillEffects": {"communication": 1},
+    "skillEffects": {
+      "communication": 1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 6,
     "associatedHabit": null,
     "workJobId": "job_waiter",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You excellent Service."
   },
   {
     "id": "work_rude_customers",
@@ -860,11 +1045,14 @@
     "category": "work",
     "timeCost": 5,
     "skillEffects": {},
-    "hiddenMetricEffects": {"compassion": -0.3},
+    "hiddenMetricEffects": {
+      "compassion": -0.3
+    },
     "healthEffect": 0,
     "sectionPerformanceEffect": -7,
     "associatedHabit": null,
     "workJobId": "job_waiter",
-    "workJobType": null
+    "workJobType": null,
+    "logMessage": "You be Rude to Customers."
   }
 ]

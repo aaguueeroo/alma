@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$GameAction {
 
- String get id; String get name; String get description; ActionCategory get category; int get timeCost; Map<SkillType, int> get skillEffects; Map<HiddenMetricType, double> get hiddenMetricEffects; int get healthEffect; int get sectionPerformanceEffect; HabitType? get associatedHabit; String? get targetNpcId; List<MoralImpactTemplate> get moralImpactTemplates; String? get educationLevel; String? get educationProgramId; String? get workJobId; String? get workJobType;
+ String get id; String get name; String get description; ActionCategory get category; int get timeCost; Map<SkillType, int> get skillEffects; Map<HiddenMetricType, double> get hiddenMetricEffects; int get healthEffect; int get sectionPerformanceEffect; HabitType? get associatedHabit; String? get targetNpcId; List<MoralImpactTemplate> get moralImpactTemplates; String? get educationLevel; String? get educationProgramId; String? get workJobId; String? get workJobType; String? get logMessage;
 /// Create a copy of GameAction
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $GameActionCopyWith<GameAction> get copyWith => _$GameActionCopyWithImpl<GameAct
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GameAction&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.category, category) || other.category == category)&&(identical(other.timeCost, timeCost) || other.timeCost == timeCost)&&const DeepCollectionEquality().equals(other.skillEffects, skillEffects)&&const DeepCollectionEquality().equals(other.hiddenMetricEffects, hiddenMetricEffects)&&(identical(other.healthEffect, healthEffect) || other.healthEffect == healthEffect)&&(identical(other.sectionPerformanceEffect, sectionPerformanceEffect) || other.sectionPerformanceEffect == sectionPerformanceEffect)&&(identical(other.associatedHabit, associatedHabit) || other.associatedHabit == associatedHabit)&&(identical(other.targetNpcId, targetNpcId) || other.targetNpcId == targetNpcId)&&const DeepCollectionEquality().equals(other.moralImpactTemplates, moralImpactTemplates)&&(identical(other.educationLevel, educationLevel) || other.educationLevel == educationLevel)&&(identical(other.educationProgramId, educationProgramId) || other.educationProgramId == educationProgramId)&&(identical(other.workJobId, workJobId) || other.workJobId == workJobId)&&(identical(other.workJobType, workJobType) || other.workJobType == workJobType));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GameAction&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.category, category) || other.category == category)&&(identical(other.timeCost, timeCost) || other.timeCost == timeCost)&&const DeepCollectionEquality().equals(other.skillEffects, skillEffects)&&const DeepCollectionEquality().equals(other.hiddenMetricEffects, hiddenMetricEffects)&&(identical(other.healthEffect, healthEffect) || other.healthEffect == healthEffect)&&(identical(other.sectionPerformanceEffect, sectionPerformanceEffect) || other.sectionPerformanceEffect == sectionPerformanceEffect)&&(identical(other.associatedHabit, associatedHabit) || other.associatedHabit == associatedHabit)&&(identical(other.targetNpcId, targetNpcId) || other.targetNpcId == targetNpcId)&&const DeepCollectionEquality().equals(other.moralImpactTemplates, moralImpactTemplates)&&(identical(other.educationLevel, educationLevel) || other.educationLevel == educationLevel)&&(identical(other.educationProgramId, educationProgramId) || other.educationProgramId == educationProgramId)&&(identical(other.workJobId, workJobId) || other.workJobId == workJobId)&&(identical(other.workJobType, workJobType) || other.workJobType == workJobType)&&(identical(other.logMessage, logMessage) || other.logMessage == logMessage));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,description,category,timeCost,const DeepCollectionEquality().hash(skillEffects),const DeepCollectionEquality().hash(hiddenMetricEffects),healthEffect,sectionPerformanceEffect,associatedHabit,targetNpcId,const DeepCollectionEquality().hash(moralImpactTemplates),educationLevel,educationProgramId,workJobId,workJobType);
+int get hashCode => Object.hash(runtimeType,id,name,description,category,timeCost,const DeepCollectionEquality().hash(skillEffects),const DeepCollectionEquality().hash(hiddenMetricEffects),healthEffect,sectionPerformanceEffect,associatedHabit,targetNpcId,const DeepCollectionEquality().hash(moralImpactTemplates),educationLevel,educationProgramId,workJobId,workJobType,logMessage);
 
 @override
 String toString() {
-  return 'GameAction(id: $id, name: $name, description: $description, category: $category, timeCost: $timeCost, skillEffects: $skillEffects, hiddenMetricEffects: $hiddenMetricEffects, healthEffect: $healthEffect, sectionPerformanceEffect: $sectionPerformanceEffect, associatedHabit: $associatedHabit, targetNpcId: $targetNpcId, moralImpactTemplates: $moralImpactTemplates, educationLevel: $educationLevel, educationProgramId: $educationProgramId, workJobId: $workJobId, workJobType: $workJobType)';
+  return 'GameAction(id: $id, name: $name, description: $description, category: $category, timeCost: $timeCost, skillEffects: $skillEffects, hiddenMetricEffects: $hiddenMetricEffects, healthEffect: $healthEffect, sectionPerformanceEffect: $sectionPerformanceEffect, associatedHabit: $associatedHabit, targetNpcId: $targetNpcId, moralImpactTemplates: $moralImpactTemplates, educationLevel: $educationLevel, educationProgramId: $educationProgramId, workJobId: $workJobId, workJobType: $workJobType, logMessage: $logMessage)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $GameActionCopyWith<$Res>  {
   factory $GameActionCopyWith(GameAction value, $Res Function(GameAction) _then) = _$GameActionCopyWithImpl;
 @useResult
 $Res call({
- String id, String name, String description, ActionCategory category, int timeCost, Map<SkillType, int> skillEffects, Map<HiddenMetricType, double> hiddenMetricEffects, int healthEffect, int sectionPerformanceEffect, HabitType? associatedHabit, String? targetNpcId, List<MoralImpactTemplate> moralImpactTemplates, String? educationLevel, String? educationProgramId, String? workJobId, String? workJobType
+ String id, String name, String description, ActionCategory category, int timeCost, Map<SkillType, int> skillEffects, Map<HiddenMetricType, double> hiddenMetricEffects, int healthEffect, int sectionPerformanceEffect, HabitType? associatedHabit, String? targetNpcId, List<MoralImpactTemplate> moralImpactTemplates, String? educationLevel, String? educationProgramId, String? workJobId, String? workJobType, String? logMessage
 });
 
 
@@ -65,7 +65,7 @@ class _$GameActionCopyWithImpl<$Res>
 
 /// Create a copy of GameAction
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? description = null,Object? category = null,Object? timeCost = null,Object? skillEffects = null,Object? hiddenMetricEffects = null,Object? healthEffect = null,Object? sectionPerformanceEffect = null,Object? associatedHabit = freezed,Object? targetNpcId = freezed,Object? moralImpactTemplates = null,Object? educationLevel = freezed,Object? educationProgramId = freezed,Object? workJobId = freezed,Object? workJobType = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? description = null,Object? category = null,Object? timeCost = null,Object? skillEffects = null,Object? hiddenMetricEffects = null,Object? healthEffect = null,Object? sectionPerformanceEffect = null,Object? associatedHabit = freezed,Object? targetNpcId = freezed,Object? moralImpactTemplates = null,Object? educationLevel = freezed,Object? educationProgramId = freezed,Object? workJobId = freezed,Object? workJobType = freezed,Object? logMessage = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -83,6 +83,7 @@ as List<MoralImpactTemplate>,educationLevel: freezed == educationLevel ? _self.e
 as String?,educationProgramId: freezed == educationProgramId ? _self.educationProgramId : educationProgramId // ignore: cast_nullable_to_non_nullable
 as String?,workJobId: freezed == workJobId ? _self.workJobId : workJobId // ignore: cast_nullable_to_non_nullable
 as String?,workJobType: freezed == workJobType ? _self.workJobType : workJobType // ignore: cast_nullable_to_non_nullable
+as String?,logMessage: freezed == logMessage ? _self.logMessage : logMessage // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -165,10 +166,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String description,  ActionCategory category,  int timeCost,  Map<SkillType, int> skillEffects,  Map<HiddenMetricType, double> hiddenMetricEffects,  int healthEffect,  int sectionPerformanceEffect,  HabitType? associatedHabit,  String? targetNpcId,  List<MoralImpactTemplate> moralImpactTemplates,  String? educationLevel,  String? educationProgramId,  String? workJobId,  String? workJobType)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String description,  ActionCategory category,  int timeCost,  Map<SkillType, int> skillEffects,  Map<HiddenMetricType, double> hiddenMetricEffects,  int healthEffect,  int sectionPerformanceEffect,  HabitType? associatedHabit,  String? targetNpcId,  List<MoralImpactTemplate> moralImpactTemplates,  String? educationLevel,  String? educationProgramId,  String? workJobId,  String? workJobType,  String? logMessage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _GameAction() when $default != null:
-return $default(_that.id,_that.name,_that.description,_that.category,_that.timeCost,_that.skillEffects,_that.hiddenMetricEffects,_that.healthEffect,_that.sectionPerformanceEffect,_that.associatedHabit,_that.targetNpcId,_that.moralImpactTemplates,_that.educationLevel,_that.educationProgramId,_that.workJobId,_that.workJobType);case _:
+return $default(_that.id,_that.name,_that.description,_that.category,_that.timeCost,_that.skillEffects,_that.hiddenMetricEffects,_that.healthEffect,_that.sectionPerformanceEffect,_that.associatedHabit,_that.targetNpcId,_that.moralImpactTemplates,_that.educationLevel,_that.educationProgramId,_that.workJobId,_that.workJobType,_that.logMessage);case _:
   return orElse();
 
 }
@@ -186,10 +187,10 @@ return $default(_that.id,_that.name,_that.description,_that.category,_that.timeC
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String description,  ActionCategory category,  int timeCost,  Map<SkillType, int> skillEffects,  Map<HiddenMetricType, double> hiddenMetricEffects,  int healthEffect,  int sectionPerformanceEffect,  HabitType? associatedHabit,  String? targetNpcId,  List<MoralImpactTemplate> moralImpactTemplates,  String? educationLevel,  String? educationProgramId,  String? workJobId,  String? workJobType)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String description,  ActionCategory category,  int timeCost,  Map<SkillType, int> skillEffects,  Map<HiddenMetricType, double> hiddenMetricEffects,  int healthEffect,  int sectionPerformanceEffect,  HabitType? associatedHabit,  String? targetNpcId,  List<MoralImpactTemplate> moralImpactTemplates,  String? educationLevel,  String? educationProgramId,  String? workJobId,  String? workJobType,  String? logMessage)  $default,) {final _that = this;
 switch (_that) {
 case _GameAction():
-return $default(_that.id,_that.name,_that.description,_that.category,_that.timeCost,_that.skillEffects,_that.hiddenMetricEffects,_that.healthEffect,_that.sectionPerformanceEffect,_that.associatedHabit,_that.targetNpcId,_that.moralImpactTemplates,_that.educationLevel,_that.educationProgramId,_that.workJobId,_that.workJobType);}
+return $default(_that.id,_that.name,_that.description,_that.category,_that.timeCost,_that.skillEffects,_that.hiddenMetricEffects,_that.healthEffect,_that.sectionPerformanceEffect,_that.associatedHabit,_that.targetNpcId,_that.moralImpactTemplates,_that.educationLevel,_that.educationProgramId,_that.workJobId,_that.workJobType,_that.logMessage);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -203,10 +204,10 @@ return $default(_that.id,_that.name,_that.description,_that.category,_that.timeC
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String description,  ActionCategory category,  int timeCost,  Map<SkillType, int> skillEffects,  Map<HiddenMetricType, double> hiddenMetricEffects,  int healthEffect,  int sectionPerformanceEffect,  HabitType? associatedHabit,  String? targetNpcId,  List<MoralImpactTemplate> moralImpactTemplates,  String? educationLevel,  String? educationProgramId,  String? workJobId,  String? workJobType)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String description,  ActionCategory category,  int timeCost,  Map<SkillType, int> skillEffects,  Map<HiddenMetricType, double> hiddenMetricEffects,  int healthEffect,  int sectionPerformanceEffect,  HabitType? associatedHabit,  String? targetNpcId,  List<MoralImpactTemplate> moralImpactTemplates,  String? educationLevel,  String? educationProgramId,  String? workJobId,  String? workJobType,  String? logMessage)?  $default,) {final _that = this;
 switch (_that) {
 case _GameAction() when $default != null:
-return $default(_that.id,_that.name,_that.description,_that.category,_that.timeCost,_that.skillEffects,_that.hiddenMetricEffects,_that.healthEffect,_that.sectionPerformanceEffect,_that.associatedHabit,_that.targetNpcId,_that.moralImpactTemplates,_that.educationLevel,_that.educationProgramId,_that.workJobId,_that.workJobType);case _:
+return $default(_that.id,_that.name,_that.description,_that.category,_that.timeCost,_that.skillEffects,_that.hiddenMetricEffects,_that.healthEffect,_that.sectionPerformanceEffect,_that.associatedHabit,_that.targetNpcId,_that.moralImpactTemplates,_that.educationLevel,_that.educationProgramId,_that.workJobId,_that.workJobType,_that.logMessage);case _:
   return null;
 
 }
@@ -218,7 +219,7 @@ return $default(_that.id,_that.name,_that.description,_that.category,_that.timeC
 @JsonSerializable()
 
 class _GameAction implements GameAction {
-  const _GameAction({required this.id, required this.name, required this.description, required this.category, required this.timeCost, final  Map<SkillType, int> skillEffects = const {}, final  Map<HiddenMetricType, double> hiddenMetricEffects = const {}, this.healthEffect = 0, this.sectionPerformanceEffect = 0, this.associatedHabit, this.targetNpcId, final  List<MoralImpactTemplate> moralImpactTemplates = const [], this.educationLevel, this.educationProgramId, this.workJobId, this.workJobType}): _skillEffects = skillEffects,_hiddenMetricEffects = hiddenMetricEffects,_moralImpactTemplates = moralImpactTemplates;
+  const _GameAction({required this.id, required this.name, required this.description, required this.category, required this.timeCost, final  Map<SkillType, int> skillEffects = const {}, final  Map<HiddenMetricType, double> hiddenMetricEffects = const {}, this.healthEffect = 0, this.sectionPerformanceEffect = 0, this.associatedHabit, this.targetNpcId, final  List<MoralImpactTemplate> moralImpactTemplates = const [], this.educationLevel, this.educationProgramId, this.workJobId, this.workJobType, this.logMessage}): _skillEffects = skillEffects,_hiddenMetricEffects = hiddenMetricEffects,_moralImpactTemplates = moralImpactTemplates;
   factory _GameAction.fromJson(Map<String, dynamic> json) => _$GameActionFromJson(json);
 
 @override final  String id;
@@ -255,6 +256,7 @@ class _GameAction implements GameAction {
 @override final  String? educationProgramId;
 @override final  String? workJobId;
 @override final  String? workJobType;
+@override final  String? logMessage;
 
 /// Create a copy of GameAction
 /// with the given fields replaced by the non-null parameter values.
@@ -269,16 +271,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameAction&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.category, category) || other.category == category)&&(identical(other.timeCost, timeCost) || other.timeCost == timeCost)&&const DeepCollectionEquality().equals(other._skillEffects, _skillEffects)&&const DeepCollectionEquality().equals(other._hiddenMetricEffects, _hiddenMetricEffects)&&(identical(other.healthEffect, healthEffect) || other.healthEffect == healthEffect)&&(identical(other.sectionPerformanceEffect, sectionPerformanceEffect) || other.sectionPerformanceEffect == sectionPerformanceEffect)&&(identical(other.associatedHabit, associatedHabit) || other.associatedHabit == associatedHabit)&&(identical(other.targetNpcId, targetNpcId) || other.targetNpcId == targetNpcId)&&const DeepCollectionEquality().equals(other._moralImpactTemplates, _moralImpactTemplates)&&(identical(other.educationLevel, educationLevel) || other.educationLevel == educationLevel)&&(identical(other.educationProgramId, educationProgramId) || other.educationProgramId == educationProgramId)&&(identical(other.workJobId, workJobId) || other.workJobId == workJobId)&&(identical(other.workJobType, workJobType) || other.workJobType == workJobType));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameAction&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.category, category) || other.category == category)&&(identical(other.timeCost, timeCost) || other.timeCost == timeCost)&&const DeepCollectionEquality().equals(other._skillEffects, _skillEffects)&&const DeepCollectionEquality().equals(other._hiddenMetricEffects, _hiddenMetricEffects)&&(identical(other.healthEffect, healthEffect) || other.healthEffect == healthEffect)&&(identical(other.sectionPerformanceEffect, sectionPerformanceEffect) || other.sectionPerformanceEffect == sectionPerformanceEffect)&&(identical(other.associatedHabit, associatedHabit) || other.associatedHabit == associatedHabit)&&(identical(other.targetNpcId, targetNpcId) || other.targetNpcId == targetNpcId)&&const DeepCollectionEquality().equals(other._moralImpactTemplates, _moralImpactTemplates)&&(identical(other.educationLevel, educationLevel) || other.educationLevel == educationLevel)&&(identical(other.educationProgramId, educationProgramId) || other.educationProgramId == educationProgramId)&&(identical(other.workJobId, workJobId) || other.workJobId == workJobId)&&(identical(other.workJobType, workJobType) || other.workJobType == workJobType)&&(identical(other.logMessage, logMessage) || other.logMessage == logMessage));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,description,category,timeCost,const DeepCollectionEquality().hash(_skillEffects),const DeepCollectionEquality().hash(_hiddenMetricEffects),healthEffect,sectionPerformanceEffect,associatedHabit,targetNpcId,const DeepCollectionEquality().hash(_moralImpactTemplates),educationLevel,educationProgramId,workJobId,workJobType);
+int get hashCode => Object.hash(runtimeType,id,name,description,category,timeCost,const DeepCollectionEquality().hash(_skillEffects),const DeepCollectionEquality().hash(_hiddenMetricEffects),healthEffect,sectionPerformanceEffect,associatedHabit,targetNpcId,const DeepCollectionEquality().hash(_moralImpactTemplates),educationLevel,educationProgramId,workJobId,workJobType,logMessage);
 
 @override
 String toString() {
-  return 'GameAction(id: $id, name: $name, description: $description, category: $category, timeCost: $timeCost, skillEffects: $skillEffects, hiddenMetricEffects: $hiddenMetricEffects, healthEffect: $healthEffect, sectionPerformanceEffect: $sectionPerformanceEffect, associatedHabit: $associatedHabit, targetNpcId: $targetNpcId, moralImpactTemplates: $moralImpactTemplates, educationLevel: $educationLevel, educationProgramId: $educationProgramId, workJobId: $workJobId, workJobType: $workJobType)';
+  return 'GameAction(id: $id, name: $name, description: $description, category: $category, timeCost: $timeCost, skillEffects: $skillEffects, hiddenMetricEffects: $hiddenMetricEffects, healthEffect: $healthEffect, sectionPerformanceEffect: $sectionPerformanceEffect, associatedHabit: $associatedHabit, targetNpcId: $targetNpcId, moralImpactTemplates: $moralImpactTemplates, educationLevel: $educationLevel, educationProgramId: $educationProgramId, workJobId: $workJobId, workJobType: $workJobType, logMessage: $logMessage)';
 }
 
 
@@ -289,7 +291,7 @@ abstract mixin class _$GameActionCopyWith<$Res> implements $GameActionCopyWith<$
   factory _$GameActionCopyWith(_GameAction value, $Res Function(_GameAction) _then) = __$GameActionCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name, String description, ActionCategory category, int timeCost, Map<SkillType, int> skillEffects, Map<HiddenMetricType, double> hiddenMetricEffects, int healthEffect, int sectionPerformanceEffect, HabitType? associatedHabit, String? targetNpcId, List<MoralImpactTemplate> moralImpactTemplates, String? educationLevel, String? educationProgramId, String? workJobId, String? workJobType
+ String id, String name, String description, ActionCategory category, int timeCost, Map<SkillType, int> skillEffects, Map<HiddenMetricType, double> hiddenMetricEffects, int healthEffect, int sectionPerformanceEffect, HabitType? associatedHabit, String? targetNpcId, List<MoralImpactTemplate> moralImpactTemplates, String? educationLevel, String? educationProgramId, String? workJobId, String? workJobType, String? logMessage
 });
 
 
@@ -306,7 +308,7 @@ class __$GameActionCopyWithImpl<$Res>
 
 /// Create a copy of GameAction
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? description = null,Object? category = null,Object? timeCost = null,Object? skillEffects = null,Object? hiddenMetricEffects = null,Object? healthEffect = null,Object? sectionPerformanceEffect = null,Object? associatedHabit = freezed,Object? targetNpcId = freezed,Object? moralImpactTemplates = null,Object? educationLevel = freezed,Object? educationProgramId = freezed,Object? workJobId = freezed,Object? workJobType = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? description = null,Object? category = null,Object? timeCost = null,Object? skillEffects = null,Object? hiddenMetricEffects = null,Object? healthEffect = null,Object? sectionPerformanceEffect = null,Object? associatedHabit = freezed,Object? targetNpcId = freezed,Object? moralImpactTemplates = null,Object? educationLevel = freezed,Object? educationProgramId = freezed,Object? workJobId = freezed,Object? workJobType = freezed,Object? logMessage = freezed,}) {
   return _then(_GameAction(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -324,6 +326,7 @@ as List<MoralImpactTemplate>,educationLevel: freezed == educationLevel ? _self.e
 as String?,educationProgramId: freezed == educationProgramId ? _self.educationProgramId : educationProgramId // ignore: cast_nullable_to_non_nullable
 as String?,workJobId: freezed == workJobId ? _self.workJobId : workJobId // ignore: cast_nullable_to_non_nullable
 as String?,workJobType: freezed == workJobType ? _self.workJobType : workJobType // ignore: cast_nullable_to_non_nullable
+as String?,logMessage: freezed == logMessage ? _self.logMessage : logMessage // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }

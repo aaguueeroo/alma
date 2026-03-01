@@ -12,10 +12,13 @@ import 'package:alma/core/models/education_state.dart';
 import 'package:alma/core/models/education_record.dart';
 import 'package:alma/core/models/enums/education_level.dart';
 import 'package:alma/core/models/enums/job_type.dart';
+import 'package:alma/core/models/enums/log_category.dart';
 import 'package:alma/core/models/enums/section_type.dart';
 import 'package:alma/core/models/enums/work_prompt_type.dart';
 import 'package:alma/core/models/skill.dart';
 import 'package:alma/core/rules/work_country_config.dart';
+import 'package:alma/app/constants/log_narratives.dart';
+import 'package:alma/core/engine/game_logger.dart';
 import 'package:alma/core/engine/seeded_random.dart';
 import 'package:alma/core/engine/time_commitment.dart';
 
@@ -80,6 +83,12 @@ class WorkEngine {
     final WorkState workState = state.workState ?? const WorkState();
     final EducationState eduState = state.educationState ?? const EducationState();
     if (!_meetsAccessConditions(job.accessConditions, state, eduState)) {
+      state = GameLogger.addLog(
+        state,
+        message: LogNarratives.workApplicationRejected(job.name),
+        category: LogCategory.work,
+        tags: ['job:${job.id}'],
+      );
       return state.copyWith(
         workState: workState.copyWith(
           pendingPrompt: WorkPrompt(
@@ -114,6 +123,12 @@ class WorkEngine {
     if (_meetsAccessConditions(job.interviewConditions, state, eduState)) {
       return hireForJob(state, job);
     }
+    state = GameLogger.addLog(
+      state,
+      message: LogNarratives.workInterviewRejected(job.name),
+      category: LogCategory.work,
+      tags: ['job:${job.id}'],
+    );
     return state.copyWith(
       workState: workState.copyWith(
         pendingPrompt: WorkPrompt(
@@ -157,7 +172,7 @@ class WorkEngine {
       return s;
     }).toList();
     final int jobCommitmentDays = getJobCommitmentDays(job);
-    return state.copyWith(
+    state = state.copyWith(
       timeRemaining: state.timeRemaining - jobCommitmentDays,
       workState: workState.copyWith(
         currentEmployments: updatedEmployments,
@@ -171,6 +186,12 @@ class WorkEngine {
         ),
       ),
       sections: sections,
+    );
+    return GameLogger.addLog(
+      state,
+      message: LogNarratives.workHired(firstLevel.title, job.name),
+      category: LogCategory.work,
+      tags: ['job:${job.id}'],
     );
   }
 
@@ -206,12 +227,18 @@ class WorkEngine {
       }
       return s;
     }).toList();
-    return state.copyWith(
+    state = state.copyWith(
       workState: workState.copyWith(
         currentEmployments: updatedEmployments,
         history: updatedHistory,
       ),
       sections: sections,
+    );
+    return GameLogger.addLog(
+      state,
+      message: LogNarratives.workQuit(employment.jobName),
+      category: LogCategory.work,
+      tags: ['job:${employment.jobId}'],
     );
   }
 
@@ -244,6 +271,15 @@ class WorkEngine {
           finalSalary: employment.salary,
         ));
         state = state.copyWith(money: state.money + employment.salary);
+        state = GameLogger.addLog(
+          state,
+          message: LogNarratives.workCasualCompleted(
+            employment.jobName,
+            employment.salary,
+          ),
+          category: LogCategory.work,
+          tags: ['job:${employment.jobId}'],
+        );
         continue;
       }
       final bool fired = _checkFired(employment, rng);
@@ -267,9 +303,24 @@ class WorkEngine {
               'Your performance at ${employment.jobName} was below expectations. You have been let go.',
           accepted: false,
         );
+        state = GameLogger.addLog(
+          state,
+          message: LogNarratives.workFired(employment.jobName),
+          category: LogCategory.work,
+          tags: ['job:${employment.jobId}'],
+        );
         continue;
       }
       state = state.copyWith(money: state.money + employment.salary);
+      state = GameLogger.addLog(
+        state,
+        message: LogNarratives.workEarnedSalary(
+          employment.jobName,
+          employment.salary,
+        ),
+        category: LogCategory.work,
+        tags: ['job:${employment.jobId}'],
+      );
       Employment updated = employment.copyWith(
         yearsWorked: employment.yearsWorked + 1,
       );
@@ -284,6 +335,15 @@ class WorkEngine {
             description:
                 'Your hard work at ${updated.jobName} has paid off! You have been promoted to ${result.newTitle} with a new salary of \$${updated.salary}/yr.',
             accepted: true,
+          );
+          state = GameLogger.addLog(
+            state,
+            message: LogNarratives.workPromoted(
+              result.newTitle!,
+              updated.jobName,
+            ),
+            category: LogCategory.work,
+            tags: ['job:${updated.jobId}'],
           );
         }
       }
@@ -350,6 +410,12 @@ class WorkEngine {
         sections: sections,
       );
     }
+    state = GameLogger.addLog(
+      state,
+      message: LogNarratives.workPromotionDenied(employment.jobName),
+      category: LogCategory.work,
+      tags: ['job:${employment.jobId}'],
+    );
     return state.copyWith(
       workState: workState.copyWith(
         pendingPrompt: WorkPrompt(

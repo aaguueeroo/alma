@@ -42,8 +42,9 @@ class LifeMainTab extends StatelessWidget {
           ),
           kVerticalGap32,
           LogListWidget(
-            title: l10n.eventLog,
-            emptyMessage: l10n.noEventsRecorded,
+            title: l10n.lifeLog,
+            emptyMessage: l10n.noLogsRecorded,
+            gameLogs: state.logs.reversed.toList(),
           ),
         ],
       ),

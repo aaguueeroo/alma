@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/action.dart';
+import 'package:alma/core/models/game_log.dart';
 import 'package:alma/core/models/section.dart';
 import 'package:alma/core/models/education_state.dart';
 import 'package:alma/core/models/enrollment.dart';
 import 'package:alma/core/models/education_record.dart';
+import 'package:alma/core/models/enums/log_category.dart';
 import 'package:alma/core/models/enums/section_type.dart';
 import 'package:alma/core/engine/time_commitment.dart';
 import 'package:alma/app/constants/spacing.dart';
@@ -80,6 +82,7 @@ class EducationTab extends StatelessWidget {
           LogListWidget(
             title: l10n.eventLog,
             emptyMessage: l10n.noEducationEvents,
+            gameLogs: _filterEducationLogs(state.logs),
           ),
         ],
       ),
@@ -113,6 +116,14 @@ class EducationTab extends StatelessWidget {
               '${l10n.educationYearsLabel(record.startAge, record.endAge)}';
       return '${record.programName} - $status ($details)';
     }).toList();
+  }
+
+  List<GameLog> _filterEducationLogs(List<GameLog> logs) {
+    return logs
+        .where((GameLog log) => log.category == LogCategory.education)
+        .toList()
+        .reversed
+        .toList();
   }
 
   Section? _findSection(SectionType type) {

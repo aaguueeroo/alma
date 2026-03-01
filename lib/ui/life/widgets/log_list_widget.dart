@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:alma/core/models/game_log.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/app/constants/sizing.dart';
 
@@ -7,16 +8,19 @@ class LogListWidget extends StatelessWidget {
     super.key,
     required this.title,
     required this.emptyMessage,
+    this.gameLogs = const [],
     this.logs = const [],
   });
 
   final String title;
   final String emptyMessage;
+  final List<GameLog> gameLogs;
   final List<String> logs;
 
   @override
   Widget build(BuildContext context) {
     final ColorScheme colors = Theme.of(context).colorScheme;
+    final bool isEmpty = gameLogs.isEmpty && logs.isEmpty;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -27,10 +31,12 @@ class LogListWidget extends StatelessWidget {
               ),
         ),
         kVerticalGap12,
-        if (logs.isEmpty)
+        if (isEmpty)
           _EmptyLogMessage(message: emptyMessage)
-        else
-          ...logs.map((log) => _LogEntry(text: log)),
+        else ...[
+          ...gameLogs.map((GameLog log) => _GameLogEntry(log: log)),
+          ...logs.map((String log) => _LogEntry(text: log)),
+        ],
       ],
     );
   }
@@ -58,6 +64,55 @@ class _EmptyLogMessage extends StatelessWidget {
               color: colors.onSurfaceVariant,
               fontStyle: FontStyle.italic,
             ),
+      ),
+    );
+  }
+}
+
+class _GameLogEntry extends StatelessWidget {
+  const _GameLogEntry({required this.log});
+
+  final GameLog log;
+
+  @override
+  Widget build(BuildContext context) {
+    final ColorScheme colors = Theme.of(context).colorScheme;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: kSpacing8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: kSpacing4),
+            child: Icon(
+              Icons.circle,
+              size: kSpacing4,
+              color: colors.onSurfaceVariant,
+            ),
+          ),
+          kHorizontalGap12,
+          Expanded(
+            child: RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: '[${log.age}] ',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: colors.primary,
+                          fontWeight: FontWeight.w600,
+                        ),
+                  ),
+                  TextSpan(
+                    text: log.message,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: colors.onSurfaceVariant,
+                        ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

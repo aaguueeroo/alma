@@ -5,7 +5,9 @@
     "description": "Sit down and work through your assignments. Consistent effort builds understanding and keeps you on track.",
     "category": "education",
     "timeCost": 11,
-    "skillEffects": {"intelligence": 1},
+    "skillEffects": {
+      "intelligence": 1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 8,
@@ -13,7 +15,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": null,
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You do Homework."
   },
   {
     "id": "study_group",
@@ -21,7 +24,9 @@
     "description": "Team up with classmates to review material together. Explaining concepts to others deepens your own understanding.",
     "category": "education",
     "timeCost": 22,
-    "skillEffects": {"communication": 1},
+    "skillEffects": {
+      "communication": 1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 10,
@@ -29,7 +34,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": null,
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You study Group."
   },
   {
     "id": "ask_teacher_for_help",
@@ -37,7 +43,9 @@
     "description": "Approach your teacher after class with questions. A little courage goes a long way toward clarity.",
     "category": "education",
     "timeCost": 2,
-    "skillEffects": {"communication": 1},
+    "skillEffects": {
+      "communication": 1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 6,
@@ -45,7 +53,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": null,
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You ask Teacher for Help."
   },
   {
     "id": "visit_library",
@@ -53,7 +62,9 @@
     "description": "Spend time among the shelves, exploring books and resources beyond the syllabus. Knowledge is everywhere if you look.",
     "category": "education",
     "timeCost": 11,
-    "skillEffects": {"intelligence": 2},
+    "skillEffects": {
+      "intelligence": 2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 7,
@@ -61,7 +72,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": null,
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You visit Library."
   },
   {
     "id": "skip_class",
@@ -77,7 +89,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": null,
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You skip Class."
   },
   {
     "id": "procrastinate",
@@ -85,7 +98,9 @@
     "description": "Put off studying for later, scrolling through distractions instead. Tomorrow always seems like a better day to start.",
     "category": "education",
     "timeCost": 2,
-    "skillEffects": {"intelligence": -1},
+    "skillEffects": {
+      "intelligence": -1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": -6,
@@ -93,7 +108,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": null,
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You procrastinate."
   },
   {
     "id": "cheat_on_test",
@@ -109,12 +125,13 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": null,
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You cheat on Test."
   },
   {
     "id": "oversleep_and_miss_exam",
     "name": "Oversleep and Miss Exam",
-    "description": "The alarm didn't go off — or maybe you ignored it. Either way, the exam is over and you weren't there.",
+    "description": "The alarm didn't go off \u2014 or maybe you ignored it. Either way, the exam is over and you weren't there.",
     "category": "education",
     "timeCost": 2,
     "skillEffects": {},
@@ -125,7 +142,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": null,
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You oversleep and Miss Exam."
   },
   {
     "id": "finger_painting",
@@ -133,7 +151,9 @@
     "description": "Dip your hands in bright colors and let imagination flow onto paper. Messy, joyful, and wonderfully creative.",
     "category": "education",
     "timeCost": 2,
-    "skillEffects": {"creativity": 2},
+    "skillEffects": {
+      "creativity": 2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 5,
@@ -141,7 +161,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "preschool",
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You finger Painting."
   },
   {
     "id": "playground_games",
@@ -149,7 +170,10 @@
     "description": "Run, climb, and play with the other kids during recess. Learning to cooperate and move your body matters too.",
     "category": "education",
     "timeCost": 2,
-    "skillEffects": {"fitness": 1, "communication": 1},
+    "skillEffects": {
+      "fitness": 1,
+      "communication": 1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 5,
@@ -157,7 +181,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "preschool",
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You playground Games."
   },
   {
     "id": "throw_tantrum",
@@ -165,7 +190,9 @@
     "description": "Scream, cry, and stomp your feet when things don't go your way. The whole class stops and stares.",
     "category": "education",
     "timeCost": 2,
-    "skillEffects": {"emotionalStability": -1},
+    "skillEffects": {
+      "emotionalStability": -1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": -4,
@@ -173,7 +200,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "preschool",
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You throw Tantrum."
   },
   {
     "id": "refuse_to_share",
@@ -181,7 +209,9 @@
     "description": "Clutch the toys tightly and refuse to let anyone else play. Sharing is hard, but hoarding makes no friends.",
     "category": "education",
     "timeCost": 2,
-    "skillEffects": {"communication": -1},
+    "skillEffects": {
+      "communication": -1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": -3,
@@ -189,7 +219,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "preschool",
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You refuse to Share."
   },
   {
     "id": "join_science_fair",
@@ -197,7 +228,10 @@
     "description": "Build a project, form a hypothesis, and present your findings. The volcano might actually impress the judges this year.",
     "category": "education",
     "timeCost": 22,
-    "skillEffects": {"intelligence": 2, "creativity": 1},
+    "skillEffects": {
+      "intelligence": 2,
+      "creativity": 1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 8,
@@ -205,7 +239,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "middleSchool",
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You join Science Fair."
   },
   {
     "id": "practice_public_speaking",
@@ -213,7 +248,9 @@
     "description": "Stand in front of the class and deliver a presentation. Your voice shakes at first, but confidence grows with practice.",
     "category": "education",
     "timeCost": 11,
-    "skillEffects": {"communication": 2},
+    "skillEffects": {
+      "communication": 2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 6,
@@ -221,7 +258,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "middleSchool",
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You practice Public Speaking."
   },
   {
     "id": "bully_classmate",
@@ -229,7 +267,9 @@
     "description": "Pick on someone smaller or quieter. It might feel powerful now, but cruelty leaves marks on everyone involved.",
     "category": "education",
     "timeCost": 2,
-    "skillEffects": {"communication": -2},
+    "skillEffects": {
+      "communication": -2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": -7,
@@ -237,7 +277,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "middleSchool",
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You bully Classmate."
   },
   {
     "id": "copy_homework",
@@ -253,7 +294,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "middleSchool",
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You copy Homework."
   },
   {
     "id": "prepare_for_finals",
@@ -261,7 +303,9 @@
     "description": "Lock yourself in with notes and flashcards for an intense study marathon. Exhausting, but your future self will thank you.",
     "category": "education",
     "timeCost": 43,
-    "skillEffects": {"intelligence": 2},
+    "skillEffects": {
+      "intelligence": 2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": -3,
     "sectionPerformanceEffect": 10,
@@ -269,7 +313,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "highSchool",
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You prepare for Finals."
   },
   {
     "id": "join_academic_club",
@@ -277,7 +322,10 @@
     "description": "Sign up for debate, math olympiad, or another academic extracurricular. Surround yourself with curious minds.",
     "category": "education",
     "timeCost": 11,
-    "skillEffects": {"creativity": 1, "communication": 1},
+    "skillEffects": {
+      "creativity": 1,
+      "communication": 1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 7,
@@ -285,7 +333,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "highSchool",
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You join Academic Club."
   },
   {
     "id": "skip_school_for_party",
@@ -301,7 +350,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "highSchool",
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You skip School for Party."
   },
   {
     "id": "let_grades_slip",
@@ -317,7 +367,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "highSchool",
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You let Grades Slip."
   },
   {
     "id": "attend_office_hours",
@@ -325,7 +376,9 @@
     "description": "Visit your professor during their open hours to discuss coursework. One-on-one guidance can unlock new understanding.",
     "category": "education",
     "timeCost": 11,
-    "skillEffects": {"intelligence": 1},
+    "skillEffects": {
+      "intelligence": 1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 8,
@@ -333,7 +386,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "university",
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You attend Office Hours."
   },
   {
     "id": "write_research_paper",
@@ -341,7 +395,10 @@
     "description": "Pour hours into drafting, citing, and revising an original paper. Academic writing is grueling but deeply rewarding.",
     "category": "education",
     "timeCost": 43,
-    "skillEffects": {"intelligence": 2, "creativity": 1},
+    "skillEffects": {
+      "intelligence": 2,
+      "creativity": 1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 10,
@@ -349,7 +406,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "university",
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You write Research Paper."
   },
   {
     "id": "party_before_exams",
@@ -365,7 +423,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "university",
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You party Before Exams."
   },
   {
     "id": "plagiarize_assignment",
@@ -381,7 +440,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "university",
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You plagiarize Assignment."
   },
   {
     "id": "present_at_conference",
@@ -389,7 +449,10 @@
     "description": "Stand before peers and experts to share your research findings. Nerve-wracking, but it establishes your academic voice.",
     "category": "education",
     "timeCost": 22,
-    "skillEffects": {"communication": 2, "intelligence": 1},
+    "skillEffects": {
+      "communication": 2,
+      "intelligence": 1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 10,
@@ -397,7 +460,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "master",
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You present at Conference."
   },
   {
     "id": "publish_journal_article",
@@ -405,7 +469,9 @@
     "description": "Submit your research to a peer-reviewed journal and see it through to publication. A milestone in any academic career.",
     "category": "education",
     "timeCost": 43,
-    "skillEffects": {"intelligence": 2},
+    "skillEffects": {
+      "intelligence": 2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 12,
@@ -413,7 +479,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "master",
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You publish Journal Article."
   },
   {
     "id": "neglect_thesis",
@@ -429,7 +496,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "master",
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You neglect Thesis."
   },
   {
     "id": "argue_with_advisor",
@@ -437,7 +505,9 @@
     "description": "Clash with your thesis advisor over direction and methodology. Burning bridges with your mentor rarely ends well.",
     "category": "education",
     "timeCost": 2,
-    "skillEffects": {"communication": -1},
+    "skillEffects": {
+      "communication": -1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": -8,
@@ -445,15 +515,19 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "master",
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You argue with Advisor."
   },
   {
     "id": "breakthrough_research",
     "name": "Breakthrough Research",
-    "description": "After months of dead ends, a flash of insight connects everything. This could change the field — and your career.",
+    "description": "After months of dead ends, a flash of insight connects everything. This could change the field \u2014 and your career.",
     "category": "education",
     "timeCost": 43,
-    "skillEffects": {"intelligence": 3, "creativity": 1},
+    "skillEffects": {
+      "intelligence": 3,
+      "creativity": 1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 15,
@@ -461,7 +535,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "doctorate",
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You breakthrough Research."
   },
   {
     "id": "teach_undergraduate_class",
@@ -469,7 +544,9 @@
     "description": "Step into the lecturer's role and teach a session to undergrads. Teaching others solidifies your own mastery.",
     "category": "education",
     "timeCost": 22,
-    "skillEffects": {"communication": 2},
+    "skillEffects": {
+      "communication": 2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 8,
@@ -477,7 +554,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "doctorate",
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You teach Undergraduate Class."
   },
   {
     "id": "fabricate_data",
@@ -485,7 +563,9 @@
     "description": "Invent research results that never existed. If discovered, it will destroy your reputation and career entirely.",
     "category": "education",
     "timeCost": 2,
-    "skillEffects": {"intelligence": -2},
+    "skillEffects": {
+      "intelligence": -2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": -15,
@@ -493,7 +573,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "doctorate",
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You fabricate Data."
   },
   {
     "id": "dissertation_writers_block",
@@ -501,7 +582,9 @@
     "description": "Stare at a blinking cursor for hours, unable to write a single paragraph. The pressure mounts and sleep suffers.",
     "category": "education",
     "timeCost": 2,
-    "skillEffects": {"creativity": -1},
+    "skillEffects": {
+      "creativity": -1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": -3,
     "sectionPerformanceEffect": -8,
@@ -509,7 +592,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "doctorate",
-    "educationProgramId": null
+    "educationProgramId": null,
+    "logMessage": "You dissertation Writer's Block."
   },
   {
     "id": "practice_mock_trial",
@@ -517,7 +601,9 @@
     "description": "Argue a simulated case before mock judges and opposing counsel. Sharpen your rhetoric and think on your feet.",
     "category": "education",
     "timeCost": 11,
-    "skillEffects": {"communication": 2},
+    "skillEffects": {
+      "communication": 2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 8,
@@ -525,7 +611,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "university",
-    "educationProgramId": "uni_law"
+    "educationProgramId": "uni_law",
+    "logMessage": "You practice Mock Trial."
   },
   {
     "id": "miss_court_observation",
@@ -541,7 +628,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "university",
-    "educationProgramId": "uni_law"
+    "educationProgramId": "uni_law",
+    "logMessage": "You miss Court Observation."
   },
   {
     "id": "write_literary_analysis",
@@ -549,7 +637,9 @@
     "description": "Craft a thoughtful essay dissecting themes, symbols, and narrative technique in a classic work of literature.",
     "category": "education",
     "timeCost": 22,
-    "skillEffects": {"creativity": 2},
+    "skillEffects": {
+      "creativity": 2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 8,
@@ -557,7 +647,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "university",
-    "educationProgramId": "uni_literature"
+    "educationProgramId": "uni_literature",
+    "logMessage": "You write Literary Analysis."
   },
   {
     "id": "ignore_reading_list",
@@ -565,7 +656,9 @@
     "description": "Let the assigned novels pile up unread on your desk. Class discussions become a minefield of things you don't know.",
     "category": "education",
     "timeCost": 2,
-    "skillEffects": {"intelligence": -1},
+    "skillEffects": {
+      "intelligence": -1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": -6,
@@ -573,7 +666,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "university",
-    "educationProgramId": "uni_literature"
+    "educationProgramId": "uni_literature",
+    "logMessage": "You ignore Reading List."
   },
   {
     "id": "archive_research",
@@ -581,7 +675,9 @@
     "description": "Spend the day in dusty archives, carefully examining primary sources and piecing together fragments of the past.",
     "category": "education",
     "timeCost": 22,
-    "skillEffects": {"intelligence": 2},
+    "skillEffects": {
+      "intelligence": 2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 8,
@@ -589,7 +685,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "university",
-    "educationProgramId": "uni_history"
+    "educationProgramId": "uni_history",
+    "logMessage": "You archive Research."
   },
   {
     "id": "skip_field_trip",
@@ -605,7 +702,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "university",
-    "educationProgramId": "uni_history"
+    "educationProgramId": "uni_history",
+    "logMessage": "You skip Field Trip."
   },
   {
     "id": "practice_programming",
@@ -613,7 +711,10 @@
     "description": "Grind through coding exercises and build small projects. Every bug you fix makes you a sharper programmer.",
     "category": "education",
     "timeCost": 22,
-    "skillEffects": {"intelligence": 2, "creativity": 1},
+    "skillEffects": {
+      "intelligence": 2,
+      "creativity": 1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 10,
@@ -621,7 +722,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "university",
-    "educationProgramId": "uni_cs"
+    "educationProgramId": "uni_cs",
+    "logMessage": "You practice Programming."
   },
   {
     "id": "ignore_debugging",
@@ -629,7 +731,9 @@
     "description": "Submit code riddled with bugs without bothering to test it. The compiler errors will speak for themselves.",
     "category": "education",
     "timeCost": 2,
-    "skillEffects": {"intelligence": -1},
+    "skillEffects": {
+      "intelligence": -1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": -8,
@@ -637,7 +741,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "university",
-    "educationProgramId": "uni_cs"
+    "educationProgramId": "uni_cs",
+    "logMessage": "You ignore Debugging."
   },
   {
     "id": "design_project",
@@ -645,7 +750,10 @@
     "description": "Sketch blueprints and run calculations for an original engineering design. Turning ideas into structures starts here.",
     "category": "education",
     "timeCost": 43,
-    "skillEffects": {"creativity": 2, "intelligence": 1},
+    "skillEffects": {
+      "creativity": 2,
+      "intelligence": 1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 10,
@@ -653,7 +761,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "university",
-    "educationProgramId": "uni_engineering"
+    "educationProgramId": "uni_engineering",
+    "logMessage": "You design Project."
   },
   {
     "id": "skip_lab_session",
@@ -669,7 +778,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "university",
-    "educationProgramId": "uni_engineering"
+    "educationProgramId": "uni_engineering",
+    "logMessage": "You skip Lab Session."
   },
   {
     "id": "clinical_rotation",
@@ -677,7 +787,10 @@
     "description": "Shadow doctors in a hospital ward, observing real patients and procedures. Medicine comes alive beyond the textbook.",
     "category": "education",
     "timeCost": 43,
-    "skillEffects": {"intelligence": 1, "communication": 1},
+    "skillEffects": {
+      "intelligence": 1,
+      "communication": 1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 10,
@@ -685,7 +798,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "university",
-    "educationProgramId": "uni_medicine"
+    "educationProgramId": "uni_medicine",
+    "logMessage": "You clinical Rotation."
   },
   {
     "id": "skip_anatomy_lab",
@@ -701,7 +815,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "university",
-    "educationProgramId": "uni_medicine"
+    "educationProgramId": "uni_medicine",
+    "logMessage": "You skip Anatomy Lab."
   },
   {
     "id": "analyze_court_cases",
@@ -709,7 +824,9 @@
     "description": "Dissect landmark constitutional rulings, tracing the reasoning that shaped the law of the land.",
     "category": "education",
     "timeCost": 22,
-    "skillEffects": {"intelligence": 2},
+    "skillEffects": {
+      "intelligence": 2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 10,
@@ -717,7 +834,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "master",
-    "educationProgramId": "master_constitutional_law"
+    "educationProgramId": "master_constitutional_law",
+    "logMessage": "You analyze Court Cases."
   },
   {
     "id": "skip_diplomacy_seminar",
@@ -733,7 +851,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "master",
-    "educationProgramId": "master_international_law"
+    "educationProgramId": "master_international_law",
+    "logMessage": "You skip Diplomacy Seminar."
   },
   {
     "id": "complete_manuscript_chapter",
@@ -741,7 +860,9 @@
     "description": "Finish a full chapter of your creative manuscript. Every polished page brings the story closer to life.",
     "category": "education",
     "timeCost": 22,
-    "skillEffects": {"creativity": 2},
+    "skillEffects": {
+      "creativity": 2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 10,
@@ -749,7 +870,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "master",
-    "educationProgramId": "master_creative_writing"
+    "educationProgramId": "master_creative_writing",
+    "logMessage": "You complete Manuscript Chapter."
   },
   {
     "id": "neglect_translation_work",
@@ -757,7 +879,9 @@
     "description": "Leave your comparative translation assignments untouched. The languages won't bridge themselves across cultures.",
     "category": "education",
     "timeCost": 2,
-    "skillEffects": {"intelligence": -1},
+    "skillEffects": {
+      "intelligence": -1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": -8,
@@ -765,7 +889,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "master",
-    "educationProgramId": "master_comparative_literature"
+    "educationProgramId": "master_comparative_literature",
+    "logMessage": "You neglect Translation Work."
   },
   {
     "id": "excavation_fieldwork",
@@ -773,7 +898,10 @@
     "description": "Dig at an archaeological site under the hot sun, carefully brushing away centuries of earth to reveal history beneath.",
     "category": "education",
     "timeCost": 43,
-    "skillEffects": {"fitness": 1, "intelligence": 1},
+    "skillEffects": {
+      "fitness": 1,
+      "intelligence": 1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 10,
@@ -781,7 +909,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "master",
-    "educationProgramId": "master_ancient_history"
+    "educationProgramId": "master_ancient_history",
+    "logMessage": "You excavation Fieldwork."
   },
   {
     "id": "miss_archive_deadline",
@@ -797,7 +926,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "master",
-    "educationProgramId": "master_modern_history"
+    "educationProgramId": "master_modern_history",
+    "logMessage": "You miss Archive Deadline."
   },
   {
     "id": "train_neural_network",
@@ -805,7 +935,9 @@
     "description": "Configure hyperparameters and run training epochs on your model. Watching the loss curve drop is deeply satisfying.",
     "category": "education",
     "timeCost": 43,
-    "skillEffects": {"intelligence": 2},
+    "skillEffects": {
+      "intelligence": 2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 12,
@@ -813,7 +945,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "master",
-    "educationProgramId": "master_ai"
+    "educationProgramId": "master_ai",
+    "logMessage": "You train Neural Network."
   },
   {
     "id": "ignore_security_audit",
@@ -829,7 +962,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "master",
-    "educationProgramId": "master_cybersecurity"
+    "educationProgramId": "master_cybersecurity",
+    "logMessage": "You ignore Security Audit."
   },
   {
     "id": "prototype_robot",
@@ -837,7 +971,10 @@
     "description": "Assemble servos, sensors, and code into a working robot prototype. When it moves on its own, the thrill is electric.",
     "category": "education",
     "timeCost": 43,
-    "skillEffects": {"creativity": 2, "intelligence": 1},
+    "skillEffects": {
+      "creativity": 2,
+      "intelligence": 1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 10,
@@ -845,7 +982,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "master",
-    "educationProgramId": "master_robotics"
+    "educationProgramId": "master_robotics",
+    "logMessage": "You prototype Robot."
   },
   {
     "id": "skip_site_inspection",
@@ -861,7 +999,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "master",
-    "educationProgramId": "master_civil_engineering"
+    "educationProgramId": "master_civil_engineering",
+    "logMessage": "You skip Site Inspection."
   },
   {
     "id": "perform_supervised_surgery",
@@ -869,7 +1008,9 @@
     "description": "Operate on a patient under the watchful eye of an attending surgeon. Steady hands and sharp focus save lives.",
     "category": "education",
     "timeCost": 43,
-    "skillEffects": {"intelligence": 1},
+    "skillEffects": {
+      "intelligence": 1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 12,
@@ -877,7 +1018,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "master",
-    "educationProgramId": "master_surgery"
+    "educationProgramId": "master_surgery",
+    "logMessage": "You perform Supervised Surgery."
   },
   {
     "id": "miss_brain_scan_analysis",
@@ -885,7 +1027,9 @@
     "description": "Fail to review the fMRI data your lab collected. Weeks of scanning time go to waste without proper analysis.",
     "category": "education",
     "timeCost": 2,
-    "skillEffects": {"intelligence": -1},
+    "skillEffects": {
+      "intelligence": -1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": -8,
@@ -893,7 +1037,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "master",
-    "educationProgramId": "master_neuroscience"
+    "educationProgramId": "master_neuroscience",
+    "logMessage": "You miss Brain Scan Analysis."
   },
   {
     "id": "publish_constitutional_review",
@@ -901,7 +1046,9 @@
     "description": "Your analysis of constitutional doctrine is accepted by a prestigious law review. A defining academic achievement.",
     "category": "education",
     "timeCost": 43,
-    "skillEffects": {"intelligence": 2},
+    "skillEffects": {
+      "intelligence": 2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 12,
@@ -909,7 +1056,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "doctorate",
-    "educationProgramId": "phd_constitutional_law"
+    "educationProgramId": "phd_constitutional_law",
+    "logMessage": "You publish Constitutional Review."
   },
   {
     "id": "miss_treaty_conference",
@@ -925,7 +1073,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "doctorate",
-    "educationProgramId": "phd_international_law"
+    "educationProgramId": "phd_international_law",
+    "logMessage": "You miss Treaty Conference."
   },
   {
     "id": "finish_creative_thesis_chapter",
@@ -933,7 +1082,9 @@
     "description": "Complete a chapter of your creative doctoral thesis. The prose sings, and your committee will notice the quality.",
     "category": "education",
     "timeCost": 43,
-    "skillEffects": {"creativity": 2},
+    "skillEffects": {
+      "creativity": 2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 12,
@@ -941,7 +1092,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "doctorate",
-    "educationProgramId": "phd_creative_writing"
+    "educationProgramId": "phd_creative_writing",
+    "logMessage": "You finish Creative Thesis Chapter."
   },
   {
     "id": "abandon_translation_project",
@@ -949,7 +1101,9 @@
     "description": "Give up on your comparative translation dissertation project halfway through. Months of work left unfinished.",
     "category": "education",
     "timeCost": 2,
-    "skillEffects": {"creativity": -1},
+    "skillEffects": {
+      "creativity": -1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": -10,
@@ -957,7 +1111,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "doctorate",
-    "educationProgramId": "phd_comparative_literature"
+    "educationProgramId": "phd_comparative_literature",
+    "logMessage": "You abandon Translation Project."
   },
   {
     "id": "discover_artifact",
@@ -965,7 +1120,10 @@
     "description": "Unearth a significant artifact during your doctoral excavation. A find like this could rewrite a chapter of history.",
     "category": "education",
     "timeCost": 43,
-    "skillEffects": {"intelligence": 2, "creativity": 1},
+    "skillEffects": {
+      "intelligence": 2,
+      "creativity": 1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 15,
@@ -973,7 +1131,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "doctorate",
-    "educationProgramId": "phd_ancient_history"
+    "educationProgramId": "phd_ancient_history",
+    "logMessage": "You discover Artifact."
   },
   {
     "id": "lose_research_notes",
@@ -989,7 +1148,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "doctorate",
-    "educationProgramId": "phd_modern_history"
+    "educationProgramId": "phd_modern_history",
+    "logMessage": "You lose Research Notes."
   },
   {
     "id": "develop_novel_algorithm",
@@ -997,7 +1157,9 @@
     "description": "Design a new machine learning algorithm that outperforms existing benchmarks. This is what doctoral research dreams are made of.",
     "category": "education",
     "timeCost": 43,
-    "skillEffects": {"intelligence": 3},
+    "skillEffects": {
+      "intelligence": 3
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 15,
@@ -1005,7 +1167,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "doctorate",
-    "educationProgramId": "phd_machine_learning"
+    "educationProgramId": "phd_machine_learning",
+    "logMessage": "You develop Novel Algorithm."
   },
   {
     "id": "fail_penetration_test",
@@ -1013,7 +1176,9 @@
     "description": "Your security system is breached during a controlled test. Back to the drawing board with your defense strategy.",
     "category": "education",
     "timeCost": 2,
-    "skillEffects": {"intelligence": -1},
+    "skillEffects": {
+      "intelligence": -1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": -10,
@@ -1021,7 +1186,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "doctorate",
-    "educationProgramId": "phd_security_systems"
+    "educationProgramId": "phd_security_systems",
+    "logMessage": "You fail Penetration Test."
   },
   {
     "id": "successful_autonomous_test",
@@ -1029,7 +1195,10 @@
     "description": "Your autonomous system navigates the test course flawlessly. Months of calibration and coding pay off in one perfect run.",
     "category": "education",
     "timeCost": 43,
-    "skillEffects": {"intelligence": 2, "creativity": 1},
+    "skillEffects": {
+      "intelligence": 2,
+      "creativity": 1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 15,
@@ -1037,7 +1206,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "doctorate",
-    "educationProgramId": "phd_autonomous_systems"
+    "educationProgramId": "phd_autonomous_systems",
+    "logMessage": "You successful Autonomous Test."
   },
   {
     "id": "miscalculate_load_bearing",
@@ -1045,7 +1215,9 @@
     "description": "A critical error in your structural calculations is caught during review. In the real world, this mistake could be catastrophic.",
     "category": "education",
     "timeCost": 2,
-    "skillEffects": {"intelligence": -1},
+    "skillEffects": {
+      "intelligence": -1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": -12,
@@ -1053,7 +1225,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "doctorate",
-    "educationProgramId": "phd_structural_engineering"
+    "educationProgramId": "phd_structural_engineering",
+    "logMessage": "You miscalculate Load Bearing."
   },
   {
     "id": "pioneer_new_technique",
@@ -1061,7 +1234,9 @@
     "description": "Develop an innovative surgical technique that reduces recovery time. Your name will be attached to this procedure forever.",
     "category": "education",
     "timeCost": 43,
-    "skillEffects": {"intelligence": 2},
+    "skillEffects": {
+      "intelligence": 2
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": 15,
@@ -1069,7 +1244,8 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "doctorate",
-    "educationProgramId": "phd_surgical_innovation"
+    "educationProgramId": "phd_surgical_innovation",
+    "logMessage": "You pioneer New Technique."
   },
   {
     "id": "contaminate_brain_samples",
@@ -1077,7 +1253,9 @@
     "description": "Accidentally contaminate irreplaceable brain tissue samples through careless handling. Months of collection ruined in an instant.",
     "category": "education",
     "timeCost": 2,
-    "skillEffects": {"intelligence": -1},
+    "skillEffects": {
+      "intelligence": -1
+    },
     "hiddenMetricEffects": {},
     "healthEffect": 0,
     "sectionPerformanceEffect": -12,
@@ -1085,6 +1263,7 @@
     "targetNpcId": null,
     "moralImpactTemplates": [],
     "educationLevel": "doctorate",
-    "educationProgramId": "phd_cognitive_neuroscience"
+    "educationProgramId": "phd_cognitive_neuroscience",
+    "logMessage": "You contaminate Brain Samples."
   }
 ]

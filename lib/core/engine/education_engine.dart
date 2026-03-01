@@ -8,9 +8,12 @@ import 'package:alma/core/models/education_program.dart';
 import 'package:alma/core/models/education_prompt.dart';
 import 'package:alma/core/models/access_condition.dart';
 import 'package:alma/core/models/enums/education_level.dart';
+import 'package:alma/core/models/enums/log_category.dart';
 import 'package:alma/core/models/enums/section_type.dart';
 import 'package:alma/core/rules/education_country_config.dart';
 import 'package:alma/core/models/skill.dart';
+import 'package:alma/app/constants/log_narratives.dart';
+import 'package:alma/core/engine/game_logger.dart';
 import 'package:alma/core/engine/seeded_random.dart';
 import 'package:alma/core/engine/time_commitment.dart';
 
@@ -75,6 +78,15 @@ class EducationEngine {
     if (isLastYear) {
       return _graduateFromProgram(state, eduState, enrollment, performance);
     }
+    state = GameLogger.addLog(
+      state,
+      message: LogNarratives.educationPassedYear(
+        enrollment.yearInProgram,
+        enrollment.programName,
+      ),
+      category: LogCategory.education,
+      tags: ['program:${enrollment.programId}'],
+    );
     final Enrollment advanced = enrollment.copyWith(
       yearInProgram: enrollment.yearInProgram + 1,
     );
@@ -107,6 +119,12 @@ class EducationEngine {
       history: history,
     );
     state = state.copyWith(educationState: newEduState);
+    state = GameLogger.addLog(
+      state,
+      message: LogNarratives.educationGraduated(enrollment.programName, performance),
+      category: LogCategory.education,
+      tags: ['program:${enrollment.programId}'],
+    );
     return _createNextLevelPrompt(state, enrollment, currentPerformance);
   }
 
@@ -118,6 +136,15 @@ class EducationEngine {
     int performance,
   ) {
     if (!levelConfig.canRepeatYears) {
+      state = GameLogger.addLog(
+        state,
+        message: LogNarratives.educationFailedYear(
+          enrollment.yearInProgram,
+          enrollment.programName,
+        ),
+        category: LogCategory.education,
+        tags: ['program:${enrollment.programId}'],
+      );
       final Enrollment advanced = enrollment.copyWith(
         yearInProgram: enrollment.yearInProgram + 1,
       );
@@ -132,6 +159,15 @@ class EducationEngine {
     if (levelConfig.canGetKickedOut && newRepeats > levelConfig.maxRepeats) {
       return _kickOutFromProgram(state, eduState, enrollment, performance);
     }
+    state = GameLogger.addLog(
+      state,
+      message: LogNarratives.educationFailedYearRepeating(
+        enrollment.yearInProgram,
+        enrollment.programName,
+      ),
+      category: LogCategory.education,
+      tags: ['program:${enrollment.programId}'],
+    );
     final Enrollment repeated = enrollment.copyWith(
       repeatsInLevel: newRepeats,
     );
@@ -159,11 +195,17 @@ class EducationEngine {
       isDropOut: false,
     );
     final List<EducationRecord> history = [...eduState.history, record];
-    return state.copyWith(
+    state = state.copyWith(
       educationState: eduState.copyWith(
         currentEnrollment: null,
         history: history,
       ),
+    );
+    return GameLogger.addLog(
+      state,
+      message: LogNarratives.educationKickedOut(enrollment.programName),
+      category: LogCategory.education,
+      tags: ['program:${enrollment.programId}'],
     );
   }
 
@@ -366,13 +408,19 @@ class EducationEngine {
       }
       return s;
     }).toList();
-    return state.copyWith(
+    state = state.copyWith(
       timeRemaining: state.timeRemaining - commitmentDays,
       educationState: eduState.copyWith(
         currentEnrollment: enrollment,
         pendingPrompt: null,
       ),
       sections: sections,
+    );
+    return GameLogger.addLog(
+      state,
+      message: LogNarratives.educationEnrolled(program.name),
+      category: LogCategory.education,
+      tags: ['program:${program.id}'],
     );
   }
 
@@ -414,12 +462,18 @@ class EducationEngine {
       }
       return s;
     }).toList();
-    return state.copyWith(
+    state = state.copyWith(
       educationState: eduState.copyWith(
         currentEnrollment: null,
         history: history,
       ),
       sections: sections,
+    );
+    return GameLogger.addLog(
+      state,
+      message: LogNarratives.educationDroppedOut(enrollment.programName),
+      category: LogCategory.education,
+      tags: ['program:${enrollment.programId}'],
     );
   }
 

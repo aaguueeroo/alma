@@ -27,6 +27,7 @@ sealed class GameAction with _$GameAction {
     String? educationProgramId,
     String? workJobId,
     String? workJobType,
+    String? logMessage,
   }) = _GameAction;
 
   factory GameAction.fromJson(Map<String, dynamic> json) =>

@@ -4,10 +4,13 @@ import 'package:alma/core/models/event_option.dart';
 import 'package:alma/core/models/skill.dart';
 import 'package:alma/core/models/hidden_metrics.dart';
 import 'package:alma/core/models/moral_impact.dart';
+import 'package:alma/core/models/enums/log_category.dart';
 import 'package:alma/core/models/enums/trait_type.dart';
+import 'package:alma/core/engine/game_logger.dart';
 import 'package:alma/core/engine/seeded_random.dart';
 import 'package:alma/core/engine/probability_engine.dart';
 import 'package:alma/app/constants/game_constants.dart';
+import 'package:alma/app/constants/log_narratives.dart';
 
 class EventEngine {
   EventEngine({
@@ -54,7 +57,24 @@ class EventEngine {
     newState = _applyTraitChanges(newState, consequences, rng);
     newState = _applyRelationshipChanges(newState, consequences);
     newState = _applyMoralImpacts(newState, consequences);
+    final List<String> tags = ['event:${event.id}'];
+    if (consequences.relationshipTargetId != null) {
+      tags.add('npc:${consequences.relationshipTargetId}');
+    }
+    final String logMessage =
+        choice.logMessage ?? '${event.title}: ${choice.description}';
+    newState = GameLogger.addLog(
+      newState,
+      message: logMessage,
+      category: LogCategory.event,
+      tags: tags,
+    );
     if (consequences.causesDeath) {
+      newState = GameLogger.addLog(
+        newState,
+        message: LogNarratives.lifeDiedEvent(event.title),
+        category: LogCategory.life,
+      );
       newState = newState.copyWith(
         isDead: true,
         causeOfDeath: 'Event: ${event.title}',

@@ -63,6 +63,11 @@ _LifeState _$LifeStateFromJson(Map<String, dynamic> json) => _LifeState(
           ?.map((e) => MoralImpact.fromJson(e as Map<String, dynamic>))
           .toList() ??
       const [],
+  logs:
+      (json['logs'] as List<dynamic>?)
+          ?.map((e) => GameLog.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      const [],
   educationState: json['educationState'] == null
       ? null
       : EducationState.fromJson(json['educationState'] as Map<String, dynamic>),
@@ -90,6 +95,7 @@ Map<String, dynamic> _$LifeStateToJson(_LifeState instance) =>
       'causeOfDeath': instance.causeOfDeath,
       'lifeData': instance.lifeData,
       'moralImpacts': instance.moralImpacts,
+      'logs': instance.logs,
       'educationState': instance.educationState,
       'workState': instance.workState,
     };

@@ -1059,6 +1059,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Actions done this year'**
   String get actionsThisYear;
+
+  /// No description provided for @logAgePrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'[Age {age}]'**
+  String logAgePrefix(int age);
+
+  /// No description provided for @lifeLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Life Log'**
+  String get lifeLog;
+
+  /// No description provided for @noLogsRecorded.
+  ///
+  /// In en, this message translates to:
+  /// **'No logs recorded yet'**
+  String get noLogsRecorded;
+
+  /// No description provided for @filterEducation.
+  ///
+  /// In en, this message translates to:
+  /// **'Education'**
+  String get filterEducation;
+
+  /// No description provided for @filterEvent.
+  ///
+  /// In en, this message translates to:
+  /// **'Event'**
+  String get filterEvent;
+
+  /// No description provided for @filterLife.
+  ///
+  /// In en, this message translates to:
+  /// **'Life'**
+  String get filterLife;
+
+  /// No description provided for @filterHealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Health'**
+  String get filterHealth;
+
+  /// No description provided for @filterSocial.
+  ///
+  /// In en, this message translates to:
+  /// **'Social'**
+  String get filterSocial;
 }
 
 class _AppLocalizationsDelegate

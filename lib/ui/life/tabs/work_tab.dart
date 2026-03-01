@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/action.dart';
+import 'package:alma/core/models/game_log.dart';
 import 'package:alma/core/models/employment.dart';
 import 'package:alma/core/models/work_state.dart';
 import 'package:alma/core/models/work_record.dart';
 import 'package:alma/core/models/enums/job_type.dart';
+import 'package:alma/core/models/enums/log_category.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/app/constants/sizing.dart';
 import 'package:alma/l10n/app_localizations.dart';
@@ -89,6 +91,11 @@ class WorkTab extends StatelessWidget {
           LogListWidget(
             title: l10n.eventLog,
             emptyMessage: l10n.noWorkEvents,
+            gameLogs: state.logs
+                .where((GameLog log) => log.category == LogCategory.work)
+                .toList()
+                .reversed
+                .toList(),
           ),
         ],
       ),

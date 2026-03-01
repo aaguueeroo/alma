@@ -8,6 +8,7 @@ import 'package:alma/core/models/event.dart';
 import 'package:alma/core/models/moral_impact.dart';
 import 'package:alma/core/models/education_state.dart';
 import 'package:alma/core/models/work_state.dart';
+import 'package:alma/core/models/game_log.dart';
 import 'package:alma/core/models/enums/trait_type.dart';
 
 part 'life.freezed.dart';
@@ -48,6 +49,7 @@ sealed class LifeState with _$LifeState {
     String? causeOfDeath,
     @Default({}) Map<String, dynamic> lifeData,
     @Default([]) List<MoralImpact> moralImpacts,
+    @Default([]) List<GameLog> logs,
     EducationState? educationState,
     WorkState? workState,
   }) = _LifeState;
