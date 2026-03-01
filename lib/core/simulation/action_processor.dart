@@ -1,5 +1,6 @@
 import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/action.dart';
+import 'package:alma/core/models/event.dart';
 import 'package:alma/core/models/employment.dart';
 import 'package:alma/core/models/work_state.dart';
 import 'package:alma/core/models/skill.dart';
@@ -58,7 +59,12 @@ class ActionProcessor {
     state = _updateHiddenMetrics(state, action);
     state = _recordMoralImpacts(state, action);
     state = _logAction(state, action, workJobContext: workJobContext);
-    final pendingEvent = eventEngine.checkTriggers(state, rng);
+    final pendingEvent = eventEngine.checkTriggers(
+      state,
+      rng,
+      lastActionId: action.id,
+      triggerPhaseFilter: EventTriggerPhase.afterAction,
+    );
     if (pendingEvent != null) {
       return state.copyWith(pendingEvent: pendingEvent);
     }
@@ -78,6 +84,14 @@ class ActionProcessor {
       category: LogCategory.life,
     );
     state = educationEngine.checkAutoEnrollment(state);
+    final yearEndEvent = eventEngine.checkTriggers(
+      state,
+      rng,
+      triggerPhaseFilter: EventTriggerPhase.yearEnd,
+    );
+    if (yearEndEvent != null) {
+      state = state.copyWith(pendingEvent: yearEndEvent);
+    }
     state = _checkAgeBasedDeath(state, rng);
     return state;
   }

@@ -46,6 +46,20 @@ _EventTriggerConditions _$EventTriggerConditionsFromJson(
   baseChance: (json['baseChance'] as num?)?.toDouble() ?? 1.0,
   requiredSection: json['requiredSection'] as String?,
   minSectionPerformance: (json['minSectionPerformance'] as num?)?.toInt(),
+  triggerPhase: $enumDecodeNullable(
+    _$EventTriggerPhaseEnumMap,
+    json['triggerPhase'],
+  ),
+  triggerAfterActionIds: (json['triggerAfterActionIds'] as List<dynamic>?)
+      ?.map((e) => e as String)
+      .toList(),
+  requiredJobIds: (json['requiredJobIds'] as List<dynamic>?)
+      ?.map((e) => e as String)
+      .toList(),
+  requiredProgramIds: (json['requiredProgramIds'] as List<dynamic>?)
+      ?.map((e) => e as String)
+      .toList(),
+  requiredUnlockEventId: json['requiredUnlockEventId'] as String?,
 );
 
 Map<String, dynamic> _$EventTriggerConditionsToJson(
@@ -63,6 +77,11 @@ Map<String, dynamic> _$EventTriggerConditionsToJson(
   'baseChance': instance.baseChance,
   'requiredSection': instance.requiredSection,
   'minSectionPerformance': instance.minSectionPerformance,
+  'triggerPhase': _$EventTriggerPhaseEnumMap[instance.triggerPhase],
+  'triggerAfterActionIds': instance.triggerAfterActionIds,
+  'requiredJobIds': instance.requiredJobIds,
+  'requiredProgramIds': instance.requiredProgramIds,
+  'requiredUnlockEventId': instance.requiredUnlockEventId,
 };
 
 const _$TraitTypeEnumMap = {
@@ -81,4 +100,9 @@ const _$TraitTypeEnumMap = {
   TraitType.optimistic: 'optimistic',
   TraitType.curious: 'curious',
   TraitType.lazy: 'lazy',
+};
+
+const _$EventTriggerPhaseEnumMap = {
+  EventTriggerPhase.afterAction: 'afterAction',
+  EventTriggerPhase.yearEnd: 'yearEnd',
 };

@@ -1078,5 +1078,555 @@
         }
       }
     ]
+  },
+  {
+    "id": "burnout_warning",
+    "title": "Running on Empty",
+    "description": "The year has been relentless. Your body and mind are sending signals—exhaustion, irritability, a sense that you cannot keep this pace.",
+    "triggerConditions": {
+      "minAge": 20,
+      "maxAge": 65,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.18,
+      "triggerPhase": "yearEnd"
+    },
+    "choices": [
+      {
+        "description": "Take a step back and prioritize rest.",
+        "logMessage": "You felt close to burnout and chose to step back and rest.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"discipline": 0.1},
+          "healthChange": 5,
+          "moneyChange": 0,
+          "traitChance": {"calm": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Push through—you have too much at stake.",
+        "logMessage": "You felt close to burnout but pushed through despite the cost.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"discipline": 0.15, "ambition": 0.1},
+          "healthChange": -8,
+          "moneyChange": 0,
+          "traitChance": {"stubborn": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "parent_gets_sick",
+    "title": "A Call from Home",
+    "description": "Your parent has fallen ill. The doctor says it is serious but manageable with care. Your family is asking how much you can help.",
+    "triggerConditions": {
+      "minAge": 22,
+      "maxAge": 55,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.12
+    },
+    "choices": [
+      {
+        "description": "Make time to visit and help regularly.",
+        "logMessage": "When your parent fell ill, you made time to visit and help regularly.",
+        "consequences": {
+          "skillChanges": {"emotionalStability": 1},
+          "hiddenMetricChanges": {"compassion": 0.2, "integrity": 0.1},
+          "healthChange": -2,
+          "moneyChange": -30,
+          "traitChance": {"kind": 0.15},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Send money but keep your distance.",
+        "logMessage": "When your parent fell ill, you sent money but kept your distance.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"compassion": 0.05},
+          "healthChange": 0,
+          "moneyChange": -80,
+          "traitChance": {},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "company_restructure",
+    "title": "The Reorganization",
+    "description": "Rumors have become reality: the company is restructuring. Your role might change, move, or disappear. Everyone is anxious.",
+    "triggerConditions": {
+      "minAge": 22,
+      "maxAge": 60,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.15,
+      "triggerPhase": "yearEnd"
+    },
+    "choices": [
+      {
+        "description": "Stay calm and wait for the dust to settle.",
+        "logMessage": "During the company reorganization, you stayed calm and waited to see how things would unfold.",
+        "consequences": {
+          "skillChanges": {"communication": 1},
+          "hiddenMetricChanges": {"discipline": 0.1, "courage": 0.05},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"calm": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Start looking for other opportunities.",
+        "logMessage": "During the company reorganization, you started looking for other opportunities.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"ambition": 0.15, "courage": 0.1},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"ambitious": 0.12},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "friend_invites_party",
+    "title": "The Invitation",
+    "description": "A friend is throwing a party and wants you there. It is the kind of night that could go anywhere—fun, chaos, or both.",
+    "triggerConditions": {
+      "minAge": 16,
+      "maxAge": 45,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.22
+    },
+    "choices": [
+      {
+        "description": "Go and enjoy yourself.",
+        "logMessage": "You were invited to a party and went to enjoy yourself.",
+        "consequences": {
+          "skillChanges": {"communication": 2},
+          "hiddenMetricChanges": {},
+          "healthChange": 1,
+          "moneyChange": -25,
+          "traitChance": {"optimistic": 0.08},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Decline—you need a quiet night.",
+        "logMessage": "You were invited to a party but declined in favor of a quiet night.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"discipline": 0.05},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"calm": 0.08},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "scholarship_opportunity",
+    "title": "A Chance to Ease the Load",
+    "description": "Your dedication has not gone unnoticed. A scholarship opportunity has opened up—partial funding in exchange for good standing and a short essay.",
+    "triggerConditions": {
+      "minAge": 16,
+      "maxAge": 28,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.2,
+      "triggerAfterActionIds": ["do_homework", "visit_library", "study_group"]
+    },
+    "choices": [
+      {
+        "description": "Apply and give it your best shot.",
+        "logMessage": "You applied for a scholarship and gave it your best shot.",
+        "consequences": {
+          "skillChanges": {"intelligence": 1, "communication": 1},
+          "hiddenMetricChanges": {"discipline": 0.15, "ambition": 0.05},
+          "healthChange": 0,
+          "moneyChange": 500,
+          "traitChance": {"ambitious": 0.08},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Pass—you do not have the time to apply.",
+        "logMessage": "A scholarship opportunity came up but you passed; you did not have time to apply.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "big_tech_opportunity",
+    "title": "The Big Offer",
+    "description": "A well-known tech company has reached out. They have seen your work and want to talk. The name alone would open doors for years.",
+    "triggerConditions": {
+      "minAge": 22,
+      "maxAge": 45,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.12,
+      "requiredJobIds": ["job_software_dev", "job_data_analyst"]
+    },
+    "choices": [
+      {
+        "description": "Pursue the opportunity seriously.",
+        "logMessage": "You pursued a big tech opportunity and took the process seriously.",
+        "consequences": {
+          "skillChanges": {"intelligence": 2, "communication": 1},
+          "hiddenMetricChanges": {"ambition": 0.2, "discipline": 0.1},
+          "healthChange": 0,
+          "moneyChange": 800,
+          "traitChance": {"ambitious": 0.15},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Stay where you are—stability matters more.",
+        "logMessage": "A big tech opportunity came your way but you chose to stay where you were; stability mattered more.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"discipline": 0.1},
+          "healthChange": 2,
+          "moneyChange": 0,
+          "traitChance": {"calm": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "lawyer_high_profile_case",
+    "title": "The Case Everyone Is Watching",
+    "description": "A high-profile case has landed on your desk. The media will follow every move. Win or lose, your name will be in the spotlight.",
+    "triggerConditions": {
+      "minAge": 25,
+      "maxAge": 55,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.14,
+      "requiredJobIds": ["job_lawyer", "job_legal_consultant"]
+    },
+    "choices": [
+      {
+        "description": "Take the case and give it everything.",
+        "logMessage": "You took on a high-profile case and gave it everything.",
+        "consequences": {
+          "skillChanges": {"communication": 3, "emotionalStability": 1},
+          "hiddenMetricChanges": {"courage": 0.2, "ambition": 0.1},
+          "healthChange": -3,
+          "moneyChange": 200,
+          "traitChance": {"brave": 0.12},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Pass to a senior colleague.",
+        "logMessage": "A high-profile case came your way; you passed it to a senior colleague.",
+        "consequences": {
+          "skillChanges": {"communication": 1},
+          "hiddenMetricChanges": {"humility": 0.1},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"calm": 0.08},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "doctor_critical_patient",
+    "title": "The Code",
+    "description": "A patient is crashing. You have minutes to decide the next move. The team is looking at you.",
+    "triggerConditions": {
+      "minAge": 26,
+      "maxAge": 55,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.16,
+      "requiredJobIds": ["job_doctor", "job_clinical_researcher"]
+    },
+    "choices": [
+      {
+        "description": "Stay calm and follow protocol.",
+        "logMessage": "When a patient was in crisis, you stayed calm and followed protocol.",
+        "consequences": {
+          "skillChanges": {"emotionalStability": 2, "intelligence": 1},
+          "hiddenMetricChanges": {"discipline": 0.2, "courage": 0.1},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"calm": 0.15},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Take a calculated risk to save them.",
+        "logMessage": "When a patient was in crisis, you took a calculated risk to save them.",
+        "consequences": {
+          "skillChanges": {"intelligence": 2, "emotionalStability": 1},
+          "hiddenMetricChanges": {"courage": 0.25, "ambition": 0.05},
+          "healthChange": -2,
+          "moneyChange": 0,
+          "traitChance": {"brave": 0.12},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "writer_publishing_offer",
+    "title": "An Editor's Interest",
+    "description": "An editor has read your work and wants to discuss a potential project. It could be the break you have been waiting for.",
+    "triggerConditions": {
+      "minAge": 24,
+      "maxAge": 50,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.13,
+      "requiredJobIds": ["job_writer", "job_editor"]
+    },
+    "choices": [
+      {
+        "description": "Meet and pitch your best idea.",
+        "logMessage": "An editor showed interest; you met and pitched your best idea.",
+        "consequences": {
+          "skillChanges": {"creativity": 3, "communication": 2},
+          "hiddenMetricChanges": {"courage": 0.1, "ambition": 0.1},
+          "healthChange": 0,
+          "moneyChange": 150,
+          "traitChance": {"creative": 0.12},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Politely decline—you are not ready.",
+        "logMessage": "An editor showed interest but you declined; you felt you were not ready.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"humility": 0.08},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"shy": 0.08},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "hackathon_invitation",
+    "title": "48 Hours to Build",
+    "description": "Your department is putting together a team for a hackathon. It is intense, collaborative, and could lead to real opportunities.",
+    "triggerConditions": {
+      "minAge": 18,
+      "maxAge": 30,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.2,
+      "requiredProgramIds": ["uni_cs"]
+    },
+    "choices": [
+      {
+        "description": "Join the team and give it your all.",
+        "logMessage": "You joined a hackathon team and gave it your all.",
+        "consequences": {
+          "skillChanges": {"intelligence": 2, "communication": 2, "creativity": 1},
+          "hiddenMetricChanges": {"courage": 0.1, "curiosity": 0.1},
+          "healthChange": -4,
+          "moneyChange": 0,
+          "traitChance": {"curious": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Skip it—you need to focus on coursework.",
+        "logMessage": "A hackathon came up but you skipped it to focus on coursework.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"discipline": 0.08},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "medicine_clinical_dilemma",
+    "title": "First Real Responsibility",
+    "description": "On your clinical rotation, a patient's family is asking you to do something that conflicts with what the attending said. You are caught in the middle.",
+    "triggerConditions": {
+      "minAge": 20,
+      "maxAge": 30,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.18,
+      "requiredProgramIds": ["uni_medicine"]
+    },
+    "choices": [
+      {
+        "description": "Escalate to the attending and document everything.",
+        "logMessage": "During your clinical rotation you faced a dilemma; you escalated to the attending and documented everything.",
+        "consequences": {
+          "skillChanges": {"communication": 2, "emotionalStability": 1},
+          "hiddenMetricChanges": {"integrity": 0.2, "discipline": 0.1},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"calm": 0.1},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Try to satisfy the family without going over the attending's head.",
+        "logMessage": "During your clinical rotation you faced a dilemma; you tried to satisfy the family without going over the attending's head.",
+        "consequences": {
+          "skillChanges": {"communication": 1},
+          "hiddenMetricChanges": {"compassion": 0.1},
+          "healthChange": -2,
+          "moneyChange": 0,
+          "traitChance": {},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "engineer_safety_incident",
+    "title": "The Near Miss",
+    "description": "During a site visit, you notice something that does not look right. Fixing it would delay the project and cost money. Ignoring it might be fine—or not.",
+    "triggerConditions": {
+      "minAge": 24,
+      "maxAge": 55,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.14,
+      "requiredJobIds": ["job_civil_engineer", "job_project_engineer"]
+    },
+    "choices": [
+      {
+        "description": "Report it and insist on a proper fix.",
+        "logMessage": "You noticed a safety concern on site and reported it and insisted on a proper fix.",
+        "consequences": {
+          "skillChanges": {"communication": 1},
+          "hiddenMetricChanges": {"integrity": 0.25, "courage": 0.1},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {"stubborn": 0.05},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Mention it informally and hope it gets addressed.",
+        "logMessage": "You noticed a safety concern on site and mentioned it informally.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {"integrity": -0.05},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
   }
 ]

@@ -66,6 +66,14 @@ void main() {
       expect(result.currentYear, 2);
       expect(result.age, 21);
       expect(result.eventsTriggeredThisYear, 0);
+      expect(result.eventIdsTriggeredThisYear, isEmpty);
+    });
+
+    test('startNewYear resets eventIdsTriggeredThisYear', () {
+      final state = createTestState(timeRemaining: 0)
+          .copyWith(eventIdsTriggeredThisYear: ['event_a', 'event_b']);
+      final result = timeEngine.startNewYear(state);
+      expect(result.eventIdsTriggeredThisYear, isEmpty);
     });
 
     test('startNewYear subtracts life maintenance when loaded', () {

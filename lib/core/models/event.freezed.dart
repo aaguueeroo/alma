@@ -308,7 +308,7 @@ $EventTriggerConditionsCopyWith<$Res> get triggerConditions {
 /// @nodoc
 mixin _$EventTriggerConditions {
 
- int get minAge; int get maxAge; List<TraitType> get requiredTraits; List<TraitType> get forbiddenTraits; int get minHealth; double get baseChance; String? get requiredSection; int? get minSectionPerformance;
+ int get minAge; int get maxAge; List<TraitType> get requiredTraits; List<TraitType> get forbiddenTraits; int get minHealth; double get baseChance; String? get requiredSection; int? get minSectionPerformance; EventTriggerPhase? get triggerPhase; List<String>? get triggerAfterActionIds; List<String>? get requiredJobIds; List<String>? get requiredProgramIds; String? get requiredUnlockEventId;
 /// Create a copy of EventTriggerConditions
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -321,16 +321,16 @@ $EventTriggerConditionsCopyWith<EventTriggerConditions> get copyWith => _$EventT
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventTriggerConditions&&(identical(other.minAge, minAge) || other.minAge == minAge)&&(identical(other.maxAge, maxAge) || other.maxAge == maxAge)&&const DeepCollectionEquality().equals(other.requiredTraits, requiredTraits)&&const DeepCollectionEquality().equals(other.forbiddenTraits, forbiddenTraits)&&(identical(other.minHealth, minHealth) || other.minHealth == minHealth)&&(identical(other.baseChance, baseChance) || other.baseChance == baseChance)&&(identical(other.requiredSection, requiredSection) || other.requiredSection == requiredSection)&&(identical(other.minSectionPerformance, minSectionPerformance) || other.minSectionPerformance == minSectionPerformance));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventTriggerConditions&&(identical(other.minAge, minAge) || other.minAge == minAge)&&(identical(other.maxAge, maxAge) || other.maxAge == maxAge)&&const DeepCollectionEquality().equals(other.requiredTraits, requiredTraits)&&const DeepCollectionEquality().equals(other.forbiddenTraits, forbiddenTraits)&&(identical(other.minHealth, minHealth) || other.minHealth == minHealth)&&(identical(other.baseChance, baseChance) || other.baseChance == baseChance)&&(identical(other.requiredSection, requiredSection) || other.requiredSection == requiredSection)&&(identical(other.minSectionPerformance, minSectionPerformance) || other.minSectionPerformance == minSectionPerformance)&&(identical(other.triggerPhase, triggerPhase) || other.triggerPhase == triggerPhase)&&const DeepCollectionEquality().equals(other.triggerAfterActionIds, triggerAfterActionIds)&&const DeepCollectionEquality().equals(other.requiredJobIds, requiredJobIds)&&const DeepCollectionEquality().equals(other.requiredProgramIds, requiredProgramIds)&&(identical(other.requiredUnlockEventId, requiredUnlockEventId) || other.requiredUnlockEventId == requiredUnlockEventId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,minAge,maxAge,const DeepCollectionEquality().hash(requiredTraits),const DeepCollectionEquality().hash(forbiddenTraits),minHealth,baseChance,requiredSection,minSectionPerformance);
+int get hashCode => Object.hash(runtimeType,minAge,maxAge,const DeepCollectionEquality().hash(requiredTraits),const DeepCollectionEquality().hash(forbiddenTraits),minHealth,baseChance,requiredSection,minSectionPerformance,triggerPhase,const DeepCollectionEquality().hash(triggerAfterActionIds),const DeepCollectionEquality().hash(requiredJobIds),const DeepCollectionEquality().hash(requiredProgramIds),requiredUnlockEventId);
 
 @override
 String toString() {
-  return 'EventTriggerConditions(minAge: $minAge, maxAge: $maxAge, requiredTraits: $requiredTraits, forbiddenTraits: $forbiddenTraits, minHealth: $minHealth, baseChance: $baseChance, requiredSection: $requiredSection, minSectionPerformance: $minSectionPerformance)';
+  return 'EventTriggerConditions(minAge: $minAge, maxAge: $maxAge, requiredTraits: $requiredTraits, forbiddenTraits: $forbiddenTraits, minHealth: $minHealth, baseChance: $baseChance, requiredSection: $requiredSection, minSectionPerformance: $minSectionPerformance, triggerPhase: $triggerPhase, triggerAfterActionIds: $triggerAfterActionIds, requiredJobIds: $requiredJobIds, requiredProgramIds: $requiredProgramIds, requiredUnlockEventId: $requiredUnlockEventId)';
 }
 
 
@@ -341,7 +341,7 @@ abstract mixin class $EventTriggerConditionsCopyWith<$Res>  {
   factory $EventTriggerConditionsCopyWith(EventTriggerConditions value, $Res Function(EventTriggerConditions) _then) = _$EventTriggerConditionsCopyWithImpl;
 @useResult
 $Res call({
- int minAge, int maxAge, List<TraitType> requiredTraits, List<TraitType> forbiddenTraits, int minHealth, double baseChance, String? requiredSection, int? minSectionPerformance
+ int minAge, int maxAge, List<TraitType> requiredTraits, List<TraitType> forbiddenTraits, int minHealth, double baseChance, String? requiredSection, int? minSectionPerformance, EventTriggerPhase? triggerPhase, List<String>? triggerAfterActionIds, List<String>? requiredJobIds, List<String>? requiredProgramIds, String? requiredUnlockEventId
 });
 
 
@@ -358,7 +358,7 @@ class _$EventTriggerConditionsCopyWithImpl<$Res>
 
 /// Create a copy of EventTriggerConditions
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? minAge = null,Object? maxAge = null,Object? requiredTraits = null,Object? forbiddenTraits = null,Object? minHealth = null,Object? baseChance = null,Object? requiredSection = freezed,Object? minSectionPerformance = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? minAge = null,Object? maxAge = null,Object? requiredTraits = null,Object? forbiddenTraits = null,Object? minHealth = null,Object? baseChance = null,Object? requiredSection = freezed,Object? minSectionPerformance = freezed,Object? triggerPhase = freezed,Object? triggerAfterActionIds = freezed,Object? requiredJobIds = freezed,Object? requiredProgramIds = freezed,Object? requiredUnlockEventId = freezed,}) {
   return _then(_self.copyWith(
 minAge: null == minAge ? _self.minAge : minAge // ignore: cast_nullable_to_non_nullable
 as int,maxAge: null == maxAge ? _self.maxAge : maxAge // ignore: cast_nullable_to_non_nullable
@@ -368,7 +368,12 @@ as List<TraitType>,minHealth: null == minHealth ? _self.minHealth : minHealth //
 as int,baseChance: null == baseChance ? _self.baseChance : baseChance // ignore: cast_nullable_to_non_nullable
 as double,requiredSection: freezed == requiredSection ? _self.requiredSection : requiredSection // ignore: cast_nullable_to_non_nullable
 as String?,minSectionPerformance: freezed == minSectionPerformance ? _self.minSectionPerformance : minSectionPerformance // ignore: cast_nullable_to_non_nullable
-as int?,
+as int?,triggerPhase: freezed == triggerPhase ? _self.triggerPhase : triggerPhase // ignore: cast_nullable_to_non_nullable
+as EventTriggerPhase?,triggerAfterActionIds: freezed == triggerAfterActionIds ? _self.triggerAfterActionIds : triggerAfterActionIds // ignore: cast_nullable_to_non_nullable
+as List<String>?,requiredJobIds: freezed == requiredJobIds ? _self.requiredJobIds : requiredJobIds // ignore: cast_nullable_to_non_nullable
+as List<String>?,requiredProgramIds: freezed == requiredProgramIds ? _self.requiredProgramIds : requiredProgramIds // ignore: cast_nullable_to_non_nullable
+as List<String>?,requiredUnlockEventId: freezed == requiredUnlockEventId ? _self.requiredUnlockEventId : requiredUnlockEventId // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -450,10 +455,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int minAge,  int maxAge,  List<TraitType> requiredTraits,  List<TraitType> forbiddenTraits,  int minHealth,  double baseChance,  String? requiredSection,  int? minSectionPerformance)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int minAge,  int maxAge,  List<TraitType> requiredTraits,  List<TraitType> forbiddenTraits,  int minHealth,  double baseChance,  String? requiredSection,  int? minSectionPerformance,  EventTriggerPhase? triggerPhase,  List<String>? triggerAfterActionIds,  List<String>? requiredJobIds,  List<String>? requiredProgramIds,  String? requiredUnlockEventId)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _EventTriggerConditions() when $default != null:
-return $default(_that.minAge,_that.maxAge,_that.requiredTraits,_that.forbiddenTraits,_that.minHealth,_that.baseChance,_that.requiredSection,_that.minSectionPerformance);case _:
+return $default(_that.minAge,_that.maxAge,_that.requiredTraits,_that.forbiddenTraits,_that.minHealth,_that.baseChance,_that.requiredSection,_that.minSectionPerformance,_that.triggerPhase,_that.triggerAfterActionIds,_that.requiredJobIds,_that.requiredProgramIds,_that.requiredUnlockEventId);case _:
   return orElse();
 
 }
@@ -471,10 +476,10 @@ return $default(_that.minAge,_that.maxAge,_that.requiredTraits,_that.forbiddenTr
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int minAge,  int maxAge,  List<TraitType> requiredTraits,  List<TraitType> forbiddenTraits,  int minHealth,  double baseChance,  String? requiredSection,  int? minSectionPerformance)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int minAge,  int maxAge,  List<TraitType> requiredTraits,  List<TraitType> forbiddenTraits,  int minHealth,  double baseChance,  String? requiredSection,  int? minSectionPerformance,  EventTriggerPhase? triggerPhase,  List<String>? triggerAfterActionIds,  List<String>? requiredJobIds,  List<String>? requiredProgramIds,  String? requiredUnlockEventId)  $default,) {final _that = this;
 switch (_that) {
 case _EventTriggerConditions():
-return $default(_that.minAge,_that.maxAge,_that.requiredTraits,_that.forbiddenTraits,_that.minHealth,_that.baseChance,_that.requiredSection,_that.minSectionPerformance);}
+return $default(_that.minAge,_that.maxAge,_that.requiredTraits,_that.forbiddenTraits,_that.minHealth,_that.baseChance,_that.requiredSection,_that.minSectionPerformance,_that.triggerPhase,_that.triggerAfterActionIds,_that.requiredJobIds,_that.requiredProgramIds,_that.requiredUnlockEventId);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -488,10 +493,10 @@ return $default(_that.minAge,_that.maxAge,_that.requiredTraits,_that.forbiddenTr
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int minAge,  int maxAge,  List<TraitType> requiredTraits,  List<TraitType> forbiddenTraits,  int minHealth,  double baseChance,  String? requiredSection,  int? minSectionPerformance)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int minAge,  int maxAge,  List<TraitType> requiredTraits,  List<TraitType> forbiddenTraits,  int minHealth,  double baseChance,  String? requiredSection,  int? minSectionPerformance,  EventTriggerPhase? triggerPhase,  List<String>? triggerAfterActionIds,  List<String>? requiredJobIds,  List<String>? requiredProgramIds,  String? requiredUnlockEventId)?  $default,) {final _that = this;
 switch (_that) {
 case _EventTriggerConditions() when $default != null:
-return $default(_that.minAge,_that.maxAge,_that.requiredTraits,_that.forbiddenTraits,_that.minHealth,_that.baseChance,_that.requiredSection,_that.minSectionPerformance);case _:
+return $default(_that.minAge,_that.maxAge,_that.requiredTraits,_that.forbiddenTraits,_that.minHealth,_that.baseChance,_that.requiredSection,_that.minSectionPerformance,_that.triggerPhase,_that.triggerAfterActionIds,_that.requiredJobIds,_that.requiredProgramIds,_that.requiredUnlockEventId);case _:
   return null;
 
 }
@@ -503,7 +508,7 @@ return $default(_that.minAge,_that.maxAge,_that.requiredTraits,_that.forbiddenTr
 @JsonSerializable()
 
 class _EventTriggerConditions implements EventTriggerConditions {
-  const _EventTriggerConditions({this.minAge = 0, this.maxAge = 100, final  List<TraitType> requiredTraits = const [], final  List<TraitType> forbiddenTraits = const [], this.minHealth = 0, this.baseChance = 1.0, this.requiredSection, this.minSectionPerformance}): _requiredTraits = requiredTraits,_forbiddenTraits = forbiddenTraits;
+  const _EventTriggerConditions({this.minAge = 0, this.maxAge = 100, final  List<TraitType> requiredTraits = const [], final  List<TraitType> forbiddenTraits = const [], this.minHealth = 0, this.baseChance = 1.0, this.requiredSection, this.minSectionPerformance, this.triggerPhase, final  List<String>? triggerAfterActionIds, final  List<String>? requiredJobIds, final  List<String>? requiredProgramIds, this.requiredUnlockEventId}): _requiredTraits = requiredTraits,_forbiddenTraits = forbiddenTraits,_triggerAfterActionIds = triggerAfterActionIds,_requiredJobIds = requiredJobIds,_requiredProgramIds = requiredProgramIds;
   factory _EventTriggerConditions.fromJson(Map<String, dynamic> json) => _$EventTriggerConditionsFromJson(json);
 
 @override@JsonKey() final  int minAge;
@@ -526,6 +531,35 @@ class _EventTriggerConditions implements EventTriggerConditions {
 @override@JsonKey() final  double baseChance;
 @override final  String? requiredSection;
 @override final  int? minSectionPerformance;
+@override final  EventTriggerPhase? triggerPhase;
+ final  List<String>? _triggerAfterActionIds;
+@override List<String>? get triggerAfterActionIds {
+  final value = _triggerAfterActionIds;
+  if (value == null) return null;
+  if (_triggerAfterActionIds is EqualUnmodifiableListView) return _triggerAfterActionIds;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+ final  List<String>? _requiredJobIds;
+@override List<String>? get requiredJobIds {
+  final value = _requiredJobIds;
+  if (value == null) return null;
+  if (_requiredJobIds is EqualUnmodifiableListView) return _requiredJobIds;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+ final  List<String>? _requiredProgramIds;
+@override List<String>? get requiredProgramIds {
+  final value = _requiredProgramIds;
+  if (value == null) return null;
+  if (_requiredProgramIds is EqualUnmodifiableListView) return _requiredProgramIds;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+@override final  String? requiredUnlockEventId;
 
 /// Create a copy of EventTriggerConditions
 /// with the given fields replaced by the non-null parameter values.
@@ -540,16 +574,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EventTriggerConditions&&(identical(other.minAge, minAge) || other.minAge == minAge)&&(identical(other.maxAge, maxAge) || other.maxAge == maxAge)&&const DeepCollectionEquality().equals(other._requiredTraits, _requiredTraits)&&const DeepCollectionEquality().equals(other._forbiddenTraits, _forbiddenTraits)&&(identical(other.minHealth, minHealth) || other.minHealth == minHealth)&&(identical(other.baseChance, baseChance) || other.baseChance == baseChance)&&(identical(other.requiredSection, requiredSection) || other.requiredSection == requiredSection)&&(identical(other.minSectionPerformance, minSectionPerformance) || other.minSectionPerformance == minSectionPerformance));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EventTriggerConditions&&(identical(other.minAge, minAge) || other.minAge == minAge)&&(identical(other.maxAge, maxAge) || other.maxAge == maxAge)&&const DeepCollectionEquality().equals(other._requiredTraits, _requiredTraits)&&const DeepCollectionEquality().equals(other._forbiddenTraits, _forbiddenTraits)&&(identical(other.minHealth, minHealth) || other.minHealth == minHealth)&&(identical(other.baseChance, baseChance) || other.baseChance == baseChance)&&(identical(other.requiredSection, requiredSection) || other.requiredSection == requiredSection)&&(identical(other.minSectionPerformance, minSectionPerformance) || other.minSectionPerformance == minSectionPerformance)&&(identical(other.triggerPhase, triggerPhase) || other.triggerPhase == triggerPhase)&&const DeepCollectionEquality().equals(other._triggerAfterActionIds, _triggerAfterActionIds)&&const DeepCollectionEquality().equals(other._requiredJobIds, _requiredJobIds)&&const DeepCollectionEquality().equals(other._requiredProgramIds, _requiredProgramIds)&&(identical(other.requiredUnlockEventId, requiredUnlockEventId) || other.requiredUnlockEventId == requiredUnlockEventId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,minAge,maxAge,const DeepCollectionEquality().hash(_requiredTraits),const DeepCollectionEquality().hash(_forbiddenTraits),minHealth,baseChance,requiredSection,minSectionPerformance);
+int get hashCode => Object.hash(runtimeType,minAge,maxAge,const DeepCollectionEquality().hash(_requiredTraits),const DeepCollectionEquality().hash(_forbiddenTraits),minHealth,baseChance,requiredSection,minSectionPerformance,triggerPhase,const DeepCollectionEquality().hash(_triggerAfterActionIds),const DeepCollectionEquality().hash(_requiredJobIds),const DeepCollectionEquality().hash(_requiredProgramIds),requiredUnlockEventId);
 
 @override
 String toString() {
-  return 'EventTriggerConditions(minAge: $minAge, maxAge: $maxAge, requiredTraits: $requiredTraits, forbiddenTraits: $forbiddenTraits, minHealth: $minHealth, baseChance: $baseChance, requiredSection: $requiredSection, minSectionPerformance: $minSectionPerformance)';
+  return 'EventTriggerConditions(minAge: $minAge, maxAge: $maxAge, requiredTraits: $requiredTraits, forbiddenTraits: $forbiddenTraits, minHealth: $minHealth, baseChance: $baseChance, requiredSection: $requiredSection, minSectionPerformance: $minSectionPerformance, triggerPhase: $triggerPhase, triggerAfterActionIds: $triggerAfterActionIds, requiredJobIds: $requiredJobIds, requiredProgramIds: $requiredProgramIds, requiredUnlockEventId: $requiredUnlockEventId)';
 }
 
 
@@ -560,7 +594,7 @@ abstract mixin class _$EventTriggerConditionsCopyWith<$Res> implements $EventTri
   factory _$EventTriggerConditionsCopyWith(_EventTriggerConditions value, $Res Function(_EventTriggerConditions) _then) = __$EventTriggerConditionsCopyWithImpl;
 @override @useResult
 $Res call({
- int minAge, int maxAge, List<TraitType> requiredTraits, List<TraitType> forbiddenTraits, int minHealth, double baseChance, String? requiredSection, int? minSectionPerformance
+ int minAge, int maxAge, List<TraitType> requiredTraits, List<TraitType> forbiddenTraits, int minHealth, double baseChance, String? requiredSection, int? minSectionPerformance, EventTriggerPhase? triggerPhase, List<String>? triggerAfterActionIds, List<String>? requiredJobIds, List<String>? requiredProgramIds, String? requiredUnlockEventId
 });
 
 
@@ -577,7 +611,7 @@ class __$EventTriggerConditionsCopyWithImpl<$Res>
 
 /// Create a copy of EventTriggerConditions
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? minAge = null,Object? maxAge = null,Object? requiredTraits = null,Object? forbiddenTraits = null,Object? minHealth = null,Object? baseChance = null,Object? requiredSection = freezed,Object? minSectionPerformance = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? minAge = null,Object? maxAge = null,Object? requiredTraits = null,Object? forbiddenTraits = null,Object? minHealth = null,Object? baseChance = null,Object? requiredSection = freezed,Object? minSectionPerformance = freezed,Object? triggerPhase = freezed,Object? triggerAfterActionIds = freezed,Object? requiredJobIds = freezed,Object? requiredProgramIds = freezed,Object? requiredUnlockEventId = freezed,}) {
   return _then(_EventTriggerConditions(
 minAge: null == minAge ? _self.minAge : minAge // ignore: cast_nullable_to_non_nullable
 as int,maxAge: null == maxAge ? _self.maxAge : maxAge // ignore: cast_nullable_to_non_nullable
@@ -587,7 +621,12 @@ as List<TraitType>,minHealth: null == minHealth ? _self.minHealth : minHealth //
 as int,baseChance: null == baseChance ? _self.baseChance : baseChance // ignore: cast_nullable_to_non_nullable
 as double,requiredSection: freezed == requiredSection ? _self.requiredSection : requiredSection // ignore: cast_nullable_to_non_nullable
 as String?,minSectionPerformance: freezed == minSectionPerformance ? _self.minSectionPerformance : minSectionPerformance // ignore: cast_nullable_to_non_nullable
-as int?,
+as int?,triggerPhase: freezed == triggerPhase ? _self.triggerPhase : triggerPhase // ignore: cast_nullable_to_non_nullable
+as EventTriggerPhase?,triggerAfterActionIds: freezed == triggerAfterActionIds ? _self._triggerAfterActionIds : triggerAfterActionIds // ignore: cast_nullable_to_non_nullable
+as List<String>?,requiredJobIds: freezed == requiredJobIds ? _self._requiredJobIds : requiredJobIds // ignore: cast_nullable_to_non_nullable
+as List<String>?,requiredProgramIds: freezed == requiredProgramIds ? _self._requiredProgramIds : requiredProgramIds // ignore: cast_nullable_to_non_nullable
+as List<String>?,requiredUnlockEventId: freezed == requiredUnlockEventId ? _self.requiredUnlockEventId : requiredUnlockEventId // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

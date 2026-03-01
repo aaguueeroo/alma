@@ -44,6 +44,8 @@ sealed class LifeState with _$LifeState {
     required List<Section> sections,
     required HiddenMetrics hiddenMetrics,
     @Default(0) int eventsTriggeredThisYear,
+    @Default([]) List<String> eventIdsTriggeredThisYear,
+    @Default([]) List<String> unlockedEventIds,
     GameEvent? pendingEvent,
     @Default(false) bool isDead,
     String? causeOfDeath,

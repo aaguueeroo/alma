@@ -51,6 +51,7 @@ class TimeEngine {
       age: state.age + 1,
       timeRemaining: available,
       eventsTriggeredThisYear: 0,
+      eventIdsTriggeredThisYear: [],
     );
   }
 

@@ -24,11 +24,20 @@ class EventEngine {
     _events = events;
   }
 
-  GameEvent? checkTriggers(LifeState state, SeededRandom rng) {
+  GameEvent? checkTriggers(
+    LifeState state,
+    SeededRandom rng, {
+    String? lastActionId,
+    EventTriggerPhase? triggerPhaseFilter,
+  }) {
     if (state.eventsTriggeredThisYear >= kMaxEventsPerYear) {
       return null;
     }
-    final List<GameEvent> eligible = _getEligibleEvents(state);
+    final List<GameEvent> eligible = _getEligibleEvents(
+      state,
+      lastActionId: lastActionId,
+      triggerPhaseFilter: triggerPhaseFilter,
+    );
     if (eligible.isEmpty) return null;
     for (final event in eligible) {
       if (probabilityEngine.rollEvent(event, state, rng)) {
@@ -49,6 +58,10 @@ class EventEngine {
     LifeState newState = state.copyWith(
       pendingEvent: null,
       eventsTriggeredThisYear: state.eventsTriggeredThisYear + 1,
+      eventIdsTriggeredThisYear: [
+        ...state.eventIdsTriggeredThisYear,
+        event.id,
+      ],
     );
     newState = _applySkillChanges(newState, consequences);
     newState = _applyHiddenMetricChanges(newState, consequences);
@@ -57,6 +70,14 @@ class EventEngine {
     newState = _applyTraitChanges(newState, consequences, rng);
     newState = _applyRelationshipChanges(newState, consequences);
     newState = _applyMoralImpacts(newState, consequences);
+    if (consequences.unlockEventId != null) {
+      newState = newState.copyWith(
+        unlockedEventIds: [
+          ...newState.unlockedEventIds,
+          consequences.unlockEventId!,
+        ],
+      );
+    }
     final List<String> tags = ['event:${event.id}'];
     if (consequences.relationshipTargetId != null) {
       tags.add('npc:${consequences.relationshipTargetId}');
@@ -83,9 +104,49 @@ class EventEngine {
     return newState;
   }
 
-  List<GameEvent> _getEligibleEvents(LifeState state) {
+  List<GameEvent> _getEligibleEvents(
+    LifeState state, {
+    String? lastActionId,
+    EventTriggerPhase? triggerPhaseFilter,
+  }) {
     return _events.where((event) {
+      if (state.eventIdsTriggeredThisYear.contains(event.id)) {
+        return false;
+      }
       final EventTriggerConditions conditions = event.triggerConditions;
+      if (triggerPhaseFilter != null) {
+        final phase = conditions.triggerPhase ?? EventTriggerPhase.afterAction;
+        if (phase != triggerPhaseFilter) return false;
+      }
+      if (lastActionId != null &&
+          conditions.triggerAfterActionIds != null &&
+          conditions.triggerAfterActionIds!.isNotEmpty) {
+        if (!conditions.triggerAfterActionIds!.contains(lastActionId)) {
+          return false;
+        }
+      }
+      if (conditions.requiredUnlockEventId != null &&
+          !state.unlockedEventIds.contains(conditions.requiredUnlockEventId!)) {
+        return false;
+      }
+      if (conditions.requiredJobIds != null &&
+          conditions.requiredJobIds!.isNotEmpty) {
+        final jobIds = state.workState?.currentEmployments
+                .map((e) => e.jobId)
+                .toList() ??
+            [];
+        if (!jobIds.any((id) => conditions.requiredJobIds!.contains(id))) {
+          return false;
+        }
+      }
+      if (conditions.requiredProgramIds != null &&
+          conditions.requiredProgramIds!.isNotEmpty) {
+        final programId = state.educationState?.currentEnrollment?.programId;
+        if (programId == null ||
+            !conditions.requiredProgramIds!.contains(programId)) {
+          return false;
+        }
+      }
       if (state.age < conditions.minAge || state.age > conditions.maxAge) {
         return false;
       }

@@ -5,6 +5,11 @@ import 'package:alma/core/models/enums/trait_type.dart';
 part 'event.freezed.dart';
 part 'event.g.dart';
 
+enum EventTriggerPhase {
+  afterAction,
+  yearEnd,
+}
+
 @freezed
 sealed class GameEvent with _$GameEvent {
   const factory GameEvent({
@@ -30,6 +35,11 @@ sealed class EventTriggerConditions with _$EventTriggerConditions {
     @Default(1.0) double baseChance,
     String? requiredSection,
     int? minSectionPerformance,
+    EventTriggerPhase? triggerPhase,
+    List<String>? triggerAfterActionIds,
+    List<String>? requiredJobIds,
+    List<String>? requiredProgramIds,
+    String? requiredUnlockEventId,
   }) = _EventTriggerConditions;
 
   factory EventTriggerConditions.fromJson(Map<String, dynamic> json) =>
