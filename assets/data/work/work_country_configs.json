@@ -1,0 +1,13 @@
+[
+  {
+    "countryCode": "default",
+    "maxFullTimeJobs": 1,
+    "maxPartTimeJobs": 1,
+    "maxWeeklyHours": 48,
+    "promotionBaseChance": 0.05,
+    "promotionPerformanceScaling": 0.01,
+    "jobPoolSize": 4,
+    "casualJobPoolSize": 2,
+    "promotionMinPerformance": 70
+  }
+]

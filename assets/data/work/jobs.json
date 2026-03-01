@@ -1,0 +1,614 @@
+[
+  {
+    "id": "job_lawyer",
+    "name": "Lawyer",
+    "description": "Represent clients in legal matters, draft contracts, and advocate in court proceedings.",
+    "type": "fullTime",
+    "field": "law",
+    "baseSalary": 45000,
+    "timeCost": 3,
+    "levels": [
+      {"level": 1, "title": "Junior Associate", "salaryMultiplier": 1.0, "description": "Handle research and assist senior attorneys with case preparation."},
+      {"level": 2, "title": "Senior Associate", "salaryMultiplier": 1.6, "description": "Lead cases independently and mentor junior associates."},
+      {"level": 3, "title": "Partner", "salaryMultiplier": 2.5, "description": "Shape the firm's direction while managing high-profile clients and complex litigation."}
+    ],
+    "accessConditions": [{"type": "previousProgram", "requiredProgramId": "uni_law"}],
+    "interviewConditions": [{"type": "minSkill", "skill": "communication", "minValue": 45}],
+    "requiredEducationLevel": "university"
+  },
+  {
+    "id": "job_legal_consultant",
+    "name": "Legal Consultant",
+    "description": "Advise organizations on regulatory compliance, risk management, and legal strategy.",
+    "type": "fullTime",
+    "field": "law",
+    "baseSalary": 40000,
+    "timeCost": 3,
+    "levels": [
+      {"level": 1, "title": "Consultant", "salaryMultiplier": 1.0, "description": "Analyze legal frameworks and prepare compliance reports for clients."},
+      {"level": 2, "title": "Senior Consultant", "salaryMultiplier": 1.5, "description": "Develop legal strategies and manage client relationships across multiple projects."},
+      {"level": 3, "title": "Managing Consultant", "salaryMultiplier": 2.3, "description": "Oversee a portfolio of high-value clients and guide the firm's consulting practice."}
+    ],
+    "accessConditions": [{"type": "previousProgram", "requiredProgramId": "uni_law"}],
+    "interviewConditions": [{"type": "minSkill", "skill": "intelligence", "minValue": 50}],
+    "requiredEducationLevel": "university"
+  },
+  {
+    "id": "job_writer",
+    "name": "Writer",
+    "description": "Craft compelling narratives, articles, and creative content for publication.",
+    "type": "fullTime",
+    "field": "literature",
+    "baseSalary": 30000,
+    "timeCost": 3,
+    "levels": [
+      {"level": 1, "title": "Junior Writer", "salaryMultiplier": 1.0, "description": "Write drafts and contribute content under editorial guidance."},
+      {"level": 2, "title": "Staff Writer", "salaryMultiplier": 1.5, "description": "Produce original pieces and develop your own voice within the publication."},
+      {"level": 3, "title": "Lead Writer", "salaryMultiplier": 2.2, "description": "Set the editorial tone and spearhead major features and investigative stories."}
+    ],
+    "accessConditions": [{"type": "previousProgram", "requiredProgramId": "uni_literature"}],
+    "interviewConditions": [{"type": "minSkill", "skill": "creativity", "minValue": 50}],
+    "requiredEducationLevel": "university"
+  },
+  {
+    "id": "job_editor",
+    "name": "Editor",
+    "description": "Review, refine, and shape written content to ensure clarity, style, and accuracy.",
+    "type": "fullTime",
+    "field": "literature",
+    "baseSalary": 32000,
+    "timeCost": 3,
+    "levels": [
+      {"level": 1, "title": "Assistant Editor", "salaryMultiplier": 1.0, "description": "Proofread manuscripts and assist with editorial scheduling."},
+      {"level": 2, "title": "Editor", "salaryMultiplier": 1.5, "description": "Manage publication pipelines and work directly with authors on revisions."},
+      {"level": 3, "title": "Senior Editor", "salaryMultiplier": 2.3, "description": "Curate the publication's identity and acquire high-profile manuscripts."}
+    ],
+    "accessConditions": [{"type": "previousProgram", "requiredProgramId": "uni_literature"}],
+    "interviewConditions": [{"type": "minSkill", "skill": "intelligence", "minValue": 45}],
+    "requiredEducationLevel": "university"
+  },
+  {
+    "id": "job_museum_curator",
+    "name": "Museum Curator",
+    "description": "Manage collections, design exhibitions, and preserve cultural heritage for public engagement.",
+    "type": "fullTime",
+    "field": "history",
+    "baseSalary": 33000,
+    "timeCost": 3,
+    "levels": [
+      {"level": 1, "title": "Assistant Curator", "salaryMultiplier": 1.0, "description": "Catalog artifacts and support the planning of temporary exhibitions."},
+      {"level": 2, "title": "Curator", "salaryMultiplier": 1.5, "description": "Design major exhibitions and build relationships with donors and institutions."},
+      {"level": 3, "title": "Head Curator", "salaryMultiplier": 2.2, "description": "Direct the museum's curatorial vision and oversee the entire permanent collection."}
+    ],
+    "accessConditions": [{"type": "previousProgram", "requiredProgramId": "uni_history"}],
+    "interviewConditions": [{"type": "minSkill", "skill": "communication", "minValue": 40}],
+    "requiredEducationLevel": "university"
+  },
+  {
+    "id": "job_historian",
+    "name": "Historian",
+    "description": "Research and interpret historical events, producing scholarly works and public-facing analyses.",
+    "type": "fullTime",
+    "field": "history",
+    "baseSalary": 31000,
+    "timeCost": 3,
+    "levels": [
+      {"level": 1, "title": "Research Assistant", "salaryMultiplier": 1.0, "description": "Gather primary sources and support senior researchers with archival work."},
+      {"level": 2, "title": "Historian", "salaryMultiplier": 1.5, "description": "Conduct independent research and publish findings in academic journals."},
+      {"level": 3, "title": "Senior Historian", "salaryMultiplier": 2.3, "description": "Lead research programs and serve as a recognized authority in your specialty."}
+    ],
+    "accessConditions": [{"type": "previousProgram", "requiredProgramId": "uni_history"}],
+    "interviewConditions": [{"type": "minSkill", "skill": "intelligence", "minValue": 50}],
+    "requiredEducationLevel": "university"
+  },
+  {
+    "id": "job_software_dev",
+    "name": "Software Developer",
+    "description": "Design, build, and maintain software systems that solve real-world problems.",
+    "type": "fullTime",
+    "field": "cs",
+    "baseSalary": 55000,
+    "timeCost": 3,
+    "levels": [
+      {"level": 1, "title": "Junior Developer", "salaryMultiplier": 1.0, "description": "Write code, fix bugs, and learn the codebase under senior guidance."},
+      {"level": 2, "title": "Senior Developer", "salaryMultiplier": 1.6, "description": "Architect features, review code, and drive technical decisions for your team."},
+      {"level": 3, "title": "Lead Developer", "salaryMultiplier": 2.4, "description": "Define the technical roadmap and mentor the entire engineering organization."}
+    ],
+    "accessConditions": [{"type": "previousProgram", "requiredProgramId": "uni_cs"}],
+    "interviewConditions": [{"type": "minSkill", "skill": "intelligence", "minValue": 50}],
+    "requiredEducationLevel": "university"
+  },
+  {
+    "id": "job_data_analyst",
+    "name": "Data Analyst",
+    "description": "Transform raw data into actionable insights that drive business decisions.",
+    "type": "fullTime",
+    "field": "cs",
+    "baseSalary": 48000,
+    "timeCost": 3,
+    "levels": [
+      {"level": 1, "title": "Junior Analyst", "salaryMultiplier": 1.0, "description": "Clean datasets and produce basic reports and visualizations."},
+      {"level": 2, "title": "Data Analyst", "salaryMultiplier": 1.5, "description": "Build analytical models and present findings to stakeholders."},
+      {"level": 3, "title": "Senior Analyst", "salaryMultiplier": 2.2, "description": "Lead data strategy initiatives and influence company-wide decision-making."}
+    ],
+    "accessConditions": [{"type": "previousProgram", "requiredProgramId": "uni_cs"}],
+    "interviewConditions": [{"type": "minSkill", "skill": "intelligence", "minValue": 45}],
+    "requiredEducationLevel": "university"
+  },
+  {
+    "id": "job_civil_engineer",
+    "name": "Civil Engineer",
+    "description": "Plan and oversee the construction of infrastructure from bridges to water systems.",
+    "type": "fullTime",
+    "field": "engineering",
+    "baseSalary": 50000,
+    "timeCost": 3,
+    "levels": [
+      {"level": 1, "title": "Junior Engineer", "salaryMultiplier": 1.0, "description": "Assist with site surveys, calculations, and technical drawings."},
+      {"level": 2, "title": "Engineer", "salaryMultiplier": 1.5, "description": "Manage construction phases and ensure projects meet safety standards."},
+      {"level": 3, "title": "Senior Engineer", "salaryMultiplier": 2.3, "description": "Lead large-scale infrastructure projects and approve critical design decisions."}
+    ],
+    "accessConditions": [{"type": "previousProgram", "requiredProgramId": "uni_engineering"}],
+    "interviewConditions": [{"type": "minSkill", "skill": "intelligence", "minValue": 50}],
+    "requiredEducationLevel": "university"
+  },
+  {
+    "id": "job_project_engineer",
+    "name": "Project Engineer",
+    "description": "Coordinate engineering teams and manage project timelines, budgets, and deliverables.",
+    "type": "fullTime",
+    "field": "engineering",
+    "baseSalary": 47000,
+    "timeCost": 3,
+    "levels": [
+      {"level": 1, "title": "Junior Project Engineer", "salaryMultiplier": 1.0, "description": "Track project milestones and support coordination between teams."},
+      {"level": 2, "title": "Project Engineer", "salaryMultiplier": 1.5, "description": "Own project delivery end-to-end and manage stakeholder expectations."},
+      {"level": 3, "title": "Senior Project Engineer", "salaryMultiplier": 2.2, "description": "Oversee a portfolio of engineering projects and optimize resource allocation."}
+    ],
+    "accessConditions": [{"type": "previousProgram", "requiredProgramId": "uni_engineering"}],
+    "interviewConditions": [{"type": "minSkill", "skill": "communication", "minValue": 45}],
+    "requiredEducationLevel": "university"
+  },
+  {
+    "id": "job_doctor",
+    "name": "General Practitioner",
+    "description": "Diagnose and treat patients, providing primary healthcare and preventive medicine.",
+    "type": "fullTime",
+    "field": "medicine",
+    "baseSalary": 52000,
+    "timeCost": 3,
+    "levels": [
+      {"level": 1, "title": "Resident", "salaryMultiplier": 1.0, "description": "Complete clinical rotations and treat patients under supervision."},
+      {"level": 2, "title": "Attending Physician", "salaryMultiplier": 1.6, "description": "Run your own patient panel and make independent clinical decisions."},
+      {"level": 3, "title": "Senior Physician", "salaryMultiplier": 2.5, "description": "Lead a medical department and shape clinical protocols for the practice."}
+    ],
+    "accessConditions": [{"type": "previousProgram", "requiredProgramId": "uni_medicine"}],
+    "interviewConditions": [{"type": "minSkill", "skill": "emotionalStability", "minValue": 45}],
+    "requiredEducationLevel": "university"
+  },
+  {
+    "id": "job_clinical_researcher",
+    "name": "Clinical Researcher",
+    "description": "Conduct medical studies and clinical trials to advance treatments and patient outcomes.",
+    "type": "fullTime",
+    "field": "medicine",
+    "baseSalary": 46000,
+    "timeCost": 3,
+    "levels": [
+      {"level": 1, "title": "Research Associate", "salaryMultiplier": 1.0, "description": "Collect data, recruit participants, and assist with trial protocols."},
+      {"level": 2, "title": "Researcher", "salaryMultiplier": 1.5, "description": "Design studies, analyze results, and publish in peer-reviewed journals."},
+      {"level": 3, "title": "Senior Researcher", "salaryMultiplier": 2.3, "description": "Direct multi-site clinical trials and secure major research grants."}
+    ],
+    "accessConditions": [{"type": "previousProgram", "requiredProgramId": "uni_medicine"}],
+    "interviewConditions": [{"type": "minSkill", "skill": "intelligence", "minValue": 55}],
+    "requiredEducationLevel": "university"
+  },
+  {
+    "id": "job_postdoc_constitutional_law",
+    "name": "Postdoc in Constitutional Law",
+    "description": "Pursue advanced research on constitutional frameworks, rights, and governance structures.",
+    "type": "fullTime",
+    "field": "law",
+    "baseSalary": 38000,
+    "timeCost": 3,
+    "levels": [
+      {"level": 1, "title": "Postdoc Researcher", "salaryMultiplier": 1.0, "description": "Conduct independent research and contribute to departmental publications."},
+      {"level": 2, "title": "Senior Postdoc", "salaryMultiplier": 1.4, "description": "Lead research projects and supervise graduate students."},
+      {"level": 3, "title": "Research Fellow", "salaryMultiplier": 1.8, "description": "Hold a prestigious fellowship and shape the direction of the research group."}
+    ],
+    "accessConditions": [{"type": "previousProgram", "requiredProgramId": "phd_constitutional_law"}],
+    "interviewConditions": [],
+    "requiredEducationLevel": "doctorate"
+  },
+  {
+    "id": "job_postdoc_international_law",
+    "name": "Postdoc in International Law",
+    "description": "Research treaties, international courts, and cross-border legal issues at the academic frontier.",
+    "type": "fullTime",
+    "field": "law",
+    "baseSalary": 38000,
+    "timeCost": 3,
+    "levels": [
+      {"level": 1, "title": "Postdoc Researcher", "salaryMultiplier": 1.0, "description": "Analyze international legal precedents and draft policy papers."},
+      {"level": 2, "title": "Senior Postdoc", "salaryMultiplier": 1.4, "description": "Manage collaborative research with partner institutions abroad."},
+      {"level": 3, "title": "Research Fellow", "salaryMultiplier": 1.8, "description": "Advise international bodies and publish landmark studies in the field."}
+    ],
+    "accessConditions": [{"type": "previousProgram", "requiredProgramId": "phd_international_law"}],
+    "interviewConditions": [],
+    "requiredEducationLevel": "doctorate"
+  },
+  {
+    "id": "job_postdoc_creative_writing",
+    "name": "Postdoc in Creative Writing",
+    "description": "Explore the craft of storytelling through academic research and literary experimentation.",
+    "type": "fullTime",
+    "field": "literature",
+    "baseSalary": 35000,
+    "timeCost": 3,
+    "levels": [
+      {"level": 1, "title": "Postdoc Researcher", "salaryMultiplier": 1.0, "description": "Develop original literary works while contributing to scholarly discourse."},
+      {"level": 2, "title": "Senior Postdoc", "salaryMultiplier": 1.4, "description": "Mentor emerging writers and lead creative workshops."},
+      {"level": 3, "title": "Research Fellow", "salaryMultiplier": 1.8, "description": "Hold a distinguished fellowship and publish critically acclaimed research."}
+    ],
+    "accessConditions": [{"type": "previousProgram", "requiredProgramId": "phd_creative_writing"}],
+    "interviewConditions": [],
+    "requiredEducationLevel": "doctorate"
+  },
+  {
+    "id": "job_postdoc_comparative_literature",
+    "name": "Postdoc in Comparative Literature",
+    "description": "Study literary traditions across cultures and languages to uncover shared human themes.",
+    "type": "fullTime",
+    "field": "literature",
+    "baseSalary": 35000,
+    "timeCost": 3,
+    "levels": [
+      {"level": 1, "title": "Postdoc Researcher", "salaryMultiplier": 1.0, "description": "Conduct cross-cultural literary analysis and present at academic conferences."},
+      {"level": 2, "title": "Senior Postdoc", "salaryMultiplier": 1.4, "description": "Lead a comparative research project spanning multiple literary traditions."},
+      {"level": 3, "title": "Research Fellow", "salaryMultiplier": 1.8, "description": "Establish yourself as a leading voice in comparative literary scholarship."}
+    ],
+    "accessConditions": [{"type": "previousProgram", "requiredProgramId": "phd_comparative_literature"}],
+    "interviewConditions": [],
+    "requiredEducationLevel": "doctorate"
+  },
+  {
+    "id": "job_postdoc_ancient_history",
+    "name": "Postdoc in Ancient History",
+    "description": "Investigate ancient civilizations through archaeological evidence and primary sources.",
+    "type": "fullTime",
+    "field": "history",
+    "baseSalary": 36000,
+    "timeCost": 3,
+    "levels": [
+      {"level": 1, "title": "Postdoc Researcher", "salaryMultiplier": 1.0, "description": "Analyze artifacts and texts to reconstruct ancient societies."},
+      {"level": 2, "title": "Senior Postdoc", "salaryMultiplier": 1.4, "description": "Direct archaeological digs and publish monographs on your findings."},
+      {"level": 3, "title": "Research Fellow", "salaryMultiplier": 1.8, "description": "Lead a research group uncovering new chapters of ancient history."}
+    ],
+    "accessConditions": [{"type": "previousProgram", "requiredProgramId": "phd_ancient_history"}],
+    "interviewConditions": [],
+    "requiredEducationLevel": "doctorate"
+  },
+  {
+    "id": "job_postdoc_modern_history",
+    "name": "Postdoc in Modern History",
+    "description": "Research the political, social, and cultural forces that shaped the modern world.",
+    "type": "fullTime",
+    "field": "history",
+    "baseSalary": 36000,
+    "timeCost": 3,
+    "levels": [
+      {"level": 1, "title": "Postdoc Researcher", "salaryMultiplier": 1.0, "description": "Examine archival records and oral histories from recent centuries."},
+      {"level": 2, "title": "Senior Postdoc", "salaryMultiplier": 1.4, "description": "Produce influential papers on pivotal modern-era events."},
+      {"level": 3, "title": "Research Fellow", "salaryMultiplier": 1.8, "description": "Shape public understanding of modern history through landmark research."}
+    ],
+    "accessConditions": [{"type": "previousProgram", "requiredProgramId": "phd_modern_history"}],
+    "interviewConditions": [],
+    "requiredEducationLevel": "doctorate"
+  },
+  {
+    "id": "job_postdoc_machine_learning",
+    "name": "Postdoc in Machine Learning",
+    "description": "Push the boundaries of artificial intelligence through novel algorithms and model architectures.",
+    "type": "fullTime",
+    "field": "cs",
+    "baseSalary": 58000,
+    "timeCost": 3,
+    "levels": [
+      {"level": 1, "title": "Postdoc Researcher", "salaryMultiplier": 1.0, "description": "Develop and benchmark new machine learning models."},
+      {"level": 2, "title": "Senior Postdoc", "salaryMultiplier": 1.4, "description": "Lead a research team and publish at top-tier AI conferences."},
+      {"level": 3, "title": "Research Fellow", "salaryMultiplier": 1.8, "description": "Pioneer breakthrough approaches that redefine the state of the art."}
+    ],
+    "accessConditions": [{"type": "previousProgram", "requiredProgramId": "phd_machine_learning"}],
+    "interviewConditions": [],
+    "requiredEducationLevel": "doctorate"
+  },
+  {
+    "id": "job_postdoc_security_systems",
+    "name": "Postdoc in Security Systems",
+    "description": "Research advanced cybersecurity defenses and vulnerability analysis methodologies.",
+    "type": "fullTime",
+    "field": "cs",
+    "baseSalary": 55000,
+    "timeCost": 3,
+    "levels": [
+      {"level": 1, "title": "Postdoc Researcher", "salaryMultiplier": 1.0, "description": "Investigate emerging threat vectors and develop countermeasures."},
+      {"level": 2, "title": "Senior Postdoc", "salaryMultiplier": 1.4, "description": "Lead security research initiatives and advise industry partners."},
+      {"level": 3, "title": "Research Fellow", "salaryMultiplier": 1.8, "description": "Define next-generation security paradigms through groundbreaking research."}
+    ],
+    "accessConditions": [{"type": "previousProgram", "requiredProgramId": "phd_security_systems"}],
+    "interviewConditions": [],
+    "requiredEducationLevel": "doctorate"
+  },
+  {
+    "id": "job_postdoc_autonomous_systems",
+    "name": "Postdoc in Autonomous Systems",
+    "description": "Advance the science of self-operating machines, from drones to self-driving vehicles.",
+    "type": "fullTime",
+    "field": "engineering",
+    "baseSalary": 56000,
+    "timeCost": 3,
+    "levels": [
+      {"level": 1, "title": "Postdoc Researcher", "salaryMultiplier": 1.0, "description": "Build and test autonomous prototypes in controlled environments."},
+      {"level": 2, "title": "Senior Postdoc", "salaryMultiplier": 1.4, "description": "Design perception and decision-making systems for real-world deployment."},
+      {"level": 3, "title": "Research Fellow", "salaryMultiplier": 1.8, "description": "Lead a lab producing industry-defining advances in autonomous technology."}
+    ],
+    "accessConditions": [{"type": "previousProgram", "requiredProgramId": "phd_autonomous_systems"}],
+    "interviewConditions": [],
+    "requiredEducationLevel": "doctorate"
+  },
+  {
+    "id": "job_postdoc_structural_engineering",
+    "name": "Postdoc in Structural Engineering",
+    "description": "Research innovative structural designs and materials to build safer, more resilient infrastructure.",
+    "type": "fullTime",
+    "field": "engineering",
+    "baseSalary": 50000,
+    "timeCost": 3,
+    "levels": [
+      {"level": 1, "title": "Postdoc Researcher", "salaryMultiplier": 1.0, "description": "Simulate structural loads and test new composite materials."},
+      {"level": 2, "title": "Senior Postdoc", "salaryMultiplier": 1.4, "description": "Publish structural analysis breakthroughs and consult on major projects."},
+      {"level": 3, "title": "Research Fellow", "salaryMultiplier": 1.8, "description": "Redefine structural engineering standards through pioneering research."}
+    ],
+    "accessConditions": [{"type": "previousProgram", "requiredProgramId": "phd_structural_engineering"}],
+    "interviewConditions": [],
+    "requiredEducationLevel": "doctorate"
+  },
+  {
+    "id": "job_postdoc_surgical_innovation",
+    "name": "Postdoc in Surgical Innovation",
+    "description": "Develop cutting-edge surgical techniques and technologies to improve patient outcomes.",
+    "type": "fullTime",
+    "field": "medicine",
+    "baseSalary": 55000,
+    "timeCost": 3,
+    "levels": [
+      {"level": 1, "title": "Postdoc Researcher", "salaryMultiplier": 1.0, "description": "Prototype new surgical instruments and refine minimally invasive procedures."},
+      {"level": 2, "title": "Senior Postdoc", "salaryMultiplier": 1.4, "description": "Lead clinical studies validating innovative surgical approaches."},
+      {"level": 3, "title": "Research Fellow", "salaryMultiplier": 1.8, "description": "Transform surgical practice through widely adopted research innovations."}
+    ],
+    "accessConditions": [{"type": "previousProgram", "requiredProgramId": "phd_surgical_innovation"}],
+    "interviewConditions": [],
+    "requiredEducationLevel": "doctorate"
+  },
+  {
+    "id": "job_postdoc_cognitive_neuroscience",
+    "name": "Postdoc in Cognitive Neuroscience",
+    "description": "Unravel the neural mechanisms behind cognition, memory, and behavior.",
+    "type": "fullTime",
+    "field": "medicine",
+    "baseSalary": 52000,
+    "timeCost": 3,
+    "levels": [
+      {"level": 1, "title": "Postdoc Researcher", "salaryMultiplier": 1.0, "description": "Design neuroimaging experiments and analyze brain activity data."},
+      {"level": 2, "title": "Senior Postdoc", "salaryMultiplier": 1.4, "description": "Run your own research projects and mentor doctoral students."},
+      {"level": 3, "title": "Research Fellow", "salaryMultiplier": 1.8, "description": "Lead a neuroscience lab producing high-impact discoveries about the human mind."}
+    ],
+    "accessConditions": [{"type": "previousProgram", "requiredProgramId": "phd_cognitive_neuroscience"}],
+    "interviewConditions": [],
+    "requiredEducationLevel": "doctorate"
+  },
+  {
+    "id": "job_office_assistant",
+    "name": "Office Assistant",
+    "description": "Keep the office running smoothly by handling schedules, correspondence, and administrative tasks.",
+    "type": "partTime",
+    "field": null,
+    "baseSalary": 22000,
+    "timeCost": 2,
+    "levels": [
+      {"level": 1, "title": "Junior Assistant", "salaryMultiplier": 1.0, "description": "Sort mail, answer phones, and manage basic filing duties."},
+      {"level": 2, "title": "Office Assistant", "salaryMultiplier": 1.3, "description": "Coordinate meetings, manage supplies, and support multiple departments."},
+      {"level": 3, "title": "Senior Assistant", "salaryMultiplier": 1.6, "description": "Oversee office operations and train new administrative staff."}
+    ],
+    "accessConditions": [{"type": "previousLevel", "level": "highSchool", "requiredBranch": null}],
+    "interviewConditions": [{"type": "minSkill", "skill": "communication", "minValue": 30}],
+    "requiredEducationLevel": "highSchool"
+  },
+  {
+    "id": "job_sales_associate",
+    "name": "Sales Associate",
+    "description": "Engage customers, demonstrate products, and close sales on the retail floor.",
+    "type": "partTime",
+    "field": null,
+    "baseSalary": 24000,
+    "timeCost": 2,
+    "levels": [
+      {"level": 1, "title": "Junior Sales", "salaryMultiplier": 1.0, "description": "Greet customers and learn the product catalog."},
+      {"level": 2, "title": "Sales Associate", "salaryMultiplier": 1.3, "description": "Hit sales targets and build a loyal customer base."},
+      {"level": 3, "title": "Senior Sales", "salaryMultiplier": 1.6, "description": "Mentor the sales team and manage key client accounts."}
+    ],
+    "accessConditions": [{"type": "previousLevel", "level": "highSchool", "requiredBranch": null}],
+    "interviewConditions": [{"type": "minSkill", "skill": "communication", "minValue": 35}],
+    "requiredEducationLevel": "highSchool"
+  },
+  {
+    "id": "job_technician",
+    "name": "Technician",
+    "description": "Install, maintain, and repair technical equipment and systems.",
+    "type": "partTime",
+    "field": null,
+    "baseSalary": 26000,
+    "timeCost": 2,
+    "levels": [
+      {"level": 1, "title": "Junior Technician", "salaryMultiplier": 1.0, "description": "Perform routine maintenance and assist with basic repairs."},
+      {"level": 2, "title": "Technician", "salaryMultiplier": 1.3, "description": "Diagnose complex issues and carry out specialized repairs independently."},
+      {"level": 3, "title": "Senior Technician", "salaryMultiplier": 1.7, "description": "Lead technical teams and handle the most challenging system failures."}
+    ],
+    "accessConditions": [{"type": "previousLevel", "level": "highSchool", "requiredBranch": null}],
+    "interviewConditions": [{"type": "minSkill", "skill": "intelligence", "minValue": 35}],
+    "requiredEducationLevel": "highSchool"
+  },
+  {
+    "id": "job_graphic_designer",
+    "name": "Graphic Designer",
+    "description": "Create visual concepts that communicate ideas and captivate audiences.",
+    "type": "partTime",
+    "field": null,
+    "baseSalary": 25000,
+    "timeCost": 2,
+    "levels": [
+      {"level": 1, "title": "Junior Designer", "salaryMultiplier": 1.0, "description": "Produce layouts and graphics following brand guidelines."},
+      {"level": 2, "title": "Designer", "salaryMultiplier": 1.4, "description": "Develop original visual identities and lead design projects."},
+      {"level": 3, "title": "Senior Designer", "salaryMultiplier": 1.7, "description": "Set the creative direction and manage the design team's output."}
+    ],
+    "accessConditions": [{"type": "previousLevel", "level": "highSchool", "requiredBranch": null}],
+    "interviewConditions": [{"type": "minSkill", "skill": "creativity", "minValue": 40}],
+    "requiredEducationLevel": "highSchool"
+  },
+  {
+    "id": "job_bartender",
+    "name": "Bartender",
+    "description": "Mix drinks, create cocktails, and keep the bar atmosphere lively for guests.",
+    "type": "partTime",
+    "field": null,
+    "baseSalary": 18000,
+    "timeCost": 2,
+    "levels": [
+      {"level": 1, "title": "Barback", "salaryMultiplier": 1.0, "description": "Stock the bar, clean glassware, and learn the basics of mixology."},
+      {"level": 2, "title": "Bartender", "salaryMultiplier": 1.3, "description": "Serve customers, craft cocktails, and manage the bar during your shift."},
+      {"level": 3, "title": "Head Bartender", "salaryMultiplier": 1.6, "description": "Design the drink menu and train new bartenders."}
+    ],
+    "accessConditions": [],
+    "interviewConditions": [],
+    "requiredEducationLevel": null
+  },
+  {
+    "id": "job_cashier",
+    "name": "Cashier",
+    "description": "Process transactions, handle cash, and provide friendly customer service at the register.",
+    "type": "partTime",
+    "field": null,
+    "baseSalary": 16000,
+    "timeCost": 2,
+    "levels": [
+      {"level": 1, "title": "Trainee Cashier", "salaryMultiplier": 1.0, "description": "Learn the register system and handle simple transactions."},
+      {"level": 2, "title": "Cashier", "salaryMultiplier": 1.2, "description": "Process all transaction types efficiently and handle customer inquiries."},
+      {"level": 3, "title": "Head Cashier", "salaryMultiplier": 1.5, "description": "Supervise the checkout area and reconcile daily cash drawers."}
+    ],
+    "accessConditions": [],
+    "interviewConditions": [],
+    "requiredEducationLevel": null
+  },
+  {
+    "id": "job_delivery_driver",
+    "name": "Delivery Driver",
+    "description": "Transport packages and goods to customers quickly and reliably.",
+    "type": "partTime",
+    "field": null,
+    "baseSalary": 20000,
+    "timeCost": 2,
+    "levels": [
+      {"level": 1, "title": "Driver", "salaryMultiplier": 1.0, "description": "Follow delivery routes and ensure packages arrive on time."},
+      {"level": 2, "title": "Senior Driver", "salaryMultiplier": 1.3, "description": "Handle priority deliveries and optimize your daily route."},
+      {"level": 3, "title": "Route Manager", "salaryMultiplier": 1.6, "description": "Plan delivery logistics and coordinate a team of drivers."}
+    ],
+    "accessConditions": [],
+    "interviewConditions": [],
+    "requiredEducationLevel": null
+  },
+  {
+    "id": "job_waiter",
+    "name": "Waiter",
+    "description": "Take orders, serve meals, and ensure guests have an excellent dining experience.",
+    "type": "partTime",
+    "field": null,
+    "baseSalary": 17000,
+    "timeCost": 2,
+    "levels": [
+      {"level": 1, "title": "Busser", "salaryMultiplier": 1.0, "description": "Clear tables, set up dining areas, and assist the wait staff."},
+      {"level": 2, "title": "Waiter", "salaryMultiplier": 1.3, "description": "Manage your own section and provide attentive table service."},
+      {"level": 3, "title": "Head Waiter", "salaryMultiplier": 1.6, "description": "Coordinate the front-of-house team and handle VIP guests."}
+    ],
+    "accessConditions": [],
+    "interviewConditions": [],
+    "requiredEducationLevel": null
+  },
+  {
+    "id": "job_freelance",
+    "name": "Freelance Work",
+    "description": "Take on short-term gigs and independent projects across various fields.",
+    "type": "casual",
+    "field": null,
+    "baseSalary": 3000,
+    "timeCost": 1,
+    "levels": [
+      {"level": 1, "title": "Freelancer", "salaryMultiplier": 1.0, "description": "Pick up odd jobs and build a reputation through small projects."},
+      {"level": 2, "title": "Experienced Freelancer", "salaryMultiplier": 1.3, "description": "Attract repeat clients and command higher rates for your work."},
+      {"level": 3, "title": "Expert Freelancer", "salaryMultiplier": 1.6, "description": "Choose premium projects and enjoy a steady stream of referrals."}
+    ],
+    "accessConditions": [],
+    "interviewConditions": [],
+    "requiredEducationLevel": null
+  },
+  {
+    "id": "job_dog_walking",
+    "name": "Dog Walking",
+    "description": "Walk dogs for busy pet owners, keeping furry friends happy and exercised.",
+    "type": "casual",
+    "field": null,
+    "baseSalary": 1500,
+    "timeCost": 1,
+    "levels": [
+      {"level": 1, "title": "Dog Walker", "salaryMultiplier": 1.0, "description": "Walk one or two dogs at a time around the neighborhood."},
+      {"level": 2, "title": "Professional Walker", "salaryMultiplier": 1.3, "description": "Handle multiple dogs and build a loyal roster of regular clients."},
+      {"level": 3, "title": "Walking Service Owner", "salaryMultiplier": 1.6, "description": "Run your own dog walking business and hire other walkers."}
+    ],
+    "accessConditions": [],
+    "interviewConditions": [],
+    "requiredEducationLevel": null
+  },
+  {
+    "id": "job_tutoring",
+    "name": "Tutoring",
+    "description": "Help students grasp difficult subjects through one-on-one or small group sessions.",
+    "type": "casual",
+    "field": null,
+    "baseSalary": 2500,
+    "timeCost": 1,
+    "levels": [
+      {"level": 1, "title": "Tutor", "salaryMultiplier": 1.0, "description": "Assist students with homework and exam preparation."},
+      {"level": 2, "title": "Senior Tutor", "salaryMultiplier": 1.3, "description": "Develop custom lesson plans and take on advanced subject areas."},
+      {"level": 3, "title": "Head Tutor", "salaryMultiplier": 1.6, "description": "Manage a tutoring center and coordinate a team of subject specialists."}
+    ],
+    "accessConditions": [{"type": "previousLevel", "level": "highSchool", "requiredBranch": null}],
+    "interviewConditions": [],
+    "requiredEducationLevel": "highSchool"
+  },
+  {
+    "id": "job_moving_help",
+    "name": "Moving Help",
+    "description": "Assist with packing, loading, and transporting belongings during residential moves.",
+    "type": "casual",
+    "field": null,
+    "baseSalary": 2000,
+    "timeCost": 1,
+    "levels": [
+      {"level": 1, "title": "Mover", "salaryMultiplier": 1.0, "description": "Lift boxes, load trucks, and follow the team leader's instructions."},
+      {"level": 2, "title": "Experienced Mover", "salaryMultiplier": 1.3, "description": "Handle fragile items and large furniture with practiced efficiency."},
+      {"level": 3, "title": "Team Leader", "salaryMultiplier": 1.6, "description": "Organize the moving crew and ensure every job finishes on time."}
+    ],
+    "accessConditions": [],
+    "interviewConditions": [],
+    "requiredEducationLevel": null
+  }
+]

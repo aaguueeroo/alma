@@ -7,6 +7,7 @@ import 'package:alma/data/seed/seed_loader.dart';
 import 'package:alma/core/engine/time_engine.dart';
 import 'package:alma/core/engine/event_engine.dart';
 import 'package:alma/core/engine/education_engine.dart';
+import 'package:alma/core/engine/work_engine.dart';
 import 'package:alma/core/engine/probability_engine.dart';
 import 'package:alma/core/engine/life_engine.dart';
 import 'package:alma/core/rules/trait_rules.dart';
@@ -77,11 +78,16 @@ final educationEngineProvider = Provider<EducationEngine>((ref) {
   return EducationEngine();
 });
 
+final workEngineProvider = Provider<WorkEngine>((ref) {
+  return WorkEngine();
+});
+
 final actionProcessorProvider = Provider<ActionProcessor>((ref) {
   return ActionProcessor(
     timeEngine: ref.watch(timeEngineProvider),
     eventEngine: ref.watch(eventEngineProvider),
     educationEngine: ref.watch(educationEngineProvider),
+    workEngine: ref.watch(workEngineProvider),
     traitRules: ref.watch(traitRulesProvider),
     relationshipProcessor: ref.watch(relationshipProcessorProvider),
     habitProcessor: ref.watch(habitProcessorProvider),
@@ -93,6 +99,7 @@ final lifeEngineProvider = Provider<LifeEngine>((ref) {
     actionProcessor: ref.watch(actionProcessorProvider),
     eventEngine: ref.watch(eventEngineProvider),
     educationEngine: ref.watch(educationEngineProvider),
+    workEngine: ref.watch(workEngineProvider),
   );
 });
 

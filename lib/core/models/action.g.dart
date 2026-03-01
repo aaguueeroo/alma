@@ -41,6 +41,8 @@ _GameAction _$GameActionFromJson(Map<String, dynamic> json) => _GameAction(
       const [],
   educationLevel: json['educationLevel'] as String?,
   educationProgramId: json['educationProgramId'] as String?,
+  workJobId: json['workJobId'] as String?,
+  workJobType: json['workJobType'] as String?,
 );
 
 Map<String, dynamic> _$GameActionToJson(_GameAction instance) =>
@@ -63,6 +65,8 @@ Map<String, dynamic> _$GameActionToJson(_GameAction instance) =>
       'moralImpactTemplates': instance.moralImpactTemplates,
       'educationLevel': instance.educationLevel,
       'educationProgramId': instance.educationProgramId,
+      'workJobId': instance.workJobId,
+      'workJobType': instance.workJobType,
     };
 
 const _$ActionCategoryEnumMap = {

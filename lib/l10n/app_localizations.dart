@@ -903,6 +903,156 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{cost}t'**
   String timeCostLabel(int cost);
+
+  /// No description provided for @quitJob.
+  ///
+  /// In en, this message translates to:
+  /// **'Quit Job'**
+  String get quitJob;
+
+  /// No description provided for @quitJobConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quit your job?'**
+  String get quitJobConfirmTitle;
+
+  /// No description provided for @quitJobConfirmMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to quit {jobName}?'**
+  String quitJobConfirmMessage(String jobName);
+
+  /// No description provided for @askPromotion.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask for Promotion'**
+  String get askPromotion;
+
+  /// No description provided for @unemployed.
+  ///
+  /// In en, this message translates to:
+  /// **'Unemployed'**
+  String get unemployed;
+
+  /// No description provided for @jobTypeFullTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Full-time'**
+  String get jobTypeFullTime;
+
+  /// No description provided for @jobTypePartTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Part-time'**
+  String get jobTypePartTime;
+
+  /// No description provided for @jobTypeCasual.
+  ///
+  /// In en, this message translates to:
+  /// **'Casual'**
+  String get jobTypeCasual;
+
+  /// No description provided for @jobLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Level {level}'**
+  String jobLevel(int level);
+
+  /// No description provided for @jobSalary.
+  ///
+  /// In en, this message translates to:
+  /// **'\${amount}/yr'**
+  String jobSalary(int amount);
+
+  /// No description provided for @applyToJob.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get applyToJob;
+
+  /// No description provided for @workYearsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Ages {start}-{end}'**
+  String workYearsLabel(int start, int end);
+
+  /// No description provided for @workRecordQuit.
+  ///
+  /// In en, this message translates to:
+  /// **'Quit'**
+  String get workRecordQuit;
+
+  /// No description provided for @workRecordFired.
+  ///
+  /// In en, this message translates to:
+  /// **'Fired'**
+  String get workRecordFired;
+
+  /// No description provided for @workRecordCasualCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get workRecordCasualCompleted;
+
+  /// No description provided for @noCurrentJob.
+  ///
+  /// In en, this message translates to:
+  /// **'Not employed'**
+  String get noCurrentJob;
+
+  /// No description provided for @currentJobs.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Jobs'**
+  String get currentJobs;
+
+  /// No description provided for @interviewInvite.
+  ///
+  /// In en, this message translates to:
+  /// **'Interview'**
+  String get interviewInvite;
+
+  /// No description provided for @applicationRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejected'**
+  String get applicationRejected;
+
+  /// No description provided for @hired.
+  ///
+  /// In en, this message translates to:
+  /// **'Hired!'**
+  String get hired;
+
+  /// No description provided for @notHired.
+  ///
+  /// In en, this message translates to:
+  /// **'Not Hired'**
+  String get notHired;
+
+  /// No description provided for @promotionGranted.
+  ///
+  /// In en, this message translates to:
+  /// **'Promoted!'**
+  String get promotionGranted;
+
+  /// No description provided for @promotionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Promotion Denied'**
+  String get promotionDenied;
+
+  /// No description provided for @ok.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get ok;
+
+  /// No description provided for @actionsThisYear.
+  ///
+  /// In en, this message translates to:
+  /// **'Actions done this year'**
+  String get actionsThisYear;
 }
 
 class _AppLocalizationsDelegate

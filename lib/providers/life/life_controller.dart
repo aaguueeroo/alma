@@ -4,8 +4,11 @@ import 'package:alma/core/models/action.dart';
 import 'package:alma/core/models/event.dart';
 import 'package:alma/core/models/education_program.dart';
 import 'package:alma/core/models/enrollment.dart';
+import 'package:alma/core/models/job.dart';
+import 'package:alma/core/models/employment.dart';
 import 'package:alma/core/engine/life_engine.dart';
 import 'package:alma/core/engine/education_engine.dart';
+import 'package:alma/core/engine/work_engine.dart';
 import 'package:alma/core/engine/seeded_random.dart';
 import 'package:alma/data/repositories/life_repository.dart';
 import 'package:alma/data/seed/seed_loader.dart';
@@ -17,6 +20,7 @@ class LifeControllerState {
     this.currentLife,
     this.availableActions = const [],
     this.educationActions = const [],
+    this.workActions = const [],
     this.isLoading = false,
     this.error,
   });
@@ -24,6 +28,7 @@ class LifeControllerState {
   final Life? currentLife;
   final List<GameAction> availableActions;
   final List<GameAction> educationActions;
+  final List<GameAction> workActions;
   final bool isLoading;
   final String? error;
 
@@ -32,6 +37,7 @@ class LifeControllerState {
     bool clearLife = false,
     List<GameAction>? availableActions,
     List<GameAction>? educationActions,
+    List<GameAction>? workActions,
     bool? isLoading,
     String? error,
     bool clearError = false,
@@ -40,6 +46,7 @@ class LifeControllerState {
       currentLife: clearLife ? null : (currentLife ?? this.currentLife),
       availableActions: availableActions ?? this.availableActions,
       educationActions: educationActions ?? this.educationActions,
+      workActions: workActions ?? this.workActions,
       isLoading: isLoading ?? this.isLoading,
       error: clearError ? null : (error ?? this.error),
     );
@@ -53,6 +60,7 @@ class LifeController extends StateNotifier<LifeControllerState> {
     required this.seedLoader,
     required this.eventEngine,
     required this.educationEngine,
+    required this.workEngine,
   }) : super(const LifeControllerState());
 
   final LifeEngine lifeEngine;
@@ -60,6 +68,7 @@ class LifeController extends StateNotifier<LifeControllerState> {
   final SeedLoader seedLoader;
   final EventEngine eventEngine;
   final EducationEngine educationEngine;
+  final WorkEngine workEngine;
 
   Future<void> loadLife(Life life) async {
     state = state.copyWith(isLoading: true, clearError: true);
@@ -76,10 +85,26 @@ class LifeController extends StateNotifier<LifeControllerState> {
         programs: programs,
         educationActions: eduActions,
       );
+      List<GameAction> workActions = [];
+      try {
+        final jobs = await seedLoader.loadJobs();
+        final workCountryConfig =
+            await seedLoader.loadWorkCountryConfig(country);
+        final workActs = await seedLoader.loadWorkActions();
+        workEngine.loadData(
+          countryConfig: workCountryConfig,
+          jobs: jobs,
+          workActions: workActs,
+        );
+        workActions = workActs;
+      } catch (e) {
+        print('Work data not loaded (asset missing or invalid): $e');
+      }
       state = state.copyWith(
         currentLife: life,
         availableActions: actions,
         educationActions: eduActions,
+        workActions: workActions,
         isLoading: false,
       );
     } catch (e) {
@@ -100,12 +125,13 @@ class LifeController extends StateNotifier<LifeControllerState> {
     }
   }
 
-  Future<void> performAction(GameAction action) async {
+  Future<void> performAction(GameAction action, {String? workJobContext}) async {
     if (state.currentLife == null) return;
     try {
       final Life updatedLife = lifeEngine.performAction(
         state.currentLife!,
         action,
+        workJobContext: workJobContext,
       );
       await lifeRepository.saveLife(updatedLife);
       state = state.copyWith(currentLife: updatedLife);
@@ -226,6 +252,121 @@ class LifeController extends StateNotifier<LifeControllerState> {
   bool get hasTimeRemaining =>
       (state.currentLife?.state.timeRemaining ?? 0) > 0;
 
+  List<Job> getAvailableJobs() {
+    final Life? life = state.currentLife;
+    if (life == null) return [];
+    final SeededRandom rng = SeededRandom(
+      life.seed + life.state.currentYear * 200 + life.state.age,
+    );
+    return workEngine.getAvailableJobs(life.state, rng);
+  }
+
+  Future<void> applyToJob(Job job) async {
+    if (state.currentLife == null) return;
+    try {
+      final SeededRandom rng = SeededRandom(
+        state.currentLife!.seed +
+            state.currentLife!.state.currentYear * 300 +
+            state.currentLife!.state.age,
+      );
+      final LifeState newState = workEngine.applyToJob(
+        state.currentLife!.state,
+        job,
+        rng,
+      );
+      final Life updatedLife = state.currentLife!.copyWith(state: newState);
+      await lifeRepository.saveLife(updatedLife);
+      state = state.copyWith(currentLife: updatedLife);
+    } catch (e) {
+      print('Error applying to job: $e');
+      state = state.copyWith(error: e.toString());
+    }
+  }
+
+  Future<void> quitJob(String jobId) async {
+    if (state.currentLife == null) return;
+    try {
+      final LifeState newState = workEngine.quitJob(
+        state.currentLife!.state,
+        jobId,
+      );
+      final Life updatedLife = state.currentLife!.copyWith(state: newState);
+      await lifeRepository.saveLife(updatedLife);
+      state = state.copyWith(currentLife: updatedLife);
+    } catch (e) {
+      print('Error quitting job: $e');
+      state = state.copyWith(error: e.toString());
+    }
+  }
+
+  Future<void> requestPromotion(String jobId) async {
+    if (state.currentLife == null) return;
+    try {
+      final SeededRandom rng = SeededRandom(
+        state.currentLife!.seed +
+            state.currentLife!.state.currentYear * 400 +
+            state.currentLife!.state.age,
+      );
+      final LifeState newState = workEngine.requestPromotion(
+        state.currentLife!.state,
+        jobId,
+        rng,
+      );
+      final Life updatedLife = state.currentLife!.copyWith(state: newState);
+      await lifeRepository.saveLife(updatedLife);
+      state = state.copyWith(currentLife: updatedLife);
+    } catch (e) {
+      print('Error requesting promotion: $e');
+      state = state.copyWith(error: e.toString());
+    }
+  }
+
+  Future<void> dismissWorkPrompt() async {
+    if (state.currentLife == null) return;
+    try {
+      final LifeState newState = workEngine.dismissPrompt(
+        state.currentLife!.state,
+      );
+      final Life updatedLife = state.currentLife!.copyWith(state: newState);
+      await lifeRepository.saveLife(updatedLife);
+      state = state.copyWith(currentLife: updatedLife);
+    } catch (e) {
+      print('Error dismissing work prompt: $e');
+      state = state.copyWith(error: e.toString());
+    }
+  }
+
+  Map<String, List<GameAction>> getWorkActions() {
+    final Life? life = state.currentLife;
+    if (life == null) return {};
+    final List<Employment> employments =
+        life.state.workState?.currentEmployments ?? [];
+    if (employments.isEmpty) return {};
+    final SeededRandom rng = SeededRandom(
+      life.seed + life.state.currentYear * 500 + life.state.age,
+    );
+    final Map<String, List<GameAction>> allByJob =
+        workEngine.pickYearlyActions(employments, rng);
+    final Map<String, List<GameAction>> performedByJob =
+        life.state.workState?.performedActionsByJobIdThisYear ?? {};
+    final Map<String, List<GameAction>> result = {};
+    for (final MapEntry<String, List<GameAction>> entry in allByJob.entries) {
+      final Set<String> performedIds = (performedByJob[entry.key] ?? [])
+          .map((GameAction a) => a.id)
+          .toSet();
+      result[entry.key] = entry.value
+          .where((GameAction a) => !performedIds.contains(a.id))
+          .toList();
+    }
+    return result;
+  }
+
+  bool get hasWorkPrompt =>
+      state.currentLife?.state.workState?.pendingPrompt != null;
+
+  List<Employment> get currentEmployments =>
+      state.currentLife?.state.workState?.currentEmployments ?? [];
+
   void clearLife() {
     state = state.copyWith(clearLife: true);
   }
@@ -239,5 +380,6 @@ final lifeControllerProvider =
     seedLoader: ref.watch(seedLoaderProvider),
     eventEngine: ref.watch(eventEngineProvider),
     educationEngine: ref.watch(educationEngineProvider),
+    workEngine: ref.watch(workEngineProvider),
   );
 });

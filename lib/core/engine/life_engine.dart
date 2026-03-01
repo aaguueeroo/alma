@@ -4,9 +4,11 @@ import 'package:alma/core/models/action.dart';
 import 'package:alma/core/models/relationship.dart';
 import 'package:alma/core/models/hidden_metrics.dart';
 import 'package:alma/core/models/education_state.dart';
+import 'package:alma/core/models/work_state.dart';
 import 'package:alma/core/simulation/action_processor.dart';
 import 'package:alma/core/engine/event_engine.dart';
 import 'package:alma/core/engine/education_engine.dart';
+import 'package:alma/core/engine/work_engine.dart';
 import 'package:alma/core/engine/seeded_random.dart';
 import 'package:alma/app/constants/game_constants.dart';
 import 'package:uuid/uuid.dart';
@@ -16,11 +18,13 @@ class LifeEngine {
     required this.actionProcessor,
     required this.eventEngine,
     required this.educationEngine,
+    required this.workEngine,
   });
 
   final ActionProcessor actionProcessor;
   final EventEngine eventEngine;
   final EducationEngine educationEngine;
+  final WorkEngine workEngine;
   static const Uuid _uuid = Uuid();
 
   Life createLife({
@@ -43,6 +47,7 @@ class LifeEngine {
       sections: template.startingSections,
       hiddenMetrics: const HiddenMetrics(),
       educationState: const EducationState(),
+      workState: const WorkState(),
     );
     return Life(
       id: _uuid.v4(),
@@ -53,12 +58,13 @@ class LifeEngine {
     );
   }
 
-  Life performAction(Life life, GameAction action) {
+  Life performAction(Life life, GameAction action, {String? workJobContext}) {
     final SeededRandom rng = _createRng(life);
     final LifeState newState = actionProcessor.performAction(
       life.state,
       action,
       rng,
+      workJobContext: workJobContext,
     );
     return life.copyWith(state: newState);
   }

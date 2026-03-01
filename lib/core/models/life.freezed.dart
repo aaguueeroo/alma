@@ -332,7 +332,7 @@ $LifeSummaryCopyWith<$Res>? get summary {
 /// @nodoc
 mixin _$LifeState {
 
- int get currentYear; int get age; int get health; int get money; int get timeRemaining; SkillSet get skills; List<TraitType> get traits; List<Habit> get habits; List<Relationship> get relationships; List<Section> get sections; HiddenMetrics get hiddenMetrics; int get eventsTriggeredThisYear; GameEvent? get pendingEvent; bool get isDead; String? get causeOfDeath; Map<String, dynamic> get lifeData; List<MoralImpact> get moralImpacts; EducationState? get educationState;
+ int get currentYear; int get age; int get health; int get money; int get timeRemaining; SkillSet get skills; List<TraitType> get traits; List<Habit> get habits; List<Relationship> get relationships; List<Section> get sections; HiddenMetrics get hiddenMetrics; int get eventsTriggeredThisYear; GameEvent? get pendingEvent; bool get isDead; String? get causeOfDeath; Map<String, dynamic> get lifeData; List<MoralImpact> get moralImpacts; EducationState? get educationState; WorkState? get workState;
 /// Create a copy of LifeState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -345,16 +345,16 @@ $LifeStateCopyWith<LifeState> get copyWith => _$LifeStateCopyWithImpl<LifeState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LifeState&&(identical(other.currentYear, currentYear) || other.currentYear == currentYear)&&(identical(other.age, age) || other.age == age)&&(identical(other.health, health) || other.health == health)&&(identical(other.money, money) || other.money == money)&&(identical(other.timeRemaining, timeRemaining) || other.timeRemaining == timeRemaining)&&(identical(other.skills, skills) || other.skills == skills)&&const DeepCollectionEquality().equals(other.traits, traits)&&const DeepCollectionEquality().equals(other.habits, habits)&&const DeepCollectionEquality().equals(other.relationships, relationships)&&const DeepCollectionEquality().equals(other.sections, sections)&&(identical(other.hiddenMetrics, hiddenMetrics) || other.hiddenMetrics == hiddenMetrics)&&(identical(other.eventsTriggeredThisYear, eventsTriggeredThisYear) || other.eventsTriggeredThisYear == eventsTriggeredThisYear)&&(identical(other.pendingEvent, pendingEvent) || other.pendingEvent == pendingEvent)&&(identical(other.isDead, isDead) || other.isDead == isDead)&&(identical(other.causeOfDeath, causeOfDeath) || other.causeOfDeath == causeOfDeath)&&const DeepCollectionEquality().equals(other.lifeData, lifeData)&&const DeepCollectionEquality().equals(other.moralImpacts, moralImpacts)&&(identical(other.educationState, educationState) || other.educationState == educationState));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LifeState&&(identical(other.currentYear, currentYear) || other.currentYear == currentYear)&&(identical(other.age, age) || other.age == age)&&(identical(other.health, health) || other.health == health)&&(identical(other.money, money) || other.money == money)&&(identical(other.timeRemaining, timeRemaining) || other.timeRemaining == timeRemaining)&&(identical(other.skills, skills) || other.skills == skills)&&const DeepCollectionEquality().equals(other.traits, traits)&&const DeepCollectionEquality().equals(other.habits, habits)&&const DeepCollectionEquality().equals(other.relationships, relationships)&&const DeepCollectionEquality().equals(other.sections, sections)&&(identical(other.hiddenMetrics, hiddenMetrics) || other.hiddenMetrics == hiddenMetrics)&&(identical(other.eventsTriggeredThisYear, eventsTriggeredThisYear) || other.eventsTriggeredThisYear == eventsTriggeredThisYear)&&(identical(other.pendingEvent, pendingEvent) || other.pendingEvent == pendingEvent)&&(identical(other.isDead, isDead) || other.isDead == isDead)&&(identical(other.causeOfDeath, causeOfDeath) || other.causeOfDeath == causeOfDeath)&&const DeepCollectionEquality().equals(other.lifeData, lifeData)&&const DeepCollectionEquality().equals(other.moralImpacts, moralImpacts)&&(identical(other.educationState, educationState) || other.educationState == educationState)&&(identical(other.workState, workState) || other.workState == workState));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,currentYear,age,health,money,timeRemaining,skills,const DeepCollectionEquality().hash(traits),const DeepCollectionEquality().hash(habits),const DeepCollectionEquality().hash(relationships),const DeepCollectionEquality().hash(sections),hiddenMetrics,eventsTriggeredThisYear,pendingEvent,isDead,causeOfDeath,const DeepCollectionEquality().hash(lifeData),const DeepCollectionEquality().hash(moralImpacts),educationState);
+int get hashCode => Object.hashAll([runtimeType,currentYear,age,health,money,timeRemaining,skills,const DeepCollectionEquality().hash(traits),const DeepCollectionEquality().hash(habits),const DeepCollectionEquality().hash(relationships),const DeepCollectionEquality().hash(sections),hiddenMetrics,eventsTriggeredThisYear,pendingEvent,isDead,causeOfDeath,const DeepCollectionEquality().hash(lifeData),const DeepCollectionEquality().hash(moralImpacts),educationState,workState]);
 
 @override
 String toString() {
-  return 'LifeState(currentYear: $currentYear, age: $age, health: $health, money: $money, timeRemaining: $timeRemaining, skills: $skills, traits: $traits, habits: $habits, relationships: $relationships, sections: $sections, hiddenMetrics: $hiddenMetrics, eventsTriggeredThisYear: $eventsTriggeredThisYear, pendingEvent: $pendingEvent, isDead: $isDead, causeOfDeath: $causeOfDeath, lifeData: $lifeData, moralImpacts: $moralImpacts, educationState: $educationState)';
+  return 'LifeState(currentYear: $currentYear, age: $age, health: $health, money: $money, timeRemaining: $timeRemaining, skills: $skills, traits: $traits, habits: $habits, relationships: $relationships, sections: $sections, hiddenMetrics: $hiddenMetrics, eventsTriggeredThisYear: $eventsTriggeredThisYear, pendingEvent: $pendingEvent, isDead: $isDead, causeOfDeath: $causeOfDeath, lifeData: $lifeData, moralImpacts: $moralImpacts, educationState: $educationState, workState: $workState)';
 }
 
 
@@ -365,11 +365,11 @@ abstract mixin class $LifeStateCopyWith<$Res>  {
   factory $LifeStateCopyWith(LifeState value, $Res Function(LifeState) _then) = _$LifeStateCopyWithImpl;
 @useResult
 $Res call({
- int currentYear, int age, int health, int money, int timeRemaining, SkillSet skills, List<TraitType> traits, List<Habit> habits, List<Relationship> relationships, List<Section> sections, HiddenMetrics hiddenMetrics, int eventsTriggeredThisYear, GameEvent? pendingEvent, bool isDead, String? causeOfDeath, Map<String, dynamic> lifeData, List<MoralImpact> moralImpacts, EducationState? educationState
+ int currentYear, int age, int health, int money, int timeRemaining, SkillSet skills, List<TraitType> traits, List<Habit> habits, List<Relationship> relationships, List<Section> sections, HiddenMetrics hiddenMetrics, int eventsTriggeredThisYear, GameEvent? pendingEvent, bool isDead, String? causeOfDeath, Map<String, dynamic> lifeData, List<MoralImpact> moralImpacts, EducationState? educationState, WorkState? workState
 });
 
 
-$SkillSetCopyWith<$Res> get skills;$HiddenMetricsCopyWith<$Res> get hiddenMetrics;$GameEventCopyWith<$Res>? get pendingEvent;$EducationStateCopyWith<$Res>? get educationState;
+$SkillSetCopyWith<$Res> get skills;$HiddenMetricsCopyWith<$Res> get hiddenMetrics;$GameEventCopyWith<$Res>? get pendingEvent;$EducationStateCopyWith<$Res>? get educationState;$WorkStateCopyWith<$Res>? get workState;
 
 }
 /// @nodoc
@@ -382,7 +382,7 @@ class _$LifeStateCopyWithImpl<$Res>
 
 /// Create a copy of LifeState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? currentYear = null,Object? age = null,Object? health = null,Object? money = null,Object? timeRemaining = null,Object? skills = null,Object? traits = null,Object? habits = null,Object? relationships = null,Object? sections = null,Object? hiddenMetrics = null,Object? eventsTriggeredThisYear = null,Object? pendingEvent = freezed,Object? isDead = null,Object? causeOfDeath = freezed,Object? lifeData = null,Object? moralImpacts = null,Object? educationState = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? currentYear = null,Object? age = null,Object? health = null,Object? money = null,Object? timeRemaining = null,Object? skills = null,Object? traits = null,Object? habits = null,Object? relationships = null,Object? sections = null,Object? hiddenMetrics = null,Object? eventsTriggeredThisYear = null,Object? pendingEvent = freezed,Object? isDead = null,Object? causeOfDeath = freezed,Object? lifeData = null,Object? moralImpacts = null,Object? educationState = freezed,Object? workState = freezed,}) {
   return _then(_self.copyWith(
 currentYear: null == currentYear ? _self.currentYear : currentYear // ignore: cast_nullable_to_non_nullable
 as int,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
@@ -402,7 +402,8 @@ as bool,causeOfDeath: freezed == causeOfDeath ? _self.causeOfDeath : causeOfDeat
 as String?,lifeData: null == lifeData ? _self.lifeData : lifeData // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>,moralImpacts: null == moralImpacts ? _self.moralImpacts : moralImpacts // ignore: cast_nullable_to_non_nullable
 as List<MoralImpact>,educationState: freezed == educationState ? _self.educationState : educationState // ignore: cast_nullable_to_non_nullable
-as EducationState?,
+as EducationState?,workState: freezed == workState ? _self.workState : workState // ignore: cast_nullable_to_non_nullable
+as WorkState?,
   ));
 }
 /// Create a copy of LifeState
@@ -446,6 +447,18 @@ $EducationStateCopyWith<$Res>? get educationState {
 
   return $EducationStateCopyWith<$Res>(_self.educationState!, (value) {
     return _then(_self.copyWith(educationState: value));
+  });
+}/// Create a copy of LifeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WorkStateCopyWith<$Res>? get workState {
+    if (_self.workState == null) {
+    return null;
+  }
+
+  return $WorkStateCopyWith<$Res>(_self.workState!, (value) {
+    return _then(_self.copyWith(workState: value));
   });
 }
 }
@@ -526,10 +539,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int currentYear,  int age,  int health,  int money,  int timeRemaining,  SkillSet skills,  List<TraitType> traits,  List<Habit> habits,  List<Relationship> relationships,  List<Section> sections,  HiddenMetrics hiddenMetrics,  int eventsTriggeredThisYear,  GameEvent? pendingEvent,  bool isDead,  String? causeOfDeath,  Map<String, dynamic> lifeData,  List<MoralImpact> moralImpacts,  EducationState? educationState)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int currentYear,  int age,  int health,  int money,  int timeRemaining,  SkillSet skills,  List<TraitType> traits,  List<Habit> habits,  List<Relationship> relationships,  List<Section> sections,  HiddenMetrics hiddenMetrics,  int eventsTriggeredThisYear,  GameEvent? pendingEvent,  bool isDead,  String? causeOfDeath,  Map<String, dynamic> lifeData,  List<MoralImpact> moralImpacts,  EducationState? educationState,  WorkState? workState)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _LifeState() when $default != null:
-return $default(_that.currentYear,_that.age,_that.health,_that.money,_that.timeRemaining,_that.skills,_that.traits,_that.habits,_that.relationships,_that.sections,_that.hiddenMetrics,_that.eventsTriggeredThisYear,_that.pendingEvent,_that.isDead,_that.causeOfDeath,_that.lifeData,_that.moralImpacts,_that.educationState);case _:
+return $default(_that.currentYear,_that.age,_that.health,_that.money,_that.timeRemaining,_that.skills,_that.traits,_that.habits,_that.relationships,_that.sections,_that.hiddenMetrics,_that.eventsTriggeredThisYear,_that.pendingEvent,_that.isDead,_that.causeOfDeath,_that.lifeData,_that.moralImpacts,_that.educationState,_that.workState);case _:
   return orElse();
 
 }
@@ -547,10 +560,10 @@ return $default(_that.currentYear,_that.age,_that.health,_that.money,_that.timeR
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int currentYear,  int age,  int health,  int money,  int timeRemaining,  SkillSet skills,  List<TraitType> traits,  List<Habit> habits,  List<Relationship> relationships,  List<Section> sections,  HiddenMetrics hiddenMetrics,  int eventsTriggeredThisYear,  GameEvent? pendingEvent,  bool isDead,  String? causeOfDeath,  Map<String, dynamic> lifeData,  List<MoralImpact> moralImpacts,  EducationState? educationState)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int currentYear,  int age,  int health,  int money,  int timeRemaining,  SkillSet skills,  List<TraitType> traits,  List<Habit> habits,  List<Relationship> relationships,  List<Section> sections,  HiddenMetrics hiddenMetrics,  int eventsTriggeredThisYear,  GameEvent? pendingEvent,  bool isDead,  String? causeOfDeath,  Map<String, dynamic> lifeData,  List<MoralImpact> moralImpacts,  EducationState? educationState,  WorkState? workState)  $default,) {final _that = this;
 switch (_that) {
 case _LifeState():
-return $default(_that.currentYear,_that.age,_that.health,_that.money,_that.timeRemaining,_that.skills,_that.traits,_that.habits,_that.relationships,_that.sections,_that.hiddenMetrics,_that.eventsTriggeredThisYear,_that.pendingEvent,_that.isDead,_that.causeOfDeath,_that.lifeData,_that.moralImpacts,_that.educationState);}
+return $default(_that.currentYear,_that.age,_that.health,_that.money,_that.timeRemaining,_that.skills,_that.traits,_that.habits,_that.relationships,_that.sections,_that.hiddenMetrics,_that.eventsTriggeredThisYear,_that.pendingEvent,_that.isDead,_that.causeOfDeath,_that.lifeData,_that.moralImpacts,_that.educationState,_that.workState);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -564,10 +577,10 @@ return $default(_that.currentYear,_that.age,_that.health,_that.money,_that.timeR
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int currentYear,  int age,  int health,  int money,  int timeRemaining,  SkillSet skills,  List<TraitType> traits,  List<Habit> habits,  List<Relationship> relationships,  List<Section> sections,  HiddenMetrics hiddenMetrics,  int eventsTriggeredThisYear,  GameEvent? pendingEvent,  bool isDead,  String? causeOfDeath,  Map<String, dynamic> lifeData,  List<MoralImpact> moralImpacts,  EducationState? educationState)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int currentYear,  int age,  int health,  int money,  int timeRemaining,  SkillSet skills,  List<TraitType> traits,  List<Habit> habits,  List<Relationship> relationships,  List<Section> sections,  HiddenMetrics hiddenMetrics,  int eventsTriggeredThisYear,  GameEvent? pendingEvent,  bool isDead,  String? causeOfDeath,  Map<String, dynamic> lifeData,  List<MoralImpact> moralImpacts,  EducationState? educationState,  WorkState? workState)?  $default,) {final _that = this;
 switch (_that) {
 case _LifeState() when $default != null:
-return $default(_that.currentYear,_that.age,_that.health,_that.money,_that.timeRemaining,_that.skills,_that.traits,_that.habits,_that.relationships,_that.sections,_that.hiddenMetrics,_that.eventsTriggeredThisYear,_that.pendingEvent,_that.isDead,_that.causeOfDeath,_that.lifeData,_that.moralImpacts,_that.educationState);case _:
+return $default(_that.currentYear,_that.age,_that.health,_that.money,_that.timeRemaining,_that.skills,_that.traits,_that.habits,_that.relationships,_that.sections,_that.hiddenMetrics,_that.eventsTriggeredThisYear,_that.pendingEvent,_that.isDead,_that.causeOfDeath,_that.lifeData,_that.moralImpacts,_that.educationState,_that.workState);case _:
   return null;
 
 }
@@ -579,7 +592,7 @@ return $default(_that.currentYear,_that.age,_that.health,_that.money,_that.timeR
 @JsonSerializable()
 
 class _LifeState implements LifeState {
-  const _LifeState({required this.currentYear, required this.age, required this.health, required this.money, required this.timeRemaining, required this.skills, required final  List<TraitType> traits, required final  List<Habit> habits, required final  List<Relationship> relationships, required final  List<Section> sections, required this.hiddenMetrics, this.eventsTriggeredThisYear = 0, this.pendingEvent, this.isDead = false, this.causeOfDeath, final  Map<String, dynamic> lifeData = const {}, final  List<MoralImpact> moralImpacts = const [], this.educationState}): _traits = traits,_habits = habits,_relationships = relationships,_sections = sections,_lifeData = lifeData,_moralImpacts = moralImpacts;
+  const _LifeState({required this.currentYear, required this.age, required this.health, required this.money, required this.timeRemaining, required this.skills, required final  List<TraitType> traits, required final  List<Habit> habits, required final  List<Relationship> relationships, required final  List<Section> sections, required this.hiddenMetrics, this.eventsTriggeredThisYear = 0, this.pendingEvent, this.isDead = false, this.causeOfDeath, final  Map<String, dynamic> lifeData = const {}, final  List<MoralImpact> moralImpacts = const [], this.educationState, this.workState}): _traits = traits,_habits = habits,_relationships = relationships,_sections = sections,_lifeData = lifeData,_moralImpacts = moralImpacts;
   factory _LifeState.fromJson(Map<String, dynamic> json) => _$LifeStateFromJson(json);
 
 @override final  int currentYear;
@@ -636,6 +649,7 @@ class _LifeState implements LifeState {
 }
 
 @override final  EducationState? educationState;
+@override final  WorkState? workState;
 
 /// Create a copy of LifeState
 /// with the given fields replaced by the non-null parameter values.
@@ -650,16 +664,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LifeState&&(identical(other.currentYear, currentYear) || other.currentYear == currentYear)&&(identical(other.age, age) || other.age == age)&&(identical(other.health, health) || other.health == health)&&(identical(other.money, money) || other.money == money)&&(identical(other.timeRemaining, timeRemaining) || other.timeRemaining == timeRemaining)&&(identical(other.skills, skills) || other.skills == skills)&&const DeepCollectionEquality().equals(other._traits, _traits)&&const DeepCollectionEquality().equals(other._habits, _habits)&&const DeepCollectionEquality().equals(other._relationships, _relationships)&&const DeepCollectionEquality().equals(other._sections, _sections)&&(identical(other.hiddenMetrics, hiddenMetrics) || other.hiddenMetrics == hiddenMetrics)&&(identical(other.eventsTriggeredThisYear, eventsTriggeredThisYear) || other.eventsTriggeredThisYear == eventsTriggeredThisYear)&&(identical(other.pendingEvent, pendingEvent) || other.pendingEvent == pendingEvent)&&(identical(other.isDead, isDead) || other.isDead == isDead)&&(identical(other.causeOfDeath, causeOfDeath) || other.causeOfDeath == causeOfDeath)&&const DeepCollectionEquality().equals(other._lifeData, _lifeData)&&const DeepCollectionEquality().equals(other._moralImpacts, _moralImpacts)&&(identical(other.educationState, educationState) || other.educationState == educationState));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LifeState&&(identical(other.currentYear, currentYear) || other.currentYear == currentYear)&&(identical(other.age, age) || other.age == age)&&(identical(other.health, health) || other.health == health)&&(identical(other.money, money) || other.money == money)&&(identical(other.timeRemaining, timeRemaining) || other.timeRemaining == timeRemaining)&&(identical(other.skills, skills) || other.skills == skills)&&const DeepCollectionEquality().equals(other._traits, _traits)&&const DeepCollectionEquality().equals(other._habits, _habits)&&const DeepCollectionEquality().equals(other._relationships, _relationships)&&const DeepCollectionEquality().equals(other._sections, _sections)&&(identical(other.hiddenMetrics, hiddenMetrics) || other.hiddenMetrics == hiddenMetrics)&&(identical(other.eventsTriggeredThisYear, eventsTriggeredThisYear) || other.eventsTriggeredThisYear == eventsTriggeredThisYear)&&(identical(other.pendingEvent, pendingEvent) || other.pendingEvent == pendingEvent)&&(identical(other.isDead, isDead) || other.isDead == isDead)&&(identical(other.causeOfDeath, causeOfDeath) || other.causeOfDeath == causeOfDeath)&&const DeepCollectionEquality().equals(other._lifeData, _lifeData)&&const DeepCollectionEquality().equals(other._moralImpacts, _moralImpacts)&&(identical(other.educationState, educationState) || other.educationState == educationState)&&(identical(other.workState, workState) || other.workState == workState));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,currentYear,age,health,money,timeRemaining,skills,const DeepCollectionEquality().hash(_traits),const DeepCollectionEquality().hash(_habits),const DeepCollectionEquality().hash(_relationships),const DeepCollectionEquality().hash(_sections),hiddenMetrics,eventsTriggeredThisYear,pendingEvent,isDead,causeOfDeath,const DeepCollectionEquality().hash(_lifeData),const DeepCollectionEquality().hash(_moralImpacts),educationState);
+int get hashCode => Object.hashAll([runtimeType,currentYear,age,health,money,timeRemaining,skills,const DeepCollectionEquality().hash(_traits),const DeepCollectionEquality().hash(_habits),const DeepCollectionEquality().hash(_relationships),const DeepCollectionEquality().hash(_sections),hiddenMetrics,eventsTriggeredThisYear,pendingEvent,isDead,causeOfDeath,const DeepCollectionEquality().hash(_lifeData),const DeepCollectionEquality().hash(_moralImpacts),educationState,workState]);
 
 @override
 String toString() {
-  return 'LifeState(currentYear: $currentYear, age: $age, health: $health, money: $money, timeRemaining: $timeRemaining, skills: $skills, traits: $traits, habits: $habits, relationships: $relationships, sections: $sections, hiddenMetrics: $hiddenMetrics, eventsTriggeredThisYear: $eventsTriggeredThisYear, pendingEvent: $pendingEvent, isDead: $isDead, causeOfDeath: $causeOfDeath, lifeData: $lifeData, moralImpacts: $moralImpacts, educationState: $educationState)';
+  return 'LifeState(currentYear: $currentYear, age: $age, health: $health, money: $money, timeRemaining: $timeRemaining, skills: $skills, traits: $traits, habits: $habits, relationships: $relationships, sections: $sections, hiddenMetrics: $hiddenMetrics, eventsTriggeredThisYear: $eventsTriggeredThisYear, pendingEvent: $pendingEvent, isDead: $isDead, causeOfDeath: $causeOfDeath, lifeData: $lifeData, moralImpacts: $moralImpacts, educationState: $educationState, workState: $workState)';
 }
 
 
@@ -670,11 +684,11 @@ abstract mixin class _$LifeStateCopyWith<$Res> implements $LifeStateCopyWith<$Re
   factory _$LifeStateCopyWith(_LifeState value, $Res Function(_LifeState) _then) = __$LifeStateCopyWithImpl;
 @override @useResult
 $Res call({
- int currentYear, int age, int health, int money, int timeRemaining, SkillSet skills, List<TraitType> traits, List<Habit> habits, List<Relationship> relationships, List<Section> sections, HiddenMetrics hiddenMetrics, int eventsTriggeredThisYear, GameEvent? pendingEvent, bool isDead, String? causeOfDeath, Map<String, dynamic> lifeData, List<MoralImpact> moralImpacts, EducationState? educationState
+ int currentYear, int age, int health, int money, int timeRemaining, SkillSet skills, List<TraitType> traits, List<Habit> habits, List<Relationship> relationships, List<Section> sections, HiddenMetrics hiddenMetrics, int eventsTriggeredThisYear, GameEvent? pendingEvent, bool isDead, String? causeOfDeath, Map<String, dynamic> lifeData, List<MoralImpact> moralImpacts, EducationState? educationState, WorkState? workState
 });
 
 
-@override $SkillSetCopyWith<$Res> get skills;@override $HiddenMetricsCopyWith<$Res> get hiddenMetrics;@override $GameEventCopyWith<$Res>? get pendingEvent;@override $EducationStateCopyWith<$Res>? get educationState;
+@override $SkillSetCopyWith<$Res> get skills;@override $HiddenMetricsCopyWith<$Res> get hiddenMetrics;@override $GameEventCopyWith<$Res>? get pendingEvent;@override $EducationStateCopyWith<$Res>? get educationState;@override $WorkStateCopyWith<$Res>? get workState;
 
 }
 /// @nodoc
@@ -687,7 +701,7 @@ class __$LifeStateCopyWithImpl<$Res>
 
 /// Create a copy of LifeState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? currentYear = null,Object? age = null,Object? health = null,Object? money = null,Object? timeRemaining = null,Object? skills = null,Object? traits = null,Object? habits = null,Object? relationships = null,Object? sections = null,Object? hiddenMetrics = null,Object? eventsTriggeredThisYear = null,Object? pendingEvent = freezed,Object? isDead = null,Object? causeOfDeath = freezed,Object? lifeData = null,Object? moralImpacts = null,Object? educationState = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? currentYear = null,Object? age = null,Object? health = null,Object? money = null,Object? timeRemaining = null,Object? skills = null,Object? traits = null,Object? habits = null,Object? relationships = null,Object? sections = null,Object? hiddenMetrics = null,Object? eventsTriggeredThisYear = null,Object? pendingEvent = freezed,Object? isDead = null,Object? causeOfDeath = freezed,Object? lifeData = null,Object? moralImpacts = null,Object? educationState = freezed,Object? workState = freezed,}) {
   return _then(_LifeState(
 currentYear: null == currentYear ? _self.currentYear : currentYear // ignore: cast_nullable_to_non_nullable
 as int,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
@@ -707,7 +721,8 @@ as bool,causeOfDeath: freezed == causeOfDeath ? _self.causeOfDeath : causeOfDeat
 as String?,lifeData: null == lifeData ? _self._lifeData : lifeData // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>,moralImpacts: null == moralImpacts ? _self._moralImpacts : moralImpacts // ignore: cast_nullable_to_non_nullable
 as List<MoralImpact>,educationState: freezed == educationState ? _self.educationState : educationState // ignore: cast_nullable_to_non_nullable
-as EducationState?,
+as EducationState?,workState: freezed == workState ? _self.workState : workState // ignore: cast_nullable_to_non_nullable
+as WorkState?,
   ));
 }
 
@@ -752,6 +767,18 @@ $EducationStateCopyWith<$Res>? get educationState {
 
   return $EducationStateCopyWith<$Res>(_self.educationState!, (value) {
     return _then(_self.copyWith(educationState: value));
+  });
+}/// Create a copy of LifeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WorkStateCopyWith<$Res>? get workState {
+    if (_self.workState == null) {
+    return null;
+  }
+
+  return $WorkStateCopyWith<$Res>(_self.workState!, (value) {
+    return _then(_self.copyWith(workState: value));
   });
 }
 }

@@ -227,5 +227,52 @@
     "placeholders": {
       "cost": {"type": "int"}
     }
-  }
+  },
+
+  "quitJob": "Quit Job",
+  "quitJobConfirmTitle": "Quit your job?",
+  "quitJobConfirmMessage": "Are you sure you want to quit {jobName}?",
+  "@quitJobConfirmMessage": {
+    "placeholders": {
+      "jobName": {"type": "String"}
+    }
+  },
+  "askPromotion": "Ask for Promotion",
+  "unemployed": "Unemployed",
+  "jobTypeFullTime": "Full-time",
+  "jobTypePartTime": "Part-time",
+  "jobTypeCasual": "Casual",
+  "jobLevel": "Level {level}",
+  "@jobLevel": {
+    "placeholders": {
+      "level": {"type": "int"}
+    }
+  },
+  "jobSalary": "${amount}/yr",
+  "@jobSalary": {
+    "placeholders": {
+      "amount": {"type": "int"}
+    }
+  },
+  "applyToJob": "Apply",
+  "workYearsLabel": "Ages {start}-{end}",
+  "@workYearsLabel": {
+    "placeholders": {
+      "start": {"type": "int"},
+      "end": {"type": "int"}
+    }
+  },
+  "workRecordQuit": "Quit",
+  "workRecordFired": "Fired",
+  "workRecordCasualCompleted": "Completed",
+  "noCurrentJob": "Not employed",
+  "currentJobs": "Current Jobs",
+  "interviewInvite": "Interview",
+  "applicationRejected": "Rejected",
+  "hired": "Hired!",
+  "notHired": "Not Hired",
+  "promotionGranted": "Promoted!",
+  "promotionDenied": "Promotion Denied",
+  "ok": "OK",
+  "actionsThisYear": "Actions done this year"
 }

@@ -13,6 +13,9 @@ import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/providers/life/life_controller.dart';
 import 'package:alma/ui/life/event_dialog.dart';
 import 'package:alma/ui/life/education_enroll_dialog.dart';
+import 'package:alma/ui/life/job_apply_dialog.dart';
+import 'package:alma/core/models/job.dart';
+import 'package:alma/core/models/work_prompt.dart';
 import 'package:alma/ui/life/tabs/life_main_tab.dart';
 import 'package:alma/ui/life/tabs/work_tab.dart';
 import 'package:alma/ui/life/tabs/education_tab.dart';
@@ -61,6 +64,10 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
       if (next.currentLife?.state.educationState?.pendingPrompt != null &&
           prev?.currentLife?.state.educationState?.pendingPrompt == null) {
         _showEducationPrompt(context);
+      }
+      if (next.currentLife?.state.workState?.pendingPrompt != null &&
+          prev?.currentLife?.state.workState?.pendingPrompt == null) {
+        _showWorkPrompt(context);
       }
       if (next.currentLife?.state.isDead == true &&
           prev?.currentLife?.state.isDead != true) {
@@ -141,10 +148,13 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
       WorkTab(
         key: const ValueKey<int>(0),
         state: state,
-        actions: lifeState.availableActions
-            .where((a) => a.category == ActionCategory.work)
-            .toList(),
+        actionsByJobId: ref.read(lifeControllerProvider.notifier).getWorkActions(),
         onActionTap: _performAction,
+        onGetJobTap: () => _showJobApplyDialog(context),
+        onQuitJobTap: (String jobId) => _showQuitJobDialog(context, jobId),
+        onAskPromotionTap: (String jobId) {
+          ref.read(lifeControllerProvider.notifier).requestPromotion(jobId);
+        },
       ),
       EducationTab(
         key: const ValueKey<int>(1),
@@ -214,8 +224,11 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
     );
   }
 
-  void _performAction(GameAction action) {
-    ref.read(lifeControllerProvider.notifier).performAction(action);
+  void _performAction(GameAction action, {String? workJobId}) {
+    ref.read(lifeControllerProvider.notifier).performAction(
+          action,
+          workJobContext: workJobId,
+        );
   }
 
   void _showEventDialog(BuildContext context) {
@@ -273,6 +286,78 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
             ref.read(lifeControllerProvider.notifier).declineEnrollment();
           }
         },
+      ),
+    );
+  }
+
+  void _showJobApplyDialog(BuildContext context) {
+    final LifeController controller = ref.read(lifeControllerProvider.notifier);
+    final List<Job> jobs = controller.getAvailableJobs();
+    showDialog(
+      context: context,
+      builder: (_) => JobApplyDialog(
+        availableJobs: jobs,
+        onJobSelected: (Job job) {
+          Navigator.of(context).pop();
+          controller.applyToJob(job);
+        },
+        onDecline: () => Navigator.of(context).pop(),
+      ),
+    );
+  }
+
+  void _showQuitJobDialog(BuildContext context, String jobId) {
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
+    final LifeControllerState lifeState = ref.read(lifeControllerProvider);
+    final String jobName = lifeState.currentLife?.state.workState
+            ?.currentEmployments
+            .where((e) => e.jobId == jobId)
+            .firstOrNull
+            ?.jobName ??
+        '';
+    showDialog(
+      context: context,
+      builder: (BuildContext ctx) => AlertDialog(
+        title: Text(l10n.quitJobConfirmTitle),
+        content: Text(l10n.quitJobConfirmMessage(jobName)),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: Text(l10n.cancel),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+              ref.read(lifeControllerProvider.notifier).quitJob(jobId);
+            },
+            child: Text(l10n.confirm),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showWorkPrompt(BuildContext context) {
+    final LifeControllerState lifeState = ref.read(lifeControllerProvider);
+    final WorkPrompt? prompt =
+        lifeState.currentLife?.state.workState?.pendingPrompt;
+    if (prompt == null) return;
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => AlertDialog(
+        title: Text(prompt.title),
+        content: Text(prompt.description),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              ref.read(lifeControllerProvider.notifier).dismissWorkPrompt();
+            },
+            child: Text(l10n.ok),
+          ),
+        ],
       ),
     );
   }

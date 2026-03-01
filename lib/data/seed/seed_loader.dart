@@ -5,7 +5,9 @@ import 'package:alma/core/models/action.dart';
 import 'package:alma/core/models/life_template.dart';
 import 'package:alma/core/models/achievement.dart';
 import 'package:alma/core/models/education_program.dart';
+import 'package:alma/core/models/job.dart';
 import 'package:alma/core/rules/education_country_config.dart';
+import 'package:alma/core/rules/work_country_config.dart';
 
 class SeedLoader {
   List<GameEvent>? _cachedEvents;
@@ -15,6 +17,9 @@ class SeedLoader {
   List<EducationProgram>? _cachedEducationPrograms;
   Map<String, EducationCountryConfig>? _cachedCountryConfigs;
   List<GameAction>? _cachedEducationActions;
+  List<Job>? _cachedJobs;
+  Map<String, WorkCountryConfig>? _cachedWorkCountryConfigs;
+  List<GameAction>? _cachedWorkActions;
 
   Future<List<GameEvent>> loadEvents() async {
     if (_cachedEvents != null) return _cachedEvents!;
@@ -94,5 +99,45 @@ class SeedLoader {
         .map((a) => GameAction.fromJson(a as Map<String, dynamic>))
         .toList();
     return _cachedEducationActions!;
+  }
+
+  Future<List<Job>> loadJobs() async {
+    if (_cachedJobs != null) return _cachedJobs!;
+    final String jsonString =
+        await rootBundle.loadString('assets/data/work/jobs.json');
+    final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
+    _cachedJobs = jsonList
+        .map((j) => Job.fromJson(j as Map<String, dynamic>))
+        .toList();
+    return _cachedJobs!;
+  }
+
+  Future<WorkCountryConfig> loadWorkCountryConfig(String country) async {
+    if (_cachedWorkCountryConfigs != null &&
+        _cachedWorkCountryConfigs!.containsKey(country)) {
+      return _cachedWorkCountryConfigs![country]!;
+    }
+    _cachedWorkCountryConfigs ??= {};
+    final String jsonString =
+        await rootBundle.loadString('assets/data/work/work_country_configs.json');
+    final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
+    for (final dynamic entry in jsonList) {
+      final WorkCountryConfig config =
+          WorkCountryConfig.fromJson(entry as Map<String, dynamic>);
+      _cachedWorkCountryConfigs![config.countryCode] = config;
+    }
+    return _cachedWorkCountryConfigs![country] ??
+        _cachedWorkCountryConfigs!.values.first;
+  }
+
+  Future<List<GameAction>> loadWorkActions() async {
+    if (_cachedWorkActions != null) return _cachedWorkActions!;
+    final String jsonString =
+        await rootBundle.loadString('assets/data/work/work_actions.json');
+    final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
+    _cachedWorkActions = jsonList
+        .map((a) => GameAction.fromJson(a as Map<String, dynamic>))
+        .toList();
+    return _cachedWorkActions!;
   }
 }

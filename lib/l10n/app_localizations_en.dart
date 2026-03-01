@@ -448,4 +448,87 @@ class AppLocalizationsEn extends AppLocalizations {
   String timeCostLabel(int cost) {
     return '${cost}t';
   }
+
+  @override
+  String get quitJob => 'Quit Job';
+
+  @override
+  String get quitJobConfirmTitle => 'Quit your job?';
+
+  @override
+  String quitJobConfirmMessage(String jobName) {
+    return 'Are you sure you want to quit $jobName?';
+  }
+
+  @override
+  String get askPromotion => 'Ask for Promotion';
+
+  @override
+  String get unemployed => 'Unemployed';
+
+  @override
+  String get jobTypeFullTime => 'Full-time';
+
+  @override
+  String get jobTypePartTime => 'Part-time';
+
+  @override
+  String get jobTypeCasual => 'Casual';
+
+  @override
+  String jobLevel(int level) {
+    return 'Level $level';
+  }
+
+  @override
+  String jobSalary(int amount) {
+    return '\$$amount/yr';
+  }
+
+  @override
+  String get applyToJob => 'Apply';
+
+  @override
+  String workYearsLabel(int start, int end) {
+    return 'Ages $start-$end';
+  }
+
+  @override
+  String get workRecordQuit => 'Quit';
+
+  @override
+  String get workRecordFired => 'Fired';
+
+  @override
+  String get workRecordCasualCompleted => 'Completed';
+
+  @override
+  String get noCurrentJob => 'Not employed';
+
+  @override
+  String get currentJobs => 'Current Jobs';
+
+  @override
+  String get interviewInvite => 'Interview';
+
+  @override
+  String get applicationRejected => 'Rejected';
+
+  @override
+  String get hired => 'Hired!';
+
+  @override
+  String get notHired => 'Not Hired';
+
+  @override
+  String get promotionGranted => 'Promoted!';
+
+  @override
+  String get promotionDenied => 'Promotion Denied';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get actionsThisYear => 'Actions done this year';
 }
