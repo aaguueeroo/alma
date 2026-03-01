@@ -6,6 +6,7 @@ import 'package:alma/core/models/education_state.dart';
 import 'package:alma/core/models/enrollment.dart';
 import 'package:alma/core/models/education_record.dart';
 import 'package:alma/core/models/enums/section_type.dart';
+import 'package:alma/core/engine/time_commitment.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/app/constants/sizing.dart';
 import 'package:alma/l10n/app_localizations.dart';
@@ -64,6 +65,7 @@ class EducationTab extends StatelessWidget {
             actionsLabel: l10n.studyActions,
             isEnrolled: enrollment != null,
             canDropOut: canDropOut,
+            canEnroll: state.timeRemaining >= getEducationCommitmentDays(),
             onEnrollTap: onEnrollTap,
             onDropOutTap: onDropOutTap,
             onActionsTap: () => _showActionsDialog(context, l10n),
@@ -164,6 +166,7 @@ class _ActionButtonsRow extends StatelessWidget {
     required this.actionsLabel,
     required this.isEnrolled,
     required this.canDropOut,
+    required this.canEnroll,
     required this.onEnrollTap,
     required this.onDropOutTap,
     required this.onActionsTap,
@@ -174,6 +177,7 @@ class _ActionButtonsRow extends StatelessWidget {
   final String actionsLabel;
   final bool isEnrolled;
   final bool canDropOut;
+  final bool canEnroll;
   final VoidCallback onEnrollTap;
   final VoidCallback onDropOutTap;
   final VoidCallback onActionsTap;
@@ -186,7 +190,7 @@ class _ActionButtonsRow extends StatelessWidget {
           child: OutlinedButton(
             onPressed: isEnrolled
                 ? (canDropOut ? onDropOutTap : null)
-                : onEnrollTap,
+                : (canEnroll ? onEnrollTap : null),
             child: Text(isEnrolled ? dropOutLabel : enrollLabel),
           ),
         ),
@@ -226,7 +230,7 @@ class _EducationActionTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(kBorderRadiusSmall),
         ),
         child: Text(
-          '${action.timeCost}t',
+          AppLocalizations.of(context)!.timeCostLabel(action.timeCost),
           style: Theme.of(context).textTheme.labelSmall,
         ),
       ),

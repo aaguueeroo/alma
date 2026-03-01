@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:drift/drift.dart';
 import 'package:alma/data/database/app_database.dart';
 import 'package:alma/core/models/life.dart';
+import 'package:alma/app/constants/time_constants.dart';
 
 class LifeRepository {
   LifeRepository({required this.database});
@@ -35,7 +36,12 @@ class LifeRepository {
   Life _rowToLife(LivesTableData row) {
     final Map<String, dynamic> stateMap =
         jsonDecode(row.stateJson) as Map<String, dynamic>;
-    final LifeState state = LifeState.fromJson(stateMap);
+    LifeState state = LifeState.fromJson(stateMap);
+    if (state.timeRemaining <= 100) {
+      final int migratedDays =
+          (state.timeRemaining * kDaysPerYear / 100).round();
+      state = state.copyWith(timeRemaining: migratedDays);
+    }
     LifeSummary? summary;
     if (row.summaryJson != null) {
       summary = LifeSummary.fromJson(

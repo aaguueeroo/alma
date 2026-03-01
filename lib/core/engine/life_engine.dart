@@ -11,6 +11,7 @@ import 'package:alma/core/engine/education_engine.dart';
 import 'package:alma/core/engine/work_engine.dart';
 import 'package:alma/core/engine/seeded_random.dart';
 import 'package:alma/app/constants/game_constants.dart';
+import 'package:alma/app/constants/time_constants.dart';
 import 'package:uuid/uuid.dart';
 
 class LifeEngine {
@@ -31,13 +32,15 @@ class LifeEngine {
     required String soulId,
     required LifeTemplate template,
     required int seed,
+    int? initialTimeRemaining,
   }) {
+    final int timeRemaining = initialTimeRemaining ?? kDaysPerYear;
     LifeState initialState = LifeState(
       currentYear: 1,
       age: kStartingAge,
       health: template.startingHealth,
       money: template.startingMoney,
-      timeRemaining: kTimeUnitsPerYear,
+      timeRemaining: timeRemaining,
       skills: template.startingSkills,
       traits: template.startingTraits,
       habits: [],

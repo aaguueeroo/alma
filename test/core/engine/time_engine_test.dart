@@ -4,8 +4,9 @@ import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/action.dart';
 import 'package:alma/core/models/skill.dart';
 import 'package:alma/core/models/hidden_metrics.dart';
+import 'package:alma/core/models/life_maintenance_item.dart';
 import 'package:alma/core/models/enums/action_category.dart';
-import 'package:alma/app/constants/game_constants.dart';
+import 'package:alma/app/constants/time_constants.dart';
 
 void main() {
   late TimeEngine timeEngine;
@@ -15,7 +16,7 @@ void main() {
   });
 
   LifeState createTestState({
-    int timeRemaining = kTimeUnitsPerYear,
+    int timeRemaining = kDaysPerYear,
     SkillSet? skills,
   }) {
     return LifeState(
@@ -33,7 +34,7 @@ void main() {
     );
   }
 
-  GameAction createTestAction({int timeCost = 10}) {
+  GameAction createTestAction({int timeCost = 15}) {
     return GameAction(
       id: 'test',
       name: 'Test',
@@ -45,15 +46,15 @@ void main() {
 
   group('TimeEngine', () {
     test('consumeTime decreases time remaining', () {
-      final state = createTestState(timeRemaining: 50);
-      final action = createTestAction(timeCost: 15);
+      final state = createTestState(timeRemaining: 100);
+      final action = createTestAction(timeCost: 35);
       final result = timeEngine.consumeTime(state, action);
-      expect(result.timeRemaining, 35);
+      expect(result.timeRemaining, 65);
     });
 
     test('consumeTime clamps to zero', () {
-      final state = createTestState(timeRemaining: 5);
-      final action = createTestAction(timeCost: 15);
+      final state = createTestState(timeRemaining: 10);
+      final action = createTestAction(timeCost: 25);
       final result = timeEngine.consumeTime(state, action);
       expect(result.timeRemaining, 0);
     });
@@ -61,10 +62,23 @@ void main() {
     test('startNewYear resets time and increments year and age', () {
       final state = createTestState(timeRemaining: 0);
       final result = timeEngine.startNewYear(state);
-      expect(result.timeRemaining, kTimeUnitsPerYear);
+      expect(result.timeRemaining, kDaysPerYear);
       expect(result.currentYear, 2);
       expect(result.age, 21);
       expect(result.eventsTriggeredThisYear, 0);
+    });
+
+    test('startNewYear subtracts life maintenance when loaded', () {
+      timeEngine.loadLifeMaintenance([
+        const LifeMaintenanceItem(id: 'sleep', name: 'Sleep', hoursPerDay: 8),
+        const LifeMaintenanceItem(id: 'hygiene', name: 'Hygiene', hoursPerDay: 1),
+        const LifeMaintenanceItem(id: 'eating', name: 'Eating', hoursPerDay: 2),
+      ]);
+      final state = createTestState(timeRemaining: 0);
+      final result = timeEngine.startNewYear(state);
+      expect(result.timeRemaining, lessThan(kDaysPerYear));
+      const int maintenanceDays = 122 + 15 + 30;
+      expect(result.timeRemaining, equals(kDaysPerYear - maintenanceDays));
     });
 
     test('hasTimeRemaining returns correct value', () {
@@ -76,14 +90,14 @@ void main() {
       final highSkillState = createTestState(
         skills: const SkillSet(intelligence: 80),
       );
-      final action = createTestAction(timeCost: 20);
+      final action = createTestAction(timeCost: 22);
       final adjustedCost = timeEngine.calculateAdjustedTimeCost(
         highSkillState,
         action.copyWith(skillEffects: {
           ...action.skillEffects,
         }),
       );
-      expect(adjustedCost, 20);
+      expect(adjustedCost, 22);
     });
   });
 }

@@ -9,6 +9,7 @@ import 'package:alma/core/models/employment.dart';
 import 'package:alma/core/engine/life_engine.dart';
 import 'package:alma/core/engine/education_engine.dart';
 import 'package:alma/core/engine/work_engine.dart';
+import 'package:alma/core/engine/time_engine.dart';
 import 'package:alma/core/engine/seeded_random.dart';
 import 'package:alma/data/repositories/life_repository.dart';
 import 'package:alma/data/seed/seed_loader.dart';
@@ -61,6 +62,7 @@ class LifeController extends StateNotifier<LifeControllerState> {
     required this.eventEngine,
     required this.educationEngine,
     required this.workEngine,
+    required this.timeEngine,
   }) : super(const LifeControllerState());
 
   final LifeEngine lifeEngine;
@@ -69,6 +71,7 @@ class LifeController extends StateNotifier<LifeControllerState> {
   final EventEngine eventEngine;
   final EducationEngine educationEngine;
   final WorkEngine workEngine;
+  final TimeEngine timeEngine;
 
   Future<void> loadLife(Life life) async {
     state = state.copyWith(isLoading: true, clearError: true);
@@ -85,6 +88,8 @@ class LifeController extends StateNotifier<LifeControllerState> {
         programs: programs,
         educationActions: eduActions,
       );
+      final lifeMaintenance = await seedLoader.loadLifeMaintenance();
+      timeEngine.loadLifeMaintenance(lifeMaintenance);
       List<GameAction> workActions = [];
       try {
         final jobs = await seedLoader.loadJobs();
@@ -381,5 +386,6 @@ final lifeControllerProvider =
     eventEngine: ref.watch(eventEngineProvider),
     educationEngine: ref.watch(educationEngineProvider),
     workEngine: ref.watch(workEngineProvider),
+    timeEngine: ref.watch(timeEngineProvider),
   );
 });

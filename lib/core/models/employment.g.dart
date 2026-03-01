@@ -17,6 +17,7 @@ _Employment _$EmploymentFromJson(Map<String, dynamic> json) => _Employment(
   lastPromotionYear: (json['lastPromotionYear'] as num?)?.toInt(),
   isActive: json['isActive'] as bool? ?? true,
   performance: (json['performance'] as num?)?.toInt() ?? 50,
+  hoursPerWeek: (json['hoursPerWeek'] as num?)?.toInt(),
 );
 
 Map<String, dynamic> _$EmploymentToJson(_Employment instance) =>
@@ -31,6 +32,7 @@ Map<String, dynamic> _$EmploymentToJson(_Employment instance) =>
       'lastPromotionYear': instance.lastPromotionYear,
       'isActive': instance.isActive,
       'performance': instance.performance,
+      'hoursPerWeek': instance.hoursPerWeek,
     };
 
 const _$JobTypeEnumMap = {

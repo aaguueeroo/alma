@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:alma/core/models/job.dart';
 import 'package:alma/core/models/enums/job_type.dart';
+import 'package:alma/core/engine/time_commitment.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/app/constants/sizing.dart';
 import 'package:alma/l10n/app_localizations.dart';
@@ -9,11 +10,13 @@ class JobApplyDialog extends StatelessWidget {
   const JobApplyDialog({
     super.key,
     required this.availableJobs,
+    required this.timeRemaining,
     required this.onJobSelected,
     required this.onDecline,
   });
 
   final List<Job> availableJobs;
+  final int timeRemaining;
   final void Function(Job job) onJobSelected;
   final VoidCallback onDecline;
 
@@ -54,7 +57,7 @@ class JobApplyDialog extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
-                          children: _buildGroupedJobs(context, l10n, byType),
+                          children: _buildGroupedJobs(context, l10n, byType, timeRemaining),
                         ),
                       ),
               ),
@@ -85,6 +88,7 @@ class JobApplyDialog extends StatelessWidget {
     BuildContext context,
     AppLocalizations l10n,
     Map<JobType, List<Job>> byType,
+    int timeRemaining,
   ) {
     final List<Widget> result = <Widget>[];
     for (final JobType type in JobType.values) {
@@ -108,12 +112,16 @@ class JobApplyDialog extends StatelessWidget {
         ),
       );
       for (final Job job in jobs) {
+        final int commitmentDays = getJobCommitmentDays(job);
+        final bool canApply = timeRemaining >= commitmentDays;
         result.add(
           Padding(
             padding: const EdgeInsets.only(bottom: kSpacing8),
             child: _JobChoiceButton(
               job: job,
               l10n: l10n,
+              canApply: canApply,
+              commitmentDays: commitmentDays,
               onTap: () => onJobSelected(job),
             ),
           ),
@@ -129,11 +137,15 @@ class _JobChoiceButton extends StatelessWidget {
   const _JobChoiceButton({
     required this.job,
     required this.l10n,
+    required this.canApply,
+    required this.commitmentDays,
     required this.onTap,
   });
 
   final Job job;
   final AppLocalizations l10n;
+  final bool canApply;
+  final int commitmentDays;
   final VoidCallback onTap;
 
   @override
@@ -141,8 +153,10 @@ class _JobChoiceButton extends StatelessWidget {
     final int salary = job.baseSalary;
     return SizedBox(
       width: double.infinity,
-      child: OutlinedButton(
-        onPressed: onTap,
+      child: Tooltip(
+        message: canApply ? '' : l10n.jobNotEnoughTime(commitmentDays),
+        child: OutlinedButton(
+          onPressed: canApply ? onTap : null,
         style: OutlinedButton.styleFrom(
           alignment: Alignment.centerLeft,
           padding: kPaddingAll16,
@@ -179,6 +193,7 @@ class _JobChoiceButton extends StatelessWidget {
               textAlign: TextAlign.left,
             ),
           ],
+        ),
         ),
       ),
     );

@@ -6,6 +6,7 @@ import 'package:alma/core/models/life_template.dart';
 import 'package:alma/core/models/achievement.dart';
 import 'package:alma/core/models/education_program.dart';
 import 'package:alma/core/models/job.dart';
+import 'package:alma/core/models/life_maintenance_item.dart';
 import 'package:alma/core/rules/education_country_config.dart';
 import 'package:alma/core/rules/work_country_config.dart';
 
@@ -20,6 +21,7 @@ class SeedLoader {
   List<Job>? _cachedJobs;
   Map<String, WorkCountryConfig>? _cachedWorkCountryConfigs;
   List<GameAction>? _cachedWorkActions;
+  List<LifeMaintenanceItem>? _cachedLifeMaintenance;
 
   Future<List<GameEvent>> loadEvents() async {
     if (_cachedEvents != null) return _cachedEvents!;
@@ -139,5 +141,16 @@ class SeedLoader {
         .map((a) => GameAction.fromJson(a as Map<String, dynamic>))
         .toList();
     return _cachedWorkActions!;
+  }
+
+  Future<List<LifeMaintenanceItem>> loadLifeMaintenance() async {
+    if (_cachedLifeMaintenance != null) return _cachedLifeMaintenance!;
+    final String jsonString =
+        await rootBundle.loadString('assets/data/life_maintenance.json');
+    final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
+    _cachedLifeMaintenance = jsonList
+        .map((e) => LifeMaintenanceItem.fromJson(e as Map<String, dynamic>))
+        .toList();
+    return _cachedLifeMaintenance!;
   }
 }

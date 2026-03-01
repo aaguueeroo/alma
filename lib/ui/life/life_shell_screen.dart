@@ -292,11 +292,14 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
 
   void _showJobApplyDialog(BuildContext context) {
     final LifeController controller = ref.read(lifeControllerProvider.notifier);
+    final LifeControllerState lifeState = ref.read(lifeControllerProvider);
     final List<Job> jobs = controller.getAvailableJobs();
+    final int timeRemaining = lifeState.currentLife?.state.timeRemaining ?? 0;
     showDialog(
       context: context,
       builder: (_) => JobApplyDialog(
         availableJobs: jobs,
+        timeRemaining: timeRemaining,
         onJobSelected: (Job job) {
           Navigator.of(context).pop();
           controller.applyToJob(job);

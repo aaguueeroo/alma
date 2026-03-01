@@ -25,7 +25,7 @@
   "@timeRemaining": {
     "placeholders": {
       "time": {
-        "type": "int"
+        "type": "String"
       }
     }
   },
@@ -222,10 +222,10 @@
       "end": {"type": "int"}
     }
   },
-  "timeCostLabel": "{cost}t",
+  "timeCostLabel": "{count, plural, =1{1 day} other{{count} days}}",
   "@timeCostLabel": {
     "placeholders": {
-      "cost": {"type": "int"}
+      "count": {"type": "int"}
     }
   },
 
@@ -252,6 +252,12 @@
   "@jobSalary": {
     "placeholders": {
       "amount": {"type": "int"}
+    }
+  },
+  "jobNotEnoughTime": "Not enough time left this year. This job requires {days} days.",
+  "@jobNotEnoughTime": {
+    "placeholders": {
+      "days": {"type": "int"}
     }
   },
   "applyToJob": "Apply",

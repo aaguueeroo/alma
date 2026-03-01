@@ -4,6 +4,7 @@ import 'package:alma/core/models/enums/action_category.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/app/constants/sizing.dart';
 import 'package:alma/app/theme/app_colors.dart';
+import 'package:alma/l10n/app_localizations.dart';
 
 class ActionTileWidget extends StatelessWidget {
   const ActionTileWidget({
@@ -84,7 +85,7 @@ class ActionTileWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(kBorderRadiusSmall),
                 ),
                 child: Text(
-                  '${action.timeCost}t',
+                  AppLocalizations.of(context)!.timeCostLabel(action.timeCost),
                   style: Theme.of(context).textTheme.labelSmall,
                 ),
               ),

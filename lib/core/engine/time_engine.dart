@@ -1,10 +1,24 @@
 import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/action.dart';
 import 'package:alma/core/models/skill.dart';
+import 'package:alma/core/models/life_maintenance_item.dart';
 import 'package:alma/core/models/enums/trait_type.dart';
-import 'package:alma/app/constants/game_constants.dart';
+import 'package:alma/core/engine/time_commitment.dart';
+import 'package:alma/app/constants/time_constants.dart';
 
 class TimeEngine {
+  List<LifeMaintenanceItem> _lifeMaintenance = [];
+
+  void loadLifeMaintenance(List<LifeMaintenanceItem> items) {
+    _lifeMaintenance = List.from(items);
+  }
+
+  /// Initial time remaining for a new life (year 1). Subtracts life maintenance only.
+  int getInitialTimeRemainingForNewLife() {
+    final int maintenance = getLifeMaintenanceCommitmentDays(_lifeMaintenance);
+    return (kDaysPerYear - maintenance).clamp(0, kDaysPerYear);
+  }
+
   LifeState consumeTime(LifeState state, GameAction action) {
     final int adjustedCost = calculateAdjustedTimeCost(state, action);
     final int consumed = adjustedCost.clamp(0, state.timeRemaining);
@@ -25,14 +39,17 @@ class TimeEngine {
     if (state.traits.contains(TraitType.ambitious)) {
       cost *= 0.9;
     }
-    return cost.round().clamp(1, kTimeUnitsPerYear);
+    return cost.round().clamp(1, kDaysPerYear);
   }
 
   LifeState startNewYear(LifeState state) {
+    final int commitment = getYearStartCommitmentDays(state) +
+        getLifeMaintenanceCommitmentDays(_lifeMaintenance);
+    final int available = (kDaysPerYear - commitment).clamp(0, kDaysPerYear);
     return state.copyWith(
       currentYear: state.currentYear + 1,
       age: state.age + 1,
-      timeRemaining: kTimeUnitsPerYear,
+      timeRemaining: available,
       eventsTriggeredThisYear: 0,
     );
   }

@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/app/constants/sizing.dart';
-import 'package:alma/app/constants/game_constants.dart';
+import 'package:alma/app/constants/time_constants.dart';
+import 'package:alma/app/utils/time_format.dart';
 
 class TimeBudgetBar extends StatelessWidget {
-  const TimeBudgetBar({
-    super.key,
-    required this.timeRemaining,
-  });
+  const TimeBudgetBar({super.key, required this.timeRemaining});
 
   final int timeRemaining;
 
   @override
   Widget build(BuildContext context) {
-    final double fraction = timeRemaining / kTimeUnitsPerYear;
+    final double fraction = timeRemaining / kDaysPerYear;
     final ColorScheme colors = Theme.of(context).colorScheme;
+    final String formattedTime = formatTimeRemainingMonths(timeRemaining);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -22,13 +21,10 @@ class TimeBudgetBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Time Remaining',
+              'Time Remaining:',
               style: Theme.of(context).textTheme.labelLarge,
             ),
-            Text(
-              '$timeRemaining / $kTimeUnitsPerYear',
-              style: Theme.of(context).textTheme.labelMedium,
-            ),
+            Text(formattedTime, style: Theme.of(context).textTheme.labelLarge),
           ],
         ),
         kVerticalGap4,
@@ -41,8 +37,8 @@ class TimeBudgetBar extends StatelessWidget {
             color: fraction > 0.5
                 ? colors.primary
                 : fraction > 0.2
-                    ? colors.tertiary
-                    : colors.error,
+                ? colors.tertiary
+                : colors.error,
           ),
         ),
       ],

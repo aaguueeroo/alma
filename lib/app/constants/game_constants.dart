@@ -1,6 +1,5 @@
 const int kMaxSaveSlots = 5;
 const int kDefaultMaxLives = 7;
-const int kTimeUnitsPerYear = 100;
 const int kSubjectPassThreshold = 70;
 const int kMaxSubjectScore = 100;
 const int kStartingAge = 0;

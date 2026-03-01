@@ -331,7 +331,7 @@ class _WorkActionTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(kBorderRadiusSmall),
         ),
         child: Text(
-          '${action.timeCost}t',
+          AppLocalizations.of(context)!.timeCostLabel(action.timeCost),
           style: Theme.of(context).textTheme.labelSmall,
         ),
       ),

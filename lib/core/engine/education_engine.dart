@@ -12,6 +12,7 @@ import 'package:alma/core/models/enums/section_type.dart';
 import 'package:alma/core/rules/education_country_config.dart';
 import 'package:alma/core/models/skill.dart';
 import 'package:alma/core/engine/seeded_random.dart';
+import 'package:alma/core/engine/time_commitment.dart';
 
 class EducationEngine {
   EducationCountryConfig? _countryConfig;
@@ -341,6 +342,10 @@ class EducationEngine {
     EducationProgram program, {
     int? initialPerformance,
   }) {
+    final int commitmentDays = getEducationCommitmentDays();
+    if (state.timeRemaining < commitmentDays) {
+      return state;
+    }
     final EducationState eduState = state.educationState ?? const EducationState();
     final EducationLevelConfig? config = _getLevelConfig(program.level);
     final int duration = program.durationOverride ?? config?.defaultDuration ?? 4;
@@ -362,6 +367,7 @@ class EducationEngine {
       return s;
     }).toList();
     return state.copyWith(
+      timeRemaining: state.timeRemaining - commitmentDays,
       educationState: eduState.copyWith(
         currentEnrollment: enrollment,
         pendingPrompt: null,

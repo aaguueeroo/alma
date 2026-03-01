@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Employment {
 
- String get jobId; String get jobName; JobType get type; int get currentLevel; int get startAge; int get yearsWorked; int get salary; int? get lastPromotionYear; bool get isActive; int get performance;
+ String get jobId; String get jobName; JobType get type; int get currentLevel; int get startAge; int get yearsWorked; int get salary; int? get lastPromotionYear; bool get isActive; int get performance; int? get hoursPerWeek;
 /// Create a copy of Employment
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $EmploymentCopyWith<Employment> get copyWith => _$EmploymentCopyWithImpl<Employm
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Employment&&(identical(other.jobId, jobId) || other.jobId == jobId)&&(identical(other.jobName, jobName) || other.jobName == jobName)&&(identical(other.type, type) || other.type == type)&&(identical(other.currentLevel, currentLevel) || other.currentLevel == currentLevel)&&(identical(other.startAge, startAge) || other.startAge == startAge)&&(identical(other.yearsWorked, yearsWorked) || other.yearsWorked == yearsWorked)&&(identical(other.salary, salary) || other.salary == salary)&&(identical(other.lastPromotionYear, lastPromotionYear) || other.lastPromotionYear == lastPromotionYear)&&(identical(other.isActive, isActive) || other.isActive == isActive)&&(identical(other.performance, performance) || other.performance == performance));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Employment&&(identical(other.jobId, jobId) || other.jobId == jobId)&&(identical(other.jobName, jobName) || other.jobName == jobName)&&(identical(other.type, type) || other.type == type)&&(identical(other.currentLevel, currentLevel) || other.currentLevel == currentLevel)&&(identical(other.startAge, startAge) || other.startAge == startAge)&&(identical(other.yearsWorked, yearsWorked) || other.yearsWorked == yearsWorked)&&(identical(other.salary, salary) || other.salary == salary)&&(identical(other.lastPromotionYear, lastPromotionYear) || other.lastPromotionYear == lastPromotionYear)&&(identical(other.isActive, isActive) || other.isActive == isActive)&&(identical(other.performance, performance) || other.performance == performance)&&(identical(other.hoursPerWeek, hoursPerWeek) || other.hoursPerWeek == hoursPerWeek));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,jobId,jobName,type,currentLevel,startAge,yearsWorked,salary,lastPromotionYear,isActive,performance);
+int get hashCode => Object.hash(runtimeType,jobId,jobName,type,currentLevel,startAge,yearsWorked,salary,lastPromotionYear,isActive,performance,hoursPerWeek);
 
 @override
 String toString() {
-  return 'Employment(jobId: $jobId, jobName: $jobName, type: $type, currentLevel: $currentLevel, startAge: $startAge, yearsWorked: $yearsWorked, salary: $salary, lastPromotionYear: $lastPromotionYear, isActive: $isActive, performance: $performance)';
+  return 'Employment(jobId: $jobId, jobName: $jobName, type: $type, currentLevel: $currentLevel, startAge: $startAge, yearsWorked: $yearsWorked, salary: $salary, lastPromotionYear: $lastPromotionYear, isActive: $isActive, performance: $performance, hoursPerWeek: $hoursPerWeek)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $EmploymentCopyWith<$Res>  {
   factory $EmploymentCopyWith(Employment value, $Res Function(Employment) _then) = _$EmploymentCopyWithImpl;
 @useResult
 $Res call({
- String jobId, String jobName, JobType type, int currentLevel, int startAge, int yearsWorked, int salary, int? lastPromotionYear, bool isActive, int performance
+ String jobId, String jobName, JobType type, int currentLevel, int startAge, int yearsWorked, int salary, int? lastPromotionYear, bool isActive, int performance, int? hoursPerWeek
 });
 
 
@@ -65,7 +65,7 @@ class _$EmploymentCopyWithImpl<$Res>
 
 /// Create a copy of Employment
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? jobId = null,Object? jobName = null,Object? type = null,Object? currentLevel = null,Object? startAge = null,Object? yearsWorked = null,Object? salary = null,Object? lastPromotionYear = freezed,Object? isActive = null,Object? performance = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? jobId = null,Object? jobName = null,Object? type = null,Object? currentLevel = null,Object? startAge = null,Object? yearsWorked = null,Object? salary = null,Object? lastPromotionYear = freezed,Object? isActive = null,Object? performance = null,Object? hoursPerWeek = freezed,}) {
   return _then(_self.copyWith(
 jobId: null == jobId ? _self.jobId : jobId // ignore: cast_nullable_to_non_nullable
 as String,jobName: null == jobName ? _self.jobName : jobName // ignore: cast_nullable_to_non_nullable
@@ -77,7 +77,8 @@ as int,salary: null == salary ? _self.salary : salary // ignore: cast_nullable_t
 as int,lastPromotionYear: freezed == lastPromotionYear ? _self.lastPromotionYear : lastPromotionYear // ignore: cast_nullable_to_non_nullable
 as int?,isActive: null == isActive ? _self.isActive : isActive // ignore: cast_nullable_to_non_nullable
 as bool,performance: null == performance ? _self.performance : performance // ignore: cast_nullable_to_non_nullable
-as int,
+as int,hoursPerWeek: freezed == hoursPerWeek ? _self.hoursPerWeek : hoursPerWeek // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
@@ -159,10 +160,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String jobId,  String jobName,  JobType type,  int currentLevel,  int startAge,  int yearsWorked,  int salary,  int? lastPromotionYear,  bool isActive,  int performance)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String jobId,  String jobName,  JobType type,  int currentLevel,  int startAge,  int yearsWorked,  int salary,  int? lastPromotionYear,  bool isActive,  int performance,  int? hoursPerWeek)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Employment() when $default != null:
-return $default(_that.jobId,_that.jobName,_that.type,_that.currentLevel,_that.startAge,_that.yearsWorked,_that.salary,_that.lastPromotionYear,_that.isActive,_that.performance);case _:
+return $default(_that.jobId,_that.jobName,_that.type,_that.currentLevel,_that.startAge,_that.yearsWorked,_that.salary,_that.lastPromotionYear,_that.isActive,_that.performance,_that.hoursPerWeek);case _:
   return orElse();
 
 }
@@ -180,10 +181,10 @@ return $default(_that.jobId,_that.jobName,_that.type,_that.currentLevel,_that.st
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String jobId,  String jobName,  JobType type,  int currentLevel,  int startAge,  int yearsWorked,  int salary,  int? lastPromotionYear,  bool isActive,  int performance)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String jobId,  String jobName,  JobType type,  int currentLevel,  int startAge,  int yearsWorked,  int salary,  int? lastPromotionYear,  bool isActive,  int performance,  int? hoursPerWeek)  $default,) {final _that = this;
 switch (_that) {
 case _Employment():
-return $default(_that.jobId,_that.jobName,_that.type,_that.currentLevel,_that.startAge,_that.yearsWorked,_that.salary,_that.lastPromotionYear,_that.isActive,_that.performance);}
+return $default(_that.jobId,_that.jobName,_that.type,_that.currentLevel,_that.startAge,_that.yearsWorked,_that.salary,_that.lastPromotionYear,_that.isActive,_that.performance,_that.hoursPerWeek);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -197,10 +198,10 @@ return $default(_that.jobId,_that.jobName,_that.type,_that.currentLevel,_that.st
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String jobId,  String jobName,  JobType type,  int currentLevel,  int startAge,  int yearsWorked,  int salary,  int? lastPromotionYear,  bool isActive,  int performance)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String jobId,  String jobName,  JobType type,  int currentLevel,  int startAge,  int yearsWorked,  int salary,  int? lastPromotionYear,  bool isActive,  int performance,  int? hoursPerWeek)?  $default,) {final _that = this;
 switch (_that) {
 case _Employment() when $default != null:
-return $default(_that.jobId,_that.jobName,_that.type,_that.currentLevel,_that.startAge,_that.yearsWorked,_that.salary,_that.lastPromotionYear,_that.isActive,_that.performance);case _:
+return $default(_that.jobId,_that.jobName,_that.type,_that.currentLevel,_that.startAge,_that.yearsWorked,_that.salary,_that.lastPromotionYear,_that.isActive,_that.performance,_that.hoursPerWeek);case _:
   return null;
 
 }
@@ -212,7 +213,7 @@ return $default(_that.jobId,_that.jobName,_that.type,_that.currentLevel,_that.st
 @JsonSerializable()
 
 class _Employment implements Employment {
-  const _Employment({required this.jobId, required this.jobName, required this.type, this.currentLevel = 1, required this.startAge, this.yearsWorked = 0, required this.salary, this.lastPromotionYear, this.isActive = true, this.performance = 50});
+  const _Employment({required this.jobId, required this.jobName, required this.type, this.currentLevel = 1, required this.startAge, this.yearsWorked = 0, required this.salary, this.lastPromotionYear, this.isActive = true, this.performance = 50, this.hoursPerWeek});
   factory _Employment.fromJson(Map<String, dynamic> json) => _$EmploymentFromJson(json);
 
 @override final  String jobId;
@@ -225,6 +226,7 @@ class _Employment implements Employment {
 @override final  int? lastPromotionYear;
 @override@JsonKey() final  bool isActive;
 @override@JsonKey() final  int performance;
+@override final  int? hoursPerWeek;
 
 /// Create a copy of Employment
 /// with the given fields replaced by the non-null parameter values.
@@ -239,16 +241,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Employment&&(identical(other.jobId, jobId) || other.jobId == jobId)&&(identical(other.jobName, jobName) || other.jobName == jobName)&&(identical(other.type, type) || other.type == type)&&(identical(other.currentLevel, currentLevel) || other.currentLevel == currentLevel)&&(identical(other.startAge, startAge) || other.startAge == startAge)&&(identical(other.yearsWorked, yearsWorked) || other.yearsWorked == yearsWorked)&&(identical(other.salary, salary) || other.salary == salary)&&(identical(other.lastPromotionYear, lastPromotionYear) || other.lastPromotionYear == lastPromotionYear)&&(identical(other.isActive, isActive) || other.isActive == isActive)&&(identical(other.performance, performance) || other.performance == performance));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Employment&&(identical(other.jobId, jobId) || other.jobId == jobId)&&(identical(other.jobName, jobName) || other.jobName == jobName)&&(identical(other.type, type) || other.type == type)&&(identical(other.currentLevel, currentLevel) || other.currentLevel == currentLevel)&&(identical(other.startAge, startAge) || other.startAge == startAge)&&(identical(other.yearsWorked, yearsWorked) || other.yearsWorked == yearsWorked)&&(identical(other.salary, salary) || other.salary == salary)&&(identical(other.lastPromotionYear, lastPromotionYear) || other.lastPromotionYear == lastPromotionYear)&&(identical(other.isActive, isActive) || other.isActive == isActive)&&(identical(other.performance, performance) || other.performance == performance)&&(identical(other.hoursPerWeek, hoursPerWeek) || other.hoursPerWeek == hoursPerWeek));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,jobId,jobName,type,currentLevel,startAge,yearsWorked,salary,lastPromotionYear,isActive,performance);
+int get hashCode => Object.hash(runtimeType,jobId,jobName,type,currentLevel,startAge,yearsWorked,salary,lastPromotionYear,isActive,performance,hoursPerWeek);
 
 @override
 String toString() {
-  return 'Employment(jobId: $jobId, jobName: $jobName, type: $type, currentLevel: $currentLevel, startAge: $startAge, yearsWorked: $yearsWorked, salary: $salary, lastPromotionYear: $lastPromotionYear, isActive: $isActive, performance: $performance)';
+  return 'Employment(jobId: $jobId, jobName: $jobName, type: $type, currentLevel: $currentLevel, startAge: $startAge, yearsWorked: $yearsWorked, salary: $salary, lastPromotionYear: $lastPromotionYear, isActive: $isActive, performance: $performance, hoursPerWeek: $hoursPerWeek)';
 }
 
 
@@ -259,7 +261,7 @@ abstract mixin class _$EmploymentCopyWith<$Res> implements $EmploymentCopyWith<$
   factory _$EmploymentCopyWith(_Employment value, $Res Function(_Employment) _then) = __$EmploymentCopyWithImpl;
 @override @useResult
 $Res call({
- String jobId, String jobName, JobType type, int currentLevel, int startAge, int yearsWorked, int salary, int? lastPromotionYear, bool isActive, int performance
+ String jobId, String jobName, JobType type, int currentLevel, int startAge, int yearsWorked, int salary, int? lastPromotionYear, bool isActive, int performance, int? hoursPerWeek
 });
 
 
@@ -276,7 +278,7 @@ class __$EmploymentCopyWithImpl<$Res>
 
 /// Create a copy of Employment
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? jobId = null,Object? jobName = null,Object? type = null,Object? currentLevel = null,Object? startAge = null,Object? yearsWorked = null,Object? salary = null,Object? lastPromotionYear = freezed,Object? isActive = null,Object? performance = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? jobId = null,Object? jobName = null,Object? type = null,Object? currentLevel = null,Object? startAge = null,Object? yearsWorked = null,Object? salary = null,Object? lastPromotionYear = freezed,Object? isActive = null,Object? performance = null,Object? hoursPerWeek = freezed,}) {
   return _then(_Employment(
 jobId: null == jobId ? _self.jobId : jobId // ignore: cast_nullable_to_non_nullable
 as String,jobName: null == jobName ? _self.jobName : jobName // ignore: cast_nullable_to_non_nullable
@@ -288,7 +290,8 @@ as int,salary: null == salary ? _self.salary : salary // ignore: cast_nullable_t
 as int,lastPromotionYear: freezed == lastPromotionYear ? _self.lastPromotionYear : lastPromotionYear // ignore: cast_nullable_to_non_nullable
 as int?,isActive: null == isActive ? _self.isActive : isActive // ignore: cast_nullable_to_non_nullable
 as bool,performance: null == performance ? _self.performance : performance // ignore: cast_nullable_to_non_nullable
-as int,
+as int,hoursPerWeek: freezed == hoursPerWeek ? _self.hoursPerWeek : hoursPerWeek // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 

@@ -1,8 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:alma/core/models/soul.dart';
 import 'package:alma/core/models/life.dart';
+import 'package:alma/core/models/life_maintenance_item.dart';
 import 'package:alma/core/models/life_template.dart';
 import 'package:alma/core/engine/life_engine.dart';
+import 'package:alma/core/engine/time_engine.dart';
 import 'package:alma/core/evaluation/soul_evaluator.dart';
 import 'package:alma/data/repositories/soul_repository.dart';
 import 'package:alma/data/repositories/life_repository.dart';
@@ -65,6 +67,7 @@ class SoulController extends StateNotifier<SoulState> {
     required this.soulRepository,
     required this.lifeRepository,
     required this.lifeEngine,
+    required this.timeEngine,
     required this.soulEvaluator,
     required this.seedLoader,
   }) : super(const SoulState());
@@ -72,6 +75,7 @@ class SoulController extends StateNotifier<SoulState> {
   final SoulRepository soulRepository;
   final LifeRepository lifeRepository;
   final LifeEngine lifeEngine;
+  final TimeEngine timeEngine;
   final SoulEvaluator soulEvaluator;
   final SeedLoader seedLoader;
 
@@ -155,11 +159,16 @@ class SoulController extends StateNotifier<SoulState> {
 
   Future<Life> startLife(LifeTemplate template) async {
     final Soul soul = state.currentSoul!;
+    final List<LifeMaintenanceItem> maintenance =
+        await seedLoader.loadLifeMaintenance();
+    timeEngine.loadLifeMaintenance(maintenance);
+    final int initialTime = timeEngine.getInitialTimeRemainingForNewLife();
     final SeededRandom rng = SeededRandom(DateTime.now().millisecondsSinceEpoch);
     final Life life = lifeEngine.createLife(
       soulId: soul.id,
       template: template,
       seed: rng.nextInt(999999999),
+      initialTimeRemaining: initialTime,
     );
     await lifeRepository.saveLife(life);
     final Soul updatedSoul = soul.copyWith(currentLifeId: life.id);
@@ -203,6 +212,7 @@ final soulControllerProvider =
     soulRepository: ref.watch(soulRepositoryProvider),
     lifeRepository: ref.watch(lifeRepositoryProvider),
     lifeEngine: ref.watch(lifeEngineProvider),
+    timeEngine: ref.watch(timeEngineProvider),
     soulEvaluator: ref.watch(soulEvaluatorProvider),
     seedLoader: ref.watch(seedLoaderProvider),
   );

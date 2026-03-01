@@ -1,0 +1,17 @@
+[
+  {
+    "id": "maintenance_sleep",
+    "name": "Sleep",
+    "hoursPerDay": 8
+  },
+  {
+    "id": "maintenance_hygiene",
+    "name": "Hygiene",
+    "hoursPerDay": 1
+  },
+  {
+    "id": "maintenance_eating",
+    "name": "Eating",
+    "hoursPerDay": 2
+  }
+]

@@ -59,7 +59,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nextYear => 'Next Year';
 
   @override
-  String timeRemaining(int time) {
+  String timeRemaining(String time) {
     return 'Time Remaining: $time';
   }
 
@@ -445,8 +445,14 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String timeCostLabel(int cost) {
-    return '${cost}t';
+  String timeCostLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days',
+      one: '1 day',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -483,6 +489,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String jobSalary(int amount) {
     return '\$$amount/yr';
+  }
+
+  @override
+  String jobNotEnoughTime(int days) {
+    return 'Not enough time left this year. This job requires $days days.';
   }
 
   @override

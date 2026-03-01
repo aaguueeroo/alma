@@ -182,7 +182,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Time Remaining: {time}'**
-  String timeRemaining(int time);
+  String timeRemaining(String time);
 
   /// No description provided for @year.
   ///
@@ -901,8 +901,8 @@ abstract class AppLocalizations {
   /// No description provided for @timeCostLabel.
   ///
   /// In en, this message translates to:
-  /// **'{cost}t'**
-  String timeCostLabel(int cost);
+  /// **'{count, plural, =1{1 day} other{{count} days}}'**
+  String timeCostLabel(int count);
 
   /// No description provided for @quitJob.
   ///
@@ -963,6 +963,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'\${amount}/yr'**
   String jobSalary(int amount);
+
+  /// No description provided for @jobNotEnoughTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Not enough time left this year. This job requires {days} days.'**
+  String jobNotEnoughTime(int days);
 
   /// No description provided for @applyToJob.
   ///

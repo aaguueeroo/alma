@@ -17,6 +17,7 @@ sealed class Employment with _$Employment {
     int? lastPromotionYear,
     @Default(true) bool isActive,
     @Default(50) int performance,
+    int? hoursPerWeek,
   }) = _Employment;
 
   factory Employment.fromJson(Map<String, dynamic> json) =>

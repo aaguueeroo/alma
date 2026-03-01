@@ -17,6 +17,7 @@ import 'package:alma/core/models/enums/work_prompt_type.dart';
 import 'package:alma/core/models/skill.dart';
 import 'package:alma/core/rules/work_country_config.dart';
 import 'package:alma/core/engine/seeded_random.dart';
+import 'package:alma/core/engine/time_commitment.dart';
 
 class WorkEngine {
   WorkCountryConfig? _countryConfig;
@@ -92,6 +93,21 @@ class WorkEngine {
         ),
       );
     }
+    final int jobCommitmentDays = getJobCommitmentDays(job);
+    if (state.timeRemaining < jobCommitmentDays) {
+      return state.copyWith(
+        workState: workState.copyWith(
+          pendingPrompt: WorkPrompt(
+            type: WorkPromptType.interviewResult,
+            title: 'Not Enough Time',
+            description:
+                'You do not have enough time left this year to take this job. ${job.name} requires $jobCommitmentDays days of commitment.',
+            targetJob: job,
+            accepted: false,
+          ),
+        ),
+      );
+    }
     if (job.interviewConditions.isEmpty) {
       return hireForJob(state, job);
     }
@@ -124,6 +140,7 @@ class WorkEngine {
       startAge: state.age,
       salary: salary,
       performance: _defaultPerformance,
+      hoursPerWeek: job.timeCost,
     );
     final List<Employment> updatedEmployments = [
       ...workState.currentEmployments,
@@ -139,7 +156,9 @@ class WorkEngine {
       }
       return s;
     }).toList();
+    final int jobCommitmentDays = getJobCommitmentDays(job);
     return state.copyWith(
+      timeRemaining: state.timeRemaining - jobCommitmentDays,
       workState: workState.copyWith(
         currentEmployments: updatedEmployments,
         pendingPrompt: WorkPrompt(

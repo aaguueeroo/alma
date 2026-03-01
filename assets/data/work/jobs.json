@@ -6,7 +6,7 @@
     "type": "fullTime",
     "field": "law",
     "baseSalary": 45000,
-    "timeCost": 3,
+    "timeCost": 48,
     "levels": [
       {"level": 1, "title": "Junior Associate", "salaryMultiplier": 1.0, "description": "Handle research and assist senior attorneys with case preparation."},
       {"level": 2, "title": "Senior Associate", "salaryMultiplier": 1.6, "description": "Lead cases independently and mentor junior associates."},
@@ -23,7 +23,7 @@
     "type": "fullTime",
     "field": "law",
     "baseSalary": 40000,
-    "timeCost": 3,
+    "timeCost": 42,
     "levels": [
       {"level": 1, "title": "Consultant", "salaryMultiplier": 1.0, "description": "Analyze legal frameworks and prepare compliance reports for clients."},
       {"level": 2, "title": "Senior Consultant", "salaryMultiplier": 1.5, "description": "Develop legal strategies and manage client relationships across multiple projects."},
@@ -40,7 +40,7 @@
     "type": "fullTime",
     "field": "literature",
     "baseSalary": 30000,
-    "timeCost": 3,
+    "timeCost": 40,
     "levels": [
       {"level": 1, "title": "Junior Writer", "salaryMultiplier": 1.0, "description": "Write drafts and contribute content under editorial guidance."},
       {"level": 2, "title": "Staff Writer", "salaryMultiplier": 1.5, "description": "Produce original pieces and develop your own voice within the publication."},
@@ -57,7 +57,7 @@
     "type": "fullTime",
     "field": "literature",
     "baseSalary": 32000,
-    "timeCost": 3,
+    "timeCost": 40,
     "levels": [
       {"level": 1, "title": "Assistant Editor", "salaryMultiplier": 1.0, "description": "Proofread manuscripts and assist with editorial scheduling."},
       {"level": 2, "title": "Editor", "salaryMultiplier": 1.5, "description": "Manage publication pipelines and work directly with authors on revisions."},
@@ -74,7 +74,7 @@
     "type": "fullTime",
     "field": "history",
     "baseSalary": 33000,
-    "timeCost": 3,
+    "timeCost": 40,
     "levels": [
       {"level": 1, "title": "Assistant Curator", "salaryMultiplier": 1.0, "description": "Catalog artifacts and support the planning of temporary exhibitions."},
       {"level": 2, "title": "Curator", "salaryMultiplier": 1.5, "description": "Design major exhibitions and build relationships with donors and institutions."},
@@ -91,7 +91,7 @@
     "type": "fullTime",
     "field": "history",
     "baseSalary": 31000,
-    "timeCost": 3,
+    "timeCost": 40,
     "levels": [
       {"level": 1, "title": "Research Assistant", "salaryMultiplier": 1.0, "description": "Gather primary sources and support senior researchers with archival work."},
       {"level": 2, "title": "Historian", "salaryMultiplier": 1.5, "description": "Conduct independent research and publish findings in academic journals."},
@@ -108,7 +108,7 @@
     "type": "fullTime",
     "field": "cs",
     "baseSalary": 55000,
-    "timeCost": 3,
+    "timeCost": 50,
     "levels": [
       {"level": 1, "title": "Junior Developer", "salaryMultiplier": 1.0, "description": "Write code, fix bugs, and learn the codebase under senior guidance."},
       {"level": 2, "title": "Senior Developer", "salaryMultiplier": 1.6, "description": "Architect features, review code, and drive technical decisions for your team."},
@@ -125,7 +125,7 @@
     "type": "fullTime",
     "field": "cs",
     "baseSalary": 48000,
-    "timeCost": 3,
+    "timeCost": 40,
     "levels": [
       {"level": 1, "title": "Junior Analyst", "salaryMultiplier": 1.0, "description": "Clean datasets and produce basic reports and visualizations."},
       {"level": 2, "title": "Data Analyst", "salaryMultiplier": 1.5, "description": "Build analytical models and present findings to stakeholders."},
@@ -142,7 +142,7 @@
     "type": "fullTime",
     "field": "engineering",
     "baseSalary": 50000,
-    "timeCost": 3,
+    "timeCost": 42,
     "levels": [
       {"level": 1, "title": "Junior Engineer", "salaryMultiplier": 1.0, "description": "Assist with site surveys, calculations, and technical drawings."},
       {"level": 2, "title": "Engineer", "salaryMultiplier": 1.5, "description": "Manage construction phases and ensure projects meet safety standards."},
@@ -159,7 +159,7 @@
     "type": "fullTime",
     "field": "engineering",
     "baseSalary": 47000,
-    "timeCost": 3,
+    "timeCost": 42,
     "levels": [
       {"level": 1, "title": "Junior Project Engineer", "salaryMultiplier": 1.0, "description": "Track project milestones and support coordination between teams."},
       {"level": 2, "title": "Project Engineer", "salaryMultiplier": 1.5, "description": "Own project delivery end-to-end and manage stakeholder expectations."},
@@ -176,7 +176,7 @@
     "type": "fullTime",
     "field": "medicine",
     "baseSalary": 52000,
-    "timeCost": 3,
+    "timeCost": 60,
     "levels": [
       {"level": 1, "title": "Resident", "salaryMultiplier": 1.0, "description": "Complete clinical rotations and treat patients under supervision."},
       {"level": 2, "title": "Attending Physician", "salaryMultiplier": 1.6, "description": "Run your own patient panel and make independent clinical decisions."},
@@ -193,7 +193,7 @@
     "type": "fullTime",
     "field": "medicine",
     "baseSalary": 46000,
-    "timeCost": 3,
+    "timeCost": 50,
     "levels": [
       {"level": 1, "title": "Research Associate", "salaryMultiplier": 1.0, "description": "Collect data, recruit participants, and assist with trial protocols."},
       {"level": 2, "title": "Researcher", "salaryMultiplier": 1.5, "description": "Design studies, analyze results, and publish in peer-reviewed journals."},
@@ -210,7 +210,7 @@
     "type": "fullTime",
     "field": "law",
     "baseSalary": 38000,
-    "timeCost": 3,
+    "timeCost": 50,
     "levels": [
       {"level": 1, "title": "Postdoc Researcher", "salaryMultiplier": 1.0, "description": "Conduct independent research and contribute to departmental publications."},
       {"level": 2, "title": "Senior Postdoc", "salaryMultiplier": 1.4, "description": "Lead research projects and supervise graduate students."},
@@ -227,7 +227,7 @@
     "type": "fullTime",
     "field": "law",
     "baseSalary": 38000,
-    "timeCost": 3,
+    "timeCost": 50,
     "levels": [
       {"level": 1, "title": "Postdoc Researcher", "salaryMultiplier": 1.0, "description": "Analyze international legal precedents and draft policy papers."},
       {"level": 2, "title": "Senior Postdoc", "salaryMultiplier": 1.4, "description": "Manage collaborative research with partner institutions abroad."},
@@ -244,7 +244,7 @@
     "type": "fullTime",
     "field": "literature",
     "baseSalary": 35000,
-    "timeCost": 3,
+    "timeCost": 50,
     "levels": [
       {"level": 1, "title": "Postdoc Researcher", "salaryMultiplier": 1.0, "description": "Develop original literary works while contributing to scholarly discourse."},
       {"level": 2, "title": "Senior Postdoc", "salaryMultiplier": 1.4, "description": "Mentor emerging writers and lead creative workshops."},
@@ -261,7 +261,7 @@
     "type": "fullTime",
     "field": "literature",
     "baseSalary": 35000,
-    "timeCost": 3,
+    "timeCost": 50,
     "levels": [
       {"level": 1, "title": "Postdoc Researcher", "salaryMultiplier": 1.0, "description": "Conduct cross-cultural literary analysis and present at academic conferences."},
       {"level": 2, "title": "Senior Postdoc", "salaryMultiplier": 1.4, "description": "Lead a comparative research project spanning multiple literary traditions."},
@@ -278,7 +278,7 @@
     "type": "fullTime",
     "field": "history",
     "baseSalary": 36000,
-    "timeCost": 3,
+    "timeCost": 50,
     "levels": [
       {"level": 1, "title": "Postdoc Researcher", "salaryMultiplier": 1.0, "description": "Analyze artifacts and texts to reconstruct ancient societies."},
       {"level": 2, "title": "Senior Postdoc", "salaryMultiplier": 1.4, "description": "Direct archaeological digs and publish monographs on your findings."},
@@ -295,7 +295,7 @@
     "type": "fullTime",
     "field": "history",
     "baseSalary": 36000,
-    "timeCost": 3,
+    "timeCost": 50,
     "levels": [
       {"level": 1, "title": "Postdoc Researcher", "salaryMultiplier": 1.0, "description": "Examine archival records and oral histories from recent centuries."},
       {"level": 2, "title": "Senior Postdoc", "salaryMultiplier": 1.4, "description": "Produce influential papers on pivotal modern-era events."},
@@ -312,7 +312,7 @@
     "type": "fullTime",
     "field": "cs",
     "baseSalary": 58000,
-    "timeCost": 3,
+    "timeCost": 50,
     "levels": [
       {"level": 1, "title": "Postdoc Researcher", "salaryMultiplier": 1.0, "description": "Develop and benchmark new machine learning models."},
       {"level": 2, "title": "Senior Postdoc", "salaryMultiplier": 1.4, "description": "Lead a research team and publish at top-tier AI conferences."},
@@ -329,7 +329,7 @@
     "type": "fullTime",
     "field": "cs",
     "baseSalary": 55000,
-    "timeCost": 3,
+    "timeCost": 50,
     "levels": [
       {"level": 1, "title": "Postdoc Researcher", "salaryMultiplier": 1.0, "description": "Investigate emerging threat vectors and develop countermeasures."},
       {"level": 2, "title": "Senior Postdoc", "salaryMultiplier": 1.4, "description": "Lead security research initiatives and advise industry partners."},
@@ -346,7 +346,7 @@
     "type": "fullTime",
     "field": "engineering",
     "baseSalary": 56000,
-    "timeCost": 3,
+    "timeCost": 50,
     "levels": [
       {"level": 1, "title": "Postdoc Researcher", "salaryMultiplier": 1.0, "description": "Build and test autonomous prototypes in controlled environments."},
       {"level": 2, "title": "Senior Postdoc", "salaryMultiplier": 1.4, "description": "Design perception and decision-making systems for real-world deployment."},
@@ -363,7 +363,7 @@
     "type": "fullTime",
     "field": "engineering",
     "baseSalary": 50000,
-    "timeCost": 3,
+    "timeCost": 50,
     "levels": [
       {"level": 1, "title": "Postdoc Researcher", "salaryMultiplier": 1.0, "description": "Simulate structural loads and test new composite materials."},
       {"level": 2, "title": "Senior Postdoc", "salaryMultiplier": 1.4, "description": "Publish structural analysis breakthroughs and consult on major projects."},
@@ -380,7 +380,7 @@
     "type": "fullTime",
     "field": "medicine",
     "baseSalary": 55000,
-    "timeCost": 3,
+    "timeCost": 50,
     "levels": [
       {"level": 1, "title": "Postdoc Researcher", "salaryMultiplier": 1.0, "description": "Prototype new surgical instruments and refine minimally invasive procedures."},
       {"level": 2, "title": "Senior Postdoc", "salaryMultiplier": 1.4, "description": "Lead clinical studies validating innovative surgical approaches."},
@@ -397,7 +397,7 @@
     "type": "fullTime",
     "field": "medicine",
     "baseSalary": 52000,
-    "timeCost": 3,
+    "timeCost": 50,
     "levels": [
       {"level": 1, "title": "Postdoc Researcher", "salaryMultiplier": 1.0, "description": "Design neuroimaging experiments and analyze brain activity data."},
       {"level": 2, "title": "Senior Postdoc", "salaryMultiplier": 1.4, "description": "Run your own research projects and mentor doctoral students."},
@@ -414,7 +414,7 @@
     "type": "partTime",
     "field": null,
     "baseSalary": 22000,
-    "timeCost": 2,
+    "timeCost": 20,
     "levels": [
       {"level": 1, "title": "Junior Assistant", "salaryMultiplier": 1.0, "description": "Sort mail, answer phones, and manage basic filing duties."},
       {"level": 2, "title": "Office Assistant", "salaryMultiplier": 1.3, "description": "Coordinate meetings, manage supplies, and support multiple departments."},
@@ -431,7 +431,7 @@
     "type": "partTime",
     "field": null,
     "baseSalary": 24000,
-    "timeCost": 2,
+    "timeCost": 20,
     "levels": [
       {"level": 1, "title": "Junior Sales", "salaryMultiplier": 1.0, "description": "Greet customers and learn the product catalog."},
       {"level": 2, "title": "Sales Associate", "salaryMultiplier": 1.3, "description": "Hit sales targets and build a loyal customer base."},
@@ -448,7 +448,7 @@
     "type": "partTime",
     "field": null,
     "baseSalary": 26000,
-    "timeCost": 2,
+    "timeCost": 20,
     "levels": [
       {"level": 1, "title": "Junior Technician", "salaryMultiplier": 1.0, "description": "Perform routine maintenance and assist with basic repairs."},
       {"level": 2, "title": "Technician", "salaryMultiplier": 1.3, "description": "Diagnose complex issues and carry out specialized repairs independently."},
@@ -465,7 +465,7 @@
     "type": "partTime",
     "field": null,
     "baseSalary": 25000,
-    "timeCost": 2,
+    "timeCost": 20,
     "levels": [
       {"level": 1, "title": "Junior Designer", "salaryMultiplier": 1.0, "description": "Produce layouts and graphics following brand guidelines."},
       {"level": 2, "title": "Designer", "salaryMultiplier": 1.4, "description": "Develop original visual identities and lead design projects."},
@@ -482,7 +482,7 @@
     "type": "partTime",
     "field": null,
     "baseSalary": 18000,
-    "timeCost": 2,
+    "timeCost": 20,
     "levels": [
       {"level": 1, "title": "Barback", "salaryMultiplier": 1.0, "description": "Stock the bar, clean glassware, and learn the basics of mixology."},
       {"level": 2, "title": "Bartender", "salaryMultiplier": 1.3, "description": "Serve customers, craft cocktails, and manage the bar during your shift."},
@@ -499,7 +499,7 @@
     "type": "partTime",
     "field": null,
     "baseSalary": 16000,
-    "timeCost": 2,
+    "timeCost": 20,
     "levels": [
       {"level": 1, "title": "Trainee Cashier", "salaryMultiplier": 1.0, "description": "Learn the register system and handle simple transactions."},
       {"level": 2, "title": "Cashier", "salaryMultiplier": 1.2, "description": "Process all transaction types efficiently and handle customer inquiries."},
@@ -516,7 +516,7 @@
     "type": "partTime",
     "field": null,
     "baseSalary": 20000,
-    "timeCost": 2,
+    "timeCost": 20,
     "levels": [
       {"level": 1, "title": "Driver", "salaryMultiplier": 1.0, "description": "Follow delivery routes and ensure packages arrive on time."},
       {"level": 2, "title": "Senior Driver", "salaryMultiplier": 1.3, "description": "Handle priority deliveries and optimize your daily route."},
@@ -533,7 +533,7 @@
     "type": "partTime",
     "field": null,
     "baseSalary": 17000,
-    "timeCost": 2,
+    "timeCost": 20,
     "levels": [
       {"level": 1, "title": "Busser", "salaryMultiplier": 1.0, "description": "Clear tables, set up dining areas, and assist the wait staff."},
       {"level": 2, "title": "Waiter", "salaryMultiplier": 1.3, "description": "Manage your own section and provide attentive table service."},
@@ -550,7 +550,7 @@
     "type": "casual",
     "field": null,
     "baseSalary": 3000,
-    "timeCost": 1,
+    "timeCost": 10,
     "levels": [
       {"level": 1, "title": "Freelancer", "salaryMultiplier": 1.0, "description": "Pick up odd jobs and build a reputation through small projects."},
       {"level": 2, "title": "Experienced Freelancer", "salaryMultiplier": 1.3, "description": "Attract repeat clients and command higher rates for your work."},
@@ -567,7 +567,7 @@
     "type": "casual",
     "field": null,
     "baseSalary": 1500,
-    "timeCost": 1,
+    "timeCost": 10,
     "levels": [
       {"level": 1, "title": "Dog Walker", "salaryMultiplier": 1.0, "description": "Walk one or two dogs at a time around the neighborhood."},
       {"level": 2, "title": "Professional Walker", "salaryMultiplier": 1.3, "description": "Handle multiple dogs and build a loyal roster of regular clients."},
@@ -584,7 +584,7 @@
     "type": "casual",
     "field": null,
     "baseSalary": 2500,
-    "timeCost": 1,
+    "timeCost": 10,
     "levels": [
       {"level": 1, "title": "Tutor", "salaryMultiplier": 1.0, "description": "Assist students with homework and exam preparation."},
       {"level": 2, "title": "Senior Tutor", "salaryMultiplier": 1.3, "description": "Develop custom lesson plans and take on advanced subject areas."},
@@ -601,7 +601,7 @@
     "type": "casual",
     "field": null,
     "baseSalary": 2000,
-    "timeCost": 1,
+    "timeCost": 10,
     "levels": [
       {"level": 1, "title": "Mover", "salaryMultiplier": 1.0, "description": "Lift boxes, load trucks, and follow the team leader's instructions."},
       {"level": 2, "title": "Experienced Mover", "salaryMultiplier": 1.3, "description": "Handle fragile items and large furniture with practiced efficiency."},

@@ -17,7 +17,7 @@ import 'package:alma/core/models/hidden_metrics.dart';
 import 'package:alma/core/models/enums/action_category.dart';
 import 'package:alma/core/models/enums/skill_type.dart';
 import 'package:alma/core/models/enums/hidden_metric_type.dart';
-import 'package:alma/app/constants/game_constants.dart';
+import 'package:alma/app/constants/time_constants.dart';
 
 void main() {
   late ActionProcessor processor;
@@ -44,7 +44,7 @@ void main() {
       age: 20,
       health: 80,
       money: 100,
-      timeRemaining: kTimeUnitsPerYear,
+      timeRemaining: kDaysPerYear,
       skills: const SkillSet(),
       traits: [],
       habits: [],
@@ -62,10 +62,10 @@ void main() {
         name: 'Study',
         description: 'Study hard',
         category: ActionCategory.education,
-        timeCost: 15,
+        timeCost: 43,
       );
       final result = processor.performAction(state, action, rng);
-      expect(result.timeRemaining, lessThan(kTimeUnitsPerYear));
+      expect(result.timeRemaining, lessThan(kDaysPerYear));
     });
 
     test('performAction applies skill changes', () {
@@ -75,7 +75,7 @@ void main() {
         name: 'Study',
         description: 'Study hard',
         category: ActionCategory.education,
-        timeCost: 15,
+        timeCost: 43,
         skillEffects: const {SkillType.intelligence: 5},
       );
       final result = processor.performAction(state, action, rng);
@@ -106,7 +106,7 @@ void main() {
         name: 'Study',
         description: 'Study hard',
         category: ActionCategory.education,
-        timeCost: 15,
+        timeCost: 43,
         skillEffects: const {SkillType.intelligence: 3},
       );
       final rng1 = SeededRandom(42);
@@ -123,7 +123,7 @@ void main() {
       final result = processor.processNextYear(state, rng);
       expect(result.currentYear, 2);
       expect(result.age, 21);
-      expect(result.timeRemaining, kTimeUnitsPerYear);
+      expect(result.timeRemaining, kDaysPerYear);
     });
 
     test('death occurs when health reaches zero', () {
