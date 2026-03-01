@@ -517,7 +517,7 @@ abstract class AppLocalizations {
   /// No description provided for @nextYearSkipRemaining.
   ///
   /// In en, this message translates to:
-  /// **'Next Year (skip remaining)'**
+  /// **'Next Year'**
   String get nextYearSkipRemaining;
 
   /// No description provided for @moneyAmount.
@@ -609,6 +609,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enroll'**
   String get enroll;
+
+  /// No description provided for @dropOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Drop out'**
+  String get dropOut;
+
+  /// No description provided for @enrollDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enroll in a program'**
+  String get enrollDialogTitle;
+
+  /// No description provided for @enrollDialogDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a program you wish to enroll in.'**
+  String get enrollDialogDescription;
+
+  /// No description provided for @noProgramsAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No programs available to enroll in.'**
+  String get noProgramsAvailable;
+
+  /// No description provided for @educationLevelPreschool.
+  ///
+  /// In en, this message translates to:
+  /// **'Preschool'**
+  String get educationLevelPreschool;
+
+  /// No description provided for @educationLevelMiddleSchool.
+  ///
+  /// In en, this message translates to:
+  /// **'Middle School'**
+  String get educationLevelMiddleSchool;
+
+  /// No description provided for @educationLevelHighSchool.
+  ///
+  /// In en, this message translates to:
+  /// **'High School'**
+  String get educationLevelHighSchool;
+
+  /// No description provided for @educationLevelUniversity.
+  ///
+  /// In en, this message translates to:
+  /// **'University'**
+  String get educationLevelUniversity;
+
+  /// No description provided for @educationLevelMaster.
+  ///
+  /// In en, this message translates to:
+  /// **'Master'**
+  String get educationLevelMaster;
+
+  /// No description provided for @educationLevelDoctorate.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctorate'**
+  String get educationLevelDoctorate;
 
   /// No description provided for @studyActions.
   ///
@@ -777,6 +837,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{value}%'**
   String performancePercent(int value);
+
+  /// No description provided for @notEnrolled.
+  ///
+  /// In en, this message translates to:
+  /// **'Not enrolled'**
+  String get notEnrolled;
+
+  /// No description provided for @enrollmentYear.
+  ///
+  /// In en, this message translates to:
+  /// **'Year {current} of {total}'**
+  String enrollmentYear(int current, int total);
+
+  /// No description provided for @yearRepeated.
+  ///
+  /// In en, this message translates to:
+  /// **'Year repeated ({count} times)'**
+  String yearRepeated(int count);
+
+  /// No description provided for @continueEducation.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Education?'**
+  String get continueEducation;
+
+  /// No description provided for @chooseStudies.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Your Studies'**
+  String get chooseStudies;
+
+  /// No description provided for @decline.
+  ///
+  /// In en, this message translates to:
+  /// **'Decline'**
+  String get decline;
+
+  /// No description provided for @graduated.
+  ///
+  /// In en, this message translates to:
+  /// **'Graduated'**
+  String get graduated;
+
+  /// No description provided for @kickedOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Kicked Out'**
+  String get kickedOut;
+
+  /// No description provided for @educationGradeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Final grade: {grade}%'**
+  String educationGradeLabel(int grade);
+
+  /// No description provided for @educationYearsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Ages {start}-{end}'**
+  String educationYearsLabel(int start, int end);
+
+  /// No description provided for @timeCostLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{cost}t'**
+  String timeCostLabel(int cost);
 }
 
 class _AppLocalizationsDelegate

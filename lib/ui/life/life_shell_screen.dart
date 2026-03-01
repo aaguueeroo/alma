@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/action.dart';
+import 'package:alma/core/models/education_program.dart';
+import 'package:alma/core/models/education_prompt.dart';
 import 'package:alma/core/models/enums/action_category.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/app/constants/sizing.dart';
@@ -10,11 +12,13 @@ import 'package:alma/app/constants/durations.dart';
 import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/providers/life/life_controller.dart';
 import 'package:alma/ui/life/event_dialog.dart';
+import 'package:alma/ui/life/education_enroll_dialog.dart';
 import 'package:alma/ui/life/tabs/life_main_tab.dart';
 import 'package:alma/ui/life/tabs/work_tab.dart';
 import 'package:alma/ui/life/tabs/education_tab.dart';
 import 'package:alma/ui/life/tabs/health_tab.dart';
 import 'package:alma/ui/life/tabs/relations_tab.dart';
+import 'package:alma/ui/life/widgets/time_budget_bar.dart';
 
 class LifeShellScreen extends ConsumerStatefulWidget {
   const LifeShellScreen({super.key});
@@ -26,6 +30,19 @@ class LifeShellScreen extends ConsumerStatefulWidget {
 class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
   static const int _defaultTabIndex = 2;
   int _currentIndex = _defaultTabIndex;
+  late final PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: _defaultTabIndex);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +58,10 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
           prev?.currentLife?.state.pendingEvent == null) {
         _showEventDialog(context);
       }
+      if (next.currentLife?.state.educationState?.pendingPrompt != null &&
+          prev?.currentLife?.state.educationState?.pendingPrompt == null) {
+        _showEducationPrompt(context);
+      }
       if (next.currentLife?.state.isDead == true &&
           prev?.currentLife?.state.isDead != true) {
         context.push('/life/summary');
@@ -55,17 +76,16 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
         body: Column(
         children: [
           Expanded(
-            child: AnimatedSwitcher(
-              duration: kDurationNormal,
-              child: _buildTabContent(
-                key: ValueKey(_currentIndex),
-                state: state,
-                lifeState: lifeState,
-              ),
+            child: PageView(
+              controller: _pageController,
+              onPageChanged: (int index) {
+                setState(() => _currentIndex = index);
+              },
+              children: _buildAllPages(state: state, lifeState: lifeState),
             ),
           ),
-          _NextYearBar(
-            hasTimeRemaining: state.timeRemaining > 0,
+          _YearProgressSection(
+            timeRemaining: state.timeRemaining,
             onNextYear: () {
               ref.read(lifeControllerProvider.notifier).progressYear();
             },
@@ -113,57 +133,56 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
     );
   }
 
-  Widget _buildTabContent({
-    required Key key,
+  List<Widget> _buildAllPages({
     required LifeState state,
     required LifeControllerState lifeState,
   }) {
-    switch (_currentIndex) {
-      case 0:
-        return WorkTab(
-          key: key,
-          state: state,
-          actions: lifeState.availableActions
-              .where((a) => a.category == ActionCategory.work)
-              .toList(),
-          onActionTap: _performAction,
-        );
-      case 1:
-        return EducationTab(
-          key: key,
-          state: state,
-          actions: lifeState.availableActions
-              .where((a) => a.category == ActionCategory.education)
-              .toList(),
-          onActionTap: _performAction,
-        );
-      case 2:
-        return LifeMainTab(key: key, state: state);
-      case 3:
-        return HealthTab(
-          key: key,
-          state: state,
-          actions: lifeState.availableActions
-              .where((a) => a.category == ActionCategory.health)
-              .toList(),
-          timeRemaining: state.timeRemaining,
-          onActionTap: _performAction,
-        );
-      case 4:
-        return RelationsTab(
-          key: key,
-          relationships: state.relationships,
-        );
-      default:
-        return LifeMainTab(key: key, state: state);
-    }
+    return [
+      WorkTab(
+        key: const ValueKey<int>(0),
+        state: state,
+        actions: lifeState.availableActions
+            .where((a) => a.category == ActionCategory.work)
+            .toList(),
+        onActionTap: _performAction,
+      ),
+      EducationTab(
+        key: const ValueKey<int>(1),
+        state: state,
+        actions: ref.read(lifeControllerProvider.notifier).getEducationActions(),
+        onActionTap: _performAction,
+        onEnrollTap: () => _showEducationPrompt(context),
+        onDropOutTap: () => ref.read(lifeControllerProvider.notifier).dropOut(),
+        canDropOut: ref.read(lifeControllerProvider.notifier).canDropOutFromCurrentEnrollment,
+      ),
+      LifeMainTab(key: const ValueKey<int>(2), state: state),
+      HealthTab(
+        key: const ValueKey<int>(3),
+        state: state,
+        actions: lifeState.availableActions
+            .where((a) => a.category == ActionCategory.health)
+            .toList(),
+        timeRemaining: state.timeRemaining,
+        onActionTap: _performAction,
+      ),
+      RelationsTab(
+        key: const ValueKey<int>(4),
+        relationships: state.relationships,
+      ),
+    ];
   }
 
   NavigationBar _buildBottomNav(BuildContext context, AppLocalizations l10n) {
     return NavigationBar(
       selectedIndex: _currentIndex,
       onDestinationSelected: (int index) {
+        if (index == _currentIndex) return;
         setState(() => _currentIndex = index);
+        _pageController.animateToPage(
+          index,
+          duration: kDurationNormal,
+          curve: Curves.easeInOut,
+        );
       },
       destinations: [
         NavigationDestination(
@@ -216,6 +235,48 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
     );
   }
 
+  void _showEducationPrompt(BuildContext context) {
+    final LifeControllerState lifeState = ref.read(lifeControllerProvider);
+    final LifeController controller = ref.read(lifeControllerProvider.notifier);
+    EducationPrompt? prompt = lifeState.currentLife?.state.educationState?.pendingPrompt;
+    if (prompt == null) {
+      final List<EducationProgram> programs = controller.getAvailableProgramsForEnrollment();
+      if (programs.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(AppLocalizations.of(context)!.noProgramsAvailable)),
+        );
+        return;
+      }
+      prompt = EducationPrompt(
+        title: AppLocalizations.of(context)!.enrollDialogTitle,
+        description: AppLocalizations.of(context)!.enrollDialogDescription,
+        availablePrograms: programs,
+        canDecline: true,
+      );
+    }
+    final EducationPrompt dialogPrompt = prompt;
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => EducationEnrollDialog(
+        prompt: dialogPrompt,
+        onProgramSelected: (EducationProgram program) {
+          Navigator.of(context).pop();
+          ref.read(lifeControllerProvider.notifier).enrollInProgram(
+                program,
+                initialPerformance: dialogPrompt.carryOverPerformance,
+              );
+        },
+        onDecline: () {
+          Navigator.of(context).pop();
+          if (lifeState.currentLife?.state.educationState?.pendingPrompt != null) {
+            ref.read(lifeControllerProvider.notifier).declineEnrollment();
+          }
+        },
+      ),
+    );
+  }
+
   void _showExitDialog(BuildContext context, AppLocalizations l10n) {
     showDialog(
       context: context,
@@ -240,18 +301,19 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
   }
 }
 
-class _NextYearBar extends StatelessWidget {
-  const _NextYearBar({
-    required this.hasTimeRemaining,
+class _YearProgressSection extends StatelessWidget {
+  const _YearProgressSection({
+    required this.timeRemaining,
     required this.onNextYear,
   });
 
-  final bool hasTimeRemaining;
+  final int timeRemaining;
   final VoidCallback onNextYear;
 
   @override
   Widget build(BuildContext context) {
     final AppLocalizations l10n = AppLocalizations.of(context)!;
+    final bool hasTimeRemaining = timeRemaining > 0;
     return Container(
       padding: kPaddingAll16,
       decoration: BoxDecoration(
@@ -266,15 +328,26 @@ class _NextYearBar extends StatelessWidget {
       ),
       child: SafeArea(
         top: false,
-        child: SizedBox(
-          width: double.infinity,
-          child: ElevatedButton.icon(
-            onPressed: onNextYear,
-            icon: const Icon(Icons.skip_next),
-            label: Text(
-              hasTimeRemaining ? l10n.nextYearSkipRemaining : l10n.nextYear,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: kSpacing12),
+              child: TimeBudgetBar(timeRemaining: timeRemaining),
             ),
-          ),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: onNextYear,
+                icon: const Icon(Icons.skip_next),
+                label: Text(
+                  hasTimeRemaining
+                      ? l10n.nextYearSkipRemaining
+                      : l10n.nextYear,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

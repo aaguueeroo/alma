@@ -23,6 +23,8 @@ sealed class GameAction with _$GameAction {
     HabitType? associatedHabit,
     String? targetNpcId,
     @Default([]) List<MoralImpactTemplate> moralImpactTemplates,
+    String? educationLevel,
+    String? educationProgramId,
   }) = _GameAction;
 
   factory GameAction.fromJson(Map<String, dynamic> json) =>

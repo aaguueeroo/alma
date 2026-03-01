@@ -6,6 +6,7 @@ import 'package:alma/core/models/moral_impact.dart';
 import 'package:alma/core/models/enums/section_type.dart';
 import 'package:alma/core/engine/time_engine.dart';
 import 'package:alma/core/engine/event_engine.dart';
+import 'package:alma/core/engine/education_engine.dart';
 import 'package:alma/core/engine/seeded_random.dart';
 import 'package:alma/core/rules/trait_rules.dart';
 import 'package:alma/core/simulation/relationship_processor.dart';
@@ -16,6 +17,7 @@ class ActionProcessor {
   ActionProcessor({
     required this.timeEngine,
     required this.eventEngine,
+    required this.educationEngine,
     required this.traitRules,
     required this.relationshipProcessor,
     required this.habitProcessor,
@@ -23,6 +25,7 @@ class ActionProcessor {
 
   final TimeEngine timeEngine;
   final EventEngine eventEngine;
+  final EducationEngine educationEngine;
   final TraitRules traitRules;
   final RelationshipProcessor relationshipProcessor;
   final HabitProcessor habitProcessor;
@@ -50,9 +53,11 @@ class ActionProcessor {
   }
 
   LifeState processNextYear(LifeState state, SeededRandom rng) {
+    state = educationEngine.processYearEnd(state, rng);
     state = relationshipProcessor.applyYearlyDecay(state);
     state = habitProcessor.processYearEnd(state);
     state = timeEngine.startNewYear(state);
+    state = educationEngine.checkAutoEnrollment(state);
     state = _checkAgeBasedDeath(state, rng);
     return state;
   }

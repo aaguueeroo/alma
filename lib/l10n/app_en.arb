@@ -108,7 +108,7 @@
   "exitLifeConfirmMessage": "You will return to the soul world. Your progress is saved.",
   "notImplementedYet": "Not yet implemented",
 
-  "nextYearSkipRemaining": "Next Year (skip remaining)",
+  "nextYearSkipRemaining": "Next Year",
 
   "moneyAmount": "${amount}",
   "@moneyAmount": {
@@ -137,6 +137,16 @@
   "studyTitle": "Studies",
   "grade": "Grade",
   "enroll": "Enroll",
+  "dropOut": "Drop out",
+  "enrollDialogTitle": "Enroll in a program",
+  "enrollDialogDescription": "Select a program you wish to enroll in.",
+  "noProgramsAvailable": "No programs available to enroll in.",
+  "educationLevelPreschool": "Preschool",
+  "educationLevelMiddleSchool": "Middle School",
+  "educationLevelHighSchool": "High School",
+  "educationLevelUniversity": "University",
+  "educationLevelMaster": "Master",
+  "educationLevelDoctorate": "Doctorate",
   "studyActions": "Actions",
   "noStudyHistory": "No degrees obtained yet",
   "noEducationEvents": "No education events yet",
@@ -177,6 +187,45 @@
   "@performancePercent": {
     "placeholders": {
       "value": {"type": "int"}
+    }
+  },
+
+  "notEnrolled": "Not enrolled",
+  "enrollmentYear": "Year {current} of {total}",
+  "@enrollmentYear": {
+    "placeholders": {
+      "current": {"type": "int"},
+      "total": {"type": "int"}
+    }
+  },
+  "yearRepeated": "Year repeated ({count} times)",
+  "@yearRepeated": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "continueEducation": "Continue Education?",
+  "chooseStudies": "Choose Your Studies",
+  "decline": "Decline",
+  "graduated": "Graduated",
+  "kickedOut": "Kicked Out",
+  "educationGradeLabel": "Final grade: {grade}%",
+  "@educationGradeLabel": {
+    "placeholders": {
+      "grade": {"type": "int"}
+    }
+  },
+  "educationYearsLabel": "Ages {start}-{end}",
+  "@educationYearsLabel": {
+    "placeholders": {
+      "start": {"type": "int"},
+      "end": {"type": "int"}
+    }
+  },
+  "timeCostLabel": "{cost}t",
+  "@timeCostLabel": {
+    "placeholders": {
+      "cost": {"type": "int"}
     }
   }
 }

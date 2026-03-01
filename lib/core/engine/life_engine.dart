@@ -3,8 +3,10 @@ import 'package:alma/core/models/life_template.dart';
 import 'package:alma/core/models/action.dart';
 import 'package:alma/core/models/relationship.dart';
 import 'package:alma/core/models/hidden_metrics.dart';
+import 'package:alma/core/models/education_state.dart';
 import 'package:alma/core/simulation/action_processor.dart';
 import 'package:alma/core/engine/event_engine.dart';
+import 'package:alma/core/engine/education_engine.dart';
 import 'package:alma/core/engine/seeded_random.dart';
 import 'package:alma/app/constants/game_constants.dart';
 import 'package:uuid/uuid.dart';
@@ -13,10 +15,12 @@ class LifeEngine {
   LifeEngine({
     required this.actionProcessor,
     required this.eventEngine,
+    required this.educationEngine,
   });
 
   final ActionProcessor actionProcessor;
   final EventEngine eventEngine;
+  final EducationEngine educationEngine;
   static const Uuid _uuid = Uuid();
 
   Life createLife({
@@ -24,7 +28,7 @@ class LifeEngine {
     required LifeTemplate template,
     required int seed,
   }) {
-    final LifeState initialState = LifeState(
+    LifeState initialState = LifeState(
       currentYear: 1,
       age: kStartingAge,
       health: template.startingHealth,
@@ -38,6 +42,7 @@ class LifeEngine {
           .toList(),
       sections: template.startingSections,
       hiddenMetrics: const HiddenMetrics(),
+      educationState: const EducationState(),
     );
     return Life(
       id: _uuid.v4(),

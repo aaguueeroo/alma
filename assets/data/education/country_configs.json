@@ -1,0 +1,73 @@
+[
+  {
+    "countryCode": "default",
+    "levels": [
+      {
+        "level": "preschool",
+        "defaultDuration": 3,
+        "isCompulsory": true,
+        "autoStart": true,
+        "startAge": 3,
+        "canRepeatYears": false,
+        "canGetKickedOut": false,
+        "maxRepeats": 0,
+        "passThreshold": 0
+      },
+      {
+        "level": "middleSchool",
+        "defaultDuration": 6,
+        "isCompulsory": true,
+        "autoStart": true,
+        "startAge": 6,
+        "canRepeatYears": true,
+        "canGetKickedOut": false,
+        "maxRepeats": 2,
+        "passThreshold": 50
+      },
+      {
+        "level": "highSchool",
+        "defaultDuration": 6,
+        "isCompulsory": false,
+        "autoStart": false,
+        "startAge": null,
+        "canRepeatYears": true,
+        "canGetKickedOut": true,
+        "maxRepeats": 2,
+        "passThreshold": 50
+      },
+      {
+        "level": "university",
+        "defaultDuration": 4,
+        "isCompulsory": false,
+        "autoStart": false,
+        "startAge": null,
+        "canRepeatYears": true,
+        "canGetKickedOut": true,
+        "maxRepeats": 2,
+        "passThreshold": 50
+      },
+      {
+        "level": "master",
+        "defaultDuration": 2,
+        "isCompulsory": false,
+        "autoStart": false,
+        "startAge": null,
+        "canRepeatYears": true,
+        "canGetKickedOut": true,
+        "maxRepeats": 2,
+        "passThreshold": 50
+      },
+      {
+        "level": "doctorate",
+        "defaultDuration": 5,
+        "isCompulsory": false,
+        "autoStart": false,
+        "startAge": null,
+        "canRepeatYears": true,
+        "canGetKickedOut": true,
+        "maxRepeats": 2,
+        "passThreshold": 50
+      }
+    ]
+  }
+]

@@ -1,0 +1,5 @@
+---
+alwaysApply: true
+---
+
+Every time something needs to be random inside a life, it should be seeded random so that the lives can be fully reproducible.

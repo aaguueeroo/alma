@@ -236,7 +236,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notImplementedYet => 'Not yet implemented';
 
   @override
-  String get nextYearSkipRemaining => 'Next Year (skip remaining)';
+  String get nextYearSkipRemaining => 'Next Year';
 
   @override
   String moneyAmount(int amount) {
@@ -286,6 +286,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get enroll => 'Enroll';
+
+  @override
+  String get dropOut => 'Drop out';
+
+  @override
+  String get enrollDialogTitle => 'Enroll in a program';
+
+  @override
+  String get enrollDialogDescription =>
+      'Select a program you wish to enroll in.';
+
+  @override
+  String get noProgramsAvailable => 'No programs available to enroll in.';
+
+  @override
+  String get educationLevelPreschool => 'Preschool';
+
+  @override
+  String get educationLevelMiddleSchool => 'Middle School';
+
+  @override
+  String get educationLevelHighSchool => 'High School';
+
+  @override
+  String get educationLevelUniversity => 'University';
+
+  @override
+  String get educationLevelMaster => 'Master';
+
+  @override
+  String get educationLevelDoctorate => 'Doctorate';
 
   @override
   String get studyActions => 'Actions';
@@ -373,5 +404,48 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String performancePercent(int value) {
     return '$value%';
+  }
+
+  @override
+  String get notEnrolled => 'Not enrolled';
+
+  @override
+  String enrollmentYear(int current, int total) {
+    return 'Year $current of $total';
+  }
+
+  @override
+  String yearRepeated(int count) {
+    return 'Year repeated ($count times)';
+  }
+
+  @override
+  String get continueEducation => 'Continue Education?';
+
+  @override
+  String get chooseStudies => 'Choose Your Studies';
+
+  @override
+  String get decline => 'Decline';
+
+  @override
+  String get graduated => 'Graduated';
+
+  @override
+  String get kickedOut => 'Kicked Out';
+
+  @override
+  String educationGradeLabel(int grade) {
+    return 'Final grade: $grade%';
+  }
+
+  @override
+  String educationYearsLabel(int start, int end) {
+    return 'Ages $start-$end';
+  }
+
+  @override
+  String timeCostLabel(int cost) {
+    return '${cost}t';
   }
 }
