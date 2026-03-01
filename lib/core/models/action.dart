@@ -3,6 +3,7 @@ import 'package:alma/core/models/enums/action_category.dart';
 import 'package:alma/core/models/enums/skill_type.dart';
 import 'package:alma/core/models/enums/hidden_metric_type.dart';
 import 'package:alma/core/models/enums/habit_type.dart';
+import 'package:alma/core/models/moral_impact.dart';
 
 part 'action.freezed.dart';
 part 'action.g.dart';
@@ -21,6 +22,7 @@ sealed class GameAction with _$GameAction {
     @Default(0) int sectionPerformanceEffect,
     HabitType? associatedHabit,
     String? targetNpcId,
+    @Default([]) List<MoralImpactTemplate> moralImpactTemplates,
   }) = _GameAction;
 
   factory GameAction.fromJson(Map<String, dynamic> json) =>

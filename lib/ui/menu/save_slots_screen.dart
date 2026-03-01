@@ -3,8 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:alma/app/constants/spacing.dart';
-import 'package:alma/app/constants/sizing.dart';
-import 'package:alma/app/theme/app_colors.dart';
+import 'package:alma/app/theme/theme_data.dart';
 import 'package:alma/core/models/soul.dart';
 import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/providers/soul/soul_controller.dart';
@@ -31,6 +30,8 @@ class _SaveSlotsScreenState extends ConsumerState<SaveSlotsScreen> {
   Widget build(BuildContext context) {
     final soulState = ref.watch(soulControllerProvider);
     final l10n = AppLocalizations.of(context)!;
+    final themeExt = Theme.of(context).extension<AppThemeExtension>();
+    final padding = themeExt?.screenPadding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
     return Scaffold(
       appBar: AppBar(
         leading: const BackButtonLeading(),
@@ -41,12 +42,14 @@ class _SaveSlotsScreenState extends ConsumerState<SaveSlotsScreen> {
           : soulState.souls.isEmpty
               ? _EmptyState(message: l10n.noSoulsYet)
               : ListView.builder(
-                  padding: kPaddingScreen,
+                  padding: padding,
                   itemCount: soulState.souls.length,
                   itemBuilder: (BuildContext context, int index) {
                     final Soul soul = soulState.souls[index];
+                    final preview = soulState.currentLifePreviews[soul.id];
                     return _SoulCard(
                       soul: soul,
+                      lifePreview: preview,
                       onTap: () => _selectSoul(soul),
                       onLongPress: () => _showDeleteDialog(soul),
                     );
@@ -58,7 +61,8 @@ class _SaveSlotsScreenState extends ConsumerState<SaveSlotsScreen> {
   Future<void> _selectSoul(Soul soul) async {
     await ref.read(soulControllerProvider.notifier).selectSoul(soul.id);
     if (mounted) {
-      context.go('/soul');
+      context.pop();
+      context.push('/soul');
     }
   }
 
@@ -79,7 +83,7 @@ class _SaveSlotsScreenState extends ConsumerState<SaveSlotsScreen> {
               ref.read(soulControllerProvider.notifier).deleteSoul(soul.id);
               Navigator.of(context).pop();
             },
-            child: Text(l10n.confirm, style: const TextStyle(color: AppColors.negative)),
+            child: Text(l10n.confirm, style: TextStyle(color: Theme.of(context).colorScheme.error)),
           ),
         ],
       ),
@@ -94,14 +98,17 @@ class _EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeExt = Theme.of(context).extension<AppThemeExtension>();
+    final padding = themeExt?.screenPadding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
+    final mutedColor = themeExt?.mutedColor ?? Theme.of(context).colorScheme.onSurfaceVariant;
     return Center(
       child: Padding(
-        padding: kPaddingScreen,
+        padding: padding,
         child: Text(
           message,
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: AppColors.neutral,
+                color: mutedColor,
               ),
         ),
       ),
@@ -112,11 +119,13 @@ class _EmptyState extends StatelessWidget {
 class _SoulCard extends StatelessWidget {
   const _SoulCard({
     required this.soul,
+    required this.lifePreview,
     required this.onTap,
     required this.onLongPress,
   });
 
   final Soul soul;
+  final LifePreview? lifePreview;
   final VoidCallback onTap;
   final VoidCallback onLongPress;
 
@@ -124,18 +133,20 @@ class _SoulCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final dateFormat = DateFormat.yMMMd();
+    final colorScheme = Theme.of(context).colorScheme;
+    final themeExt = Theme.of(context).extension<AppThemeExtension>();
+    final radius = themeExt?.radiusDefault ?? 12.0;
     return Card(
-      margin: const EdgeInsets.only(bottom: kSpacing16),
-      elevation: kCardElevation,
+      margin: const EdgeInsets.only(bottom: 18),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(kBorderRadius),
+        borderRadius: BorderRadius.circular(radius),
       ),
       child: InkWell(
         onTap: onTap,
         onLongPress: onLongPress,
-        borderRadius: BorderRadius.circular(kBorderRadius),
+        borderRadius: BorderRadius.circular(radius),
         child: Padding(
-          padding: kPaddingAll16,
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -149,14 +160,29 @@ class _SoulCard extends StatelessWidget {
               Text(
                 l10n.livesRemaining(soul.remainingLives),
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: AppColors.lifeGreen,
+                      color: colorScheme.primary,
                     ),
               ),
+              if (lifePreview != null) ...[
+                kVerticalGap4,
+                Builder(
+                  builder: (BuildContext context) {
+                    final p = lifePreview!;
+                    return Text(
+                      l10n.currentLifeInfo(p.templateName, p.currentYear, p.age),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: colorScheme.secondary,
+                            fontStyle: FontStyle.italic,
+                          ),
+                    );
+                  },
+                ),
+              ],
               kVerticalGap4,
               Text(
                 dateFormat.format(soul.createdAt),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.neutral,
+                      color: colorScheme.onSurfaceVariant,
                     ),
               ),
             ],

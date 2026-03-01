@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:alma/app/constants/spacing.dart';
-import 'package:alma/app/constants/sizing.dart';
-import 'package:alma/app/theme/app_colors.dart';
+import 'package:alma/app/theme/theme_data.dart';
 import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/life_template.dart';
 import 'package:alma/core/models/skill.dart';
@@ -20,6 +19,9 @@ class LifeSelectionScreen extends ConsumerWidget {
     final soulState = ref.watch(soulControllerProvider);
     final List<LifeTemplate> templates = soulState.lifeTemplates;
     final l10n = AppLocalizations.of(context)!;
+    final themeExt = Theme.of(context).extension<AppThemeExtension>();
+    final padding = themeExt?.screenPadding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
+    final mutedColor = themeExt?.mutedColor ?? Theme.of(context).colorScheme.onSurfaceVariant;
     return Scaffold(
       appBar: AppBar(
         leading: const BackButtonLeading(fallbackRoute: '/soul'),
@@ -30,12 +32,12 @@ class LifeSelectionScreen extends ConsumerWidget {
               child: Text(
                 'No life templates available',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: AppColors.neutral,
+                      color: mutedColor,
                     ),
               ),
             )
           : ListView.builder(
-              padding: kPaddingScreen,
+              padding: padding,
               itemCount: templates.length,
               itemBuilder: (BuildContext context, int index) {
                 final LifeTemplate template = templates[index];
@@ -74,7 +76,7 @@ class LifeSelectionScreen extends ConsumerWidget {
                   .startLife(template);
               await ref.read(lifeControllerProvider.notifier).loadLife(life);
               if (context.mounted) {
-                context.go('/life');
+                context.push('/life');
               }
             },
             child: Text(l10n.confirm),
@@ -97,17 +99,21 @@ class _LifeTemplateCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final themeExt = Theme.of(context).extension<AppThemeExtension>();
+    final radius = themeExt?.radiusDefault ?? 12.0;
+    final colorScheme = Theme.of(context).colorScheme;
+    final accentColor = themeExt?.accentColor ?? colorScheme.secondary;
+    final mutedColor = themeExt?.mutedColor ?? colorScheme.onSurfaceVariant;
     return Card(
-      margin: const EdgeInsets.only(bottom: kSpacing16),
-      elevation: kCardElevation,
+      margin: const EdgeInsets.only(bottom: 18),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(kBorderRadius),
+        borderRadius: BorderRadius.circular(radius),
       ),
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(kBorderRadius),
+        borderRadius: BorderRadius.circular(radius),
         child: Padding(
-          padding: kPaddingAll16,
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -115,7 +121,7 @@ class _LifeTemplateCard extends StatelessWidget {
                 template.name,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: AppColors.lifeBlue,
+                      color: accentColor,
                     ),
               ),
               kVerticalGap8,
@@ -126,12 +132,12 @@ class _LifeTemplateCard extends StatelessWidget {
               kVerticalGap8,
               Row(
                 children: <Widget>[
-                  Icon(Icons.public, size: kIconSizeSmall, color: AppColors.neutral),
+                  Icon(Icons.public, size: 16, color: mutedColor),
                   kHorizontalGap4,
                   Text(
                     template.country,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.neutral,
+                          color: mutedColor,
                         ),
                   ),
                 ],
@@ -168,6 +174,8 @@ class _SkillsSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final themeExt = Theme.of(context).extension<AppThemeExtension>();
+    final mutedColor = themeExt?.mutedColor ?? Theme.of(context).colorScheme.onSurfaceVariant;
     final List<String> parts = <String>[
       '${l10n.intelligence}: ${skills.intelligence}',
       '${l10n.creativity}: ${skills.creativity}',
@@ -178,7 +186,7 @@ class _SkillsSummary extends StatelessWidget {
     return Text(
       parts.join(' • '),
       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-            color: AppColors.neutral,
+            color: mutedColor,
           ),
     );
   }

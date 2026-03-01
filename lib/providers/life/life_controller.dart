@@ -68,6 +68,18 @@ class LifeController extends StateNotifier<LifeControllerState> {
     }
   }
 
+  Future<bool> loadLifeById(String lifeId) async {
+    try {
+      final Life? life = await lifeRepository.getLifeById(lifeId);
+      if (life == null || life.isComplete) return false;
+      await loadLife(life);
+      return true;
+    } catch (e) {
+      print('Error loading life by id: $e');
+      return false;
+    }
+  }
+
   Future<void> performAction(GameAction action) async {
     if (state.currentLife == null) return;
     try {

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SoulSubject {
 
- SoulSubjectType get type; int get progress; bool get isPassed;
+ SoulSubjectType get type; bool get isPassed;
 /// Create a copy of SoulSubject
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $SoulSubjectCopyWith<SoulSubject> get copyWith => _$SoulSubjectCopyWithImpl<Soul
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SoulSubject&&(identical(other.type, type) || other.type == type)&&(identical(other.progress, progress) || other.progress == progress)&&(identical(other.isPassed, isPassed) || other.isPassed == isPassed));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SoulSubject&&(identical(other.type, type) || other.type == type)&&(identical(other.isPassed, isPassed) || other.isPassed == isPassed));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,type,progress,isPassed);
+int get hashCode => Object.hash(runtimeType,type,isPassed);
 
 @override
 String toString() {
-  return 'SoulSubject(type: $type, progress: $progress, isPassed: $isPassed)';
+  return 'SoulSubject(type: $type, isPassed: $isPassed)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $SoulSubjectCopyWith<$Res>  {
   factory $SoulSubjectCopyWith(SoulSubject value, $Res Function(SoulSubject) _then) = _$SoulSubjectCopyWithImpl;
 @useResult
 $Res call({
- SoulSubjectType type, int progress, bool isPassed
+ SoulSubjectType type, bool isPassed
 });
 
 
@@ -65,11 +65,10 @@ class _$SoulSubjectCopyWithImpl<$Res>
 
 /// Create a copy of SoulSubject
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? type = null,Object? progress = null,Object? isPassed = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? type = null,Object? isPassed = null,}) {
   return _then(_self.copyWith(
 type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as SoulSubjectType,progress: null == progress ? _self.progress : progress // ignore: cast_nullable_to_non_nullable
-as int,isPassed: null == isPassed ? _self.isPassed : isPassed // ignore: cast_nullable_to_non_nullable
+as SoulSubjectType,isPassed: null == isPassed ? _self.isPassed : isPassed // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -152,10 +151,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( SoulSubjectType type,  int progress,  bool isPassed)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( SoulSubjectType type,  bool isPassed)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SoulSubject() when $default != null:
-return $default(_that.type,_that.progress,_that.isPassed);case _:
+return $default(_that.type,_that.isPassed);case _:
   return orElse();
 
 }
@@ -173,10 +172,10 @@ return $default(_that.type,_that.progress,_that.isPassed);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( SoulSubjectType type,  int progress,  bool isPassed)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( SoulSubjectType type,  bool isPassed)  $default,) {final _that = this;
 switch (_that) {
 case _SoulSubject():
-return $default(_that.type,_that.progress,_that.isPassed);}
+return $default(_that.type,_that.isPassed);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -190,10 +189,10 @@ return $default(_that.type,_that.progress,_that.isPassed);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( SoulSubjectType type,  int progress,  bool isPassed)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( SoulSubjectType type,  bool isPassed)?  $default,) {final _that = this;
 switch (_that) {
 case _SoulSubject() when $default != null:
-return $default(_that.type,_that.progress,_that.isPassed);case _:
+return $default(_that.type,_that.isPassed);case _:
   return null;
 
 }
@@ -205,11 +204,10 @@ return $default(_that.type,_that.progress,_that.isPassed);case _:
 @JsonSerializable()
 
 class _SoulSubject implements SoulSubject {
-  const _SoulSubject({required this.type, this.progress = 0, this.isPassed = false});
+  const _SoulSubject({required this.type, this.isPassed = false});
   factory _SoulSubject.fromJson(Map<String, dynamic> json) => _$SoulSubjectFromJson(json);
 
 @override final  SoulSubjectType type;
-@override@JsonKey() final  int progress;
 @override@JsonKey() final  bool isPassed;
 
 /// Create a copy of SoulSubject
@@ -225,16 +223,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SoulSubject&&(identical(other.type, type) || other.type == type)&&(identical(other.progress, progress) || other.progress == progress)&&(identical(other.isPassed, isPassed) || other.isPassed == isPassed));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SoulSubject&&(identical(other.type, type) || other.type == type)&&(identical(other.isPassed, isPassed) || other.isPassed == isPassed));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,type,progress,isPassed);
+int get hashCode => Object.hash(runtimeType,type,isPassed);
 
 @override
 String toString() {
-  return 'SoulSubject(type: $type, progress: $progress, isPassed: $isPassed)';
+  return 'SoulSubject(type: $type, isPassed: $isPassed)';
 }
 
 
@@ -245,7 +243,7 @@ abstract mixin class _$SoulSubjectCopyWith<$Res> implements $SoulSubjectCopyWith
   factory _$SoulSubjectCopyWith(_SoulSubject value, $Res Function(_SoulSubject) _then) = __$SoulSubjectCopyWithImpl;
 @override @useResult
 $Res call({
- SoulSubjectType type, int progress, bool isPassed
+ SoulSubjectType type, bool isPassed
 });
 
 
@@ -262,11 +260,10 @@ class __$SoulSubjectCopyWithImpl<$Res>
 
 /// Create a copy of SoulSubject
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? type = null,Object? progress = null,Object? isPassed = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? type = null,Object? isPassed = null,}) {
   return _then(_SoulSubject(
 type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as SoulSubjectType,progress: null == progress ? _self.progress : progress // ignore: cast_nullable_to_non_nullable
-as int,isPassed: null == isPassed ? _self.isPassed : isPassed // ignore: cast_nullable_to_non_nullable
+as SoulSubjectType,isPassed: null == isPassed ? _self.isPassed : isPassed // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }

@@ -5,6 +5,9 @@
   "loadGame": "Load Game",
   "achievements": "Achievements",
   "settings": "Settings",
+  "continueSoul": "Continue Soul",
+  "createNewSoul": "Create New Soul",
+  "archive": "Archive",
   "soulWorld": "Soul World",
   "livesRemaining": "{count, plural, =1{1 life remaining} other{{count} lives remaining}}",
   "@livesRemaining": {
@@ -82,5 +85,98 @@
   "passed": "Passed",
   "notPassed": "Not Passed",
   "actions": "Actions",
-  "performAction": "Perform Action"
+  "performAction": "Perform Action",
+  "continueLife": "Continue Life",
+  "currentLifeInfo": "{templateName} • Year {year}, Age {age}",
+  "@currentLifeInfo": {
+    "placeholders": {
+      "templateName": {"type": "String"},
+      "year": {"type": "int"},
+      "age": {"type": "int"}
+    }
+  },
+
+  "tabWork": "Work",
+  "tabEducation": "Education",
+  "tabLife": "Life",
+  "tabHealth": "Health",
+  "tabRelations": "Relations",
+
+  "store": "Store",
+  "exitLife": "Exit Life",
+  "exitLifeConfirmTitle": "Leave this life?",
+  "exitLifeConfirmMessage": "You will return to the soul world. Your progress is saved.",
+  "notImplementedYet": "Not yet implemented",
+
+  "nextYearSkipRemaining": "Next Year (skip remaining)",
+
+  "moneyAmount": "${amount}",
+  "@moneyAmount": {
+    "placeholders": {
+      "amount": {"type": "int"}
+    }
+  },
+
+  "jobTitle": "Job",
+  "salary": "Salary",
+  "salaryAmount": "${amount}/yr",
+  "@salaryAmount": {
+    "placeholders": {
+      "amount": {"type": "int"}
+    }
+  },
+  "getJob": "Get Job",
+  "jobActions": "Actions",
+  "noWorkHistory": "No work history yet",
+  "noWorkEvents": "No work events yet",
+  "effort": "Effort",
+  "cv": "CV",
+  "availableJobs": "Available Jobs",
+  "noJobsAvailable": "No jobs available yet",
+
+  "studyTitle": "Studies",
+  "grade": "Grade",
+  "enroll": "Enroll",
+  "studyActions": "Actions",
+  "noStudyHistory": "No degrees obtained yet",
+  "noEducationEvents": "No education events yet",
+  "degrees": "Degrees",
+  "availableDegrees": "Available Degrees",
+  "noDegreesAvailable": "No degrees available yet",
+
+  "healthStatus": "Health: {value}",
+  "@healthStatus": {
+    "placeholders": {
+      "value": {"type": "int"}
+    }
+  },
+  "healthActions": "Health Actions",
+
+  "filterAll": "All",
+  "filterFamily": "Family",
+  "filterFriends": "Friends",
+  "filterLove": "Love",
+  "filterWork": "Work",
+  "noRelationships": "No relationships yet",
+  "noInteractionsRecorded": "No interactions recorded yet",
+  "relationshipProgress": "Relationship",
+
+  "roleParent": "Parent",
+  "roleSibling": "Sibling",
+  "roleFriend": "Friend",
+  "rolePartner": "Partner",
+  "roleCoworker": "Coworker",
+  "roleMentor": "Mentor",
+  "roleRival": "Rival",
+  "roleChild": "Child",
+
+  "eventLog": "Event Log",
+  "noEventsRecorded": "No events recorded yet",
+  "life": "Life",
+  "performancePercent": "{value}%",
+  "@performancePercent": {
+    "placeholders": {
+      "value": {"type": "int"}
+    }
+  }
 }

@@ -57,6 +57,12 @@ _LifeState _$LifeStateFromJson(Map<String, dynamic> json) => _LifeState(
       : GameEvent.fromJson(json['pendingEvent'] as Map<String, dynamic>),
   isDead: json['isDead'] as bool? ?? false,
   causeOfDeath: json['causeOfDeath'] as String?,
+  lifeData: json['lifeData'] as Map<String, dynamic>? ?? const {},
+  moralImpacts:
+      (json['moralImpacts'] as List<dynamic>?)
+          ?.map((e) => MoralImpact.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      const [],
 );
 
 Map<String, dynamic> _$LifeStateToJson(_LifeState instance) =>
@@ -76,6 +82,8 @@ Map<String, dynamic> _$LifeStateToJson(_LifeState instance) =>
       'pendingEvent': instance.pendingEvent,
       'isDead': instance.isDead,
       'causeOfDeath': instance.causeOfDeath,
+      'lifeData': instance.lifeData,
+      'moralImpacts': instance.moralImpacts,
     };
 
 const _$TraitTypeEnumMap = {
@@ -105,6 +113,12 @@ _LifeSummary _$LifeSummaryFromJson(Map<String, dynamic> json) => _LifeSummary(
       .toList(),
   subjectContributions: (json['subjectContributions'] as Map<String, dynamic>)
       .map((k, e) => MapEntry(k, (e as num).toDouble())),
+  lifeData: json['lifeData'] as Map<String, dynamic>? ?? const {},
+  moralImpactSummary: json['moralImpactSummary'] == null
+      ? null
+      : MoralImpactSummary.fromJson(
+          json['moralImpactSummary'] as Map<String, dynamic>,
+        ),
 );
 
 Map<String, dynamic> _$LifeSummaryToJson(_LifeSummary instance) =>
@@ -116,4 +130,6 @@ Map<String, dynamic> _$LifeSummaryToJson(_LifeSummary instance) =>
           .map((e) => _$TraitTypeEnumMap[e]!)
           .toList(),
       'subjectContributions': instance.subjectContributions,
+      'lifeData': instance.lifeData,
+      'moralImpactSummary': instance.moralImpactSummary,
     };

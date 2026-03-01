@@ -124,6 +124,24 @@ abstract class AppLocalizations {
   /// **'Settings'**
   String get settings;
 
+  /// No description provided for @continueSoul.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Soul'**
+  String get continueSoul;
+
+  /// No description provided for @createNewSoul.
+  ///
+  /// In en, this message translates to:
+  /// **'Create New Soul'**
+  String get createNewSoul;
+
+  /// No description provided for @archive.
+  ///
+  /// In en, this message translates to:
+  /// **'Archive'**
+  String get archive;
+
   /// No description provided for @soulWorld.
   ///
   /// In en, this message translates to:
@@ -423,6 +441,342 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Perform Action'**
   String get performAction;
+
+  /// No description provided for @continueLife.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Life'**
+  String get continueLife;
+
+  /// No description provided for @currentLifeInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'{templateName} • Year {year}, Age {age}'**
+  String currentLifeInfo(String templateName, int year, int age);
+
+  /// No description provided for @tabWork.
+  ///
+  /// In en, this message translates to:
+  /// **'Work'**
+  String get tabWork;
+
+  /// No description provided for @tabEducation.
+  ///
+  /// In en, this message translates to:
+  /// **'Education'**
+  String get tabEducation;
+
+  /// No description provided for @tabLife.
+  ///
+  /// In en, this message translates to:
+  /// **'Life'**
+  String get tabLife;
+
+  /// No description provided for @tabHealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Health'**
+  String get tabHealth;
+
+  /// No description provided for @tabRelations.
+  ///
+  /// In en, this message translates to:
+  /// **'Relations'**
+  String get tabRelations;
+
+  /// No description provided for @store.
+  ///
+  /// In en, this message translates to:
+  /// **'Store'**
+  String get store;
+
+  /// No description provided for @exitLife.
+  ///
+  /// In en, this message translates to:
+  /// **'Exit Life'**
+  String get exitLife;
+
+  /// No description provided for @exitLifeConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave this life?'**
+  String get exitLifeConfirmTitle;
+
+  /// No description provided for @exitLifeConfirmMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'You will return to the soul world. Your progress is saved.'**
+  String get exitLifeConfirmMessage;
+
+  /// No description provided for @notImplementedYet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not yet implemented'**
+  String get notImplementedYet;
+
+  /// No description provided for @nextYearSkipRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'Next Year (skip remaining)'**
+  String get nextYearSkipRemaining;
+
+  /// No description provided for @moneyAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'\${amount}'**
+  String moneyAmount(int amount);
+
+  /// No description provided for @jobTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Job'**
+  String get jobTitle;
+
+  /// No description provided for @salary.
+  ///
+  /// In en, this message translates to:
+  /// **'Salary'**
+  String get salary;
+
+  /// No description provided for @salaryAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'\${amount}/yr'**
+  String salaryAmount(int amount);
+
+  /// No description provided for @getJob.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Job'**
+  String get getJob;
+
+  /// No description provided for @jobActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Actions'**
+  String get jobActions;
+
+  /// No description provided for @noWorkHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'No work history yet'**
+  String get noWorkHistory;
+
+  /// No description provided for @noWorkEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'No work events yet'**
+  String get noWorkEvents;
+
+  /// No description provided for @effort.
+  ///
+  /// In en, this message translates to:
+  /// **'Effort'**
+  String get effort;
+
+  /// No description provided for @cv.
+  ///
+  /// In en, this message translates to:
+  /// **'CV'**
+  String get cv;
+
+  /// No description provided for @availableJobs.
+  ///
+  /// In en, this message translates to:
+  /// **'Available Jobs'**
+  String get availableJobs;
+
+  /// No description provided for @noJobsAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No jobs available yet'**
+  String get noJobsAvailable;
+
+  /// No description provided for @studyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Studies'**
+  String get studyTitle;
+
+  /// No description provided for @grade.
+  ///
+  /// In en, this message translates to:
+  /// **'Grade'**
+  String get grade;
+
+  /// No description provided for @enroll.
+  ///
+  /// In en, this message translates to:
+  /// **'Enroll'**
+  String get enroll;
+
+  /// No description provided for @studyActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Actions'**
+  String get studyActions;
+
+  /// No description provided for @noStudyHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'No degrees obtained yet'**
+  String get noStudyHistory;
+
+  /// No description provided for @noEducationEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'No education events yet'**
+  String get noEducationEvents;
+
+  /// No description provided for @degrees.
+  ///
+  /// In en, this message translates to:
+  /// **'Degrees'**
+  String get degrees;
+
+  /// No description provided for @availableDegrees.
+  ///
+  /// In en, this message translates to:
+  /// **'Available Degrees'**
+  String get availableDegrees;
+
+  /// No description provided for @noDegreesAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No degrees available yet'**
+  String get noDegreesAvailable;
+
+  /// No description provided for @healthStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Health: {value}'**
+  String healthStatus(int value);
+
+  /// No description provided for @healthActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Health Actions'**
+  String get healthActions;
+
+  /// No description provided for @filterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get filterAll;
+
+  /// No description provided for @filterFamily.
+  ///
+  /// In en, this message translates to:
+  /// **'Family'**
+  String get filterFamily;
+
+  /// No description provided for @filterFriends.
+  ///
+  /// In en, this message translates to:
+  /// **'Friends'**
+  String get filterFriends;
+
+  /// No description provided for @filterLove.
+  ///
+  /// In en, this message translates to:
+  /// **'Love'**
+  String get filterLove;
+
+  /// No description provided for @filterWork.
+  ///
+  /// In en, this message translates to:
+  /// **'Work'**
+  String get filterWork;
+
+  /// No description provided for @noRelationships.
+  ///
+  /// In en, this message translates to:
+  /// **'No relationships yet'**
+  String get noRelationships;
+
+  /// No description provided for @noInteractionsRecorded.
+  ///
+  /// In en, this message translates to:
+  /// **'No interactions recorded yet'**
+  String get noInteractionsRecorded;
+
+  /// No description provided for @relationshipProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Relationship'**
+  String get relationshipProgress;
+
+  /// No description provided for @roleParent.
+  ///
+  /// In en, this message translates to:
+  /// **'Parent'**
+  String get roleParent;
+
+  /// No description provided for @roleSibling.
+  ///
+  /// In en, this message translates to:
+  /// **'Sibling'**
+  String get roleSibling;
+
+  /// No description provided for @roleFriend.
+  ///
+  /// In en, this message translates to:
+  /// **'Friend'**
+  String get roleFriend;
+
+  /// No description provided for @rolePartner.
+  ///
+  /// In en, this message translates to:
+  /// **'Partner'**
+  String get rolePartner;
+
+  /// No description provided for @roleCoworker.
+  ///
+  /// In en, this message translates to:
+  /// **'Coworker'**
+  String get roleCoworker;
+
+  /// No description provided for @roleMentor.
+  ///
+  /// In en, this message translates to:
+  /// **'Mentor'**
+  String get roleMentor;
+
+  /// No description provided for @roleRival.
+  ///
+  /// In en, this message translates to:
+  /// **'Rival'**
+  String get roleRival;
+
+  /// No description provided for @roleChild.
+  ///
+  /// In en, this message translates to:
+  /// **'Child'**
+  String get roleChild;
+
+  /// No description provided for @eventLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Event Log'**
+  String get eventLog;
+
+  /// No description provided for @noEventsRecorded.
+  ///
+  /// In en, this message translates to:
+  /// **'No events recorded yet'**
+  String get noEventsRecorded;
+
+  /// No description provided for @life.
+  ///
+  /// In en, this message translates to:
+  /// **'Life'**
+  String get life;
+
+  /// No description provided for @performancePercent.
+  ///
+  /// In en, this message translates to:
+  /// **'{value}%'**
+  String performancePercent(int value);
 }
 
 class _AppLocalizationsDelegate

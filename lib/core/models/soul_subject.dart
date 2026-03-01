@@ -8,7 +8,6 @@ part 'soul_subject.g.dart';
 sealed class SoulSubject with _$SoulSubject {
   const factory SoulSubject({
     required SoulSubjectType type,
-    @Default(0) int progress,
     @Default(false) bool isPassed,
   }) = _SoulSubject;
 

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:alma/app/constants/game_constants.dart';
 import 'package:alma/app/constants/spacing.dart';
-import 'package:alma/app/constants/sizing.dart';
-import 'package:alma/app/theme/app_colors.dart';
+import 'package:alma/app/theme/theme_data.dart';
 import 'package:alma/core/models/enums/soul_subject_type.dart';
 import 'package:alma/core/models/soul_subject.dart';
 import 'package:alma/l10n/app_localizations.dart';
@@ -22,20 +20,30 @@ class SoulSubjectsScreen extends ConsumerWidget {
       return Scaffold(
         body: Center(
           child: TextButton(
-            onPressed: () => context.go('/'),
+            onPressed: () {
+              if (context.canPop()) {
+                while (context.mounted && context.canPop()) {
+                  context.pop();
+                }
+              } else {
+                context.go('/');
+              }
+            },
             child: Text(AppLocalizations.of(context)!.back),
           ),
         ),
       );
     }
     final l10n = AppLocalizations.of(context)!;
+    final themeExt = Theme.of(context).extension<AppThemeExtension>();
+    final padding = themeExt?.screenPadding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
     return Scaffold(
       appBar: AppBar(
         leading: const BackButtonLeading(fallbackRoute: '/soul'),
         title: Text(l10n.soulSubjects),
       ),
       body: ListView.builder(
-        padding: kPaddingScreen,
+        padding: padding,
         itemCount: soul.subjects.length,
         itemBuilder: (BuildContext context, int index) {
           final SoulSubject subject = soul.subjects[index];
@@ -51,21 +59,18 @@ class _SubjectDetailCard extends StatelessWidget {
 
   final SoulSubject subject;
 
-  Color _colorForSubject(SoulSubjectType type) {
-    switch (type) {
-      case SoulSubjectType.compassion:
-        return AppColors.compassionPink;
-      case SoulSubjectType.discipline:
-        return AppColors.disciplineOrange;
-      case SoulSubjectType.courage:
-        return AppColors.courageRed;
-      case SoulSubjectType.wisdom:
-        return AppColors.wisdomIndigo;
-      case SoulSubjectType.fun:
-        return AppColors.funYellow;
-      case SoulSubjectType.humility:
-        return AppColors.humilityTeal;
-    }
+  Color _colorForSubject(BuildContext context, SoulSubjectType type) {
+    final themeExt = Theme.of(context).extension<AppThemeExtension>();
+    final base = themeExt?.accentColor ?? Theme.of(context).colorScheme.secondary;
+    final opacities = <SoulSubjectType, double>{
+      SoulSubjectType.compassion: 0.9,
+      SoulSubjectType.discipline: 0.75,
+      SoulSubjectType.courage: 0.9,
+      SoulSubjectType.wisdom: 0.85,
+      SoulSubjectType.fun: 0.7,
+      SoulSubjectType.humility: 0.8,
+    };
+    return base.withValues(alpha: opacities[type] ?? 0.8);
   }
 
   String _labelForSubject(BuildContext context, SoulSubjectType type) {
@@ -89,82 +94,65 @@ class _SubjectDetailCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final Color color = _colorForSubject(subject.type);
+    final Color color = _colorForSubject(context, subject.type);
     final String label = _labelForSubject(context, subject.type);
-    final int progress = subject.progress.clamp(0, kMaxSubjectScore);
+    final themeExt = Theme.of(context).extension<AppThemeExtension>();
+    final radius = themeExt?.radiusDefault ?? 12.0;
+    final radiusSmall = themeExt?.radiusSmall ?? 8.0;
+    final positiveColor = themeExt?.accentColor ?? Theme.of(context).colorScheme.primary;
+    final mutedColor = themeExt?.mutedColor ?? Theme.of(context).colorScheme.onSurfaceVariant;
     return Card(
-      margin: const EdgeInsets.only(bottom: kSpacing16),
-      elevation: kCardElevation,
+      margin: const EdgeInsets.only(bottom: 18),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(kBorderRadius),
+        borderRadius: BorderRadius.circular(radius),
         side: subject.isPassed
-            ? BorderSide(color: AppColors.positive, width: 2)
+            ? BorderSide(color: positiveColor, width: 2)
             : BorderSide.none,
       ),
       child: Padding(
-        padding: kPaddingAll16,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        padding: const EdgeInsets.all(16),
+        child: Row(
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Container(
-                  width: kSpacing32,
-                  height: kSpacing32,
-                  decoration: BoxDecoration(
-                    color: color.withValues(alpha: 0.2),
-                    borderRadius: BorderRadius.circular(kBorderRadiusSmall),
-                  ),
-                  alignment: Alignment.center,
-                  child: Icon(Icons.star, color: color, size: kIconSizeSmall),
-                ),
-                kHorizontalGap12,
-                Expanded(
-                  child: Text(
-                    label,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: color,
-                        ),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: kSpacing12,
-                    vertical: kSpacing4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: subject.isPassed
-                        ? AppColors.positive.withValues(alpha: 0.2)
-                        : AppColors.neutral.withValues(alpha: 0.2),
-                    borderRadius: BorderRadius.circular(kBorderRadiusSmall),
-                  ),
-                  child: Text(
-                    subject.isPassed ? l10n.passed : l10n.notPassed,
-                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: subject.isPassed
-                              ? AppColors.positive
-                              : AppColors.neutral,
-                        ),
-                  ),
-                ),
-              ],
+            Container(
+              width: 32,
+              height: 32,
+              decoration: BoxDecoration(
+                color: color.withValues(alpha: 0.2),
+                borderRadius: BorderRadius.circular(radiusSmall),
+              ),
+              alignment: Alignment.center,
+              child: Icon(Icons.star, color: color, size: 16),
             ),
-            kVerticalGap12,
-            LinearProgressIndicator(
-              value: progress / kMaxSubjectScore,
-              backgroundColor: color.withValues(alpha: 0.2),
-              valueColor: AlwaysStoppedAnimation<Color>(color),
-              minHeight: kProgressBarHeightLarge,
-              borderRadius: BorderRadius.circular(kProgressBarHeightLarge / 2),
+            kHorizontalGap12,
+            Expanded(
+              child: Text(
+                label,
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: color,
+                    ),
+              ),
             ),
-            kVerticalGap4,
-            Text(
-              '$progress / $kMaxSubjectScore',
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.neutral,
-                  ),
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 4,
+              ),
+              decoration: BoxDecoration(
+                color: subject.isPassed
+                    ? positiveColor.withValues(alpha: 0.2)
+                    : mutedColor.withValues(alpha: 0.2),
+                borderRadius: BorderRadius.circular(radiusSmall),
+              ),
+              child: Text(
+                subject.isPassed ? l10n.passed : l10n.notPassed,
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: subject.isPassed
+                          ? positiveColor
+                          : mutedColor,
+                    ),
+              ),
             ),
           ],
         ),

@@ -48,6 +48,11 @@ _EventConsequences _$EventConsequencesFromJson(
   relationshipChange: (json['relationshipChange'] as num?)?.toInt() ?? 0,
   unlockEventId: json['unlockEventId'] as String?,
   causesDeath: json['causesDeath'] as bool? ?? false,
+  moralImpactTemplates:
+      (json['moralImpactTemplates'] as List<dynamic>?)
+          ?.map((e) => MoralImpactTemplate.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      const [],
 );
 
 Map<String, dynamic> _$EventConsequencesToJson(_EventConsequences instance) =>
@@ -67,6 +72,7 @@ Map<String, dynamic> _$EventConsequencesToJson(_EventConsequences instance) =>
       'relationshipChange': instance.relationshipChange,
       'unlockEventId': instance.unlockEventId,
       'causesDeath': instance.causesDeath,
+      'moralImpactTemplates': instance.moralImpactTemplates,
     };
 
 const _$SkillTypeEnumMap = {

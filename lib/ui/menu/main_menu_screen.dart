@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:alma/app/constants/spacing.dart';
-import 'package:alma/app/constants/sizing.dart';
-import 'package:alma/app/theme/app_colors.dart';
+import 'package:alma/app/theme/theme_data.dart';
 import 'package:alma/l10n/app_localizations.dart';
 
 class MainMenuScreen extends ConsumerWidget {
@@ -12,42 +10,57 @@ class MainMenuScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
+    final themeExt = Theme.of(context).extension<AppThemeExtension>();
+    final colorScheme = Theme.of(context).colorScheme;
+    final padding = themeExt?.screenPadding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
+    final sectionGap = themeExt?.sectionGap ?? 28.0;
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: kPaddingScreen,
+          padding: padding,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
                   l10n.appTitle,
-                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.soulPurple,
-                      ),
+                  style: themeExt?.narrativeHeadlineLarge.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ) ??
+                      Theme.of(context).textTheme.headlineLarge?.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: colorScheme.onSurface,
+                          ),
                 ),
-                kVerticalGap16,
+                SizedBox(height: sectionGap * 0.5),
                 Text(
                   'A Soul\'s Journey',
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: AppColors.neutral,
-                      ),
+                  style: themeExt?.narrativeTitleMedium.copyWith(
+                        color: themeExt.mutedColor,
+                      ) ??
+                      Theme.of(context).textTheme.titleMedium?.copyWith(
+                            color: colorScheme.onSurfaceVariant,
+                          ),
                 ),
-                kVerticalGap48,
+                SizedBox(height: sectionGap * 1.5),
                 _MenuButton(
-                  label: l10n.newGame,
-                  onPressed: () => context.go('/create-soul'),
+                  label: l10n.continueSoul,
+                  onPressed: () => context.push('/save-slots'),
                 ),
-                kVerticalGap16,
+                SizedBox(height: sectionGap),
                 _MenuButton(
-                  label: l10n.loadGame,
-                  onPressed: () => context.go('/save-slots'),
+                  label: l10n.createNewSoul,
+                  onPressed: () => context.push('/create-soul'),
                 ),
-                kVerticalGap16,
+                SizedBox(height: sectionGap),
                 _MenuButton(
-                  label: l10n.achievements,
-                  onPressed: () => context.go('/achievements'),
+                  label: l10n.archive,
+                  onPressed: () => context.push('/achievements'),
+                ),
+                SizedBox(height: sectionGap),
+                _MenuButton(
+                  label: l10n.settings,
+                  onPressed: () => context.push('/settings'),
                 ),
               ],
             ),
@@ -69,16 +82,20 @@ class _MenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeExt = Theme.of(context).extension<AppThemeExtension>();
+    final radius = themeExt?.radiusDefault ?? 12.0;
+    final colorScheme = Theme.of(context).colorScheme;
     return SizedBox(
       width: double.infinity,
-      height: kButtonHeight,
+      height: 48,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.soulPurple,
-          foregroundColor: Colors.white,
+          backgroundColor: colorScheme.surfaceContainerHighest,
+          foregroundColor: colorScheme.onSurface,
+          elevation: 0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(kBorderRadius),
+            borderRadius: BorderRadius.circular(radius),
           ),
         ),
         child: Text(label),

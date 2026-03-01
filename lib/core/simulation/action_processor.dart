@@ -2,6 +2,7 @@ import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/action.dart';
 import 'package:alma/core/models/skill.dart';
 import 'package:alma/core/models/hidden_metrics.dart';
+import 'package:alma/core/models/moral_impact.dart';
 import 'package:alma/core/models/enums/section_type.dart';
 import 'package:alma/core/engine/time_engine.dart';
 import 'package:alma/core/engine/event_engine.dart';
@@ -39,6 +40,7 @@ class ActionProcessor {
     state = habitProcessor.process(state, action);
     state = traitRules.checkEvolution(state, action, rng);
     state = _updateHiddenMetrics(state, action);
+    state = _recordMoralImpacts(state, action);
     final pendingEvent = eventEngine.checkTriggers(state, rng);
     if (pendingEvent != null) {
       return state.copyWith(pendingEvent: pendingEvent);
@@ -94,6 +96,16 @@ class ActionProcessor {
       metrics = metrics.withChange(entry.key, entry.value);
     }
     return state.copyWith(hiddenMetrics: metrics);
+  }
+
+  LifeState _recordMoralImpacts(LifeState state, GameAction action) {
+    if (action.moralImpactTemplates.isEmpty) return state;
+    final List<MoralImpact> newImpacts = action.moralImpactTemplates
+        .map((t) => t.toImpact(state.currentYear))
+        .toList();
+    return state.copyWith(
+      moralImpacts: [...state.moralImpacts, ...newImpacts],
+    );
   }
 
   LifeState _checkDeathConditions(LifeState state, SeededRandom rng) {

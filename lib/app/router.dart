@@ -10,9 +10,10 @@ import 'package:alma/ui/soul/life_selection_screen.dart';
 import 'package:alma/ui/soul/soul_subjects_screen.dart';
 import 'package:alma/ui/soul/nirvana_screen.dart';
 import 'package:alma/ui/soul/game_over_screen.dart';
-import 'package:alma/ui/life/life_dashboard_screen.dart';
-import 'package:alma/ui/life/relationships_screen.dart';
+import 'package:alma/ui/life/life_shell_screen.dart';
+import 'package:alma/ui/life/store_placeholder_screen.dart';
 import 'package:alma/ui/life/life_summary_screen.dart';
+import 'package:alma/ui/menu/settings_screen.dart';
 
 final GoRouter appRouter = GoRouter(
   initialLocation: '/',
@@ -20,10 +21,7 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/',
       pageBuilder: (BuildContext context, GoRouterState state) {
-        return MaterialPage<void>(
-          key: state.pageKey,
-          child: const MainMenuScreen(),
-        );
+        return buildPageWithSwipeBack(state, const MainMenuScreen());
       },
     ),
     GoRoute(
@@ -42,6 +40,12 @@ final GoRouter appRouter = GoRouter(
       path: '/achievements',
       pageBuilder: (BuildContext context, GoRouterState state) {
         return buildPageWithSwipeBack(state, const AchievementsScreen());
+      },
+    ),
+    GoRoute(
+      path: '/settings',
+      pageBuilder: (BuildContext context, GoRouterState state) {
+        return buildPageWithSwipeBack(state, const SettingsScreen());
       },
     ),
     GoRoute(
@@ -79,13 +83,13 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/life',
       pageBuilder: (BuildContext context, GoRouterState state) {
-        return buildPageWithSwipeBack(state, const LifeDashboardScreen());
+        return buildPageWithSwipeBack(state, const LifeShellScreen());
       },
       routes: <RouteBase>[
         GoRoute(
-          path: 'relationships',
+          path: 'store',
           pageBuilder: (BuildContext context, GoRouterState state) {
-            return buildPageWithSwipeBack(state, const RelationshipsScreen());
+            return buildPageWithSwipeBack(state, const StorePlaceholderScreen());
           },
         ),
         GoRoute(

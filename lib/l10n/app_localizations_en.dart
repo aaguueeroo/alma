@@ -24,6 +24,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings => 'Settings';
 
   @override
+  String get continueSoul => 'Continue Soul';
+
+  @override
+  String get createNewSoul => 'Create New Soul';
+
+  @override
+  String get archive => 'Archive';
+
+  @override
   String get soulWorld => 'Soul World';
 
   @override
@@ -186,4 +195,183 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get performAction => 'Perform Action';
+
+  @override
+  String get continueLife => 'Continue Life';
+
+  @override
+  String currentLifeInfo(String templateName, int year, int age) {
+    return '$templateName • Year $year, Age $age';
+  }
+
+  @override
+  String get tabWork => 'Work';
+
+  @override
+  String get tabEducation => 'Education';
+
+  @override
+  String get tabLife => 'Life';
+
+  @override
+  String get tabHealth => 'Health';
+
+  @override
+  String get tabRelations => 'Relations';
+
+  @override
+  String get store => 'Store';
+
+  @override
+  String get exitLife => 'Exit Life';
+
+  @override
+  String get exitLifeConfirmTitle => 'Leave this life?';
+
+  @override
+  String get exitLifeConfirmMessage =>
+      'You will return to the soul world. Your progress is saved.';
+
+  @override
+  String get notImplementedYet => 'Not yet implemented';
+
+  @override
+  String get nextYearSkipRemaining => 'Next Year (skip remaining)';
+
+  @override
+  String moneyAmount(int amount) {
+    return '\$$amount';
+  }
+
+  @override
+  String get jobTitle => 'Job';
+
+  @override
+  String get salary => 'Salary';
+
+  @override
+  String salaryAmount(int amount) {
+    return '\$$amount/yr';
+  }
+
+  @override
+  String get getJob => 'Get Job';
+
+  @override
+  String get jobActions => 'Actions';
+
+  @override
+  String get noWorkHistory => 'No work history yet';
+
+  @override
+  String get noWorkEvents => 'No work events yet';
+
+  @override
+  String get effort => 'Effort';
+
+  @override
+  String get cv => 'CV';
+
+  @override
+  String get availableJobs => 'Available Jobs';
+
+  @override
+  String get noJobsAvailable => 'No jobs available yet';
+
+  @override
+  String get studyTitle => 'Studies';
+
+  @override
+  String get grade => 'Grade';
+
+  @override
+  String get enroll => 'Enroll';
+
+  @override
+  String get studyActions => 'Actions';
+
+  @override
+  String get noStudyHistory => 'No degrees obtained yet';
+
+  @override
+  String get noEducationEvents => 'No education events yet';
+
+  @override
+  String get degrees => 'Degrees';
+
+  @override
+  String get availableDegrees => 'Available Degrees';
+
+  @override
+  String get noDegreesAvailable => 'No degrees available yet';
+
+  @override
+  String healthStatus(int value) {
+    return 'Health: $value';
+  }
+
+  @override
+  String get healthActions => 'Health Actions';
+
+  @override
+  String get filterAll => 'All';
+
+  @override
+  String get filterFamily => 'Family';
+
+  @override
+  String get filterFriends => 'Friends';
+
+  @override
+  String get filterLove => 'Love';
+
+  @override
+  String get filterWork => 'Work';
+
+  @override
+  String get noRelationships => 'No relationships yet';
+
+  @override
+  String get noInteractionsRecorded => 'No interactions recorded yet';
+
+  @override
+  String get relationshipProgress => 'Relationship';
+
+  @override
+  String get roleParent => 'Parent';
+
+  @override
+  String get roleSibling => 'Sibling';
+
+  @override
+  String get roleFriend => 'Friend';
+
+  @override
+  String get rolePartner => 'Partner';
+
+  @override
+  String get roleCoworker => 'Coworker';
+
+  @override
+  String get roleMentor => 'Mentor';
+
+  @override
+  String get roleRival => 'Rival';
+
+  @override
+  String get roleChild => 'Child';
+
+  @override
+  String get eventLog => 'Event Log';
+
+  @override
+  String get noEventsRecorded => 'No events recorded yet';
+
+  @override
+  String get life => 'Life';
+
+  @override
+  String performancePercent(int value) {
+    return '$value%';
+  }
 }

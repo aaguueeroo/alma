@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:alma/app/constants/game_constants.dart';
 import 'package:alma/app/constants/spacing.dart';
-import 'package:alma/app/constants/sizing.dart';
-import 'package:alma/app/theme/app_colors.dart';
+import 'package:alma/app/theme/theme_data.dart';
 import 'package:alma/core/models/enums/soul_subject_type.dart';
 import 'package:alma/core/models/soul.dart';
 import 'package:alma/core/models/soul_subject.dart';
 import 'package:alma/l10n/app_localizations.dart';
+import 'package:alma/providers/life/life_controller.dart';
 import 'package:alma/providers/soul/soul_controller.dart';
 import 'package:alma/ui/shared/back_button_leading.dart';
 
@@ -23,7 +22,15 @@ class SoulHomeScreen extends ConsumerWidget {
       return Scaffold(
         body: Center(
           child: TextButton(
-            onPressed: () => context.go('/'),
+            onPressed: () {
+              if (context.canPop()) {
+                while (context.mounted && context.canPop()) {
+                  context.pop();
+                }
+              } else {
+                context.go('/');
+              }
+            },
             child: Text(AppLocalizations.of(context)!.back),
           ),
         ),
@@ -32,39 +39,45 @@ class SoulHomeScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context)!;
     final bool showNirvana = soul.hasAchievedNirvana;
     final bool showGameOver = soul.isGameOver;
+    final themeExt = Theme.of(context).extension<AppThemeExtension>();
+    final padding = themeExt?.screenPadding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
+    final sectionGap = themeExt?.sectionGap ?? 28.0;
+    final radius = themeExt?.radiusDefault ?? 12.0;
+    final colorScheme = Theme.of(context).colorScheme;
+    final accentColor = themeExt?.accentColor ?? colorScheme.secondary;
     return Scaffold(
       appBar: AppBar(
         leading: const BackButtonLeading(),
         title: Text(soul.name),
       ),
       body: SingleChildScrollView(
-        padding: kPaddingScreen,
+        padding: padding,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            if (showNirvana) _Banner(text: l10n.nirvana, color: AppColors.soulGold),
-            if (showGameOver) _Banner(text: l10n.gameOver, color: AppColors.negative),
-            if (showNirvana || showGameOver) kVerticalGap16,
+            if (showNirvana) _Banner(text: l10n.nirvana, color: accentColor),
+            if (showGameOver) _Banner(text: l10n.gameOver, color: colorScheme.error),
+            if (showNirvana || showGameOver) SizedBox(height: sectionGap * 0.5),
             _LivesChip(
               count: soul.remainingLives,
               label: l10n.livesRemaining(soul.remainingLives),
             ),
-            kVerticalGap24,
+            SizedBox(height: sectionGap),
             Text(
               l10n.soulSubjects,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
             ),
-            kVerticalGap16,
+            SizedBox(height: sectionGap * 0.5),
             GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 childAspectRatio: 1.5,
-                crossAxisSpacing: kSpacing16,
-                mainAxisSpacing: kSpacing16,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
               ),
               itemCount: soul.subjects.length,
               itemBuilder: (BuildContext context, int index) {
@@ -72,23 +85,51 @@ class SoulHomeScreen extends ConsumerWidget {
                 return _SubjectCard(subject: subject);
               },
             ),
-            kVerticalGap24,
-            SizedBox(
-              height: kButtonHeight,
-              child: ElevatedButton(
-                onPressed: soul.canStartNewLife
-                    ? () => context.push('/soul/choose-life')
-                    : null,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.lifeGreen,
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(kBorderRadius),
+            SizedBox(height: sectionGap),
+            if (soul.currentLifeId != null) ...[
+              SizedBox(
+                height: 48,
+                child: ElevatedButton.icon(
+                  onPressed: () async {
+                    final lifeId = soul.currentLifeId!;
+                    final ok = await ref
+                        .read(lifeControllerProvider.notifier)
+                        .loadLifeById(lifeId);
+                    if (context.mounted) {
+                      if (ok) {
+                        context.push('/life');
+                      } else {
+                        await ref
+                            .read(soulControllerProvider.notifier)
+                            .clearCurrentLifeIfStale(lifeId);
+                      }
+                    }
+                  },
+                  icon: const Icon(Icons.play_arrow),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(radius),
+                    ),
                   ),
+                  label: Text(l10n.continueLife),
                 ),
-                child: Text(l10n.chooseLife),
               ),
-            ),
+              SizedBox(height: sectionGap * 0.4),
+            ],
+            if (soul.canStartNewLife) ...[
+              SizedBox(
+                height: 48,
+                child: ElevatedButton(
+                  onPressed: () => context.push('/soul/choose-life'),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(radius),
+                    ),
+                  ),
+                  child: Text(l10n.chooseLife),
+                ),
+              ),
+            ],
           ],
         ),
       ),
@@ -104,11 +145,13 @@ class _Banner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeExt = Theme.of(context).extension<AppThemeExtension>();
+    final radius = themeExt?.radiusDefault ?? 12.0;
     return Container(
-      padding: kPaddingAll16,
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.2),
-        borderRadius: BorderRadius.circular(kBorderRadius),
+        borderRadius: BorderRadius.circular(radius),
         border: Border.all(color: color, width: 2),
       ),
       child: Text(
@@ -131,10 +174,12 @@ class _LivesChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeExt = Theme.of(context).extension<AppThemeExtension>();
+    final accentColor = themeExt?.accentColor ?? Theme.of(context).colorScheme.secondary;
     return Chip(
-      avatar: Icon(Icons.favorite, color: AppColors.lifeGreen, size: kIconSizeSmall),
+      avatar: Icon(Icons.favorite, color: accentColor, size: 16),
       label: Text(label),
-      backgroundColor: AppColors.lifeGreen.withValues(alpha: 0.1),
+      backgroundColor: accentColor.withValues(alpha: 0.12),
     );
   }
 }
@@ -144,21 +189,18 @@ class _SubjectCard extends StatelessWidget {
 
   final SoulSubject subject;
 
-  Color _colorForSubject(SoulSubjectType type) {
-    switch (type) {
-      case SoulSubjectType.compassion:
-        return AppColors.compassionPink;
-      case SoulSubjectType.discipline:
-        return AppColors.disciplineOrange;
-      case SoulSubjectType.courage:
-        return AppColors.courageRed;
-      case SoulSubjectType.wisdom:
-        return AppColors.wisdomIndigo;
-      case SoulSubjectType.fun:
-        return AppColors.funYellow;
-      case SoulSubjectType.humility:
-        return AppColors.humilityTeal;
-    }
+  Color _colorForSubject(BuildContext context, SoulSubjectType type) {
+    final themeExt = Theme.of(context).extension<AppThemeExtension>();
+    final base = themeExt?.accentColor ?? Theme.of(context).colorScheme.secondary;
+    final opacities = <SoulSubjectType, double>{
+      SoulSubjectType.compassion: 0.9,
+      SoulSubjectType.discipline: 0.75,
+      SoulSubjectType.courage: 0.9,
+      SoulSubjectType.wisdom: 0.85,
+      SoulSubjectType.fun: 0.7,
+      SoulSubjectType.humility: 0.8,
+    };
+    return base.withValues(alpha: opacities[type] ?? 0.8);
   }
 
   String _labelForSubject(BuildContext context, SoulSubjectType type) {
@@ -182,63 +224,56 @@ class _SubjectCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final Color color = _colorForSubject(subject.type);
+    final Color color = _colorForSubject(context, subject.type);
     final String label = _labelForSubject(context, subject.type);
-    final int progress = subject.progress.clamp(0, kMaxSubjectScore);
+    final themeExt = Theme.of(context).extension<AppThemeExtension>();
+    final radius = themeExt?.radiusDefault ?? 12.0;
+    final radiusSmall = themeExt?.radiusSmall ?? 8.0;
+    final colorScheme = Theme.of(context).colorScheme;
+    final positiveColor = themeExt?.accentColor ?? colorScheme.primary;
+    final mutedColor = themeExt?.mutedColor ?? colorScheme.onSurfaceVariant;
     return Card(
-      elevation: kCardElevation,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(kBorderRadius),
+        borderRadius: BorderRadius.circular(radius),
         side: subject.isPassed
-            ? BorderSide(color: AppColors.positive, width: 2)
+            ? BorderSide(color: positiveColor, width: 2)
             : BorderSide.none,
       ),
       child: Padding(
-        padding: kPaddingAll12,
-        child: Column(
+        padding: const EdgeInsets.all(12),
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: Text(
-                    label,
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: kSpacing8,
-                    vertical: kSpacing4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: subject.isPassed
-                        ? AppColors.positive.withValues(alpha: 0.2)
-                        : AppColors.neutral.withValues(alpha: 0.2),
-                    borderRadius: BorderRadius.circular(kBorderRadiusSmall),
-                  ),
-                  child: Text(
-                    subject.isPassed ? l10n.passed : l10n.notPassed,
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: subject.isPassed
-                              ? AppColors.positive
-                              : AppColors.neutral,
-                        ),
-                  ),
-                ),
-              ],
+            Icon(Icons.star, color: color, size: 16),
+            kHorizontalGap8,
+            Expanded(
+              child: Text(
+                label,
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-            kVerticalGap8,
-            LinearProgressIndicator(
-              value: progress / kMaxSubjectScore,
-              backgroundColor: color.withValues(alpha: 0.2),
-              valueColor: AlwaysStoppedAnimation<Color>(color),
-              minHeight: kProgressBarHeight,
-              borderRadius: BorderRadius.circular(kProgressBarHeight / 2),
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8,
+                vertical: 4,
+              ),
+              decoration: BoxDecoration(
+                color: subject.isPassed
+                    ? positiveColor.withValues(alpha: 0.2)
+                    : mutedColor.withValues(alpha: 0.2),
+                borderRadius: BorderRadius.circular(radiusSmall),
+              ),
+              child: Text(
+                subject.isPassed ? l10n.passed : l10n.notPassed,
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      color: subject.isPassed
+                          ? positiveColor
+                          : mutedColor,
+                    ),
+              ),
             ),
           ],
         ),

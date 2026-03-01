@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:alma/app/constants/spacing.dart';
-import 'package:alma/app/constants/sizing.dart';
+import 'package:alma/app/theme/theme_data.dart';
 import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/providers/soul/soul_controller.dart';
 import 'package:alma/ui/shared/back_button_leading.dart';
@@ -29,25 +28,29 @@ class _CreateSoulScreenState extends ConsumerState<CreateSoulScreen> {
   Widget build(BuildContext context) {
     final soulState = ref.watch(soulControllerProvider);
     final l10n = AppLocalizations.of(context)!;
+    final themeExt = Theme.of(context).extension<AppThemeExtension>();
+    final padding = themeExt?.screenPadding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
+    final sectionGap = themeExt?.sectionGap ?? 28.0;
+    final radius = themeExt?.radiusDefault ?? 12.0;
     return Scaffold(
       appBar: AppBar(
         leading: const BackButtonLeading(),
         title: Text(l10n.createSoul),
       ),
       body: Padding(
-        padding: kPaddingScreen,
+        padding: padding,
         child: Form(
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              kVerticalGap24,
+              SizedBox(height: sectionGap),
               TextFormField(
                 controller: _nameController,
                 decoration: InputDecoration(
                   labelText: l10n.soulName,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(kBorderRadius),
+                    borderRadius: BorderRadius.circular(radius),
                   ),
                 ),
                 validator: (String? value) {
@@ -58,22 +61,22 @@ class _CreateSoulScreenState extends ConsumerState<CreateSoulScreen> {
                 },
                 enabled: !_isCreating && !soulState.isLoading,
               ),
-              kVerticalGap32,
+              SizedBox(height: sectionGap),
               SizedBox(
-                height: kButtonHeight,
+                height: 48,
                 child: ElevatedButton(
                   onPressed: _isCreating || soulState.isLoading
                       ? null
                       : () => _createSoul(),
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(kBorderRadius),
+                      borderRadius: BorderRadius.circular(radius),
                     ),
                   ),
                   child: soulState.isLoading
                       ? const SizedBox(
-                          height: kIconSize,
-                          width: kIconSize,
+                          height: 24,
+                          width: 24,
                           child: CircularProgressIndicator(strokeWidth: 2),
                         )
                       : Text(l10n.confirm),
@@ -93,7 +96,8 @@ class _CreateSoulScreenState extends ConsumerState<CreateSoulScreen> {
     await ref.read(soulControllerProvider.notifier).createSoul(name);
     if (mounted) {
       setState(() => _isCreating = false);
-      context.go('/soul');
+      context.pop();
+      context.push('/soul');
     }
   }
 }

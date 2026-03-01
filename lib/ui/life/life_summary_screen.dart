@@ -88,12 +88,16 @@ class _LifeSummaryScreenState extends ConsumerState<LifeSummaryScreen> {
                 onPressed: () {
                   ref.read(lifeControllerProvider.notifier).clearLife();
                   final soulState = ref.read(soulControllerProvider);
+                  while (context.mounted && context.canPop()) {
+                    context.pop();
+                  }
+                  if (!context.mounted) return;
                   if (soulState.currentSoul?.hasAchievedNirvana == true) {
-                    context.go('/soul/nirvana');
+                    context.push('/soul/nirvana');
                   } else if (soulState.currentSoul?.isGameOver == true) {
-                    context.go('/soul/game-over');
+                    context.push('/soul/game-over');
                   } else {
-                    context.go('/soul');
+                    context.push('/soul');
                   }
                 },
                 child: const Text('Continue'),

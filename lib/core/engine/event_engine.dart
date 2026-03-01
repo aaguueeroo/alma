@@ -3,6 +3,7 @@ import 'package:alma/core/models/event.dart';
 import 'package:alma/core/models/event_option.dart';
 import 'package:alma/core/models/skill.dart';
 import 'package:alma/core/models/hidden_metrics.dart';
+import 'package:alma/core/models/moral_impact.dart';
 import 'package:alma/core/models/enums/trait_type.dart';
 import 'package:alma/core/engine/seeded_random.dart';
 import 'package:alma/core/engine/probability_engine.dart';
@@ -52,6 +53,7 @@ class EventEngine {
     newState = _applyMoneyChange(newState, consequences);
     newState = _applyTraitChanges(newState, consequences, rng);
     newState = _applyRelationshipChanges(newState, consequences);
+    newState = _applyMoralImpacts(newState, consequences);
     if (consequences.causesDeath) {
       newState = newState.copyWith(
         isDead: true,
@@ -146,5 +148,18 @@ class EventEngine {
       return rel;
     }).toList();
     return state.copyWith(relationships: relationships);
+  }
+
+  LifeState _applyMoralImpacts(
+    LifeState state,
+    EventConsequences consequences,
+  ) {
+    if (consequences.moralImpactTemplates.isEmpty) return state;
+    final List<MoralImpact> newImpacts = consequences.moralImpactTemplates
+        .map((t) => t.toImpact(state.currentYear))
+        .toList();
+    return state.copyWith(
+      moralImpacts: [...state.moralImpacts, ...newImpacts],
+    );
   }
 }

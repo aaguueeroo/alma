@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:alma/app/constants/spacing.dart';
-import 'package:alma/app/constants/sizing.dart';
-import 'package:alma/app/theme/app_colors.dart';
+import 'package:alma/app/theme/theme_data.dart';
 import 'package:alma/core/models/achievement.dart';
 import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/providers/achievement/achievement_controller.dart';
@@ -30,6 +29,8 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen> {
   Widget build(BuildContext context) {
     final achievementState = ref.watch(achievementControllerProvider);
     final l10n = AppLocalizations.of(context)!;
+    final themeExt = Theme.of(context).extension<AppThemeExtension>();
+    final padding = themeExt?.screenPadding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
     return Scaffold(
       appBar: AppBar(
         leading: const BackButtonLeading(),
@@ -38,7 +39,7 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen> {
       body: achievementState.isLoading
           ? const LoadingWidget()
           : ListView.builder(
-              padding: kPaddingScreen,
+              padding: padding,
               itemCount: achievementState.achievements.length,
               itemBuilder: (BuildContext context, int index) {
                 final Achievement achievement =
@@ -59,27 +60,30 @@ class _AchievementCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final dateFormat = DateFormat.yMMMd();
     final bool isUnlocked = achievement.isUnlocked;
+    final themeExt = Theme.of(context).extension<AppThemeExtension>();
+    final accentColor = themeExt?.accentColor ?? Theme.of(context).colorScheme.secondary;
+    final mutedColor = themeExt?.mutedColor ?? Theme.of(context).colorScheme.onSurfaceVariant;
+    final radius = themeExt?.radiusDefault ?? 12.0;
     return Card(
-      margin: const EdgeInsets.only(bottom: kSpacing16),
-      elevation: kCardElevation,
+      margin: const EdgeInsets.only(bottom: 18),
       color: isUnlocked
-          ? AppColors.soulGold.withValues(alpha: 0.1)
+          ? accentColor.withValues(alpha: 0.12)
           : Theme.of(context).cardTheme.color,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(kBorderRadius),
+        borderRadius: BorderRadius.circular(radius),
         side: isUnlocked
-            ? const BorderSide(color: AppColors.soulGold, width: 2)
+            ? BorderSide(color: accentColor, width: 2)
             : BorderSide.none,
       ),
       child: Padding(
-        padding: kPaddingAll16,
+        padding: const EdgeInsets.all(16),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Icon(
               isUnlocked ? Icons.emoji_events : Icons.lock,
-              size: kIconSizeLarge,
-              color: isUnlocked ? AppColors.soulGold : AppColors.neutral,
+              size: 32,
+              color: isUnlocked ? accentColor : mutedColor,
             ),
             kHorizontalGap12,
             Expanded(
@@ -90,14 +94,14 @@ class _AchievementCard extends StatelessWidget {
                     achievement.name,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
-                          color: isUnlocked ? AppColors.soulPurple : null,
+                          color: isUnlocked ? Theme.of(context).colorScheme.onSurface : mutedColor,
                         ),
                   ),
                   kVerticalGap4,
                   Text(
                     achievement.description,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: isUnlocked ? null : AppColors.neutral,
+                          color: isUnlocked ? null : mutedColor,
                         ),
                   ),
                   if (achievement.unlockedAt != null) ...<Widget>[
@@ -105,7 +109,7 @@ class _AchievementCard extends StatelessWidget {
                     Text(
                       dateFormat.format(achievement.unlockedAt!),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppColors.soulGold,
+                            color: accentColor,
                             fontWeight: FontWeight.w500,
                           ),
                     ),

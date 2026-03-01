@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:alma/app/constants/spacing.dart';
-import 'package:alma/app/constants/sizing.dart';
-import 'package:alma/app/theme/app_colors.dart';
+import 'package:alma/app/theme/theme_data.dart';
 import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/ui/shared/back_button_leading.dart';
 
@@ -13,12 +11,16 @@ class NirvanaScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
+    final themeExt = Theme.of(context).extension<AppThemeExtension>();
+    final padding = themeExt?.screenPadding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
+    final accentColor = themeExt?.accentColor ?? Theme.of(context).colorScheme.secondary;
+    final radius = themeExt?.radiusDefault ?? 12.0;
     return Scaffold(
       appBar: AppBar(
         leading: const BackButtonLeading(),
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: IconThemeData(color: AppColors.soulPurple),
+        iconTheme: IconThemeData(color: accentColor),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -26,51 +28,59 @@ class NirvanaScreen extends ConsumerWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: <Color>[
-              AppColors.soulPurple.withValues(alpha: 0.3),
-              AppColors.soulGold.withValues(alpha: 0.2),
+              accentColor.withValues(alpha: 0.15),
+              accentColor.withValues(alpha: 0.08),
             ],
           ),
         ),
         child: SafeArea(
           child: Padding(
-            padding: kPaddingScreen,
+            padding: padding,
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Icon(
                     Icons.emoji_events,
-                    size: kAvatarSizeLarge * 2,
-                    color: AppColors.soulGold,
+                    size: 128,
+                    color: accentColor,
                   ),
-                  kVerticalGap32,
+                  const SizedBox(height: 32),
                   Text(
                     l10n.nirvana,
                     style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                           fontWeight: FontWeight.bold,
-                          color: AppColors.soulGold,
+                          color: accentColor,
                           letterSpacing: 2,
                         ),
                   ),
-                  kVerticalGap16,
+                  const SizedBox(height: 16),
                   Text(
                     l10n.nirvanaMessage,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: AppColors.soulPurple,
+                          color: Theme.of(context).colorScheme.onSurface,
                         ),
                   ),
-                  kVerticalGap48,
+                  const SizedBox(height: 48),
                   SizedBox(
                     width: double.infinity,
-                    height: kButtonHeight,
+                    height: 48,
                     child: ElevatedButton(
-                      onPressed: () => context.go('/'),
+                      onPressed: () {
+                        if (context.canPop()) {
+                          while (context.mounted && context.canPop()) {
+                            context.pop();
+                          }
+                        } else {
+                          context.go('/');
+                        }
+                      },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.soulGold,
-                        foregroundColor: AppColors.soulPurple,
+                        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+                        foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(kBorderRadius),
+                          borderRadius: BorderRadius.circular(radius),
                         ),
                       ),
                       child: Text(l10n.returnToMenu),

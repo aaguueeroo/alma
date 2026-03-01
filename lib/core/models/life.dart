@@ -5,6 +5,7 @@ import 'package:alma/core/models/habit.dart';
 import 'package:alma/core/models/relationship.dart';
 import 'package:alma/core/models/section.dart';
 import 'package:alma/core/models/event.dart';
+import 'package:alma/core/models/moral_impact.dart';
 import 'package:alma/core/models/enums/trait_type.dart';
 
 part 'life.freezed.dart';
@@ -43,6 +44,8 @@ sealed class LifeState with _$LifeState {
     GameEvent? pendingEvent,
     @Default(false) bool isDead,
     String? causeOfDeath,
+    @Default({}) Map<String, dynamic> lifeData,
+    @Default([]) List<MoralImpact> moralImpacts,
   }) = _LifeState;
 
   factory LifeState.fromJson(Map<String, dynamic> json) =>
@@ -57,6 +60,8 @@ sealed class LifeSummary with _$LifeSummary {
     required SkillSet finalSkills,
     required List<TraitType> finalTraits,
     required Map<String, double> subjectContributions,
+    @Default({}) Map<String, dynamic> lifeData,
+    MoralImpactSummary? moralImpactSummary,
   }) = _LifeSummary;
 
   factory LifeSummary.fromJson(Map<String, dynamic> json) =>

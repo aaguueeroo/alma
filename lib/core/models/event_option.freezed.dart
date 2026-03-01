@@ -293,7 +293,7 @@ $EventConsequencesCopyWith<$Res> get consequences {
 /// @nodoc
 mixin _$EventConsequences {
 
- Map<SkillType, int> get skillChanges; Map<HiddenMetricType, double> get hiddenMetricChanges; int get healthChange; int get moneyChange; Map<TraitType, double> get traitChance; String? get relationshipTargetId; int get relationshipChange; String? get unlockEventId; bool get causesDeath;
+ Map<SkillType, int> get skillChanges; Map<HiddenMetricType, double> get hiddenMetricChanges; int get healthChange; int get moneyChange; Map<TraitType, double> get traitChance; String? get relationshipTargetId; int get relationshipChange; String? get unlockEventId; bool get causesDeath; List<MoralImpactTemplate> get moralImpactTemplates;
 /// Create a copy of EventConsequences
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -306,16 +306,16 @@ $EventConsequencesCopyWith<EventConsequences> get copyWith => _$EventConsequence
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventConsequences&&const DeepCollectionEquality().equals(other.skillChanges, skillChanges)&&const DeepCollectionEquality().equals(other.hiddenMetricChanges, hiddenMetricChanges)&&(identical(other.healthChange, healthChange) || other.healthChange == healthChange)&&(identical(other.moneyChange, moneyChange) || other.moneyChange == moneyChange)&&const DeepCollectionEquality().equals(other.traitChance, traitChance)&&(identical(other.relationshipTargetId, relationshipTargetId) || other.relationshipTargetId == relationshipTargetId)&&(identical(other.relationshipChange, relationshipChange) || other.relationshipChange == relationshipChange)&&(identical(other.unlockEventId, unlockEventId) || other.unlockEventId == unlockEventId)&&(identical(other.causesDeath, causesDeath) || other.causesDeath == causesDeath));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventConsequences&&const DeepCollectionEquality().equals(other.skillChanges, skillChanges)&&const DeepCollectionEquality().equals(other.hiddenMetricChanges, hiddenMetricChanges)&&(identical(other.healthChange, healthChange) || other.healthChange == healthChange)&&(identical(other.moneyChange, moneyChange) || other.moneyChange == moneyChange)&&const DeepCollectionEquality().equals(other.traitChance, traitChance)&&(identical(other.relationshipTargetId, relationshipTargetId) || other.relationshipTargetId == relationshipTargetId)&&(identical(other.relationshipChange, relationshipChange) || other.relationshipChange == relationshipChange)&&(identical(other.unlockEventId, unlockEventId) || other.unlockEventId == unlockEventId)&&(identical(other.causesDeath, causesDeath) || other.causesDeath == causesDeath)&&const DeepCollectionEquality().equals(other.moralImpactTemplates, moralImpactTemplates));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(skillChanges),const DeepCollectionEquality().hash(hiddenMetricChanges),healthChange,moneyChange,const DeepCollectionEquality().hash(traitChance),relationshipTargetId,relationshipChange,unlockEventId,causesDeath);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(skillChanges),const DeepCollectionEquality().hash(hiddenMetricChanges),healthChange,moneyChange,const DeepCollectionEquality().hash(traitChance),relationshipTargetId,relationshipChange,unlockEventId,causesDeath,const DeepCollectionEquality().hash(moralImpactTemplates));
 
 @override
 String toString() {
-  return 'EventConsequences(skillChanges: $skillChanges, hiddenMetricChanges: $hiddenMetricChanges, healthChange: $healthChange, moneyChange: $moneyChange, traitChance: $traitChance, relationshipTargetId: $relationshipTargetId, relationshipChange: $relationshipChange, unlockEventId: $unlockEventId, causesDeath: $causesDeath)';
+  return 'EventConsequences(skillChanges: $skillChanges, hiddenMetricChanges: $hiddenMetricChanges, healthChange: $healthChange, moneyChange: $moneyChange, traitChance: $traitChance, relationshipTargetId: $relationshipTargetId, relationshipChange: $relationshipChange, unlockEventId: $unlockEventId, causesDeath: $causesDeath, moralImpactTemplates: $moralImpactTemplates)';
 }
 
 
@@ -326,7 +326,7 @@ abstract mixin class $EventConsequencesCopyWith<$Res>  {
   factory $EventConsequencesCopyWith(EventConsequences value, $Res Function(EventConsequences) _then) = _$EventConsequencesCopyWithImpl;
 @useResult
 $Res call({
- Map<SkillType, int> skillChanges, Map<HiddenMetricType, double> hiddenMetricChanges, int healthChange, int moneyChange, Map<TraitType, double> traitChance, String? relationshipTargetId, int relationshipChange, String? unlockEventId, bool causesDeath
+ Map<SkillType, int> skillChanges, Map<HiddenMetricType, double> hiddenMetricChanges, int healthChange, int moneyChange, Map<TraitType, double> traitChance, String? relationshipTargetId, int relationshipChange, String? unlockEventId, bool causesDeath, List<MoralImpactTemplate> moralImpactTemplates
 });
 
 
@@ -343,7 +343,7 @@ class _$EventConsequencesCopyWithImpl<$Res>
 
 /// Create a copy of EventConsequences
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? skillChanges = null,Object? hiddenMetricChanges = null,Object? healthChange = null,Object? moneyChange = null,Object? traitChance = null,Object? relationshipTargetId = freezed,Object? relationshipChange = null,Object? unlockEventId = freezed,Object? causesDeath = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? skillChanges = null,Object? hiddenMetricChanges = null,Object? healthChange = null,Object? moneyChange = null,Object? traitChance = null,Object? relationshipTargetId = freezed,Object? relationshipChange = null,Object? unlockEventId = freezed,Object? causesDeath = null,Object? moralImpactTemplates = null,}) {
   return _then(_self.copyWith(
 skillChanges: null == skillChanges ? _self.skillChanges : skillChanges // ignore: cast_nullable_to_non_nullable
 as Map<SkillType, int>,hiddenMetricChanges: null == hiddenMetricChanges ? _self.hiddenMetricChanges : hiddenMetricChanges // ignore: cast_nullable_to_non_nullable
@@ -354,7 +354,8 @@ as Map<TraitType, double>,relationshipTargetId: freezed == relationshipTargetId 
 as String?,relationshipChange: null == relationshipChange ? _self.relationshipChange : relationshipChange // ignore: cast_nullable_to_non_nullable
 as int,unlockEventId: freezed == unlockEventId ? _self.unlockEventId : unlockEventId // ignore: cast_nullable_to_non_nullable
 as String?,causesDeath: null == causesDeath ? _self.causesDeath : causesDeath // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,moralImpactTemplates: null == moralImpactTemplates ? _self.moralImpactTemplates : moralImpactTemplates // ignore: cast_nullable_to_non_nullable
+as List<MoralImpactTemplate>,
   ));
 }
 
@@ -436,10 +437,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Map<SkillType, int> skillChanges,  Map<HiddenMetricType, double> hiddenMetricChanges,  int healthChange,  int moneyChange,  Map<TraitType, double> traitChance,  String? relationshipTargetId,  int relationshipChange,  String? unlockEventId,  bool causesDeath)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Map<SkillType, int> skillChanges,  Map<HiddenMetricType, double> hiddenMetricChanges,  int healthChange,  int moneyChange,  Map<TraitType, double> traitChance,  String? relationshipTargetId,  int relationshipChange,  String? unlockEventId,  bool causesDeath,  List<MoralImpactTemplate> moralImpactTemplates)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _EventConsequences() when $default != null:
-return $default(_that.skillChanges,_that.hiddenMetricChanges,_that.healthChange,_that.moneyChange,_that.traitChance,_that.relationshipTargetId,_that.relationshipChange,_that.unlockEventId,_that.causesDeath);case _:
+return $default(_that.skillChanges,_that.hiddenMetricChanges,_that.healthChange,_that.moneyChange,_that.traitChance,_that.relationshipTargetId,_that.relationshipChange,_that.unlockEventId,_that.causesDeath,_that.moralImpactTemplates);case _:
   return orElse();
 
 }
@@ -457,10 +458,10 @@ return $default(_that.skillChanges,_that.hiddenMetricChanges,_that.healthChange,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Map<SkillType, int> skillChanges,  Map<HiddenMetricType, double> hiddenMetricChanges,  int healthChange,  int moneyChange,  Map<TraitType, double> traitChance,  String? relationshipTargetId,  int relationshipChange,  String? unlockEventId,  bool causesDeath)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Map<SkillType, int> skillChanges,  Map<HiddenMetricType, double> hiddenMetricChanges,  int healthChange,  int moneyChange,  Map<TraitType, double> traitChance,  String? relationshipTargetId,  int relationshipChange,  String? unlockEventId,  bool causesDeath,  List<MoralImpactTemplate> moralImpactTemplates)  $default,) {final _that = this;
 switch (_that) {
 case _EventConsequences():
-return $default(_that.skillChanges,_that.hiddenMetricChanges,_that.healthChange,_that.moneyChange,_that.traitChance,_that.relationshipTargetId,_that.relationshipChange,_that.unlockEventId,_that.causesDeath);}
+return $default(_that.skillChanges,_that.hiddenMetricChanges,_that.healthChange,_that.moneyChange,_that.traitChance,_that.relationshipTargetId,_that.relationshipChange,_that.unlockEventId,_that.causesDeath,_that.moralImpactTemplates);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -474,10 +475,10 @@ return $default(_that.skillChanges,_that.hiddenMetricChanges,_that.healthChange,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Map<SkillType, int> skillChanges,  Map<HiddenMetricType, double> hiddenMetricChanges,  int healthChange,  int moneyChange,  Map<TraitType, double> traitChance,  String? relationshipTargetId,  int relationshipChange,  String? unlockEventId,  bool causesDeath)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Map<SkillType, int> skillChanges,  Map<HiddenMetricType, double> hiddenMetricChanges,  int healthChange,  int moneyChange,  Map<TraitType, double> traitChance,  String? relationshipTargetId,  int relationshipChange,  String? unlockEventId,  bool causesDeath,  List<MoralImpactTemplate> moralImpactTemplates)?  $default,) {final _that = this;
 switch (_that) {
 case _EventConsequences() when $default != null:
-return $default(_that.skillChanges,_that.hiddenMetricChanges,_that.healthChange,_that.moneyChange,_that.traitChance,_that.relationshipTargetId,_that.relationshipChange,_that.unlockEventId,_that.causesDeath);case _:
+return $default(_that.skillChanges,_that.hiddenMetricChanges,_that.healthChange,_that.moneyChange,_that.traitChance,_that.relationshipTargetId,_that.relationshipChange,_that.unlockEventId,_that.causesDeath,_that.moralImpactTemplates);case _:
   return null;
 
 }
@@ -489,7 +490,7 @@ return $default(_that.skillChanges,_that.hiddenMetricChanges,_that.healthChange,
 @JsonSerializable()
 
 class _EventConsequences implements EventConsequences {
-  const _EventConsequences({final  Map<SkillType, int> skillChanges = const {}, final  Map<HiddenMetricType, double> hiddenMetricChanges = const {}, this.healthChange = 0, this.moneyChange = 0, final  Map<TraitType, double> traitChance = const {}, this.relationshipTargetId, this.relationshipChange = 0, this.unlockEventId, this.causesDeath = false}): _skillChanges = skillChanges,_hiddenMetricChanges = hiddenMetricChanges,_traitChance = traitChance;
+  const _EventConsequences({final  Map<SkillType, int> skillChanges = const {}, final  Map<HiddenMetricType, double> hiddenMetricChanges = const {}, this.healthChange = 0, this.moneyChange = 0, final  Map<TraitType, double> traitChance = const {}, this.relationshipTargetId, this.relationshipChange = 0, this.unlockEventId, this.causesDeath = false, final  List<MoralImpactTemplate> moralImpactTemplates = const []}): _skillChanges = skillChanges,_hiddenMetricChanges = hiddenMetricChanges,_traitChance = traitChance,_moralImpactTemplates = moralImpactTemplates;
   factory _EventConsequences.fromJson(Map<String, dynamic> json) => _$EventConsequencesFromJson(json);
 
  final  Map<SkillType, int> _skillChanges;
@@ -519,6 +520,13 @@ class _EventConsequences implements EventConsequences {
 @override@JsonKey() final  int relationshipChange;
 @override final  String? unlockEventId;
 @override@JsonKey() final  bool causesDeath;
+ final  List<MoralImpactTemplate> _moralImpactTemplates;
+@override@JsonKey() List<MoralImpactTemplate> get moralImpactTemplates {
+  if (_moralImpactTemplates is EqualUnmodifiableListView) return _moralImpactTemplates;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_moralImpactTemplates);
+}
+
 
 /// Create a copy of EventConsequences
 /// with the given fields replaced by the non-null parameter values.
@@ -533,16 +541,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EventConsequences&&const DeepCollectionEquality().equals(other._skillChanges, _skillChanges)&&const DeepCollectionEquality().equals(other._hiddenMetricChanges, _hiddenMetricChanges)&&(identical(other.healthChange, healthChange) || other.healthChange == healthChange)&&(identical(other.moneyChange, moneyChange) || other.moneyChange == moneyChange)&&const DeepCollectionEquality().equals(other._traitChance, _traitChance)&&(identical(other.relationshipTargetId, relationshipTargetId) || other.relationshipTargetId == relationshipTargetId)&&(identical(other.relationshipChange, relationshipChange) || other.relationshipChange == relationshipChange)&&(identical(other.unlockEventId, unlockEventId) || other.unlockEventId == unlockEventId)&&(identical(other.causesDeath, causesDeath) || other.causesDeath == causesDeath));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EventConsequences&&const DeepCollectionEquality().equals(other._skillChanges, _skillChanges)&&const DeepCollectionEquality().equals(other._hiddenMetricChanges, _hiddenMetricChanges)&&(identical(other.healthChange, healthChange) || other.healthChange == healthChange)&&(identical(other.moneyChange, moneyChange) || other.moneyChange == moneyChange)&&const DeepCollectionEquality().equals(other._traitChance, _traitChance)&&(identical(other.relationshipTargetId, relationshipTargetId) || other.relationshipTargetId == relationshipTargetId)&&(identical(other.relationshipChange, relationshipChange) || other.relationshipChange == relationshipChange)&&(identical(other.unlockEventId, unlockEventId) || other.unlockEventId == unlockEventId)&&(identical(other.causesDeath, causesDeath) || other.causesDeath == causesDeath)&&const DeepCollectionEquality().equals(other._moralImpactTemplates, _moralImpactTemplates));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_skillChanges),const DeepCollectionEquality().hash(_hiddenMetricChanges),healthChange,moneyChange,const DeepCollectionEquality().hash(_traitChance),relationshipTargetId,relationshipChange,unlockEventId,causesDeath);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_skillChanges),const DeepCollectionEquality().hash(_hiddenMetricChanges),healthChange,moneyChange,const DeepCollectionEquality().hash(_traitChance),relationshipTargetId,relationshipChange,unlockEventId,causesDeath,const DeepCollectionEquality().hash(_moralImpactTemplates));
 
 @override
 String toString() {
-  return 'EventConsequences(skillChanges: $skillChanges, hiddenMetricChanges: $hiddenMetricChanges, healthChange: $healthChange, moneyChange: $moneyChange, traitChance: $traitChance, relationshipTargetId: $relationshipTargetId, relationshipChange: $relationshipChange, unlockEventId: $unlockEventId, causesDeath: $causesDeath)';
+  return 'EventConsequences(skillChanges: $skillChanges, hiddenMetricChanges: $hiddenMetricChanges, healthChange: $healthChange, moneyChange: $moneyChange, traitChance: $traitChance, relationshipTargetId: $relationshipTargetId, relationshipChange: $relationshipChange, unlockEventId: $unlockEventId, causesDeath: $causesDeath, moralImpactTemplates: $moralImpactTemplates)';
 }
 
 
@@ -553,7 +561,7 @@ abstract mixin class _$EventConsequencesCopyWith<$Res> implements $EventConseque
   factory _$EventConsequencesCopyWith(_EventConsequences value, $Res Function(_EventConsequences) _then) = __$EventConsequencesCopyWithImpl;
 @override @useResult
 $Res call({
- Map<SkillType, int> skillChanges, Map<HiddenMetricType, double> hiddenMetricChanges, int healthChange, int moneyChange, Map<TraitType, double> traitChance, String? relationshipTargetId, int relationshipChange, String? unlockEventId, bool causesDeath
+ Map<SkillType, int> skillChanges, Map<HiddenMetricType, double> hiddenMetricChanges, int healthChange, int moneyChange, Map<TraitType, double> traitChance, String? relationshipTargetId, int relationshipChange, String? unlockEventId, bool causesDeath, List<MoralImpactTemplate> moralImpactTemplates
 });
 
 
@@ -570,7 +578,7 @@ class __$EventConsequencesCopyWithImpl<$Res>
 
 /// Create a copy of EventConsequences
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? skillChanges = null,Object? hiddenMetricChanges = null,Object? healthChange = null,Object? moneyChange = null,Object? traitChance = null,Object? relationshipTargetId = freezed,Object? relationshipChange = null,Object? unlockEventId = freezed,Object? causesDeath = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? skillChanges = null,Object? hiddenMetricChanges = null,Object? healthChange = null,Object? moneyChange = null,Object? traitChance = null,Object? relationshipTargetId = freezed,Object? relationshipChange = null,Object? unlockEventId = freezed,Object? causesDeath = null,Object? moralImpactTemplates = null,}) {
   return _then(_EventConsequences(
 skillChanges: null == skillChanges ? _self._skillChanges : skillChanges // ignore: cast_nullable_to_non_nullable
 as Map<SkillType, int>,hiddenMetricChanges: null == hiddenMetricChanges ? _self._hiddenMetricChanges : hiddenMetricChanges // ignore: cast_nullable_to_non_nullable
@@ -581,7 +589,8 @@ as Map<TraitType, double>,relationshipTargetId: freezed == relationshipTargetId 
 as String?,relationshipChange: null == relationshipChange ? _self.relationshipChange : relationshipChange // ignore: cast_nullable_to_non_nullable
 as int,unlockEventId: freezed == unlockEventId ? _self.unlockEventId : unlockEventId // ignore: cast_nullable_to_non_nullable
 as String?,causesDeath: null == causesDeath ? _self.causesDeath : causesDeath // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,moralImpactTemplates: null == moralImpactTemplates ? _self._moralImpactTemplates : moralImpactTemplates // ignore: cast_nullable_to_non_nullable
+as List<MoralImpactTemplate>,
   ));
 }
 
