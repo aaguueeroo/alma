@@ -225,7 +225,8 @@ class EducationEngine {
         initialPerformance: carryOverPerformance,
       );
     }
-    final List<EducationProgram> available = getAvailablePrograms(state, nextLevel);
+    final List<EducationProgram> available =
+        programsAvailableForEnrollment(state, nextLevel);
     if (available.isEmpty) return state;
     final EducationState eduState = state.educationState ?? const EducationState();
     final EducationPrompt prompt = EducationPrompt(
@@ -270,7 +271,8 @@ class EducationEngine {
       return enrollInProgram(state, programs.first,
           initialPerformance: initialPerformance);
     }
-    final List<EducationProgram> available = getAvailablePrograms(state, level);
+    final List<EducationProgram> available =
+        programsAvailableForEnrollment(state, level);
     if (available.isEmpty) return state;
     if (available.length == 1) {
       return enrollInProgram(state, available.first,
@@ -290,6 +292,8 @@ class EducationEngine {
     );
   }
 
+  /// Programs that meet access conditions (optionally for a given level).
+  /// Does not exclude already-completed programs; use programsAvailableForEnrollment for that.
   List<EducationProgram> getAvailablePrograms(LifeState state, [EducationLevel? level]) {
     final EducationState eduState = state.educationState ?? const EducationState();
     return _allPrograms.where((program) {
@@ -298,20 +302,27 @@ class EducationEngine {
     }).toList();
   }
 
-  /// Programs available for manual enrollment (Enroll button). Returns all programs
-  /// the user meets access conditions for, excluding only those they have already
-  /// completed (so e.g. they can enroll in another high school branch or university
-  /// degree; preschool and middle school are single programs so once done they do not reappear).
-  List<EducationProgram> getAvailableProgramsForEnrollment(LifeState state) {
+  /// Programs the player can enroll in: meet access conditions and not already completed.
+  /// Use this whenever building a list of programs to show (manual enroll or post-graduation prompt).
+  List<EducationProgram> programsAvailableForEnrollment(LifeState state, [EducationLevel? level]) {
     final EducationState eduState = state.educationState ?? const EducationState();
-    final List<EducationProgram> all = getAvailablePrograms(state);
-    final Set<String> completedProgramIds = eduState.history
+    final Set<String> completedProgramIds = _getCompletedProgramIds(eduState);
+    final List<EducationProgram> eligible = getAvailablePrograms(state, level);
+    return eligible
+        .where((EducationProgram p) => !completedProgramIds.contains(p.id))
+        .toList();
+  }
+
+  Set<String> _getCompletedProgramIds(EducationState eduState) {
+    return eduState.history
         .where((EducationRecord r) => r.graduated)
         .map((EducationRecord r) => r.programId)
         .toSet();
-    return all
-        .where((EducationProgram p) => !completedProgramIds.contains(p.id))
-        .toList();
+  }
+
+  /// Programs available for manual enrollment (Enroll button). Same as programsAvailableForEnrollment with no level filter.
+  List<EducationProgram> getAvailableProgramsForEnrollment(LifeState state) {
+    return programsAvailableForEnrollment(state);
   }
 
   bool _meetsAccessConditions(
