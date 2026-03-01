@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:alma/core/models/game_log.dart';
+import 'package:alma/core/models/relationship.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/app/constants/sizing.dart';
+import 'package:alma/app/utils/log_message_resolver.dart';
 
 class LogListWidget extends StatelessWidget {
   const LogListWidget({
@@ -10,12 +12,16 @@ class LogListWidget extends StatelessWidget {
     required this.emptyMessage,
     this.gameLogs = const [],
     this.logs = const [],
+    this.relationships,
+    this.contextNpcId,
   });
 
   final String title;
   final String emptyMessage;
   final List<GameLog> gameLogs;
   final List<String> logs;
+  final List<Relationship>? relationships;
+  final String? contextNpcId;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +40,16 @@ class LogListWidget extends StatelessWidget {
         if (isEmpty)
           _EmptyLogMessage(message: emptyMessage)
         else ...[
-          ...gameLogs.map((GameLog log) => _GameLogEntry(log: log)),
+          ...gameLogs.map((GameLog log) {
+            final String displayMessage = relationships != null
+                ? resolveLogMessage(
+                    log.message,
+                    relationships!,
+                    contextNpcId,
+                  )
+                : log.message;
+            return _GameLogEntry(log: log, displayMessage: displayMessage);
+          }),
           ...logs.map((String log) => _LogEntry(text: log)),
         ],
       ],
@@ -70,9 +85,10 @@ class _EmptyLogMessage extends StatelessWidget {
 }
 
 class _GameLogEntry extends StatelessWidget {
-  const _GameLogEntry({required this.log});
+  const _GameLogEntry({required this.log, required this.displayMessage});
 
   final GameLog log;
+  final String displayMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +119,7 @@ class _GameLogEntry extends StatelessWidget {
                         ),
                   ),
                   TextSpan(
-                    text: log.message,
+                    text: displayMessage,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: colors.onSurfaceVariant,
                         ),

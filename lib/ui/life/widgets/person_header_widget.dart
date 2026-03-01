@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/app/constants/sizing.dart';
+import 'package:alma/core/models/enums/gender.dart';
 
 class PersonHeaderWidget extends StatelessWidget {
   const PersonHeaderWidget({
@@ -9,6 +10,7 @@ class PersonHeaderWidget extends StatelessWidget {
     required this.subtitle,
     this.detail,
     this.avatarColor,
+    this.gender,
     this.trailing,
   });
 
@@ -16,6 +18,7 @@ class PersonHeaderWidget extends StatelessWidget {
   final String subtitle;
   final String? detail;
   final Color? avatarColor;
+  final Gender? gender;
   final Widget? trailing;
 
   @override
@@ -39,11 +42,26 @@ class PersonHeaderWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                name,
-                style: Theme.of(context).textTheme.titleMedium,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Flexible(
+                    child: Text(
+                      name,
+                      style: Theme.of(context).textTheme.titleMedium,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  if (gender != null) ...[
+                    const SizedBox(width: kSpacing4),
+                    Icon(
+                      _genderIcon(gender!),
+                      size: kIconSize,
+                      color: colors.onSurfaceVariant,
+                    ),
+                  ],
+                ],
               ),
               kVerticalGap4,
               Text(
@@ -71,5 +89,16 @@ class PersonHeaderWidget extends StatelessWidget {
         ?trailing,
       ],
     );
+  }
+
+  static IconData _genderIcon(Gender gender) {
+    switch (gender) {
+      case Gender.male:
+        return Icons.male;
+      case Gender.female:
+        return Icons.female;
+      case Gender.other:
+        return Icons.transgender;
+    }
   }
 }

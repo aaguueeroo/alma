@@ -7,6 +7,7 @@ import 'package:alma/core/engine/event_engine.dart';
 import 'package:alma/core/engine/probability_engine.dart';
 import 'package:alma/core/engine/education_engine.dart';
 import 'package:alma/core/engine/work_engine.dart';
+import 'package:alma/core/engine/social_engine.dart';
 import 'package:alma/core/engine/seeded_random.dart';
 import 'package:alma/core/rules/trait_rules.dart';
 import 'package:alma/core/rules/habit_rules.dart';
@@ -31,6 +32,7 @@ void main() {
       eventEngine: eventEngine,
       educationEngine: EducationEngine(),
       workEngine: WorkEngine(),
+      socialEngine: SocialEngine(),
       traitRules: TraitRules(),
       relationshipProcessor: RelationshipProcessor(),
       habitProcessor: HabitProcessor(habitRules: HabitRules()),

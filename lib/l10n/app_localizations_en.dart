@@ -194,7 +194,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get actions => 'Actions';
 
   @override
-  String get performAction => 'Perform Action';
+  String get performAction => 'Perform';
 
   @override
   String get continueLife => 'Continue Life';
@@ -217,7 +217,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tabHealth => 'Health';
 
   @override
-  String get tabRelations => 'Relations';
+  String get tabRelations => 'Social';
 
   @override
   String get store => 'Store';
@@ -568,4 +568,79 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get filterSocial => 'Social';
+
+  @override
+  String get socialLog => 'Social Log';
+
+  @override
+  String get socialActions => 'Social Actions';
+
+  @override
+  String get socialGenericActions => 'General Actions';
+
+  @override
+  String get npcActions => 'Actions';
+
+  @override
+  String get selectNpc => 'Choose person';
+
+  @override
+  String get noSocialActionsAvailable => 'No actions available';
+
+  @override
+  String get affection => 'Affection';
+
+  @override
+  String get trust => 'Trust';
+
+  @override
+  String get respect => 'Respect';
+
+  @override
+  String get attraction => 'Attraction';
+
+  @override
+  String get conflict => 'Conflict';
+
+  @override
+  String get usedActions => 'Performed Actions';
+
+  @override
+  String get roleAcquaintance => 'Acquaintance';
+
+  @override
+  String get roleBestFriend => 'Best Friend';
+
+  @override
+  String get roleClassmate => 'Classmate';
+
+  @override
+  String get roleBoss => 'Boss';
+
+  @override
+  String get roleWorkSpouse => 'Work Spouse';
+
+  @override
+  String get roleFiance => 'Fiancé';
+
+  @override
+  String get roleSpouse => 'Spouse';
+
+  @override
+  String get roleEx => 'Ex';
+
+  @override
+  String get roleGrandparent => 'Grandparent';
+
+  @override
+  String get roleUncle => 'Uncle/Aunt';
+
+  @override
+  String get roleCousin => 'Cousin';
+
+  @override
+  String get roleNephew => 'Nephew/Niece';
+
+  @override
+  String get roleGrandchild => 'Grandchild';
 }

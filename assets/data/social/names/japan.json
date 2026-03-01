@@ -1,0 +1,33 @@
+{
+  "country": "Japan",
+  "firstNames": {
+    "male": [
+      "Haruto", "Yuto", "Sota", "Riku", "Hiroto", "Minato", "Kaito",
+      "Asahi", "Ren", "Yuma", "Sora", "Haru", "Takumi", "Kota",
+      "Hayato", "Ryota", "Shun", "Daiki", "Yusei", "Aoi",
+      "Kenji", "Akira", "Taro", "Shinji", "Kazuki", "Naoki", "Ryusei",
+      "Yuki", "Makoto", "Satoshi", "Daisuke", "Kenta", "Masaki", "Tsubasa",
+      "Ryo", "Shin", "Taiga", "Yamato", "Itsuki", "Kei",
+      "Shota", "Yuichi", "Kosei", "Hinata", "Genki", "Raito", "Kouki",
+      "Souma", "Ryuki", "Touma"
+    ],
+    "female": [
+      "Yui", "Hina", "Aoi", "Sakura", "Rin", "Mio", "Ichika",
+      "Himari", "Mei", "Riko", "Akari", "Yuna", "Koharu", "Hana",
+      "Misaki", "Miyu", "Saki", "Kanon", "Kokona", "Mana",
+      "Ayaka", "Haruka", "Nana", "Yuki", "Aya", "Risa", "Miku",
+      "Nanami", "Kaede", "Honoka", "Shiori", "Airi", "Chihiro", "Moe",
+      "Karin", "Yuki", "Nao", "Sana", "Emiri", "Momoka",
+      "Hinano", "Kotone", "Yuina", "Suzuka", "Tsukihi", "Wakana",
+      "Asuka", "Rena", "Miku", "Yume"
+    ]
+  },
+  "lastNames": [
+    "Sato", "Suzuki", "Takahashi", "Tanaka", "Watanabe", "Ito", "Yamamoto",
+    "Nakamura", "Kobayashi", "Kato", "Yoshida", "Yamada", "Sasaki", "Yamaguchi",
+    "Matsumoto", "Inoue", "Kimura", "Hayashi", "Shimizu", "Yamazaki",
+    "Mori", "Abe", "Ikeda", "Hashimoto", "Yamashita", "Ishikawa", "Nakajima",
+    "Maeda", "Fujita", "Ogawa", "Goto", "Okada", "Hasegawa", "Murakami",
+    "Kondo", "Ishii", "Saito", "Sakamoto", "Endo", "Aoki"
+  ]
+}

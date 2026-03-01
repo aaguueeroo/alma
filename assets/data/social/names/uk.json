@@ -1,0 +1,33 @@
+{
+  "country": "UK",
+  "firstNames": {
+    "male": [
+      "Oliver", "George", "Arthur", "Noah", "Muhammad", "Leo", "Oscar",
+      "Harry", "Archie", "Jack", "Henry", "Charlie", "Freddie", "Theo",
+      "Thomas", "Alfie", "Jacob", "James", "William", "Edward",
+      "Liam", "Ethan", "Alexander", "Sebastian", "Joseph", "Samuel",
+      "Benjamin", "Daniel", "Isaac", "Dylan", "Joshua", "Max",
+      "Finley", "Teddy", "Luke", "Adam", "Elliot", "Toby", "Callum",
+      "Connor", "Aiden", "Cameron", "Nathan", "Ryan", "Owen",
+      "Jasper", "Rupert", "Hugo", "Felix", "Reuben"
+    ],
+    "female": [
+      "Olivia", "Amelia", "Isla", "Ava", "Ivy", "Freya", "Lily",
+      "Florence", "Mia", "Willow", "Rosie", "Sophie", "Ella", "Grace",
+      "Phoebe", "Evie", "Charlotte", "Daisy", "Poppy", "Isabella",
+      "Emily", "Alice", "Matilda", "Ruby", "Jessica", "Eleanor",
+      "Harper", "Elsie", "Maisie", "Sienna", "Aria", "Luna",
+      "Abigail", "Lucy", "Scarlett", "Chloe", "Bella", "Ada",
+      "Penelope", "Emma", "Victoria", "Hannah", "Molly", "Eliza",
+      "Harriet", "Imogen", "Martha", "Bethany", "Lydia", "Millie"
+    ]
+  },
+  "lastNames": [
+    "Smith", "Jones", "Williams", "Taylor", "Brown", "Davies", "Evans",
+    "Wilson", "Thomas", "Roberts", "Johnson", "Lewis", "Walker", "Robinson",
+    "Wood", "Thompson", "White", "Watson", "Jackson", "Wright",
+    "Green", "Harris", "Cooper", "King", "Lee", "Martin", "Clarke",
+    "James", "Morgan", "Hughes", "Edwards", "Hill", "Moore", "Clark",
+    "Harrison", "Scott", "Young", "Morris", "Hall", "Ward"
+  ]
+}

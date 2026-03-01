@@ -1,0 +1,38 @@
+[
+  {
+    "country": "default",
+    "meetChanceSchool": 0.4,
+    "meetChanceWork": 0.3,
+    "meetChanceNeighborhood": 0.2,
+    "meetChanceRandom": 0.1,
+    "familyImportanceModifier": 1.0,
+    "friendshipDecayModifier": 1.0
+  },
+  {
+    "country": "Japan",
+    "meetChanceSchool": 0.45,
+    "meetChanceWork": 0.35,
+    "meetChanceNeighborhood": 0.15,
+    "meetChanceRandom": 0.05,
+    "familyImportanceModifier": 1.2,
+    "friendshipDecayModifier": 0.8
+  },
+  {
+    "country": "Brazil",
+    "meetChanceSchool": 0.35,
+    "meetChanceWork": 0.25,
+    "meetChanceNeighborhood": 0.3,
+    "meetChanceRandom": 0.15,
+    "familyImportanceModifier": 1.3,
+    "friendshipDecayModifier": 0.9
+  },
+  {
+    "country": "UK",
+    "meetChanceSchool": 0.4,
+    "meetChanceWork": 0.3,
+    "meetChanceNeighborhood": 0.2,
+    "meetChanceRandom": 0.1,
+    "familyImportanceModifier": 1.0,
+    "friendshipDecayModifier": 1.0
+  }
+]

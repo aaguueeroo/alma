@@ -21,6 +21,14 @@ _Npc _$NpcFromJson(Map<String, dynamic> json) => _Npc(
           .toList() ??
       const [],
   compatibilityFactor: (json['compatibilityFactor'] as num?)?.toDouble() ?? 0.5,
+  relationshipTypeId: json['relationshipTypeId'] as String?,
+  age: (json['age'] as num?)?.toInt(),
+  gender: $enumDecodeNullable(_$GenderEnumMap, json['gender']),
+  pronoun: $enumDecodeNullable(_$PronounEnumMap, json['pronoun']),
+  alias: json['alias'] as String?,
+  jobId: json['jobId'] as String?,
+  country: json['country'] as String?,
+  isAlive: json['isAlive'] as bool? ?? true,
 );
 
 Map<String, dynamic> _$NpcToJson(_Npc instance) => <String, dynamic>{
@@ -34,6 +42,14 @@ Map<String, dynamic> _$NpcToJson(_Npc instance) => <String, dynamic>{
       .map((e) => _$TraitTypeEnumMap[e]!)
       .toList(),
   'compatibilityFactor': instance.compatibilityFactor,
+  'relationshipTypeId': instance.relationshipTypeId,
+  'age': instance.age,
+  'gender': _$GenderEnumMap[instance.gender],
+  'pronoun': _$PronounEnumMap[instance.pronoun],
+  'alias': instance.alias,
+  'jobId': instance.jobId,
+  'country': instance.country,
+  'isAlive': instance.isAlive,
 };
 
 const _$NpcRoleEnumMap = {
@@ -45,6 +61,19 @@ const _$NpcRoleEnumMap = {
   NpcRole.mentor: 'mentor',
   NpcRole.rival: 'rival',
   NpcRole.child: 'child',
+  NpcRole.grandparent: 'grandparent',
+  NpcRole.uncle: 'uncle',
+  NpcRole.cousin: 'cousin',
+  NpcRole.nephew: 'nephew',
+  NpcRole.grandchild: 'grandchild',
+  NpcRole.acquaintance: 'acquaintance',
+  NpcRole.bestFriend: 'bestFriend',
+  NpcRole.classmate: 'classmate',
+  NpcRole.boss: 'boss',
+  NpcRole.workSpouse: 'workSpouse',
+  NpcRole.fiance: 'fiance',
+  NpcRole.spouse: 'spouse',
+  NpcRole.ex: 'ex',
 };
 
 const _$TraitTypeEnumMap = {
@@ -63,4 +92,16 @@ const _$TraitTypeEnumMap = {
   TraitType.optimistic: 'optimistic',
   TraitType.curious: 'curious',
   TraitType.lazy: 'lazy',
+};
+
+const _$GenderEnumMap = {
+  Gender.male: 'male',
+  Gender.female: 'female',
+  Gender.other: 'other',
+};
+
+const _$PronounEnumMap = {
+  Pronoun.they: 'they',
+  Pronoun.he: 'he',
+  Pronoun.she: 'she',
 };

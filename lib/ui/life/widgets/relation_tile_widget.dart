@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:alma/core/models/relationship.dart';
+import 'package:alma/core/models/enums/gender.dart';
 import 'package:alma/core/models/enums/npc_role.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/app/constants/sizing.dart';
@@ -18,6 +19,7 @@ class RelationTileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ColorScheme colors = Theme.of(context).colorScheme;
+    final String displayName = relationship.npc.alias ?? relationship.npc.name;
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(kBorderRadius),
@@ -32,7 +34,7 @@ class RelationTileWidget extends StatelessWidget {
               radius: kAvatarSizeSmall / 2,
               backgroundColor: colors.primaryContainer,
               child: Text(
-                relationship.npc.name[0].toUpperCase(),
+                displayName.isNotEmpty ? displayName[0].toUpperCase() : '?',
                 style: Theme.of(context).textTheme.labelLarge?.copyWith(
                       color: colors.onPrimaryContainer,
                     ),
@@ -43,11 +45,26 @@ class RelationTileWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    relationship.npc.name,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          displayName,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      if (relationship.npc.gender != null) ...[
+                        const SizedBox(width: kSpacing4),
+                        Icon(
+                          _genderIcon(relationship.npc.gender!),
+                          size: kIconSize,
+                          color: colors.onSurfaceVariant,
+                        ),
+                      ],
+                    ],
                   ),
                   kVerticalGap4,
                   BidirectionalBarWidget(value: relationship.value),
@@ -73,17 +90,42 @@ class RelationTileWidget extends StatelessWidget {
       case NpcRole.sibling:
         return Icons.people;
       case NpcRole.friend:
+      case NpcRole.bestFriend:
+      case NpcRole.acquaintance:
         return Icons.person;
       case NpcRole.partner:
+      case NpcRole.fiance:
+      case NpcRole.spouse:
         return Icons.favorite;
       case NpcRole.coworker:
+      case NpcRole.boss:
+      case NpcRole.workSpouse:
+      case NpcRole.classmate:
         return Icons.work;
       case NpcRole.mentor:
         return Icons.school;
       case NpcRole.rival:
+      case NpcRole.ex:
         return Icons.sports_martial_arts;
       case NpcRole.child:
         return Icons.child_care;
+      case NpcRole.grandparent:
+      case NpcRole.uncle:
+      case NpcRole.cousin:
+      case NpcRole.nephew:
+      case NpcRole.grandchild:
+        return Icons.family_restroom;
+    }
+  }
+
+  static IconData _genderIcon(Gender gender) {
+    switch (gender) {
+      case Gender.male:
+        return Icons.male;
+      case Gender.female:
+        return Icons.female;
+      case Gender.other:
+        return Icons.transgender;
     }
   }
 }

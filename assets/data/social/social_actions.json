@@ -1,0 +1,2600 @@
+[
+  {
+    "id": "social_baby_vomit",
+    "name": "Vomit on them",
+    "description": "You're a baby. It happens.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 0,
+    "maxAge": 2,
+    "timeCost": 0,
+    "skillEffects": {},
+    "hiddenMetricEffects": {},
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You vomited on {npc}. {npc_subject} cleaned up and still love you.",
+    "relationshipEffects": {
+      "affection": 2,
+      "trust": 0,
+      "respect": -2,
+      "attraction": 0,
+      "conflict": 0,
+      "reputation": 0
+    }
+  },
+  {
+    "id": "social_baby_cute_faces",
+    "name": "Make cute baby faces",
+    "description": "Gurgle, grin, and make them melt.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 0,
+    "maxAge": 2,
+    "timeCost": 1,
+    "skillEffects": {},
+    "hiddenMetricEffects": {},
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You made the cutest faces and {npc_subject} couldn't get enough.",
+    "relationshipEffects": {
+      "affection": 12,
+      "trust": 2,
+      "respect": 0,
+      "attraction": 0,
+      "conflict": -3,
+      "reputation": 0
+    }
+  },
+  {
+    "id": "social_baby_coo_smile",
+    "name": "Smile and coo at them",
+    "description": "Light up when you see them and babble happily.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 0,
+    "maxAge": 2,
+    "timeCost": 1,
+    "skillEffects": {},
+    "hiddenMetricEffects": {},
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You smiled and cooed at {npc}. {npc_possessive} heart melted.",
+    "relationshipEffects": {
+      "affection": 10,
+      "trust": 3,
+      "respect": 0,
+      "attraction": 0,
+      "conflict": -2,
+      "reputation": 0
+    }
+  },
+  {
+    "id": "social_baby_reach_cuddle",
+    "name": "Reach out for a cuddle",
+    "description": "Stretch your arms toward them wanting to be held.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 0,
+    "maxAge": 3,
+    "timeCost": 1,
+    "skillEffects": {},
+    "hiddenMetricEffects": {},
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You reached out for a cuddle and {npc_subject} held you close.",
+    "relationshipEffects": {
+      "affection": 14,
+      "trust": 5,
+      "respect": 0,
+      "attraction": 0,
+      "conflict": -4,
+      "reputation": 0
+    }
+  },
+  {
+    "id": "social_baby_fall_asleep",
+    "name": "Fall asleep on them",
+    "description": "Doze off in their arms or on their shoulder.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 0,
+    "maxAge": 2,
+    "timeCost": 2,
+    "skillEffects": {},
+    "hiddenMetricEffects": {},
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You fell asleep on {npc}. {npc_subject} didn't dare move.",
+    "relationshipEffects": {
+      "affection": 8,
+      "trust": 4,
+      "respect": 0,
+      "attraction": 0,
+      "conflict": -2,
+      "reputation": 0
+    }
+  },
+  {
+    "id": "social_toddler_tantrum",
+    "name": "Throw a tantrum",
+    "description": "Scream, cry, and flail when you don't get your way.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 1,
+    "maxAge": 4,
+    "timeCost": 1,
+    "skillEffects": {},
+    "hiddenMetricEffects": {},
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You threw a tantrum. {npc_subject} waited it out.",
+    "relationshipEffects": {
+      "affection": -2,
+      "trust": -1,
+      "respect": -3,
+      "attraction": 0,
+      "conflict": 6,
+      "reputation": 0
+    }
+  },
+  {
+    "id": "social_baby_cry_pick_up",
+    "name": "Cry until they pick you up",
+    "description": "You want to be held. You make it known.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 0,
+    "maxAge": 2,
+    "timeCost": 1,
+    "skillEffects": {},
+    "hiddenMetricEffects": {},
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You cried until {npc_subject} picked you up. It worked.",
+    "relationshipEffects": {
+      "affection": 3,
+      "trust": 1,
+      "respect": -1,
+      "attraction": 0,
+      "conflict": 2,
+      "reputation": 0
+    }
+  },
+  {
+    "id": "social_child_draw_picture",
+    "name": "Draw a picture for them",
+    "description": "Make a drawing or craft and give it to them.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 3,
+    "maxAge": 10,
+    "timeCost": 2,
+    "skillEffects": {
+      "creativity": 1
+    },
+    "hiddenMetricEffects": {
+      "compassion": 0.1
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin",
+      "child",
+      "nephew_niece",
+      "friend",
+      "best_friend",
+      "acquaintance"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You drew a picture for {npc} and {npc_subject} put it on the fridge.",
+    "relationshipEffects": {
+      "affection": 8,
+      "trust": 2,
+      "respect": 1,
+      "attraction": 0,
+      "conflict": -2,
+      "reputation": 0
+    }
+  },
+  {
+    "id": "social_child_give_hug",
+    "name": "Give them a big hug",
+    "description": "Run up and hug them for no reason.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 3,
+    "maxAge": 12,
+    "timeCost": 0,
+    "skillEffects": {},
+    "hiddenMetricEffects": {},
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin",
+      "child",
+      "nephew_niece",
+      "grandchild",
+      "friend",
+      "best_friend",
+      "acquaintance"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You gave {npc} a big hug. {npc_subject} hugged you back.",
+    "relationshipEffects": {
+      "affection": 6,
+      "trust": 2,
+      "respect": 0,
+      "attraction": 0,
+      "conflict": -2,
+      "reputation": 0
+    }
+  },
+  {
+    "id": "social_child_say_love_you",
+    "name": "Say \"I love you\"",
+    "description": "Tell them you love them out of the blue.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 3,
+    "maxAge": 14,
+    "timeCost": 0,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "compassion": 0.1
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin",
+      "child",
+      "nephew_niece",
+      "grandchild",
+      "friend",
+      "best_friend"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You told {npc} you love {npc}. {npc_subject} won't forget it.",
+    "relationshipEffects": {
+      "affection": 10,
+      "trust": 3,
+      "respect": 1,
+      "attraction": 0,
+      "conflict": -3,
+      "reputation": 0
+    }
+  },
+  {
+    "id": "social_child_share_toy",
+    "name": "Share your toy with them",
+    "description": "Let them play with your favourite thing.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 3,
+    "maxAge": 8,
+    "timeCost": 2,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "compassion": 0.2,
+      "humility": 0.1
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "sibling",
+      "cousin",
+      "friend",
+      "best_friend",
+      "acquaintance",
+      "classmate"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You shared your toy with {npc}. It meant a lot.",
+    "relationshipEffects": {
+      "affection": 7,
+      "trust": 4,
+      "respect": 3,
+      "attraction": 0,
+      "conflict": -2,
+      "reputation": 0
+    }
+  },
+  {
+    "id": "social_child_refuse_share",
+    "name": "Refuse to share",
+    "description": "It's yours and you're not sharing. No.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 2,
+    "maxAge": 6,
+    "timeCost": 0,
+    "skillEffects": {},
+    "hiddenMetricEffects": {},
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin",
+      "friend",
+      "best_friend",
+      "acquaintance",
+      "classmate"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You refused to share. There were tears.",
+    "relationshipEffects": {
+      "affection": -4,
+      "trust": -2,
+      "respect": -3,
+      "attraction": 0,
+      "conflict": 5,
+      "reputation": 0
+    }
+  },
+  {
+    "id": "social_child_handmade_card",
+    "name": "Make them a handmade card",
+    "description": "Fold paper, add drawings and a message, and give it to them.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 5,
+    "maxAge": 12,
+    "timeCost": 2,
+    "skillEffects": {
+      "creativity": 1
+    },
+    "hiddenMetricEffects": {
+      "compassion": 0.2
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin",
+      "child",
+      "nephew_niece",
+      "friend",
+      "best_friend",
+      "acquaintance"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You made {npc} a handmade card. {npc_subject} kept it.",
+    "relationshipEffects": {
+      "affection": 9,
+      "trust": 3,
+      "respect": 2,
+      "attraction": 0,
+      "conflict": -2,
+      "reputation": 0
+    }
+  },
+  {
+    "id": "social_child_invite_play",
+    "name": "Invite them to play",
+    "description": "Ask them to play a game or do an activity with you.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 4,
+    "maxAge": 11,
+    "timeCost": 5,
+    "skillEffects": {
+      "communication": 1
+    },
+    "hiddenMetricEffects": {},
+    "healthEffect": 1,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "sibling",
+      "cousin",
+      "friend",
+      "best_friend",
+      "acquaintance",
+      "classmate"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You invited {npc} to play and you had fun together.",
+    "relationshipEffects": {
+      "affection": 6,
+      "trust": 3,
+      "respect": 2,
+      "attraction": 0,
+      "conflict": -1,
+      "reputation": 0
+    }
+  },
+  {
+    "id": "social_toddler_play_explore",
+    "name": "Play and explore",
+    "description": "Spend time playing, babbling, or exploring on your own.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 0,
+    "maxAge": 6,
+    "timeCost": 3,
+    "skillEffects": {},
+    "hiddenMetricEffects": {},
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [],
+    "npcResponseChance": 0.0,
+    "logMessage": "You played and explored. It was a good day.",
+    "relationshipEffects": {
+      "affection": 0,
+      "trust": 0,
+      "respect": 0,
+      "attraction": 0,
+      "conflict": 0,
+      "reputation": 0
+    }
+  },
+  {
+    "id": "social_host_dinner_party",
+    "name": "Host a dinner party with...",
+    "description": "Invite people over for a home-cooked meal and good conversation.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 14,
+    "timeCost": 15,
+    "skillEffects": {
+      "communication": 2
+    },
+    "hiddenMetricEffects": {
+      "compassion": 0.2
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": true,
+    "relationshipTypeIds": [],
+    "npcResponseChance": 0.0,
+    "logMessage": "You hosted a dinner party, bringing people together over a warm meal and laughter.",
+    "relationshipEffects": {
+      "affection": 8,
+      "trust": 4,
+      "respect": 3,
+      "attraction": 0,
+      "conflict": -2,
+      "reputation": 3
+    }
+  },
+  {
+    "id": "social_go_out_weekends",
+    "name": "Go partying with...",
+    "description": "Spend your weekends going out to bars, restaurants, and events with friends.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 14,
+    "timeCost": 20,
+    "skillEffects": {
+      "communication": 2
+    },
+    "hiddenMetricEffects": {},
+    "healthEffect": -2,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": true,
+    "relationshipTypeIds": [],
+    "npcResponseChance": 0.0,
+    "logMessage": "You spent your weekends going out, making memories and strengthening bonds.",
+    "relationshipEffects": {
+      "affection": 10,
+      "trust": 3,
+      "respect": 0,
+      "attraction": 2,
+      "conflict": -3,
+      "reputation": 2
+    }
+  },
+  {
+    "id": "social_send_messages",
+    "name": "Stay in touch regularly",
+    "description": "Send thoughtful messages and check in on people throughout the year.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 8,
+    "timeCost": 5,
+    "skillEffects": {
+      "communication": 1
+    },
+    "hiddenMetricEffects": {
+      "loyalty": 0.2
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin",
+      "child",
+      "nephew_niece",
+      "grandchild",
+      "acquaintance",
+      "friend",
+      "best_friend",
+      "classmate",
+      "colleague",
+      "boss",
+      "work_spouse",
+      "situationship",
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse",
+      "ex"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You made an effort to stay in touch, sending messages and checking in regularly.",
+    "relationshipEffects": {
+      "affection": 5,
+      "trust": 3,
+      "respect": 2,
+      "attraction": 0,
+      "conflict": -1,
+      "reputation": 1
+    }
+  },
+  {
+    "id": "social_volunteer_together",
+    "name": "Volunteer with...",
+    "description": "Sign up for volunteer work together, helping the community side by side.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 10,
+    "timeCost": 20,
+    "skillEffects": {
+      "communication": 1,
+      "emotionalStability": 1
+    },
+    "hiddenMetricEffects": {
+      "compassion": 0.5,
+      "humility": 0.3
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": true,
+    "relationshipTypeIds": [],
+    "npcResponseChance": 0.0,
+    "logMessage": "You volunteered together, building a deeper bond through shared purpose.",
+    "relationshipEffects": {
+      "affection": 7,
+      "trust": 6,
+      "respect": 8,
+      "attraction": 0,
+      "conflict": -2,
+      "reputation": 5
+    }
+  },
+  {
+    "id": "social_give_gift",
+    "name": "Give a thoughtful gift",
+    "description": "Pick out something special that shows you really know the person.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 7,
+    "timeCost": 3,
+    "skillEffects": {
+      "creativity": 1
+    },
+    "hiddenMetricEffects": {
+      "compassion": 0.2
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin",
+      "child",
+      "nephew_niece",
+      "grandchild",
+      "acquaintance",
+      "friend",
+      "best_friend",
+      "classmate",
+      "colleague",
+      "boss",
+      "work_spouse",
+      "situationship",
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse",
+      "ex"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You surprised {npc} with a thoughtful gift that showed how well you know {npc}.",
+    "relationshipEffects": {
+      "affection": 10,
+      "trust": 2,
+      "respect": 3,
+      "attraction": 2,
+      "conflict": -1,
+      "reputation": 1
+    }
+  },
+  {
+    "id": "social_listen_problems",
+    "name": "Be there in hard times",
+    "description": "Offer emotional support during a difficult period in their life.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 10,
+    "timeCost": 8,
+    "skillEffects": {
+      "emotionalStability": 2
+    },
+    "hiddenMetricEffects": {
+      "compassion": 0.4,
+      "loyalty": 0.3
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin",
+      "child",
+      "nephew_niece",
+      "grandchild",
+      "acquaintance",
+      "friend",
+      "best_friend",
+      "classmate",
+      "colleague",
+      "boss",
+      "work_spouse",
+      "situationship",
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse",
+      "ex"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You were there when {npc_subject} needed someone most, listening and offering support.",
+    "relationshipEffects": {
+      "affection": 8,
+      "trust": 10,
+      "respect": 5,
+      "attraction": 0,
+      "conflict": -3,
+      "reputation": 2
+    }
+  },
+  {
+    "id": "social_exercise_together",
+    "name": "Exercise with...",
+    "description": "Work out, run, or play sports together on a regular basis.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 6,
+    "timeCost": 18,
+    "skillEffects": {
+      "fitness": 3
+    },
+    "hiddenMetricEffects": {
+      "discipline": 0.3
+    },
+    "healthEffect": 5,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": true,
+    "relationshipTypeIds": [],
+    "npcResponseChance": 0.0,
+    "logMessage": "You exercised together regularly, sharing sweat and motivation.",
+    "relationshipEffects": {
+      "affection": 5,
+      "trust": 4,
+      "respect": 4,
+      "attraction": 3,
+      "conflict": -1,
+      "reputation": 1
+    }
+  },
+  {
+    "id": "social_study_together",
+    "name": "Study or learn with...",
+    "description": "Spend time studying, reading, or learning something new together.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 6,
+    "timeCost": 15,
+    "skillEffects": {
+      "intelligence": 2
+    },
+    "hiddenMetricEffects": {
+      "curiosity": 0.3
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 3,
+    "isGroupAction": true,
+    "relationshipTypeIds": [],
+    "npcResponseChance": 0.0,
+    "logMessage": "You spent time learning together, growing your minds side by side.",
+    "relationshipEffects": {
+      "affection": 4,
+      "trust": 5,
+      "respect": 6,
+      "attraction": 0,
+      "conflict": -1,
+      "reputation": 1
+    }
+  },
+  {
+    "id": "social_ghost_everyone",
+    "name": "Ghost everyone",
+    "description": "Stop responding to messages and avoid social contact for a while.",
+    "category": "social",
+    "socialActionType": "mischievous",
+    "minAge": 10,
+    "timeCost": 0,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "loyalty": -0.4
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [],
+    "npcResponseChance": 0.0,
+    "logMessage": "You disappeared from everyone's life for a while, leaving them wondering what happened.",
+    "relationshipEffects": {
+      "affection": -10,
+      "trust": -12,
+      "respect": -5,
+      "attraction": -3,
+      "conflict": 8,
+      "reputation": -5
+    }
+  },
+  {
+    "id": "social_volunteer_solo",
+    "name": "Volunteer",
+    "description": "Spend time volunteering in your community on your own.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 10,
+    "timeCost": 18,
+    "skillEffects": {
+      "communication": 1,
+      "emotionalStability": 1
+    },
+    "hiddenMetricEffects": {
+      "compassion": 0.4,
+      "humility": 0.2
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [],
+    "npcResponseChance": 0.0,
+    "logMessage": "You volunteered in your community, giving back without expecting anything in return.",
+    "relationshipEffects": {
+      "affection": 0,
+      "trust": 0,
+      "respect": 0,
+      "attraction": 0,
+      "conflict": 0,
+      "reputation": 4
+    }
+  },
+  {
+    "id": "social_go_out_partying_solo",
+    "name": "Go out partying",
+    "description": "Head out to bars, events, or nightlife on your own and meet new people.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 14,
+    "timeCost": 18,
+    "skillEffects": {
+      "communication": 2
+    },
+    "hiddenMetricEffects": {},
+    "healthEffect": -1,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [],
+    "npcResponseChance": 0.0,
+    "logMessage": "You went out partying and had a night to remember.",
+    "relationshipEffects": {
+      "affection": 0,
+      "trust": 0,
+      "respect": 0,
+      "attraction": 0,
+      "conflict": 0,
+      "reputation": 1
+    }
+  },
+  {
+    "id": "social_picnic_with",
+    "name": "Go on a picnic with...",
+    "description": "Pack a basket and enjoy a relaxed outdoor meal together.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 6,
+    "timeCost": 8,
+    "skillEffects": {
+      "communication": 1
+    },
+    "hiddenMetricEffects": {
+      "compassion": 0.2
+    },
+    "healthEffect": 2,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": true,
+    "relationshipTypeIds": [],
+    "npcResponseChance": 0.0,
+    "logMessage": "You went on a picnic together, sharing food and conversation under the open sky.",
+    "relationshipEffects": {
+      "affection": 6,
+      "trust": 3,
+      "respect": 2,
+      "attraction": 1,
+      "conflict": -2,
+      "reputation": 1
+    }
+  },
+  {
+    "id": "social_spread_gossip",
+    "name": "Spread gossip",
+    "description": "Share rumors and private information about someone behind their back.",
+    "category": "social",
+    "socialActionType": "mischievous",
+    "minAge": 9,
+    "timeCost": 3,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "integrity": -0.5
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin",
+      "child",
+      "nephew_niece",
+      "grandchild",
+      "acquaintance",
+      "friend",
+      "best_friend",
+      "classmate",
+      "colleague",
+      "boss",
+      "work_spouse",
+      "situationship",
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse",
+      "ex"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You spread gossip about {npc}, and word got back to places you didn't expect.",
+    "relationshipEffects": {
+      "affection": -5,
+      "trust": -15,
+      "respect": -10,
+      "attraction": 0,
+      "conflict": 12,
+      "reputation": -8
+    }
+  },
+  {
+    "id": "social_cancel_plans",
+    "name": "Cancel plans last minute",
+    "description": "Bail on plans you made, leaving people disappointed.",
+    "category": "social",
+    "socialActionType": "mischievous",
+    "minAge": 8,
+    "timeCost": 0,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "loyalty": -0.2
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin",
+      "child",
+      "nephew_niece",
+      "grandchild",
+      "acquaintance",
+      "friend",
+      "best_friend",
+      "classmate",
+      "colleague",
+      "boss",
+      "work_spouse",
+      "situationship",
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse",
+      "ex"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You cancelled plans at the last minute, leaving {npc} hanging.",
+    "relationshipEffects": {
+      "affection": -6,
+      "trust": -8,
+      "respect": -4,
+      "attraction": -1,
+      "conflict": 5,
+      "reputation": -3
+    }
+  },
+  {
+    "id": "social_be_passive_aggressive",
+    "name": "Be passive-aggressive",
+    "description": "Express your frustration through indirect comments and subtle digs.",
+    "category": "social",
+    "socialActionType": "mischievous",
+    "minAge": 10,
+    "timeCost": 2,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "integrity": -0.2
+    },
+    "healthEffect": -1,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin",
+      "child",
+      "nephew_niece",
+      "grandchild",
+      "acquaintance",
+      "friend",
+      "best_friend",
+      "classmate",
+      "colleague",
+      "boss",
+      "work_spouse",
+      "situationship",
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse",
+      "ex"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You made cutting remarks and gave the cold shoulder instead of talking things out.",
+    "relationshipEffects": {
+      "affection": -6,
+      "trust": -8,
+      "respect": -7,
+      "attraction": -2,
+      "conflict": 10,
+      "reputation": -2
+    }
+  },
+  {
+    "id": "social_take_credit",
+    "name": "Take credit for their work",
+    "description": "Claim someone else's ideas or contributions as your own.",
+    "category": "social",
+    "socialActionType": "mischievous",
+    "minAge": 14,
+    "timeCost": 1,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "integrity": -0.6,
+      "ambition": 0.2
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin",
+      "child",
+      "nephew_niece",
+      "grandchild",
+      "acquaintance",
+      "friend",
+      "best_friend",
+      "classmate",
+      "colleague",
+      "boss",
+      "work_spouse",
+      "situationship",
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse",
+      "ex"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You took credit for {npc_possessive} work, and {npc_subject} found out about it.",
+    "relationshipEffects": {
+      "affection": -8,
+      "trust": -15,
+      "respect": -12,
+      "attraction": 0,
+      "conflict": 15,
+      "reputation": -6
+    }
+  },
+  {
+    "id": "social_manipulate",
+    "name": "Manipulate for personal gain",
+    "description": "Use the relationship to get something you want without regard for their feelings.",
+    "category": "social",
+    "socialActionType": "mischievous",
+    "minAge": 14,
+    "timeCost": 5,
+    "skillEffects": {
+      "communication": 1
+    },
+    "hiddenMetricEffects": {
+      "integrity": -0.7,
+      "ambition": 0.3
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin",
+      "child",
+      "nephew_niece",
+      "grandchild",
+      "acquaintance",
+      "friend",
+      "best_friend",
+      "classmate",
+      "colleague",
+      "boss",
+      "work_spouse",
+      "situationship",
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse",
+      "ex"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You manipulated the relationship to serve your own interests.",
+    "relationshipEffects": {
+      "affection": -5,
+      "trust": -12,
+      "respect": -8,
+      "attraction": 0,
+      "conflict": 10,
+      "reputation": -4
+    }
+  },
+  {
+    "id": "social_friend_weekend_trip",
+    "name": "Plan a weekend trip",
+    "description": "Organize a weekend getaway together to explore somewhere new.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 16,
+    "timeCost": 20,
+    "skillEffects": {
+      "creativity": 1
+    },
+    "hiddenMetricEffects": {
+      "courage": 0.2
+    },
+    "healthEffect": 2,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": true,
+    "relationshipTypeIds": [
+      "friend",
+      "best_friend",
+      "acquaintance"
+    ],
+    "npcResponseChance": 0.1,
+    "logMessage": "You went on a weekend trip together, creating shared memories in a new place.",
+    "relationshipEffects": {
+      "affection": 12,
+      "trust": 6,
+      "respect": 3,
+      "attraction": 0,
+      "conflict": -3,
+      "reputation": 2
+    }
+  },
+  {
+    "id": "social_friend_heart_to_heart",
+    "name": "Have a heart-to-heart",
+    "description": "Sit down for a deep, honest conversation about life and feelings.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 10,
+    "timeCost": 2,
+    "skillEffects": {
+      "emotionalStability": 2,
+      "communication": 1
+    },
+    "hiddenMetricEffects": {
+      "compassion": 0.3
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "friend",
+      "best_friend"
+    ],
+    "npcResponseChance": 0.05,
+    "logMessage": "You had a deep conversation that brought you closer together.",
+    "relationshipEffects": {
+      "affection": 8,
+      "trust": 12,
+      "respect": 5,
+      "attraction": 0,
+      "conflict": -5,
+      "reputation": 0
+    }
+  },
+  {
+    "id": "social_friend_lend_money",
+    "name": "Lend them money",
+    "description": "Help them out financially when they're in a tough spot.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 14,
+    "timeCost": 1,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "compassion": 0.3,
+      "loyalty": 0.2
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "friend",
+      "best_friend"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You lent {npc} money when {npc_subject} needed it, showing you trusted and cared for {npc}.",
+    "relationshipEffects": {
+      "affection": 6,
+      "trust": 8,
+      "respect": 4,
+      "attraction": 0,
+      "conflict": -2,
+      "reputation": 2
+    }
+  },
+  {
+    "id": "social_friend_compete",
+    "name": "Compete with them",
+    "description": "Turn everything into a competition, always trying to one-up them.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 8,
+    "timeCost": 5,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "ambition": 0.3
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "friend",
+      "best_friend",
+      "acquaintance"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You turned your friendship into a constant competition, and the tension grew.",
+    "relationshipEffects": {
+      "affection": -5,
+      "trust": -4,
+      "respect": -3,
+      "attraction": 0,
+      "conflict": 8,
+      "reputation": -2
+    }
+  },
+  {
+    "id": "social_friend_betray_secret",
+    "name": "Betray a confidence",
+    "description": "Share something they told you in private with other people.",
+    "category": "social",
+    "socialActionType": "mischievous",
+    "minAge": 10,
+    "timeCost": 1,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "integrity": -0.5,
+      "loyalty": -0.5
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "friend",
+      "best_friend"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You betrayed {npc_possessive} confidence, and the trust between you was shattered.",
+    "relationshipEffects": {
+      "affection": -10,
+      "trust": -20,
+      "respect": -10,
+      "attraction": 0,
+      "conflict": 15,
+      "reputation": -7
+    }
+  },
+  {
+    "id": "social_romantic_date",
+    "name": "Plan a romantic date",
+    "description": "Organize a special evening together with attention to every detail.",
+    "category": "social",
+    "socialActionType": "romantic",
+    "minAge": 14,
+    "timeCost": 5,
+    "skillEffects": {
+      "creativity": 1
+    },
+    "hiddenMetricEffects": {
+      "courage": 0.1
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "situationship",
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse"
+    ],
+    "npcResponseChance": 0.05,
+    "logMessage": "You planned a beautiful date that left both of you smiling.",
+    "relationshipEffects": {
+      "affection": 12,
+      "trust": 3,
+      "respect": 4,
+      "attraction": 10,
+      "conflict": -4,
+      "reputation": 1
+    }
+  },
+  {
+    "id": "social_romantic_move_in",
+    "name": "Move in together",
+    "description": "Take the big step of sharing a living space.",
+    "category": "social",
+    "socialActionType": "romantic",
+    "minAge": 14,
+    "timeCost": 10,
+    "skillEffects": {
+      "emotionalStability": 1
+    },
+    "hiddenMetricEffects": {
+      "courage": 0.3,
+      "loyalty": 0.3
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse"
+    ],
+    "npcResponseChance": 0.15,
+    "logMessage": "You moved in together, starting a new chapter of your relationship.",
+    "relationshipEffects": {
+      "affection": 10,
+      "trust": 8,
+      "respect": 5,
+      "attraction": 5,
+      "conflict": 3,
+      "reputation": 2
+    }
+  },
+  {
+    "id": "social_romantic_propose",
+    "name": "Propose",
+    "description": "Pop the question and ask them to spend the rest of their life with you.",
+    "category": "social",
+    "socialActionType": "romantic",
+    "minAge": 14,
+    "timeCost": 1,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "courage": 0.5,
+      "loyalty": 0.5
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "boyfriend_girlfriend"
+    ],
+    "npcResponseChance": 0.25,
+    "npcDeclineConsequences": {
+      "affectionEffect": -5,
+      "trustEffect": -3,
+      "conflictEffect": 10
+    },
+    "logMessage": "You got down on one knee and proposed. {npc_subject} said yes!",
+    "relationshipEffects": {
+      "affection": 15,
+      "trust": 10,
+      "respect": 8,
+      "attraction": 5,
+      "conflict": -5,
+      "reputation": 5
+    }
+  },
+  {
+    "id": "social_romantic_marry",
+    "name": "Get married",
+    "description": "Tie the knot in a ceremony celebrating your love.",
+    "category": "social",
+    "socialActionType": "romantic",
+    "minAge": 14,
+    "timeCost": 8,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "loyalty": 0.7,
+      "courage": 0.3
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "fiance"
+    ],
+    "npcResponseChance": 0.05,
+    "logMessage": "You got married in a ceremony surrounded by the people you love.",
+    "relationshipEffects": {
+      "affection": 20,
+      "trust": 15,
+      "respect": 10,
+      "attraction": 8,
+      "conflict": -5,
+      "reputation": 8
+    }
+  },
+  {
+    "id": "social_romantic_neglect",
+    "name": "Neglect the relationship",
+    "description": "Stop putting effort into the relationship and take your partner for granted.",
+    "category": "social",
+    "socialActionType": "romantic",
+    "minAge": 12,
+    "timeCost": 0,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "loyalty": -0.3
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "situationship",
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You stopped making an effort, and the distance between you and {npc} grew.",
+    "relationshipEffects": {
+      "affection": -10,
+      "trust": -8,
+      "respect": -5,
+      "attraction": -6,
+      "conflict": 8,
+      "reputation": -2
+    }
+  },
+  {
+    "id": "social_romantic_cheat",
+    "name": "Be unfaithful",
+    "description": "Pursue someone else while in a committed relationship.",
+    "category": "social",
+    "socialActionType": "romantic",
+    "minAge": 14,
+    "timeCost": 5,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "integrity": -0.8,
+      "loyalty": -0.8
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You were unfaithful, and the betrayal left deep scars.",
+    "relationshipEffects": {
+      "affection": -15,
+      "trust": -25,
+      "respect": -20,
+      "attraction": -5,
+      "conflict": 20,
+      "reputation": -15
+    }
+  },
+  {
+    "id": "social_romantic_surprise",
+    "name": "Plan a surprise getaway",
+    "description": "Whisk them away on a surprise trip to rekindle the spark.",
+    "category": "social",
+    "socialActionType": "romantic",
+    "minAge": 18,
+    "timeCost": 15,
+    "skillEffects": {
+      "creativity": 1
+    },
+    "hiddenMetricEffects": {
+      "courage": 0.2
+    },
+    "healthEffect": 2,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You surprised {npc} with a getaway trip, rekindling the romance.",
+    "relationshipEffects": {
+      "affection": 15,
+      "trust": 5,
+      "respect": 5,
+      "attraction": 10,
+      "conflict": -5,
+      "reputation": 2
+    }
+  },
+  {
+    "id": "social_family_chores",
+    "name": "Help with family responsibilities",
+    "description": "Take on more chores and responsibilities around the home.",
+    "category": "social",
+    "socialActionType": "family",
+    "minAge": 6,
+    "timeCost": 10,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "discipline": 0.2,
+      "humility": 0.2
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "child"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You stepped up and helped with family responsibilities around the home.",
+    "relationshipEffects": {
+      "affection": 6,
+      "trust": 5,
+      "respect": 8,
+      "attraction": 0,
+      "conflict": -4,
+      "reputation": 1
+    }
+  },
+  {
+    "id": "social_family_road_trip",
+    "name": "Family road trip",
+    "description": "Go on a road trip with the family to explore and bond.",
+    "category": "social",
+    "socialActionType": "family",
+    "minAge": 4,
+    "timeCost": 15,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "courage": 0.1,
+      "curiosity": 0.2
+    },
+    "healthEffect": 2,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": true,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "child",
+      "grandparent"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You went on a family road trip full of adventure and togetherness.",
+    "relationshipEffects": {
+      "affection": 10,
+      "trust": 5,
+      "respect": 4,
+      "attraction": 0,
+      "conflict": -2,
+      "reputation": 1
+    }
+  },
+  {
+    "id": "social_family_cut_contact",
+    "name": "Cut contact",
+    "description": "Stop communicating with a family member entirely.",
+    "category": "social",
+    "socialActionType": "family",
+    "minAge": 16,
+    "timeCost": 0,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "courage": 0.2
+    },
+    "healthEffect": -3,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You cut contact with a family member, creating a painful silence.",
+    "relationshipEffects": {
+      "affection": -15,
+      "trust": -10,
+      "respect": -5,
+      "attraction": 0,
+      "conflict": 15,
+      "reputation": -5
+    }
+  },
+  {
+    "id": "social_family_celebrate_together",
+    "name": "Celebrate milestones together",
+    "description": "Make an effort to be present for birthdays, holidays, and important moments.",
+    "category": "social",
+    "socialActionType": "family",
+    "minAge": 6,
+    "timeCost": 8,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "loyalty": 0.3
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": true,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "child",
+      "uncle_aunt",
+      "cousin"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You celebrated important milestones together, strengthening the family bond.",
+    "relationshipEffects": {
+      "affection": 10,
+      "trust": 4,
+      "respect": 5,
+      "attraction": 0,
+      "conflict": -3,
+      "reputation": 2
+    }
+  },
+  {
+    "id": "social_family_argue",
+    "name": "Start a family argument",
+    "description": "Let tensions boil over into a heated argument at a family gathering.",
+    "category": "social",
+    "socialActionType": "family",
+    "minAge": 10,
+    "timeCost": 1,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "integrity": -0.1
+    },
+    "healthEffect": -2,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "A heated argument erupted, leaving everyone feeling hurt and drained.",
+    "relationshipEffects": {
+      "affection": -8,
+      "trust": -5,
+      "respect": -6,
+      "attraction": 0,
+      "conflict": 12,
+      "reputation": -3
+    }
+  },
+  {
+    "id": "social_colleague_collaborate",
+    "name": "Collaborate on a project",
+    "description": "Work together on a side project or initiative beyond your regular duties.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 18,
+    "timeCost": 15,
+    "skillEffects": {
+      "intelligence": 2,
+      "communication": 1
+    },
+    "hiddenMetricEffects": {
+      "discipline": 0.2
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 5,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "colleague",
+      "boss",
+      "classmate",
+      "work_spouse"
+    ],
+    "npcResponseChance": 0.05,
+    "logMessage": "You collaborated on a project together, earning mutual respect.",
+    "relationshipEffects": {
+      "affection": 5,
+      "trust": 8,
+      "respect": 10,
+      "attraction": 0,
+      "conflict": -2,
+      "reputation": 4
+    }
+  },
+  {
+    "id": "social_colleague_undermine",
+    "name": "Undermine at work",
+    "description": "Sabotage their work or reputation in the workplace.",
+    "category": "social",
+    "socialActionType": "mischievous",
+    "minAge": 18,
+    "timeCost": 5,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "integrity": -0.6
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "colleague",
+      "boss",
+      "classmate",
+      "work_spouse"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You undermined {npc_possessive} work behind {npc_possessive} back, damaging the relationship.",
+    "relationshipEffects": {
+      "affection": -10,
+      "trust": -15,
+      "respect": -12,
+      "attraction": 0,
+      "conflict": 15,
+      "reputation": -8
+    }
+  },
+  {
+    "id": "social_colleague_mentor",
+    "name": "Mentor or help with work",
+    "description": "Share your knowledge and help them grow professionally.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 20,
+    "timeCost": 10,
+    "skillEffects": {
+      "communication": 1,
+      "intelligence": 1
+    },
+    "hiddenMetricEffects": {
+      "compassion": 0.2,
+      "humility": 0.1
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 3,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "colleague",
+      "classmate",
+      "work_spouse"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You mentored {npc}, sharing your knowledge and helping {npc_subject} grow.",
+    "relationshipEffects": {
+      "affection": 6,
+      "trust": 7,
+      "respect": 10,
+      "attraction": 0,
+      "conflict": -2,
+      "reputation": 4
+    }
+  },
+  {
+    "id": "social_colleague_lunch",
+    "name": "Have lunch together regularly",
+    "description": "Make a habit of sharing lunch breaks to chat and unwind.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 16,
+    "timeCost": 8,
+    "skillEffects": {
+      "communication": 1
+    },
+    "hiddenMetricEffects": {},
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": true,
+    "relationshipTypeIds": [
+      "colleague",
+      "boss",
+      "classmate",
+      "work_spouse"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You shared regular lunches, building a comfortable rapport.",
+    "relationshipEffects": {
+      "affection": 6,
+      "trust": 5,
+      "respect": 3,
+      "attraction": 1,
+      "conflict": -2,
+      "reputation": 1
+    }
+  },
+  {
+    "id": "social_colleague_steal_client",
+    "name": "Steal their opportunity",
+    "description": "Snag a client, promotion, or opportunity that they were working toward.",
+    "category": "social",
+    "socialActionType": "mischievous",
+    "minAge": 18,
+    "timeCost": 3,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "integrity": -0.5,
+      "ambition": 0.3
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "colleague",
+      "classmate",
+      "work_spouse"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You swiped an opportunity right from under {npc}, and {npc_subject} noticed.",
+    "relationshipEffects": {
+      "affection": -10,
+      "trust": -12,
+      "respect": -8,
+      "attraction": 0,
+      "conflict": 12,
+      "reputation": -5
+    }
+  },
+  {
+    "id": "social_apologize",
+    "name": "Sincerely apologize",
+    "description": "Own up to your mistakes and make a genuine apology.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 6,
+    "timeCost": 1,
+    "skillEffects": {
+      "emotionalStability": 1
+    },
+    "hiddenMetricEffects": {
+      "humility": 0.4,
+      "integrity": 0.3
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin",
+      "child",
+      "nephew_niece",
+      "grandchild",
+      "acquaintance",
+      "friend",
+      "best_friend",
+      "classmate",
+      "colleague",
+      "boss",
+      "work_spouse",
+      "situationship",
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse",
+      "ex"
+    ],
+    "npcResponseChance": 0.15,
+    "logMessage": "You sincerely apologized, and it helped mend what was broken.",
+    "relationshipEffects": {
+      "affection": 5,
+      "trust": 8,
+      "respect": 6,
+      "attraction": 0,
+      "conflict": -10,
+      "reputation": 2
+    }
+  },
+  {
+    "id": "social_cook_for_them",
+    "name": "Cook for them regularly",
+    "description": "Show your care by preparing meals for them throughout the year.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 12,
+    "timeCost": 12,
+    "skillEffects": {
+      "creativity": 1
+    },
+    "hiddenMetricEffects": {
+      "compassion": 0.2
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin",
+      "child",
+      "nephew_niece",
+      "grandchild",
+      "acquaintance",
+      "friend",
+      "best_friend",
+      "classmate",
+      "colleague",
+      "boss",
+      "work_spouse",
+      "situationship",
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse",
+      "ex"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You cooked for {npc} regularly, and {npc_subject} appreciated every meal.",
+    "relationshipEffects": {
+      "affection": 8,
+      "trust": 3,
+      "respect": 4,
+      "attraction": 2,
+      "conflict": -2,
+      "reputation": 1
+    }
+  },
+  {
+    "id": "social_ignore_needs",
+    "name": "Ignore their needs",
+    "description": "Be self-centered and dismiss what they need from the relationship.",
+    "category": "social",
+    "socialActionType": "mischievous",
+    "minAge": 10,
+    "timeCost": 0,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "compassion": -0.3
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin",
+      "child",
+      "nephew_niece",
+      "grandchild",
+      "acquaintance",
+      "friend",
+      "best_friend",
+      "classmate",
+      "colleague",
+      "boss",
+      "work_spouse",
+      "situationship",
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse",
+      "ex"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You ignored {npc_possessive} needs, focused entirely on yourself.",
+    "relationshipEffects": {
+      "affection": -8,
+      "trust": -6,
+      "respect": -5,
+      "attraction": -2,
+      "conflict": 7,
+      "reputation": -2
+    }
+  },
+  {
+    "id": "social_share_hobby",
+    "name": "Share a hobby together",
+    "description": "Pick up a shared hobby or activity to enjoy on a regular basis.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 8,
+    "timeCost": 15,
+    "skillEffects": {
+      "creativity": 2
+    },
+    "hiddenMetricEffects": {
+      "curiosity": 0.3
+    },
+    "healthEffect": 1,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin",
+      "child",
+      "nephew_niece",
+      "grandchild",
+      "acquaintance",
+      "friend",
+      "best_friend",
+      "classmate",
+      "colleague",
+      "boss",
+      "work_spouse",
+      "situationship",
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse",
+      "ex"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You discovered a shared hobby that gave you something meaningful to bond over.",
+    "relationshipEffects": {
+      "affection": 8,
+      "trust": 4,
+      "respect": 4,
+      "attraction": 3,
+      "conflict": -2,
+      "reputation": 1
+    }
+  },
+  {
+    "id": "social_lie",
+    "name": "Lie to them",
+    "description": "Tell a significant lie to avoid consequences or gain an advantage.",
+    "category": "social",
+    "socialActionType": "mischievous",
+    "minAge": 8,
+    "timeCost": 1,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "integrity": -0.5
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin",
+      "child",
+      "nephew_niece",
+      "grandchild",
+      "acquaintance",
+      "friend",
+      "best_friend",
+      "classmate",
+      "colleague",
+      "boss",
+      "work_spouse",
+      "situationship",
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse",
+      "ex"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You told {npc} a lie, and the truth felt heavier for it.",
+    "relationshipEffects": {
+      "affection": -3,
+      "trust": -15,
+      "respect": -8,
+      "attraction": 0,
+      "conflict": 10,
+      "reputation": -4
+    }
+  },
+  {
+    "id": "social_defend_reputation",
+    "name": "Defend their reputation",
+    "description": "Stand up for them when others speak badly about them.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 10,
+    "timeCost": 2,
+    "skillEffects": {
+      "communication": 1
+    },
+    "hiddenMetricEffects": {
+      "courage": 0.3,
+      "loyalty": 0.4
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin",
+      "child",
+      "nephew_niece",
+      "grandchild",
+      "acquaintance",
+      "friend",
+      "best_friend",
+      "classmate",
+      "colleague",
+      "boss",
+      "work_spouse",
+      "situationship",
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse",
+      "ex"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You stood up for {npc} when others talked behind {npc_possessive} back.",
+    "relationshipEffects": {
+      "affection": 8,
+      "trust": 10,
+      "respect": 8,
+      "attraction": 2,
+      "conflict": -4,
+      "reputation": 3
+    }
+  },
+  {
+    "id": "social_jealousy",
+    "name": "Act jealous and possessive",
+    "description": "Let jealousy take over and try to control who they spend time with.",
+    "category": "social",
+    "socialActionType": "mischievous",
+    "minAge": 12,
+    "timeCost": 3,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "integrity": -0.2
+    },
+    "healthEffect": -2,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin",
+      "child",
+      "nephew_niece",
+      "grandchild",
+      "acquaintance",
+      "friend",
+      "best_friend",
+      "classmate",
+      "colleague",
+      "boss",
+      "work_spouse",
+      "situationship",
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse",
+      "ex"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You let jealousy take over, causing tension and arguments.",
+    "relationshipEffects": {
+      "affection": -5,
+      "trust": -8,
+      "respect": -8,
+      "attraction": -3,
+      "conflict": 12,
+      "reputation": -4
+    }
+  },
+  {
+    "id": "social_introduce_friends",
+    "name": "Introduce to your circle",
+    "description": "Bring them into your social circle and introduce them to your friends.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 12,
+    "timeCost": 5,
+    "skillEffects": {
+      "communication": 1
+    },
+    "hiddenMetricEffects": {},
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin",
+      "child",
+      "nephew_niece",
+      "grandchild",
+      "acquaintance",
+      "friend",
+      "best_friend",
+      "classmate",
+      "colleague",
+      "boss",
+      "work_spouse",
+      "situationship",
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse",
+      "ex"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You introduced {npc} to your friends, weaving your social worlds together.",
+    "relationshipEffects": {
+      "affection": 7,
+      "trust": 6,
+      "respect": 4,
+      "attraction": 1,
+      "conflict": -1,
+      "reputation": 3
+    }
+  },
+  {
+    "id": "social_public_humiliate",
+    "name": "Humiliate in public",
+    "description": "Embarrass them in front of others, whether intentionally or through carelessness.",
+    "category": "social",
+    "socialActionType": "mischievous",
+    "minAge": 14,
+    "timeCost": 1,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "integrity": -0.4,
+      "compassion": -0.3
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin",
+      "child",
+      "nephew_niece",
+      "grandchild",
+      "acquaintance",
+      "friend",
+      "best_friend",
+      "classmate",
+      "colleague",
+      "boss",
+      "work_spouse",
+      "situationship",
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse",
+      "ex"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You humiliated {npc} in public, and the damage was hard to undo.",
+    "relationshipEffects": {
+      "affection": -12,
+      "trust": -12,
+      "respect": -15,
+      "attraction": -5,
+      "conflict": 18,
+      "reputation": -8
+    }
+  },
+  {
+    "id": "social_romantic_write_letter",
+    "name": "Write a love letter",
+    "description": "Pour your feelings into a heartfelt letter expressing your love.",
+    "category": "social",
+    "socialActionType": "romantic",
+    "minAge": 14,
+    "timeCost": 2,
+    "skillEffects": {
+      "creativity": 1
+    },
+    "hiddenMetricEffects": {
+      "courage": 0.1
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "situationship",
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You wrote a heartfelt love letter that moved {npc} deeply.",
+    "relationshipEffects": {
+      "affection": 10,
+      "trust": 5,
+      "respect": 3,
+      "attraction": 8,
+      "conflict": -3,
+      "reputation": 0
+    }
+  },
+  {
+    "id": "social_romantic_flirt_others",
+    "name": "Flirt with others openly",
+    "description": "Flirt with other people in front of your partner.",
+    "category": "social",
+    "socialActionType": "romantic",
+    "minAge": 14,
+    "timeCost": 2,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "integrity": -0.3
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You flirted openly with others, making your partner feel invisible.",
+    "relationshipEffects": {
+      "affection": -8,
+      "trust": -12,
+      "respect": -8,
+      "attraction": -5,
+      "conflict": 12,
+      "reputation": -4
+    }
+  },
+  {
+    "id": "social_family_support_education",
+    "name": "Support their education",
+    "description": "Help a family member with their studies or career development.",
+    "category": "social",
+    "socialActionType": "family",
+    "minAge": 12,
+    "timeCost": 10,
+    "skillEffects": {
+      "intelligence": 1
+    },
+    "hiddenMetricEffects": {
+      "compassion": 0.2
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "sibling",
+      "child",
+      "nephew_niece",
+      "cousin"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You helped {npc} with {npc_possessive} education, investing in {npc_possessive} future.",
+    "relationshipEffects": {
+      "affection": 8,
+      "trust": 6,
+      "respect": 10,
+      "attraction": 0,
+      "conflict": -2,
+      "reputation": 3
+    }
+  },
+  {
+    "id": "social_family_neglect_elderly",
+    "name": "Neglect elderly relatives",
+    "description": "Stop visiting or calling older family members who need your attention.",
+    "category": "social",
+    "socialActionType": "family",
+    "minAge": 14,
+    "timeCost": 0,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "compassion": -0.3,
+      "loyalty": -0.2
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "grandparent",
+      "uncle_aunt"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You stopped visiting your elderly relatives, and {npc_subject} felt abandoned.",
+    "relationshipEffects": {
+      "affection": -10,
+      "trust": -6,
+      "respect": -8,
+      "attraction": 0,
+      "conflict": 5,
+      "reputation": -4
+    }
+  },
+  {
+    "id": "social_open_up",
+    "name": "Open up about your feelings",
+    "description": "Be vulnerable and share what you're really going through.",
+    "category": "social",
+    "socialActionType": "friendly",
+    "minAge": 10,
+    "timeCost": 2,
+    "skillEffects": {
+      "emotionalStability": 2
+    },
+    "hiddenMetricEffects": {
+      "courage": 0.3,
+      "humility": 0.2
+    },
+    "healthEffect": 1,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin",
+      "child",
+      "nephew_niece",
+      "grandchild",
+      "acquaintance",
+      "friend",
+      "best_friend",
+      "classmate",
+      "colleague",
+      "boss",
+      "work_spouse",
+      "situationship",
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse",
+      "ex"
+    ],
+    "npcResponseChance": 0.1,
+    "logMessage": "You opened up about your feelings, and {npc_subject} listened with care.",
+    "relationshipEffects": {
+      "affection": 6,
+      "trust": 10,
+      "respect": 4,
+      "attraction": 2,
+      "conflict": -3,
+      "reputation": 0
+    }
+  },
+  {
+    "id": "social_refuse_help",
+    "name": "Refuse to help when asked",
+    "description": "Say no when they reach out for help, even though you could easily assist.",
+    "category": "social",
+    "socialActionType": "mischievous",
+    "minAge": 8,
+    "timeCost": 0,
+    "skillEffects": {},
+    "hiddenMetricEffects": {
+      "compassion": -0.3
+    },
+    "healthEffect": 0,
+    "sectionPerformanceEffect": 0,
+    "isGroupAction": false,
+    "relationshipTypeIds": [
+      "mother",
+      "father",
+      "sibling",
+      "grandparent",
+      "uncle_aunt",
+      "cousin",
+      "child",
+      "nephew_niece",
+      "grandchild",
+      "acquaintance",
+      "friend",
+      "best_friend",
+      "classmate",
+      "colleague",
+      "boss",
+      "work_spouse",
+      "situationship",
+      "boyfriend_girlfriend",
+      "fiance",
+      "spouse",
+      "ex"
+    ],
+    "npcResponseChance": 0.0,
+    "logMessage": "You refused to help when {npc_subject} needed you, and it stung.",
+    "relationshipEffects": {
+      "affection": -7,
+      "trust": -8,
+      "respect": -5,
+      "attraction": 0,
+      "conflict": 6,
+      "reputation": -3
+    }
+  }
+]

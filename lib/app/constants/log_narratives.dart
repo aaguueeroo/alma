@@ -48,4 +48,14 @@ class LogNarratives {
       'Your casual role at $jobName ended. You earned \$$salary.';
   static String workEarnedSalary(String jobName, int salary) =>
       'You earned \$$salary from your work at $jobName.';
+
+  // --- Social ---
+  static String socialMetNpc(String npcName, String typeLabel) =>
+      'You met $npcName, a new $typeLabel.';
+  static String socialActionDeclined(String npcName, String actionName) =>
+      '$npcName declined your invitation to ${actionName.toLowerCase()}.';
+  static String socialRelationshipForgotten(String npcName) =>
+      'You lost touch with $npcName.';
+  static String socialRelationshipUpgraded(String npcName, String newType) =>
+      'Your relationship with $npcName evolved — they are now your $newType.';
 }

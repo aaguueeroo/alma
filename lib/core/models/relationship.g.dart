@@ -12,6 +12,28 @@ _Relationship _$RelationshipFromJson(Map<String, dynamic> json) =>
       value: (json['value'] as num?)?.toInt() ?? kDefaultRelationshipValue,
       discoveredTraitCount:
           (json['discoveredTraitCount'] as num?)?.toInt() ?? 0,
+      relationshipTypeId: json['relationshipTypeId'] as String?,
+      metrics: json['metrics'] == null
+          ? const RelationshipState()
+          : RelationshipState.fromJson(json['metrics'] as Map<String, dynamic>),
+      isActive: json['isActive'] as bool? ?? true,
+      cohabiting: json['cohabiting'] as bool? ?? false,
+      usedActionIds:
+          (json['usedActionIds'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
+      usedActionIdsThisYear:
+          (json['usedActionIdsThisYear'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
+      actionIdsThisYear:
+          (json['actionIdsThisYear'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
+      metAt: (json['metAt'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$RelationshipToJson(_Relationship instance) =>
@@ -19,4 +41,12 @@ Map<String, dynamic> _$RelationshipToJson(_Relationship instance) =>
       'npc': instance.npc,
       'value': instance.value,
       'discoveredTraitCount': instance.discoveredTraitCount,
+      'relationshipTypeId': instance.relationshipTypeId,
+      'metrics': instance.metrics,
+      'isActive': instance.isActive,
+      'cohabiting': instance.cohabiting,
+      'usedActionIds': instance.usedActionIds,
+      'usedActionIdsThisYear': instance.usedActionIdsThisYear,
+      'actionIdsThisYear': instance.actionIdsThisYear,
+      'metAt': instance.metAt,
     };

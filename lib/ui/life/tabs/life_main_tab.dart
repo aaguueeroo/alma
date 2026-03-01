@@ -45,6 +45,7 @@ class LifeMainTab extends StatelessWidget {
             title: l10n.lifeLog,
             emptyMessage: l10n.noLogsRecorded,
             gameLogs: state.logs.reversed.toList(),
+            relationships: state.socialState?.relationships ?? state.relationships,
           ),
         ],
       ),

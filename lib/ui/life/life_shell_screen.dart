@@ -57,6 +57,20 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
       );
     }
     ref.listen<LifeControllerState>(lifeControllerProvider, (prev, next) {
+      if (next.error != null && prev?.error != next.error) {
+        final String okLabel = AppLocalizations.of(context)?.ok ?? 'OK';
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(next.error!),
+            action: SnackBarAction(
+              label: okLabel,
+              onPressed: () {
+                ref.read(lifeControllerProvider.notifier).clearError();
+              },
+            ),
+          ),
+        );
+      }
       if (next.currentLife?.state.pendingEvent != null &&
           prev?.currentLife?.state.pendingEvent == null) {
         _showEventDialog(context);
@@ -177,8 +191,33 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
       ),
       RelationsTab(
         key: const ValueKey<int>(4),
-        relationships: state.relationships,
+        relationships: state.socialState?.relationships ?? state.relationships,
         logs: state.logs,
+        genericActions: ref.read(lifeControllerProvider.notifier).getSocialGenericActions(),
+        getNpcActions: (String npcId) {
+          return ref.read(lifeControllerProvider.notifier).getNpcActions(npcId);
+        },
+        getPerformedActionsThisYear: (String npcId) {
+          return ref.read(lifeControllerProvider.notifier).getPerformedActionsThisYear(npcId);
+        },
+        getRelationshipTypeLabel: (String typeId) {
+          return ref.read(lifeControllerProvider.notifier).getRelationshipTypeLabel(typeId);
+        },
+        getIsAttractionAllowed: (String typeId) {
+          return ref.read(lifeControllerProvider.notifier).isAttractionAllowedForRelationshipType(typeId);
+        },
+        onGenericActionTap: (action, targetNpcIds) {
+          ref.read(lifeControllerProvider.notifier).performSocialAction(
+                action,
+                targetNpcIds,
+              );
+        },
+        onNpcActionTap: (action, npcId) {
+          ref.read(lifeControllerProvider.notifier).performSocialAction(
+                action,
+                [npcId],
+              );
+        },
       ),
     ];
   }

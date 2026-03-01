@@ -439,7 +439,7 @@ abstract class AppLocalizations {
   /// No description provided for @performAction.
   ///
   /// In en, this message translates to:
-  /// **'Perform Action'**
+  /// **'Perform'**
   String get performAction;
 
   /// No description provided for @continueLife.
@@ -481,7 +481,7 @@ abstract class AppLocalizations {
   /// No description provided for @tabRelations.
   ///
   /// In en, this message translates to:
-  /// **'Relations'**
+  /// **'Social'**
   String get tabRelations;
 
   /// No description provided for @store.
@@ -1107,6 +1107,156 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Social'**
   String get filterSocial;
+
+  /// No description provided for @socialLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Social Log'**
+  String get socialLog;
+
+  /// No description provided for @socialActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Social Actions'**
+  String get socialActions;
+
+  /// No description provided for @socialGenericActions.
+  ///
+  /// In en, this message translates to:
+  /// **'General Actions'**
+  String get socialGenericActions;
+
+  /// No description provided for @npcActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Actions'**
+  String get npcActions;
+
+  /// No description provided for @selectNpc.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose person'**
+  String get selectNpc;
+
+  /// No description provided for @noSocialActionsAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No actions available'**
+  String get noSocialActionsAvailable;
+
+  /// No description provided for @affection.
+  ///
+  /// In en, this message translates to:
+  /// **'Affection'**
+  String get affection;
+
+  /// No description provided for @trust.
+  ///
+  /// In en, this message translates to:
+  /// **'Trust'**
+  String get trust;
+
+  /// No description provided for @respect.
+  ///
+  /// In en, this message translates to:
+  /// **'Respect'**
+  String get respect;
+
+  /// No description provided for @attraction.
+  ///
+  /// In en, this message translates to:
+  /// **'Attraction'**
+  String get attraction;
+
+  /// No description provided for @conflict.
+  ///
+  /// In en, this message translates to:
+  /// **'Conflict'**
+  String get conflict;
+
+  /// No description provided for @usedActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Performed Actions'**
+  String get usedActions;
+
+  /// No description provided for @roleAcquaintance.
+  ///
+  /// In en, this message translates to:
+  /// **'Acquaintance'**
+  String get roleAcquaintance;
+
+  /// No description provided for @roleBestFriend.
+  ///
+  /// In en, this message translates to:
+  /// **'Best Friend'**
+  String get roleBestFriend;
+
+  /// No description provided for @roleClassmate.
+  ///
+  /// In en, this message translates to:
+  /// **'Classmate'**
+  String get roleClassmate;
+
+  /// No description provided for @roleBoss.
+  ///
+  /// In en, this message translates to:
+  /// **'Boss'**
+  String get roleBoss;
+
+  /// No description provided for @roleWorkSpouse.
+  ///
+  /// In en, this message translates to:
+  /// **'Work Spouse'**
+  String get roleWorkSpouse;
+
+  /// No description provided for @roleFiance.
+  ///
+  /// In en, this message translates to:
+  /// **'Fiancé'**
+  String get roleFiance;
+
+  /// No description provided for @roleSpouse.
+  ///
+  /// In en, this message translates to:
+  /// **'Spouse'**
+  String get roleSpouse;
+
+  /// No description provided for @roleEx.
+  ///
+  /// In en, this message translates to:
+  /// **'Ex'**
+  String get roleEx;
+
+  /// No description provided for @roleGrandparent.
+  ///
+  /// In en, this message translates to:
+  /// **'Grandparent'**
+  String get roleGrandparent;
+
+  /// No description provided for @roleUncle.
+  ///
+  /// In en, this message translates to:
+  /// **'Uncle/Aunt'**
+  String get roleUncle;
+
+  /// No description provided for @roleCousin.
+  ///
+  /// In en, this message translates to:
+  /// **'Cousin'**
+  String get roleCousin;
+
+  /// No description provided for @roleNephew.
+  ///
+  /// In en, this message translates to:
+  /// **'Nephew/Niece'**
+  String get roleNephew;
+
+  /// No description provided for @roleGrandchild.
+  ///
+  /// In en, this message translates to:
+  /// **'Grandchild'**
+  String get roleGrandchild;
 }
 
 class _AppLocalizationsDelegate

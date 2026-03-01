@@ -4,6 +4,8 @@ import 'package:alma/core/models/enums/skill_type.dart';
 import 'package:alma/core/models/enums/hidden_metric_type.dart';
 import 'package:alma/core/models/enums/habit_type.dart';
 import 'package:alma/core/models/moral_impact.dart';
+import 'package:alma/core/models/access_condition.dart';
+import 'package:alma/core/models/relationship_effects.dart';
 
 part 'action.freezed.dart';
 part 'action.g.dart';
@@ -28,6 +30,16 @@ sealed class GameAction with _$GameAction {
     String? workJobId,
     String? workJobType,
     String? logMessage,
+    @Default([]) List<String> relationshipTypeIds,
+    @Default([]) List<AccessCondition> conditions,
+    @Default(0.0) double npcResponseChance,
+    @Default({}) Map<String, int> npcDeclineConsequences,
+    @Default(false) bool isGroupAction,
+    @Default(RelationshipEffects()) RelationshipEffects relationshipEffects,
+    int? minAge,
+    int? maxAge,
+    /// Type of social action (e.g. "friendly", "romantic", "mischievous"). Used to filter actions per relationship type (e.g. romantic not allowed for family). When null, treated as "friendly".
+    String? socialActionType,
   }) = _GameAction;
 
   factory GameAction.fromJson(Map<String, dynamic> json) =>

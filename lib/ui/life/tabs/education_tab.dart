@@ -120,7 +120,10 @@ class EducationTab extends StatelessWidget {
 
   List<GameLog> _filterEducationLogs(List<GameLog> logs) {
     return logs
-        .where((GameLog log) => log.category == LogCategory.education)
+        .where((GameLog log) =>
+            log.category == LogCategory.education ||
+            (log.category == LogCategory.social &&
+                log.tags.contains('show_in_education')))
         .toList()
         .reversed
         .toList();

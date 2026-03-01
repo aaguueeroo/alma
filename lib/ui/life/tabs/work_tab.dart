@@ -92,7 +92,10 @@ class WorkTab extends StatelessWidget {
             title: l10n.eventLog,
             emptyMessage: l10n.noWorkEvents,
             gameLogs: state.logs
-                .where((GameLog log) => log.category == LogCategory.work)
+                .where((GameLog log) =>
+                    log.category == LogCategory.work ||
+                    (log.category == LogCategory.social &&
+                        log.tags.contains('show_in_work')))
                 .toList()
                 .reversed
                 .toList(),

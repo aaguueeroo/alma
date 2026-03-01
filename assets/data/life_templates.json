@@ -38,24 +38,33 @@
     "startingNpcs": [
       {
         "id": "npc_scholar_mother",
-        "name": "Mother",
+        "name": "Yuki",
+        "alias": "Mother",
+        "relationshipTypeId": "mother",
         "role": "parent",
+        "gender": "female",
         "visibleTraits": [],
         "hiddenTraits": [],
         "compatibilityFactor": 0.5
       },
       {
         "id": "npc_scholar_father",
-        "name": "Father",
+        "name": "Hiroshi",
+        "alias": "Father",
+        "relationshipTypeId": "father",
         "role": "parent",
+        "gender": "male",
         "visibleTraits": [],
         "hiddenTraits": [],
         "compatibilityFactor": 0.5
       },
       {
         "id": "npc_scholar_sister",
-        "name": "Sister",
+        "name": "Sakura",
+        "alias": "Sister",
+        "relationshipTypeId": "sibling",
         "role": "sibling",
+        "gender": "female",
         "visibleTraits": [],
         "hiddenTraits": [],
         "compatibilityFactor": 0.5
@@ -103,24 +112,32 @@
     "startingNpcs": [
       {
         "id": "npc_survivor_mother",
-        "name": "Mother",
+        "name": "Ana",
+        "alias": "Mother",
+        "relationshipTypeId": "mother",
         "role": "parent",
+        "gender": "female",
         "visibleTraits": [],
         "hiddenTraits": [],
         "compatibilityFactor": 0.5
       },
       {
         "id": "npc_survivor_brother",
-        "name": "Older Brother",
+        "name": "Rafael",
+        "alias": "Older Brother",
+        "relationshipTypeId": "sibling",
         "role": "sibling",
+        "gender": "male",
         "visibleTraits": [],
         "hiddenTraits": [],
         "compatibilityFactor": 0.5
       },
       {
         "id": "npc_survivor_friend",
-        "name": "Neighborhood Friend",
+        "name": "Lucas",
+        "relationshipTypeId": "friend",
         "role": "friend",
+        "gender": "male",
         "visibleTraits": [],
         "hiddenTraits": [],
         "compatibilityFactor": 0.5
@@ -168,32 +185,32 @@
     "startingNpcs": [
       {
         "id": "npc_heir_father",
-        "name": "Father",
+        "name": "Edward",
+        "alias": "Father",
+        "relationshipTypeId": "father",
         "role": "parent",
+        "gender": "male",
         "visibleTraits": [],
         "hiddenTraits": [],
         "compatibilityFactor": 0.5
       },
       {
         "id": "npc_heir_mother",
-        "name": "Mother",
+        "name": "Victoria",
+        "alias": "Mother",
+        "relationshipTypeId": "mother",
         "role": "parent",
-        "visibleTraits": [],
-        "hiddenTraits": [],
-        "compatibilityFactor": 0.5
-      },
-      {
-        "id": "npc_heir_butler",
-        "name": "Butler",
-        "role": "mentor",
+        "gender": "female",
         "visibleTraits": [],
         "hiddenTraits": [],
         "compatibilityFactor": 0.5
       },
       {
         "id": "npc_heir_friend",
-        "name": "Childhood Friend",
+        "name": "Emma",
+        "relationshipTypeId": "friend",
         "role": "friend",
+        "gender": "female",
         "visibleTraits": [],
         "hiddenTraits": [],
         "compatibilityFactor": 0.5

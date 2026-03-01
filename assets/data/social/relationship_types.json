@@ -1,0 +1,217 @@
+[
+  {
+    "category": "family",
+    "subtypes": [
+      {
+        "id": "mother",
+        "label": "Mother",
+        "decayRate": 1,
+        "autoImproveWhenCohabiting": true,
+        "canChangeAutomatically": false,
+        "requiresActionToTransition": false,
+        "attractionAllowed": false,
+        "allowedActionTypes": ["friendly", "mischievous", "family"]
+      },
+      {
+        "id": "father",
+        "label": "Father",
+        "decayRate": 1,
+        "autoImproveWhenCohabiting": true,
+        "canChangeAutomatically": false,
+        "requiresActionToTransition": false,
+        "attractionAllowed": false,
+        "allowedActionTypes": ["friendly", "mischievous", "family"]
+      },
+      {
+        "id": "sibling",
+        "label": "Sibling",
+        "decayRate": 2,
+        "autoImproveWhenCohabiting": true,
+        "canChangeAutomatically": false,
+        "requiresActionToTransition": false,
+        "attractionAllowed": false,
+        "allowedActionTypes": ["friendly", "mischievous", "family"]
+      },
+      {
+        "id": "grandparent",
+        "label": "Grandparent",
+        "decayRate": 1,
+        "autoImproveWhenCohabiting": true,
+        "canChangeAutomatically": false,
+        "requiresActionToTransition": false,
+        "attractionAllowed": false,
+        "allowedActionTypes": ["friendly", "mischievous", "family"]
+      },
+      {
+        "id": "uncle_aunt",
+        "label": "Uncle/Aunt",
+        "decayRate": 3,
+        "autoImproveWhenCohabiting": false,
+        "canChangeAutomatically": false,
+        "requiresActionToTransition": false,
+        "attractionAllowed": false,
+        "allowedActionTypes": ["friendly", "mischievous", "family"]
+      },
+      {
+        "id": "cousin",
+        "label": "Cousin",
+        "decayRate": 3,
+        "autoImproveWhenCohabiting": false,
+        "canChangeAutomatically": false,
+        "requiresActionToTransition": false,
+        "attractionAllowed": false,
+        "allowedActionTypes": ["friendly", "mischievous", "family"]
+      },
+      {
+        "id": "child",
+        "label": "Son/Daughter",
+        "decayRate": 1,
+        "autoImproveWhenCohabiting": true,
+        "canChangeAutomatically": false,
+        "requiresActionToTransition": false,
+        "attractionAllowed": false,
+        "allowedActionTypes": ["friendly", "mischievous", "family"]
+      },
+      {
+        "id": "nephew_niece",
+        "label": "Nephew/Niece",
+        "decayRate": 3,
+        "autoImproveWhenCohabiting": false,
+        "canChangeAutomatically": false,
+        "requiresActionToTransition": false,
+        "attractionAllowed": false,
+        "allowedActionTypes": ["friendly", "mischievous", "family"]
+      },
+      {
+        "id": "grandchild",
+        "label": "Grandchild",
+        "decayRate": 2,
+        "autoImproveWhenCohabiting": true,
+        "canChangeAutomatically": false,
+        "requiresActionToTransition": false,
+        "attractionAllowed": false,
+        "allowedActionTypes": ["friendly", "mischievous", "family"]
+      }
+    ]
+  },
+  {
+    "category": "friend",
+    "subtypes": [
+      {
+        "id": "acquaintance",
+        "label": "Acquaintance",
+        "decayRate": 6,
+        "autoImproveWhenCohabiting": false,
+        "canChangeAutomatically": true,
+        "requiresActionToTransition": false,
+        "transitionsTo": "friend",
+        "autoTransitionThreshold": 40
+      },
+      {
+        "id": "friend",
+        "label": "Friend",
+        "decayRate": 4,
+        "autoImproveWhenCohabiting": false,
+        "canChangeAutomatically": true,
+        "requiresActionToTransition": false,
+        "transitionsTo": "best_friend",
+        "autoTransitionThreshold": 75
+      },
+      {
+        "id": "best_friend",
+        "label": "Best Friend",
+        "decayRate": 2,
+        "autoImproveWhenCohabiting": true,
+        "canChangeAutomatically": false,
+        "requiresActionToTransition": false
+      }
+    ]
+  },
+  {
+    "category": "colleague",
+    "subtypes": [
+      {
+        "id": "classmate",
+        "label": "Classmate",
+        "decayRate": 5,
+        "autoImproveWhenCohabiting": false,
+        "autoImproveWhenCoworking": true,
+        "canChangeAutomatically": false,
+        "requiresActionToTransition": false
+      },
+      {
+        "id": "colleague",
+        "label": "Colleague",
+        "decayRate": 4,
+        "autoImproveWhenCohabiting": false,
+        "autoImproveWhenCoworking": true,
+        "canChangeAutomatically": false,
+        "requiresActionToTransition": false
+      },
+      {
+        "id": "boss",
+        "label": "Boss",
+        "decayRate": 3,
+        "autoImproveWhenCohabiting": false,
+        "autoImproveWhenCoworking": true,
+        "canChangeAutomatically": false,
+        "requiresActionToTransition": false
+      },
+      {
+        "id": "work_spouse",
+        "label": "Work Husband/Wife",
+        "decayRate": 3,
+        "autoImproveWhenCohabiting": false,
+        "autoImproveWhenCoworking": true,
+        "canChangeAutomatically": true,
+        "requiresActionToTransition": false,
+        "autoTransitionThreshold": 70
+      }
+    ]
+  },
+  {
+    "category": "romantic",
+    "subtypes": [
+      {
+        "id": "situationship",
+        "label": "Situationship",
+        "decayRate": 5,
+        "autoImproveWhenCohabiting": true,
+        "canChangeAutomatically": false,
+        "requiresActionToTransition": true
+      },
+      {
+        "id": "boyfriend_girlfriend",
+        "label": "Boyfriend/Girlfriend",
+        "decayRate": 3,
+        "autoImproveWhenCohabiting": true,
+        "canChangeAutomatically": false,
+        "requiresActionToTransition": true
+      },
+      {
+        "id": "fiance",
+        "label": "Fiancé",
+        "decayRate": 3,
+        "autoImproveWhenCohabiting": true,
+        "canChangeAutomatically": false,
+        "requiresActionToTransition": true
+      },
+      {
+        "id": "spouse",
+        "label": "Spouse",
+        "decayRate": 2,
+        "autoImproveWhenCohabiting": true,
+        "canChangeAutomatically": false,
+        "requiresActionToTransition": true
+      },
+      {
+        "id": "ex",
+        "label": "Ex",
+        "decayRate": 4,
+        "autoImproveWhenCohabiting": false,
+        "canChangeAutomatically": false,
+        "requiresActionToTransition": false
+      }
+    ]
+  }
+]

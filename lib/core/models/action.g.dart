@@ -44,6 +44,31 @@ _GameAction _$GameActionFromJson(Map<String, dynamic> json) => _GameAction(
   workJobId: json['workJobId'] as String?,
   workJobType: json['workJobType'] as String?,
   logMessage: json['logMessage'] as String?,
+  relationshipTypeIds:
+      (json['relationshipTypeIds'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      const [],
+  conditions:
+      (json['conditions'] as List<dynamic>?)
+          ?.map((e) => AccessCondition.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      const [],
+  npcResponseChance: (json['npcResponseChance'] as num?)?.toDouble() ?? 0.0,
+  npcDeclineConsequences:
+      (json['npcDeclineConsequences'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, (e as num).toInt()),
+      ) ??
+      const {},
+  isGroupAction: json['isGroupAction'] as bool? ?? false,
+  relationshipEffects: json['relationshipEffects'] == null
+      ? const RelationshipEffects()
+      : RelationshipEffects.fromJson(
+          json['relationshipEffects'] as Map<String, dynamic>,
+        ),
+  minAge: (json['minAge'] as num?)?.toInt(),
+  maxAge: (json['maxAge'] as num?)?.toInt(),
+  socialActionType: json['socialActionType'] as String?,
 );
 
 Map<String, dynamic> _$GameActionToJson(_GameAction instance) =>
@@ -69,6 +94,15 @@ Map<String, dynamic> _$GameActionToJson(_GameAction instance) =>
       'workJobId': instance.workJobId,
       'workJobType': instance.workJobType,
       'logMessage': instance.logMessage,
+      'relationshipTypeIds': instance.relationshipTypeIds,
+      'conditions': instance.conditions,
+      'npcResponseChance': instance.npcResponseChance,
+      'npcDeclineConsequences': instance.npcDeclineConsequences,
+      'isGroupAction': instance.isGroupAction,
+      'relationshipEffects': instance.relationshipEffects,
+      'minAge': instance.minAge,
+      'maxAge': instance.maxAge,
+      'socialActionType': instance.socialActionType,
     };
 
 const _$ActionCategoryEnumMap = {

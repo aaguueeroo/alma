@@ -13,6 +13,7 @@ import 'package:alma/core/engine/time_engine.dart';
 import 'package:alma/core/engine/event_engine.dart';
 import 'package:alma/core/engine/education_engine.dart';
 import 'package:alma/core/engine/work_engine.dart';
+import 'package:alma/core/engine/social_engine.dart';
 import 'package:alma/core/engine/game_logger.dart';
 import 'package:alma/core/engine/seeded_random.dart';
 import 'package:alma/core/rules/trait_rules.dart';
@@ -27,6 +28,7 @@ class ActionProcessor {
     required this.eventEngine,
     required this.educationEngine,
     required this.workEngine,
+    required this.socialEngine,
     required this.traitRules,
     required this.relationshipProcessor,
     required this.habitProcessor,
@@ -36,6 +38,7 @@ class ActionProcessor {
   final EventEngine eventEngine;
   final EducationEngine educationEngine;
   final WorkEngine workEngine;
+  final SocialEngine socialEngine;
   final TraitRules traitRules;
   final RelationshipProcessor relationshipProcessor;
   final HabitProcessor habitProcessor;
@@ -58,7 +61,9 @@ class ActionProcessor {
     state = traitRules.checkEvolution(state, action, rng);
     state = _updateHiddenMetrics(state, action);
     state = _recordMoralImpacts(state, action);
-    state = _logAction(state, action, workJobContext: workJobContext);
+    if (action.category != ActionCategory.social) {
+      state = _logAction(state, action, workJobContext: workJobContext);
+    }
     final pendingEvent = eventEngine.checkTriggers(
       state,
       rng,
@@ -75,6 +80,7 @@ class ActionProcessor {
   LifeState processNextYear(LifeState state, SeededRandom rng) {
     state = educationEngine.processYearEnd(state, rng);
     state = workEngine.processYearEnd(state, rng);
+    state = socialEngine.processYearEnd(state, rng);
     state = relationshipProcessor.applyYearlyDecay(state);
     state = habitProcessor.processYearEnd(state);
     state = timeEngine.startNewYear(state);

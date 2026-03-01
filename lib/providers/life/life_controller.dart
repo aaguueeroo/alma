@@ -2,19 +2,24 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/action.dart';
 import 'package:alma/core/models/event.dart';
+import 'package:alma/core/models/relationship.dart';
 import 'package:alma/core/models/education_program.dart';
 import 'package:alma/core/models/enrollment.dart';
 import 'package:alma/core/models/job.dart';
 import 'package:alma/core/models/employment.dart';
+import 'package:alma/core/models/social_state.dart';
 import 'package:alma/core/engine/life_engine.dart';
 import 'package:alma/core/engine/education_engine.dart';
 import 'package:alma/core/engine/work_engine.dart';
+import 'package:alma/core/engine/social_engine.dart';
+import 'package:alma/core/engine/npc_factory.dart';
 import 'package:alma/core/engine/time_engine.dart';
 import 'package:alma/core/engine/seeded_random.dart';
 import 'package:alma/data/repositories/life_repository.dart';
 import 'package:alma/data/seed/seed_loader.dart';
 import 'package:alma/core/engine/event_engine.dart';
 import 'package:alma/providers/game/game_state_provider.dart';
+import 'package:alma/app/utils/error_logger.dart';
 
 class LifeControllerState {
   const LifeControllerState({
@@ -22,6 +27,7 @@ class LifeControllerState {
     this.availableActions = const [],
     this.educationActions = const [],
     this.workActions = const [],
+    this.socialActions = const [],
     this.isLoading = false,
     this.error,
   });
@@ -30,6 +36,7 @@ class LifeControllerState {
   final List<GameAction> availableActions;
   final List<GameAction> educationActions;
   final List<GameAction> workActions;
+  final List<GameAction> socialActions;
   final bool isLoading;
   final String? error;
 
@@ -39,6 +46,7 @@ class LifeControllerState {
     List<GameAction>? availableActions,
     List<GameAction>? educationActions,
     List<GameAction>? workActions,
+    List<GameAction>? socialActions,
     bool? isLoading,
     String? error,
     bool clearError = false,
@@ -48,6 +56,7 @@ class LifeControllerState {
       availableActions: availableActions ?? this.availableActions,
       educationActions: educationActions ?? this.educationActions,
       workActions: workActions ?? this.workActions,
+      socialActions: socialActions ?? this.socialActions,
       isLoading: isLoading ?? this.isLoading,
       error: clearError ? null : (error ?? this.error),
     );
@@ -62,6 +71,8 @@ class LifeController extends StateNotifier<LifeControllerState> {
     required this.eventEngine,
     required this.educationEngine,
     required this.workEngine,
+    required this.socialEngine,
+    required this.npcFactory,
     required this.timeEngine,
   }) : super(const LifeControllerState());
 
@@ -71,6 +82,8 @@ class LifeController extends StateNotifier<LifeControllerState> {
   final EventEngine eventEngine;
   final EducationEngine educationEngine;
   final WorkEngine workEngine;
+  final SocialEngine socialEngine;
+  final NpcFactory npcFactory;
   final TimeEngine timeEngine;
 
   Future<void> loadLife(Life life) async {
@@ -105,15 +118,93 @@ class LifeController extends StateNotifier<LifeControllerState> {
       } catch (e) {
         print('Work data not loaded (asset missing or invalid): $e');
       }
+      List<GameAction> socialActions = [];
+      try {
+        final socialActs = await seedLoader.loadSocialActions();
+        final relationshipTypes = await seedLoader.loadRelationshipTypes();
+        final socialCountryConfig =
+            await seedLoader.loadSocialCountryConfig(country);
+        final nameRepo = await seedLoader.loadNameRepository(country);
+        npcFactory.loadNameRepository(nameRepo);
+        final defaultNameRepo = await seedLoader.loadNameRepository('default');
+        npcFactory.loadNameRepository(defaultNameRepo);
+        socialEngine.loadData(
+          countryConfig: socialCountryConfig,
+          relationshipTypes: relationshipTypes,
+          socialActions: socialActs,
+          npcFactory: npcFactory,
+        );
+        socialActions = socialActs;
+      } catch (e) {
+        print('Social data not loaded (asset missing or invalid): $e');
+      }
+      Life lifeToSet = life;
+      final SocialState? loadedSocial = life.state.socialState;
+      if (loadedSocial != null &&
+          socialEngine.isLoaded &&
+          loadedSocial.relationships.any(
+            (Relationship r) => r.actionIdsThisYear.isEmpty,
+          )) {
+        final SeededRandom rng = SeededRandom(
+          life.seed +
+              life.state.currentYear * 700 +
+              life.state.age,
+        );
+        final List<Relationship> updatedRels =
+            loadedSocial.relationships.map((Relationship rel) {
+          if (rel.actionIdsThisYear.isNotEmpty) return rel;
+          final List<String> ids = socialEngine.pickYearlyActionIdsForNpc(
+            rel,
+            life.state,
+            rng,
+          );
+          return rel.copyWith(actionIdsThisYear: ids);
+        }).toList();
+        lifeToSet = life.copyWith(
+          state: life.state.copyWith(
+            socialState: loadedSocial.copyWith(relationships: updatedRels),
+          ),
+        );
+        await lifeRepository.saveLife(lifeToSet);
+      }
+      // Migrate legacy lives that have relationships but no socialState (e.g. created before social engine was loaded).
+      if (loadedSocial == null &&
+          socialEngine.isLoaded &&
+          life.state.relationships.isNotEmpty) {
+        final SeededRandom rng = SeededRandom(
+          life.seed +
+              life.state.currentYear * 700 +
+              life.state.age,
+        );
+        SocialState initialized =
+            socialEngine.initializeSocial(life.state.relationships);
+        final List<String> genericIds =
+            socialEngine.pickYearlyGenericActionIds(life.state, rng);
+        initialized = initialized.copyWith(
+          genericActionIdsThisYear: genericIds,
+        );
+        final List<Relationship> relsWithActions =
+            initialized.relationships.map((Relationship rel) {
+          final List<String> ids =
+              socialEngine.pickYearlyActionIdsForNpc(rel, life.state, rng);
+          return rel.copyWith(actionIdsThisYear: ids);
+        }).toList();
+        initialized = initialized.copyWith(relationships: relsWithActions);
+        lifeToSet = life.copyWith(
+          state: life.state.copyWith(socialState: initialized),
+        );
+        await lifeRepository.saveLife(lifeToSet);
+      }
       state = state.copyWith(
-        currentLife: life,
+        currentLife: lifeToSet,
         availableActions: actions,
         educationActions: eduActions,
         workActions: workActions,
+        socialActions: socialActions,
         isLoading: false,
       );
-    } catch (e) {
-      print('Error loading life: $e');
+    } catch (e, stackTrace) {
+      ErrorLogger.logError(e, stackTrace, 'loadLife');
       state = state.copyWith(isLoading: false, error: e.toString());
     }
   }
@@ -124,8 +215,8 @@ class LifeController extends StateNotifier<LifeControllerState> {
       if (life == null || life.isComplete) return false;
       await loadLife(life);
       return true;
-    } catch (e) {
-      print('Error loading life by id: $e');
+    } catch (e, stackTrace) {
+      ErrorLogger.logError(e, stackTrace, 'loadLifeById');
       return false;
     }
   }
@@ -140,8 +231,8 @@ class LifeController extends StateNotifier<LifeControllerState> {
       );
       await lifeRepository.saveLife(updatedLife);
       state = state.copyWith(currentLife: updatedLife);
-    } catch (e) {
-      print('Error performing action: $e');
+    } catch (e, stackTrace) {
+      ErrorLogger.logError(e, stackTrace, 'performAction');
       state = state.copyWith(error: e.toString());
     }
   }
@@ -155,8 +246,8 @@ class LifeController extends StateNotifier<LifeControllerState> {
       );
       await lifeRepository.saveLife(updatedLife);
       state = state.copyWith(currentLife: updatedLife);
-    } catch (e) {
-      print('Error resolving event: $e');
+    } catch (e, stackTrace) {
+      ErrorLogger.logError(e, stackTrace, 'resolveEvent');
       state = state.copyWith(error: e.toString());
     }
   }
@@ -167,8 +258,8 @@ class LifeController extends StateNotifier<LifeControllerState> {
       final Life updatedLife = lifeEngine.progressYear(state.currentLife!);
       await lifeRepository.saveLife(updatedLife);
       state = state.copyWith(currentLife: updatedLife);
-    } catch (e) {
-      print('Error progressing year: $e');
+    } catch (e, stackTrace) {
+      ErrorLogger.logError(e, stackTrace, 'progressYear');
       state = state.copyWith(error: e.toString());
     }
   }
@@ -372,8 +463,101 @@ class LifeController extends StateNotifier<LifeControllerState> {
   List<Employment> get currentEmployments =>
       state.currentLife?.state.workState?.currentEmployments ?? [];
 
+  List<GameAction> getSocialGenericActions() {
+    final Life? life = state.currentLife;
+    if (life == null) return [];
+    final SeededRandom rng = SeededRandom(
+      life.seed + life.state.currentYear * 600 + life.state.age,
+    );
+    return socialEngine.pickYearlyGenericActions(life.state, rng);
+  }
+
+  List<GameAction> getNpcActions(String npcId) {
+    final Life? life = state.currentLife;
+    if (life == null) return [];
+    final List<Relationship> relationships =
+        life.state.socialState?.relationships ?? life.state.relationships;
+    final Relationship? rel = relationships
+        .where((Relationship r) => r.npc.id == npcId)
+        .firstOrNull;
+    if (rel == null) return [];
+    final SeededRandom rng = SeededRandom(
+      life.seed + life.state.currentYear * 700 + life.state.age + npcId.hashCode,
+    );
+    return socialEngine.pickYearlyActionsForNpc(rel, life.state, rng);
+  }
+
+  /// Returns the actions performed with this NPC this year (for display; resets each year).
+  List<GameAction> getPerformedActionsThisYear(String npcId) {
+    final Life? life = state.currentLife;
+    if (life == null) return [];
+    final List<Relationship> relationships =
+        life.state.socialState?.relationships ?? life.state.relationships;
+    final Relationship? rel = relationships
+        .where((Relationship r) => r.npc.id == npcId)
+        .firstOrNull;
+    if (rel == null || rel.usedActionIdsThisYear.isEmpty) return [];
+    final Map<String, GameAction> byId = {
+      for (final GameAction a in state.socialActions) a.id: a,
+    };
+    return rel.usedActionIdsThisYear
+        .map((String id) => byId[id])
+        .whereType<GameAction>()
+        .toList();
+  }
+
+  Future<void> performSocialAction(
+    GameAction action,
+    List<String> targetNpcIds,
+  ) async {
+    if (state.currentLife == null) return;
+    try {
+      final SeededRandom rng = SeededRandom(
+        state.currentLife!.seed +
+            state.currentLife!.state.currentYear * 800 +
+            state.currentLife!.state.age,
+      );
+      LifeState newState = socialEngine.performSocialAction(
+        state.currentLife!.state,
+        action,
+        targetNpcIds,
+        rng,
+      );
+      final Life updatedLife = state.currentLife!.copyWith(state: newState);
+      final Life finalLife = lifeEngine.performAction(updatedLife, action);
+      await lifeRepository.saveLife(finalLife);
+      state = state.copyWith(currentLife: finalLife);
+    } catch (e, stackTrace) {
+      ErrorLogger.logError(e, stackTrace, 'performSocialAction');
+      state = state.copyWith(error: e.toString());
+    }
+  }
+
+  List<Relationship> get socialRelationships {
+    return state.currentLife?.state.socialState?.relationships ??
+        state.currentLife?.state.relationships ??
+        [];
+  }
+
+  /// Returns the relationship type label (e.g. "Mother", "Father") when available; null to fall back to role-based l10n.
+  String? getRelationshipTypeLabel(String typeId) {
+    if (!socialEngine.isLoaded) return null;
+    return socialEngine.getSubtype(typeId)?.label;
+  }
+
+  /// When false, attraction is not applicable (e.g. family); chart should show 0 for attraction.
+  bool isAttractionAllowedForRelationshipType(String typeId) {
+    if (!socialEngine.isLoaded) return true;
+    return socialEngine.getSubtype(typeId)?.attractionAllowed ?? true;
+  }
+
   void clearLife() {
     state = state.copyWith(clearLife: true);
+  }
+
+  /// Clears the current error message (e.g. after the user has acknowledged it).
+  void clearError() {
+    state = state.copyWith(clearError: true);
   }
 }
 
@@ -386,6 +570,8 @@ final lifeControllerProvider =
     eventEngine: ref.watch(eventEngineProvider),
     educationEngine: ref.watch(educationEngineProvider),
     workEngine: ref.watch(workEngineProvider),
+    socialEngine: ref.watch(socialEngineProvider),
+    npcFactory: ref.watch(npcFactoryProvider),
     timeEngine: ref.watch(timeEngineProvider),
   );
 });

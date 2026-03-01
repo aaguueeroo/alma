@@ -7,6 +7,9 @@ import 'package:alma/core/models/achievement.dart';
 import 'package:alma/core/models/education_program.dart';
 import 'package:alma/core/models/job.dart';
 import 'package:alma/core/models/life_maintenance_item.dart';
+import 'package:alma/core/models/relationship_type.dart';
+import 'package:alma/core/models/name_repository.dart';
+import 'package:alma/core/models/social_country_config.dart';
 import 'package:alma/core/rules/education_country_config.dart';
 import 'package:alma/core/rules/work_country_config.dart';
 
@@ -22,6 +25,10 @@ class SeedLoader {
   Map<String, WorkCountryConfig>? _cachedWorkCountryConfigs;
   List<GameAction>? _cachedWorkActions;
   List<LifeMaintenanceItem>? _cachedLifeMaintenance;
+  List<GameAction>? _cachedSocialActions;
+  List<RelationshipCategory>? _cachedRelationshipTypes;
+  final Map<String, NameRepository> _cachedNameRepos = {};
+  Map<String, SocialCountryConfig>? _cachedSocialCountryConfigs;
 
   Future<List<GameEvent>> loadEvents() async {
     if (_cachedEvents != null) return _cachedEvents!;
@@ -152,5 +159,67 @@ class SeedLoader {
         .map((e) => LifeMaintenanceItem.fromJson(e as Map<String, dynamic>))
         .toList();
     return _cachedLifeMaintenance!;
+  }
+
+  Future<List<GameAction>> loadSocialActions() async {
+    if (_cachedSocialActions != null) return _cachedSocialActions!;
+    final String jsonString =
+        await rootBundle.loadString('assets/data/social/social_actions.json');
+    final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
+    _cachedSocialActions = jsonList
+        .map((a) => GameAction.fromJson(a as Map<String, dynamic>))
+        .toList();
+    return _cachedSocialActions!;
+  }
+
+  Future<List<RelationshipCategory>> loadRelationshipTypes() async {
+    if (_cachedRelationshipTypes != null) return _cachedRelationshipTypes!;
+    final String jsonString =
+        await rootBundle.loadString('assets/data/social/relationship_types.json');
+    final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
+    _cachedRelationshipTypes = jsonList
+        .map((r) => RelationshipCategory.fromJson(r as Map<String, dynamic>))
+        .toList();
+    return _cachedRelationshipTypes!;
+  }
+
+  Future<NameRepository> loadNameRepository(String country) async {
+    if (_cachedNameRepos.containsKey(country)) {
+      return _cachedNameRepos[country]!;
+    }
+    final String fileName = country.toLowerCase();
+    try {
+      final String jsonString = await rootBundle
+          .loadString('assets/data/social/names/$fileName.json');
+      final Map<String, dynamic> jsonMap =
+          jsonDecode(jsonString) as Map<String, dynamic>;
+      final NameRepository repo = NameRepository.fromJson(jsonMap);
+      _cachedNameRepos[country] = repo;
+      return repo;
+    } catch (_) {
+      if (country != 'default' && !_cachedNameRepos.containsKey('default')) {
+        return loadNameRepository('default');
+      }
+      return _cachedNameRepos['default']!;
+    }
+  }
+
+  Future<SocialCountryConfig> loadSocialCountryConfig(String country) async {
+    if (_cachedSocialCountryConfigs != null &&
+        _cachedSocialCountryConfigs!.containsKey(country)) {
+      return _cachedSocialCountryConfigs![country]!;
+    }
+    _cachedSocialCountryConfigs ??= {};
+    final String jsonString = await rootBundle
+        .loadString('assets/data/social/social_country_config.json');
+    final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
+    for (final dynamic entry in jsonList) {
+      final SocialCountryConfig config =
+          SocialCountryConfig.fromJson(entry as Map<String, dynamic>);
+      _cachedSocialCountryConfigs![config.country] = config;
+    }
+    return _cachedSocialCountryConfigs![country] ??
+        _cachedSocialCountryConfigs!['default'] ??
+        const SocialCountryConfig(country: 'default');
   }
 }

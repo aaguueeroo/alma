@@ -8,6 +8,8 @@ import 'package:alma/core/engine/time_engine.dart';
 import 'package:alma/core/engine/event_engine.dart';
 import 'package:alma/core/engine/education_engine.dart';
 import 'package:alma/core/engine/work_engine.dart';
+import 'package:alma/core/engine/social_engine.dart';
+import 'package:alma/core/engine/npc_factory.dart';
 import 'package:alma/core/engine/probability_engine.dart';
 import 'package:alma/core/engine/life_engine.dart';
 import 'package:alma/core/rules/trait_rules.dart';
@@ -67,7 +69,7 @@ final evaluationRulesProvider = Provider<EvaluationRules>((ref) {
 });
 
 final relationshipProcessorProvider = Provider<RelationshipProcessor>((ref) {
-  return RelationshipProcessor();
+  return RelationshipProcessor(socialEngine: ref.watch(socialEngineProvider));
 });
 
 final habitProcessorProvider = Provider<HabitProcessor>((ref) {
@@ -82,12 +84,21 @@ final workEngineProvider = Provider<WorkEngine>((ref) {
   return WorkEngine();
 });
 
+final npcFactoryProvider = Provider<NpcFactory>((ref) {
+  return NpcFactory();
+});
+
+final socialEngineProvider = Provider<SocialEngine>((ref) {
+  return SocialEngine();
+});
+
 final actionProcessorProvider = Provider<ActionProcessor>((ref) {
   return ActionProcessor(
     timeEngine: ref.watch(timeEngineProvider),
     eventEngine: ref.watch(eventEngineProvider),
     educationEngine: ref.watch(educationEngineProvider),
     workEngine: ref.watch(workEngineProvider),
+    socialEngine: ref.watch(socialEngineProvider),
     traitRules: ref.watch(traitRulesProvider),
     relationshipProcessor: ref.watch(relationshipProcessorProvider),
     habitProcessor: ref.watch(habitProcessorProvider),
@@ -100,6 +111,7 @@ final lifeEngineProvider = Provider<LifeEngine>((ref) {
     eventEngine: ref.watch(eventEngineProvider),
     educationEngine: ref.watch(educationEngineProvider),
     workEngine: ref.watch(workEngineProvider),
+    socialEngine: ref.watch(socialEngineProvider),
   );
 });
 

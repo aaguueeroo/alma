@@ -15,7 +15,10 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Npc {
 
- String get id; String get name; NpcRole get role; List<TraitType> get visibleTraits; List<TraitType> get hiddenTraits; double get compatibilityFactor;
+ String get id; String get name; NpcRole get role; List<TraitType> get visibleTraits; List<TraitType> get hiddenTraits; double get compatibilityFactor; String? get relationshipTypeId; int? get age; Gender? get gender; Pronoun? get pronoun;/// Optional. Use only for clear familial roles (e.g. Mother, Brother) or
+/// nicknames earned in the relationship. Not for relationship descriptions
+/// like "Neighborhood Friend"; use [name] for those.
+ String? get alias; String? get jobId; String? get country; bool get isAlive;
 /// Create a copy of Npc
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +31,16 @@ $NpcCopyWith<Npc> get copyWith => _$NpcCopyWithImpl<Npc>(this as Npc, _$identity
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Npc&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.role, role) || other.role == role)&&const DeepCollectionEquality().equals(other.visibleTraits, visibleTraits)&&const DeepCollectionEquality().equals(other.hiddenTraits, hiddenTraits)&&(identical(other.compatibilityFactor, compatibilityFactor) || other.compatibilityFactor == compatibilityFactor));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Npc&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.role, role) || other.role == role)&&const DeepCollectionEquality().equals(other.visibleTraits, visibleTraits)&&const DeepCollectionEquality().equals(other.hiddenTraits, hiddenTraits)&&(identical(other.compatibilityFactor, compatibilityFactor) || other.compatibilityFactor == compatibilityFactor)&&(identical(other.relationshipTypeId, relationshipTypeId) || other.relationshipTypeId == relationshipTypeId)&&(identical(other.age, age) || other.age == age)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.pronoun, pronoun) || other.pronoun == pronoun)&&(identical(other.alias, alias) || other.alias == alias)&&(identical(other.jobId, jobId) || other.jobId == jobId)&&(identical(other.country, country) || other.country == country)&&(identical(other.isAlive, isAlive) || other.isAlive == isAlive));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,role,const DeepCollectionEquality().hash(visibleTraits),const DeepCollectionEquality().hash(hiddenTraits),compatibilityFactor);
+int get hashCode => Object.hash(runtimeType,id,name,role,const DeepCollectionEquality().hash(visibleTraits),const DeepCollectionEquality().hash(hiddenTraits),compatibilityFactor,relationshipTypeId,age,gender,pronoun,alias,jobId,country,isAlive);
 
 @override
 String toString() {
-  return 'Npc(id: $id, name: $name, role: $role, visibleTraits: $visibleTraits, hiddenTraits: $hiddenTraits, compatibilityFactor: $compatibilityFactor)';
+  return 'Npc(id: $id, name: $name, role: $role, visibleTraits: $visibleTraits, hiddenTraits: $hiddenTraits, compatibilityFactor: $compatibilityFactor, relationshipTypeId: $relationshipTypeId, age: $age, gender: $gender, pronoun: $pronoun, alias: $alias, jobId: $jobId, country: $country, isAlive: $isAlive)';
 }
 
 
@@ -48,7 +51,7 @@ abstract mixin class $NpcCopyWith<$Res>  {
   factory $NpcCopyWith(Npc value, $Res Function(Npc) _then) = _$NpcCopyWithImpl;
 @useResult
 $Res call({
- String id, String name, NpcRole role, List<TraitType> visibleTraits, List<TraitType> hiddenTraits, double compatibilityFactor
+ String id, String name, NpcRole role, List<TraitType> visibleTraits, List<TraitType> hiddenTraits, double compatibilityFactor, String? relationshipTypeId, int? age, Gender? gender, Pronoun? pronoun, String? alias, String? jobId, String? country, bool isAlive
 });
 
 
@@ -65,7 +68,7 @@ class _$NpcCopyWithImpl<$Res>
 
 /// Create a copy of Npc
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? role = null,Object? visibleTraits = null,Object? hiddenTraits = null,Object? compatibilityFactor = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? role = null,Object? visibleTraits = null,Object? hiddenTraits = null,Object? compatibilityFactor = null,Object? relationshipTypeId = freezed,Object? age = freezed,Object? gender = freezed,Object? pronoun = freezed,Object? alias = freezed,Object? jobId = freezed,Object? country = freezed,Object? isAlive = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -73,7 +76,15 @@ as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non
 as NpcRole,visibleTraits: null == visibleTraits ? _self.visibleTraits : visibleTraits // ignore: cast_nullable_to_non_nullable
 as List<TraitType>,hiddenTraits: null == hiddenTraits ? _self.hiddenTraits : hiddenTraits // ignore: cast_nullable_to_non_nullable
 as List<TraitType>,compatibilityFactor: null == compatibilityFactor ? _self.compatibilityFactor : compatibilityFactor // ignore: cast_nullable_to_non_nullable
-as double,
+as double,relationshipTypeId: freezed == relationshipTypeId ? _self.relationshipTypeId : relationshipTypeId // ignore: cast_nullable_to_non_nullable
+as String?,age: freezed == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
+as int?,gender: freezed == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
+as Gender?,pronoun: freezed == pronoun ? _self.pronoun : pronoun // ignore: cast_nullable_to_non_nullable
+as Pronoun?,alias: freezed == alias ? _self.alias : alias // ignore: cast_nullable_to_non_nullable
+as String?,jobId: freezed == jobId ? _self.jobId : jobId // ignore: cast_nullable_to_non_nullable
+as String?,country: freezed == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
+as String?,isAlive: null == isAlive ? _self.isAlive : isAlive // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 
@@ -155,10 +166,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  NpcRole role,  List<TraitType> visibleTraits,  List<TraitType> hiddenTraits,  double compatibilityFactor)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  NpcRole role,  List<TraitType> visibleTraits,  List<TraitType> hiddenTraits,  double compatibilityFactor,  String? relationshipTypeId,  int? age,  Gender? gender,  Pronoun? pronoun,  String? alias,  String? jobId,  String? country,  bool isAlive)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Npc() when $default != null:
-return $default(_that.id,_that.name,_that.role,_that.visibleTraits,_that.hiddenTraits,_that.compatibilityFactor);case _:
+return $default(_that.id,_that.name,_that.role,_that.visibleTraits,_that.hiddenTraits,_that.compatibilityFactor,_that.relationshipTypeId,_that.age,_that.gender,_that.pronoun,_that.alias,_that.jobId,_that.country,_that.isAlive);case _:
   return orElse();
 
 }
@@ -176,10 +187,10 @@ return $default(_that.id,_that.name,_that.role,_that.visibleTraits,_that.hiddenT
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  NpcRole role,  List<TraitType> visibleTraits,  List<TraitType> hiddenTraits,  double compatibilityFactor)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  NpcRole role,  List<TraitType> visibleTraits,  List<TraitType> hiddenTraits,  double compatibilityFactor,  String? relationshipTypeId,  int? age,  Gender? gender,  Pronoun? pronoun,  String? alias,  String? jobId,  String? country,  bool isAlive)  $default,) {final _that = this;
 switch (_that) {
 case _Npc():
-return $default(_that.id,_that.name,_that.role,_that.visibleTraits,_that.hiddenTraits,_that.compatibilityFactor);}
+return $default(_that.id,_that.name,_that.role,_that.visibleTraits,_that.hiddenTraits,_that.compatibilityFactor,_that.relationshipTypeId,_that.age,_that.gender,_that.pronoun,_that.alias,_that.jobId,_that.country,_that.isAlive);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -193,10 +204,10 @@ return $default(_that.id,_that.name,_that.role,_that.visibleTraits,_that.hiddenT
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  NpcRole role,  List<TraitType> visibleTraits,  List<TraitType> hiddenTraits,  double compatibilityFactor)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  NpcRole role,  List<TraitType> visibleTraits,  List<TraitType> hiddenTraits,  double compatibilityFactor,  String? relationshipTypeId,  int? age,  Gender? gender,  Pronoun? pronoun,  String? alias,  String? jobId,  String? country,  bool isAlive)?  $default,) {final _that = this;
 switch (_that) {
 case _Npc() when $default != null:
-return $default(_that.id,_that.name,_that.role,_that.visibleTraits,_that.hiddenTraits,_that.compatibilityFactor);case _:
+return $default(_that.id,_that.name,_that.role,_that.visibleTraits,_that.hiddenTraits,_that.compatibilityFactor,_that.relationshipTypeId,_that.age,_that.gender,_that.pronoun,_that.alias,_that.jobId,_that.country,_that.isAlive);case _:
   return null;
 
 }
@@ -207,8 +218,8 @@ return $default(_that.id,_that.name,_that.role,_that.visibleTraits,_that.hiddenT
 /// @nodoc
 @JsonSerializable()
 
-class _Npc implements Npc {
-  const _Npc({required this.id, required this.name, required this.role, final  List<TraitType> visibleTraits = const [], final  List<TraitType> hiddenTraits = const [], this.compatibilityFactor = 0.5}): _visibleTraits = visibleTraits,_hiddenTraits = hiddenTraits;
+class _Npc extends Npc {
+  const _Npc({required this.id, required this.name, required this.role, final  List<TraitType> visibleTraits = const [], final  List<TraitType> hiddenTraits = const [], this.compatibilityFactor = 0.5, this.relationshipTypeId, this.age, this.gender, this.pronoun, this.alias, this.jobId, this.country, this.isAlive = true}): _visibleTraits = visibleTraits,_hiddenTraits = hiddenTraits,super._();
   factory _Npc.fromJson(Map<String, dynamic> json) => _$NpcFromJson(json);
 
 @override final  String id;
@@ -229,6 +240,17 @@ class _Npc implements Npc {
 }
 
 @override@JsonKey() final  double compatibilityFactor;
+@override final  String? relationshipTypeId;
+@override final  int? age;
+@override final  Gender? gender;
+@override final  Pronoun? pronoun;
+/// Optional. Use only for clear familial roles (e.g. Mother, Brother) or
+/// nicknames earned in the relationship. Not for relationship descriptions
+/// like "Neighborhood Friend"; use [name] for those.
+@override final  String? alias;
+@override final  String? jobId;
+@override final  String? country;
+@override@JsonKey() final  bool isAlive;
 
 /// Create a copy of Npc
 /// with the given fields replaced by the non-null parameter values.
@@ -243,16 +265,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Npc&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.role, role) || other.role == role)&&const DeepCollectionEquality().equals(other._visibleTraits, _visibleTraits)&&const DeepCollectionEquality().equals(other._hiddenTraits, _hiddenTraits)&&(identical(other.compatibilityFactor, compatibilityFactor) || other.compatibilityFactor == compatibilityFactor));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Npc&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.role, role) || other.role == role)&&const DeepCollectionEquality().equals(other._visibleTraits, _visibleTraits)&&const DeepCollectionEquality().equals(other._hiddenTraits, _hiddenTraits)&&(identical(other.compatibilityFactor, compatibilityFactor) || other.compatibilityFactor == compatibilityFactor)&&(identical(other.relationshipTypeId, relationshipTypeId) || other.relationshipTypeId == relationshipTypeId)&&(identical(other.age, age) || other.age == age)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.pronoun, pronoun) || other.pronoun == pronoun)&&(identical(other.alias, alias) || other.alias == alias)&&(identical(other.jobId, jobId) || other.jobId == jobId)&&(identical(other.country, country) || other.country == country)&&(identical(other.isAlive, isAlive) || other.isAlive == isAlive));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,role,const DeepCollectionEquality().hash(_visibleTraits),const DeepCollectionEquality().hash(_hiddenTraits),compatibilityFactor);
+int get hashCode => Object.hash(runtimeType,id,name,role,const DeepCollectionEquality().hash(_visibleTraits),const DeepCollectionEquality().hash(_hiddenTraits),compatibilityFactor,relationshipTypeId,age,gender,pronoun,alias,jobId,country,isAlive);
 
 @override
 String toString() {
-  return 'Npc(id: $id, name: $name, role: $role, visibleTraits: $visibleTraits, hiddenTraits: $hiddenTraits, compatibilityFactor: $compatibilityFactor)';
+  return 'Npc(id: $id, name: $name, role: $role, visibleTraits: $visibleTraits, hiddenTraits: $hiddenTraits, compatibilityFactor: $compatibilityFactor, relationshipTypeId: $relationshipTypeId, age: $age, gender: $gender, pronoun: $pronoun, alias: $alias, jobId: $jobId, country: $country, isAlive: $isAlive)';
 }
 
 
@@ -263,7 +285,7 @@ abstract mixin class _$NpcCopyWith<$Res> implements $NpcCopyWith<$Res> {
   factory _$NpcCopyWith(_Npc value, $Res Function(_Npc) _then) = __$NpcCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name, NpcRole role, List<TraitType> visibleTraits, List<TraitType> hiddenTraits, double compatibilityFactor
+ String id, String name, NpcRole role, List<TraitType> visibleTraits, List<TraitType> hiddenTraits, double compatibilityFactor, String? relationshipTypeId, int? age, Gender? gender, Pronoun? pronoun, String? alias, String? jobId, String? country, bool isAlive
 });
 
 
@@ -280,7 +302,7 @@ class __$NpcCopyWithImpl<$Res>
 
 /// Create a copy of Npc
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? role = null,Object? visibleTraits = null,Object? hiddenTraits = null,Object? compatibilityFactor = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? role = null,Object? visibleTraits = null,Object? hiddenTraits = null,Object? compatibilityFactor = null,Object? relationshipTypeId = freezed,Object? age = freezed,Object? gender = freezed,Object? pronoun = freezed,Object? alias = freezed,Object? jobId = freezed,Object? country = freezed,Object? isAlive = null,}) {
   return _then(_Npc(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -288,7 +310,15 @@ as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non
 as NpcRole,visibleTraits: null == visibleTraits ? _self._visibleTraits : visibleTraits // ignore: cast_nullable_to_non_nullable
 as List<TraitType>,hiddenTraits: null == hiddenTraits ? _self._hiddenTraits : hiddenTraits // ignore: cast_nullable_to_non_nullable
 as List<TraitType>,compatibilityFactor: null == compatibilityFactor ? _self.compatibilityFactor : compatibilityFactor // ignore: cast_nullable_to_non_nullable
-as double,
+as double,relationshipTypeId: freezed == relationshipTypeId ? _self.relationshipTypeId : relationshipTypeId // ignore: cast_nullable_to_non_nullable
+as String?,age: freezed == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
+as int?,gender: freezed == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
+as Gender?,pronoun: freezed == pronoun ? _self.pronoun : pronoun // ignore: cast_nullable_to_non_nullable
+as Pronoun?,alias: freezed == alias ? _self.alias : alias // ignore: cast_nullable_to_non_nullable
+as String?,jobId: freezed == jobId ? _self.jobId : jobId // ignore: cast_nullable_to_non_nullable
+as String?,country: freezed == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
+as String?,isAlive: null == isAlive ? _self.isAlive : isAlive // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

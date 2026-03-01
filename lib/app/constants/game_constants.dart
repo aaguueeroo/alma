@@ -26,3 +26,14 @@ const int kDefaultHealthValue = 80;
 
 const int kMinSectionPerformance = 0;
 const int kMaxSectionPerformance = 100;
+
+const int kSocialActionsPerYear = 4;
+const int kDefaultReputation = 0;
+const int kMinReputation = -100;
+const int kMaxReputation = 100;
+const int kForgottenThreshold = -80;
+const int kAutoImprovePerYear = 3;
+const double kMeetNewNpcBaseChance = 0.4;
+const int kMinRelationshipMetric = -100;
+const int kMaxRelationshipMetric = 100;
+const int kMaxConflict = 100;

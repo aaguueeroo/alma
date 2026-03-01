@@ -44,3 +44,5 @@ flutter:
     - assets/data/
     - assets/data/education/
     - assets/data/work/
+    - assets/data/social/
+    - assets/data/social/names/

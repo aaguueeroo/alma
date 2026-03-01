@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/game_log.dart';
+import 'package:alma/core/models/relationship.dart';
 import 'package:alma/core/models/soul.dart';
 import 'package:alma/core/models/enums/log_category.dart';
 import 'package:alma/app/constants/spacing.dart';
@@ -89,6 +90,7 @@ class _LifeSummaryScreenState extends ConsumerState<LifeSummaryScreen> {
             ],
             _LifeLogSection(
               logs: state.logs,
+              relationships: state.socialState?.relationships ?? state.relationships,
               selectedFilter: _selectedLogFilter,
               onFilterChanged: (LogCategory? filter) {
                 setState(() => _selectedLogFilter = filter);
@@ -301,11 +303,13 @@ class _SubjectContributionsCard extends StatelessWidget {
 class _LifeLogSection extends StatelessWidget {
   const _LifeLogSection({
     required this.logs,
+    required this.relationships,
     required this.selectedFilter,
     required this.onFilterChanged,
   });
 
   final List<GameLog> logs;
+  final List<Relationship> relationships;
   final LogCategory? selectedFilter;
   final ValueChanged<LogCategory?> onFilterChanged;
 
@@ -376,6 +380,7 @@ class _LifeLogSection extends StatelessWidget {
               title: '',
               emptyMessage: l10n.noLogsRecorded,
               gameLogs: filteredLogs,
+              relationships: relationships,
             ),
           ],
         ),

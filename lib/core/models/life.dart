@@ -8,6 +8,7 @@ import 'package:alma/core/models/event.dart';
 import 'package:alma/core/models/moral_impact.dart';
 import 'package:alma/core/models/education_state.dart';
 import 'package:alma/core/models/work_state.dart';
+import 'package:alma/core/models/social_state.dart';
 import 'package:alma/core/models/game_log.dart';
 import 'package:alma/core/models/enums/trait_type.dart';
 
@@ -54,6 +55,7 @@ sealed class LifeState with _$LifeState {
     @Default([]) List<GameLog> logs,
     EducationState? educationState,
     WorkState? workState,
+    SocialState? socialState,
   }) = _LifeState;
 
   factory LifeState.fromJson(Map<String, dynamic> json) =>

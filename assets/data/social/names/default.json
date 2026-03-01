@@ -1,0 +1,31 @@
+{
+  "country": "default",
+  "firstNames": {
+    "male": [
+      "James", "Oliver", "William", "Benjamin", "Lucas", "Henry", "Alexander",
+      "Daniel", "Matthew", "Sebastian", "Jack", "Owen", "Samuel", "Ryan",
+      "Nathan", "Caleb", "Isaac", "Leo", "Aaron", "Adam", "Dylan", "Evan",
+      "Adrian", "Connor", "Jordan", "Tyler", "Brandon", "Austin", "Jason",
+      "Kevin", "Eric", "Kyle", "Patrick", "Marcus", "Trevor", "Blake",
+      "Derek", "Grant", "Hugo", "Miles", "Nolan", "Quinn", "Reid",
+      "Simon", "Vincent", "Wesley", "Garrett", "Ian", "Max", "Theo"
+    ],
+    "female": [
+      "Emma", "Sophia", "Olivia", "Isabella", "Charlotte", "Amelia", "Mia",
+      "Harper", "Evelyn", "Abigail", "Emily", "Ella", "Scarlett", "Grace",
+      "Victoria", "Riley", "Aria", "Luna", "Chloe", "Penelope", "Layla",
+      "Zoe", "Nora", "Lily", "Eleanor", "Hannah", "Stella", "Natalie",
+      "Leah", "Savannah", "Audrey", "Brooklyn", "Claire", "Lucy", "Skylar",
+      "Paisley", "Anna", "Caroline", "Maya", "Madelyn", "Willow", "Hazel",
+      "Violet", "Aurora", "Naomi", "Alice", "Ruby", "Eva", "Ivy", "Sadie"
+    ]
+  },
+  "lastNames": [
+    "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller",
+    "Davis", "Rodriguez", "Martinez", "Anderson", "Taylor", "Thomas", "Moore",
+    "Jackson", "Martin", "Lee", "Thompson", "White", "Harris", "Clark",
+    "Lewis", "Walker", "Hall", "Young", "Allen", "King", "Wright", "Scott",
+    "Green", "Baker", "Adams", "Nelson", "Carter", "Mitchell", "Roberts",
+    "Turner", "Phillips", "Campbell", "Parker"
+  ]
+}
