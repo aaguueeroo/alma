@@ -8,7 +8,7 @@ import 'package:alma/app/constants/sizing.dart';
 import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/ui/life/widgets/person_header_widget.dart';
 import 'package:alma/ui/life/widgets/bidirectional_bar_widget.dart';
-import 'package:alma/ui/life/widgets/log_list_widget.dart';
+import 'package:alma/ui/life/widgets/log_preview_section.dart';
 import 'package:alma/ui/shared/radar_chart_widget.dart';
 
 class RelationDetailWidget extends StatelessWidget {
@@ -165,7 +165,7 @@ class RelationDetailWidget extends StatelessWidget {
                   ),
                 ],
                 kVerticalGap32,
-                LogListWidget(
+                LogPreviewSection(
                   title: l10n.eventLog,
                   emptyMessage: l10n.noInteractionsRecorded,
                   gameLogs: logs,

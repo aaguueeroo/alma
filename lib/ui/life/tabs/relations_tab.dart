@@ -10,7 +10,7 @@ import 'package:alma/app/constants/durations.dart';
 import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/ui/life/widgets/relation_tile_widget.dart';
 import 'package:alma/ui/life/widgets/relation_detail_widget.dart';
-import 'package:alma/ui/life/widgets/log_list_widget.dart';
+import 'package:alma/ui/life/widgets/log_preview_section.dart';
 
 enum _RelationFilter { all, family, friends, love, work }
 
@@ -154,15 +154,13 @@ class _RelationsTabState extends State<RelationsTab> {
                           l10n: l10n,
                         ),
                       ],
-                      if (socialLogs.isNotEmpty) ...[
-                        kVerticalGap24,
-                        LogListWidget(
-                          title: l10n.socialLog,
-                          emptyMessage: l10n.noInteractionsRecorded,
-                          gameLogs: socialLogs.take(20).toList(),
-                          relationships: widget.relationships,
-                        ),
-                      ],
+                      kVerticalGap24,
+                      LogPreviewSection(
+                        title: l10n.socialLog,
+                        emptyMessage: l10n.noInteractionsRecorded,
+                        gameLogs: socialLogs,
+                        relationships: widget.relationships,
+                      ),
                       kVerticalGap24,
                     ],
                   ),

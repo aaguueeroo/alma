@@ -24,3 +24,6 @@ const double kProgressBarHeightLarge = 12.0;
 const double kDividerThickness = 1.0;
 
 const double kMaxContentWidth = 600.0;
+
+const double kLogPreviewMaxHeight = 200.0;
+const int kLogPreviewVisibleCount = 5;

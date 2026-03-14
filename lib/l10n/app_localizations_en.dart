@@ -179,6 +179,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noSoulsYet => 'No souls yet. Create one to get started!';
 
   @override
+  String get noAchievementsYet =>
+      'No achievements yet. Complete lives to unlock them.';
+
+  @override
+  String get createSoulError => 'Could not create soul. Please try again.';
+
+  @override
+  String get retry => 'Retry';
+
+  @override
+  String get achievementsLoadError =>
+      'Could not load achievements. Please try again.';
+
+  @override
   String get createSoul => 'Create Soul';
 
   @override
@@ -514,6 +528,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get workRecordCasualCompleted => 'Completed';
 
   @override
+  String get workRecordCurrent => 'Current';
+
+  @override
   String get noCurrentJob => 'Not employed';
 
   @override
@@ -553,6 +570,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noLogsRecorded => 'No logs recorded yet';
+
+  @override
+  String get viewAllLogs => 'View all logs';
 
   @override
   String get filterEducation => 'Education';

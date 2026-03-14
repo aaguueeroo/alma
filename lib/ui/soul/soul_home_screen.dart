@@ -19,19 +19,43 @@ class SoulHomeScreen extends ConsumerWidget {
     final soulState = ref.watch(soulControllerProvider);
     final Soul? soul = soulState.currentSoul;
     if (soul == null) {
+      final l10n = AppLocalizations.of(context)!;
       return Scaffold(
+        appBar: AppBar(
+          leading: const BackButtonLeading(),
+          title: Text(l10n.saveSlots),
+        ),
         body: Center(
-          child: TextButton(
-            onPressed: () {
-              if (context.canPop()) {
-                while (context.mounted && context.canPop()) {
-                  context.pop();
-                }
-              } else {
-                context.go('/');
-              }
-            },
-            child: Text(AppLocalizations.of(context)!.back),
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  l10n.noSoulsYet,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
+                ),
+                const SizedBox(height: 24),
+                FilledButton(
+                  onPressed: () => context.push('/create-soul'),
+                  child: Text(l10n.createNewSoul),
+                ),
+                const SizedBox(height: 12),
+                TextButton(
+                  onPressed: () {
+                    if (context.canPop()) {
+                      context.pop();
+                    } else {
+                      context.go('/');
+                    }
+                  },
+                  child: Text(l10n.back),
+                ),
+              ],
+            ),
           ),
         ),
       );

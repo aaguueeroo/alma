@@ -5,7 +5,7 @@ import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/app/constants/sizing.dart';
 import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/ui/life/widgets/person_header_widget.dart';
-import 'package:alma/ui/life/widgets/log_list_widget.dart';
+import 'package:alma/ui/life/widgets/log_preview_section.dart';
 import 'package:alma/ui/shared/radar_chart_widget.dart';
 
 class LifeMainTab extends StatelessWidget {
@@ -41,7 +41,7 @@ class LifeMainTab extends StatelessWidget {
             ),
           ),
           kVerticalGap32,
-          LogListWidget(
+          LogPreviewSection(
             title: l10n.lifeLog,
             emptyMessage: l10n.noLogsRecorded,
             gameLogs: state.logs.reversed.toList(),

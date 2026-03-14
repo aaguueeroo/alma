@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$WorkState {
 
- List<Employment> get currentEmployments; List<WorkRecord> get history; WorkPrompt? get pendingPrompt; Map<String, List<GameAction>> get performedActionsByJobIdThisYear;
+ List<Employment> get currentEmployments; List<WorkRecord> get history; WorkPrompt? get pendingPrompt; Map<String, List<GameAction>> get performedActionsByJobIdThisYear; List<String> get completedCasualJobIdsThisYear;
 /// Create a copy of WorkState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $WorkStateCopyWith<WorkState> get copyWith => _$WorkStateCopyWithImpl<WorkState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkState&&const DeepCollectionEquality().equals(other.currentEmployments, currentEmployments)&&const DeepCollectionEquality().equals(other.history, history)&&(identical(other.pendingPrompt, pendingPrompt) || other.pendingPrompt == pendingPrompt)&&const DeepCollectionEquality().equals(other.performedActionsByJobIdThisYear, performedActionsByJobIdThisYear));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkState&&const DeepCollectionEquality().equals(other.currentEmployments, currentEmployments)&&const DeepCollectionEquality().equals(other.history, history)&&(identical(other.pendingPrompt, pendingPrompt) || other.pendingPrompt == pendingPrompt)&&const DeepCollectionEquality().equals(other.performedActionsByJobIdThisYear, performedActionsByJobIdThisYear)&&const DeepCollectionEquality().equals(other.completedCasualJobIdsThisYear, completedCasualJobIdsThisYear));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(currentEmployments),const DeepCollectionEquality().hash(history),pendingPrompt,const DeepCollectionEquality().hash(performedActionsByJobIdThisYear));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(currentEmployments),const DeepCollectionEquality().hash(history),pendingPrompt,const DeepCollectionEquality().hash(performedActionsByJobIdThisYear),const DeepCollectionEquality().hash(completedCasualJobIdsThisYear));
 
 @override
 String toString() {
-  return 'WorkState(currentEmployments: $currentEmployments, history: $history, pendingPrompt: $pendingPrompt, performedActionsByJobIdThisYear: $performedActionsByJobIdThisYear)';
+  return 'WorkState(currentEmployments: $currentEmployments, history: $history, pendingPrompt: $pendingPrompt, performedActionsByJobIdThisYear: $performedActionsByJobIdThisYear, completedCasualJobIdsThisYear: $completedCasualJobIdsThisYear)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $WorkStateCopyWith<$Res>  {
   factory $WorkStateCopyWith(WorkState value, $Res Function(WorkState) _then) = _$WorkStateCopyWithImpl;
 @useResult
 $Res call({
- List<Employment> currentEmployments, List<WorkRecord> history, WorkPrompt? pendingPrompt, Map<String, List<GameAction>> performedActionsByJobIdThisYear
+ List<Employment> currentEmployments, List<WorkRecord> history, WorkPrompt? pendingPrompt, Map<String, List<GameAction>> performedActionsByJobIdThisYear, List<String> completedCasualJobIdsThisYear
 });
 
 
@@ -65,13 +65,14 @@ class _$WorkStateCopyWithImpl<$Res>
 
 /// Create a copy of WorkState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? currentEmployments = null,Object? history = null,Object? pendingPrompt = freezed,Object? performedActionsByJobIdThisYear = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? currentEmployments = null,Object? history = null,Object? pendingPrompt = freezed,Object? performedActionsByJobIdThisYear = null,Object? completedCasualJobIdsThisYear = null,}) {
   return _then(_self.copyWith(
 currentEmployments: null == currentEmployments ? _self.currentEmployments : currentEmployments // ignore: cast_nullable_to_non_nullable
 as List<Employment>,history: null == history ? _self.history : history // ignore: cast_nullable_to_non_nullable
 as List<WorkRecord>,pendingPrompt: freezed == pendingPrompt ? _self.pendingPrompt : pendingPrompt // ignore: cast_nullable_to_non_nullable
 as WorkPrompt?,performedActionsByJobIdThisYear: null == performedActionsByJobIdThisYear ? _self.performedActionsByJobIdThisYear : performedActionsByJobIdThisYear // ignore: cast_nullable_to_non_nullable
-as Map<String, List<GameAction>>,
+as Map<String, List<GameAction>>,completedCasualJobIdsThisYear: null == completedCasualJobIdsThisYear ? _self.completedCasualJobIdsThisYear : completedCasualJobIdsThisYear // ignore: cast_nullable_to_non_nullable
+as List<String>,
   ));
 }
 /// Create a copy of WorkState
@@ -165,10 +166,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<Employment> currentEmployments,  List<WorkRecord> history,  WorkPrompt? pendingPrompt,  Map<String, List<GameAction>> performedActionsByJobIdThisYear)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<Employment> currentEmployments,  List<WorkRecord> history,  WorkPrompt? pendingPrompt,  Map<String, List<GameAction>> performedActionsByJobIdThisYear,  List<String> completedCasualJobIdsThisYear)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WorkState() when $default != null:
-return $default(_that.currentEmployments,_that.history,_that.pendingPrompt,_that.performedActionsByJobIdThisYear);case _:
+return $default(_that.currentEmployments,_that.history,_that.pendingPrompt,_that.performedActionsByJobIdThisYear,_that.completedCasualJobIdsThisYear);case _:
   return orElse();
 
 }
@@ -186,10 +187,10 @@ return $default(_that.currentEmployments,_that.history,_that.pendingPrompt,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<Employment> currentEmployments,  List<WorkRecord> history,  WorkPrompt? pendingPrompt,  Map<String, List<GameAction>> performedActionsByJobIdThisYear)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<Employment> currentEmployments,  List<WorkRecord> history,  WorkPrompt? pendingPrompt,  Map<String, List<GameAction>> performedActionsByJobIdThisYear,  List<String> completedCasualJobIdsThisYear)  $default,) {final _that = this;
 switch (_that) {
 case _WorkState():
-return $default(_that.currentEmployments,_that.history,_that.pendingPrompt,_that.performedActionsByJobIdThisYear);}
+return $default(_that.currentEmployments,_that.history,_that.pendingPrompt,_that.performedActionsByJobIdThisYear,_that.completedCasualJobIdsThisYear);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -203,10 +204,10 @@ return $default(_that.currentEmployments,_that.history,_that.pendingPrompt,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<Employment> currentEmployments,  List<WorkRecord> history,  WorkPrompt? pendingPrompt,  Map<String, List<GameAction>> performedActionsByJobIdThisYear)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<Employment> currentEmployments,  List<WorkRecord> history,  WorkPrompt? pendingPrompt,  Map<String, List<GameAction>> performedActionsByJobIdThisYear,  List<String> completedCasualJobIdsThisYear)?  $default,) {final _that = this;
 switch (_that) {
 case _WorkState() when $default != null:
-return $default(_that.currentEmployments,_that.history,_that.pendingPrompt,_that.performedActionsByJobIdThisYear);case _:
+return $default(_that.currentEmployments,_that.history,_that.pendingPrompt,_that.performedActionsByJobIdThisYear,_that.completedCasualJobIdsThisYear);case _:
   return null;
 
 }
@@ -218,7 +219,7 @@ return $default(_that.currentEmployments,_that.history,_that.pendingPrompt,_that
 @JsonSerializable()
 
 class _WorkState implements WorkState {
-  const _WorkState({final  List<Employment> currentEmployments = const [], final  List<WorkRecord> history = const [], this.pendingPrompt, final  Map<String, List<GameAction>> performedActionsByJobIdThisYear = const {}}): _currentEmployments = currentEmployments,_history = history,_performedActionsByJobIdThisYear = performedActionsByJobIdThisYear;
+  const _WorkState({final  List<Employment> currentEmployments = const [], final  List<WorkRecord> history = const [], this.pendingPrompt, final  Map<String, List<GameAction>> performedActionsByJobIdThisYear = const {}, final  List<String> completedCasualJobIdsThisYear = const []}): _currentEmployments = currentEmployments,_history = history,_performedActionsByJobIdThisYear = performedActionsByJobIdThisYear,_completedCasualJobIdsThisYear = completedCasualJobIdsThisYear;
   factory _WorkState.fromJson(Map<String, dynamic> json) => _$WorkStateFromJson(json);
 
  final  List<Employment> _currentEmployments;
@@ -243,6 +244,13 @@ class _WorkState implements WorkState {
   return EqualUnmodifiableMapView(_performedActionsByJobIdThisYear);
 }
 
+ final  List<String> _completedCasualJobIdsThisYear;
+@override@JsonKey() List<String> get completedCasualJobIdsThisYear {
+  if (_completedCasualJobIdsThisYear is EqualUnmodifiableListView) return _completedCasualJobIdsThisYear;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_completedCasualJobIdsThisYear);
+}
+
 
 /// Create a copy of WorkState
 /// with the given fields replaced by the non-null parameter values.
@@ -257,16 +265,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkState&&const DeepCollectionEquality().equals(other._currentEmployments, _currentEmployments)&&const DeepCollectionEquality().equals(other._history, _history)&&(identical(other.pendingPrompt, pendingPrompt) || other.pendingPrompt == pendingPrompt)&&const DeepCollectionEquality().equals(other._performedActionsByJobIdThisYear, _performedActionsByJobIdThisYear));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkState&&const DeepCollectionEquality().equals(other._currentEmployments, _currentEmployments)&&const DeepCollectionEquality().equals(other._history, _history)&&(identical(other.pendingPrompt, pendingPrompt) || other.pendingPrompt == pendingPrompt)&&const DeepCollectionEquality().equals(other._performedActionsByJobIdThisYear, _performedActionsByJobIdThisYear)&&const DeepCollectionEquality().equals(other._completedCasualJobIdsThisYear, _completedCasualJobIdsThisYear));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_currentEmployments),const DeepCollectionEquality().hash(_history),pendingPrompt,const DeepCollectionEquality().hash(_performedActionsByJobIdThisYear));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_currentEmployments),const DeepCollectionEquality().hash(_history),pendingPrompt,const DeepCollectionEquality().hash(_performedActionsByJobIdThisYear),const DeepCollectionEquality().hash(_completedCasualJobIdsThisYear));
 
 @override
 String toString() {
-  return 'WorkState(currentEmployments: $currentEmployments, history: $history, pendingPrompt: $pendingPrompt, performedActionsByJobIdThisYear: $performedActionsByJobIdThisYear)';
+  return 'WorkState(currentEmployments: $currentEmployments, history: $history, pendingPrompt: $pendingPrompt, performedActionsByJobIdThisYear: $performedActionsByJobIdThisYear, completedCasualJobIdsThisYear: $completedCasualJobIdsThisYear)';
 }
 
 
@@ -277,7 +285,7 @@ abstract mixin class _$WorkStateCopyWith<$Res> implements $WorkStateCopyWith<$Re
   factory _$WorkStateCopyWith(_WorkState value, $Res Function(_WorkState) _then) = __$WorkStateCopyWithImpl;
 @override @useResult
 $Res call({
- List<Employment> currentEmployments, List<WorkRecord> history, WorkPrompt? pendingPrompt, Map<String, List<GameAction>> performedActionsByJobIdThisYear
+ List<Employment> currentEmployments, List<WorkRecord> history, WorkPrompt? pendingPrompt, Map<String, List<GameAction>> performedActionsByJobIdThisYear, List<String> completedCasualJobIdsThisYear
 });
 
 
@@ -294,13 +302,14 @@ class __$WorkStateCopyWithImpl<$Res>
 
 /// Create a copy of WorkState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? currentEmployments = null,Object? history = null,Object? pendingPrompt = freezed,Object? performedActionsByJobIdThisYear = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? currentEmployments = null,Object? history = null,Object? pendingPrompt = freezed,Object? performedActionsByJobIdThisYear = null,Object? completedCasualJobIdsThisYear = null,}) {
   return _then(_WorkState(
 currentEmployments: null == currentEmployments ? _self._currentEmployments : currentEmployments // ignore: cast_nullable_to_non_nullable
 as List<Employment>,history: null == history ? _self._history : history // ignore: cast_nullable_to_non_nullable
 as List<WorkRecord>,pendingPrompt: freezed == pendingPrompt ? _self.pendingPrompt : pendingPrompt // ignore: cast_nullable_to_non_nullable
 as WorkPrompt?,performedActionsByJobIdThisYear: null == performedActionsByJobIdThisYear ? _self._performedActionsByJobIdThisYear : performedActionsByJobIdThisYear // ignore: cast_nullable_to_non_nullable
-as Map<String, List<GameAction>>,
+as Map<String, List<GameAction>>,completedCasualJobIdsThisYear: null == completedCasualJobIdsThisYear ? _self._completedCasualJobIdsThisYear : completedCasualJobIdsThisYear // ignore: cast_nullable_to_non_nullable
+as List<String>,
   ));
 }
 

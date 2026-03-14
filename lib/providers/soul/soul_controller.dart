@@ -1,4 +1,4 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:alma/core/models/soul.dart';
 import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/life_maintenance_item.dart';

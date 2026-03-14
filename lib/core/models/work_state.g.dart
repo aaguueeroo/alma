@@ -30,6 +30,11 @@ _WorkState _$WorkStateFromJson(Map<String, dynamic> json) => _WorkState(
         ),
       ) ??
       const {},
+  completedCasualJobIdsThisYear:
+      (json['completedCasualJobIdsThisYear'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      const [],
 );
 
 Map<String, dynamic> _$WorkStateToJson(
@@ -39,4 +44,5 @@ Map<String, dynamic> _$WorkStateToJson(
   'history': instance.history,
   'pendingPrompt': instance.pendingPrompt,
   'performedActionsByJobIdThisYear': instance.performedActionsByJobIdThisYear,
+  'completedCasualJobIdsThisYear': instance.completedCasualJobIdsThisYear,
 };

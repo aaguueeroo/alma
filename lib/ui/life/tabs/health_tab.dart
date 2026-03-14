@@ -6,7 +6,7 @@ import 'package:alma/core/models/enums/log_category.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/ui/life/widgets/person_header_widget.dart';
-import 'package:alma/ui/life/widgets/log_list_widget.dart';
+import 'package:alma/ui/life/widgets/log_preview_section.dart';
 import 'package:alma/ui/life/widgets/action_tile_widget.dart';
 import 'package:alma/ui/shared/stat_bar_widget.dart';
 
@@ -72,7 +72,7 @@ class HealthTab extends StatelessWidget {
               );
             }),
           kVerticalGap32,
-          LogListWidget(
+          LogPreviewSection(
             title: l10n.eventLog,
             emptyMessage: l10n.noEventsRecorded,
             gameLogs: state.logs

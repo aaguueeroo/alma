@@ -94,8 +94,19 @@ class _CreateSoulScreenState extends ConsumerState<CreateSoulScreen> {
     setState(() => _isCreating = true);
     final String name = _nameController.text.trim();
     await ref.read(soulControllerProvider.notifier).createSoul(name);
-    if (mounted) {
-      setState(() => _isCreating = false);
+    if (!mounted) return;
+    setState(() => _isCreating = false);
+    final soulState = ref.read(soulControllerProvider);
+    if (soulState.error != null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.createSoulError),
+          backgroundColor: Theme.of(context).colorScheme.error,
+        ),
+      );
+      return;
+    }
+    if (soulState.currentSoul != null) {
       context.pop();
       context.push('/soul');
     }

@@ -53,6 +53,8 @@ class WorkEngine {
     final WorkState workState = state.workState ?? const WorkState();
     final EducationState eduState =
         state.educationState ?? const EducationState();
+    final List<String> completedCasualIds =
+        workState.completedCasualJobIdsThisYear;
     final List<Job> eligible = _allJobs.where((Job job) {
       if (!_meetsAccessConditions(job.accessConditions, state, eduState)) {
         return false;
@@ -64,6 +66,10 @@ class WorkEngine {
       }
       if (_isAlreadyEmployed(workState, job.id)) return false;
       if (!_canTakeJobType(workState, job.type)) return false;
+      if (job.type == JobType.casual &&
+          completedCasualIds.contains(job.id)) {
+        return false;
+      }
       return true;
     }).toList();
     if (eligible.isEmpty) return [];
@@ -147,6 +153,34 @@ class WorkEngine {
     final WorkState workState = state.workState ?? const WorkState();
     final JobLevel firstLevel = job.levels.first;
     final int salary = (job.baseSalary * firstLevel.salaryMultiplier).round();
+    final int jobCommitmentDays = getJobCommitmentDays(job);
+    if (job.type == JobType.casual) {
+      final List<String> updatedCompletedCasual = [
+        ...workState.completedCasualJobIdsThisYear,
+        job.id,
+      ];
+      state = state.copyWith(
+        timeRemaining: state.timeRemaining - jobCommitmentDays,
+        money: state.money + salary,
+        workState: workState.copyWith(
+          completedCasualJobIdsThisYear: updatedCompletedCasual,
+          pendingPrompt: WorkPrompt(
+            type: WorkPromptType.interviewResult,
+            title: 'Completed!',
+            description:
+                'You completed the casual work at ${job.name} and earned \$$salary.',
+            targetJob: job,
+            accepted: true,
+          ),
+        ),
+      );
+      return GameLogger.addLog(
+        state,
+        message: LogNarratives.workCasualCompleted(job.name, salary),
+        category: LogCategory.work,
+        tags: ['job:${job.id}'],
+      );
+    }
     final Employment employment = Employment(
       jobId: job.id,
       jobName: job.name,
@@ -171,7 +205,6 @@ class WorkEngine {
       }
       return s;
     }).toList();
-    final int jobCommitmentDays = getJobCommitmentDays(job);
     state = state.copyWith(
       timeRemaining: state.timeRemaining - jobCommitmentDays,
       workState: workState.copyWith(
@@ -252,36 +285,21 @@ class WorkEngine {
   LifeState processYearEnd(LifeState state, SeededRandom rng) {
     if (_countryConfig == null) return state;
     WorkState workState = state.workState ?? const WorkState();
-    if (workState.currentEmployments.isEmpty) return state;
+    final WorkState resetWorkState = workState.copyWith(
+      completedCasualJobIdsThisYear: [],
+    );
+    if (workState.currentEmployments.isEmpty) {
+      return state.copyWith(
+        workState: resetWorkState.copyWith(
+          performedActionsByJobIdThisYear: {},
+        ),
+      );
+    }
     final List<Employment> updatedEmployments = [];
     final List<WorkRecord> newRecords = [];
     WorkPrompt? promotionPrompt;
     WorkPrompt? firedPrompt;
     for (final Employment employment in workState.currentEmployments) {
-      if (employment.type == JobType.casual) {
-        newRecords.add(WorkRecord(
-          jobId: employment.jobId,
-          jobName: employment.jobName,
-          type: employment.type,
-          finalLevel: employment.currentLevel,
-          startAge: employment.startAge,
-          endAge: state.age,
-          yearsWorked: employment.yearsWorked + 1,
-          quitReason: 'casual_completed',
-          finalSalary: employment.salary,
-        ));
-        state = state.copyWith(money: state.money + employment.salary);
-        state = GameLogger.addLog(
-          state,
-          message: LogNarratives.workCasualCompleted(
-            employment.jobName,
-            employment.salary,
-          ),
-          category: LogCategory.work,
-          tags: ['job:${employment.jobId}'],
-        );
-        continue;
-      }
       final bool fired = _checkFired(employment, rng);
       if (fired) {
         newRecords.add(WorkRecord(
@@ -370,6 +388,7 @@ class WorkEngine {
         history: updatedHistory,
         pendingPrompt: firedPrompt ?? promotionPrompt,
         performedActionsByJobIdThisYear: {},
+        completedCasualJobIdsThisYear: [],
       ),
       sections: sections,
     );

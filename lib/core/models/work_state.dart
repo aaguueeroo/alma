@@ -14,6 +14,7 @@ sealed class WorkState with _$WorkState {
     @Default([]) List<WorkRecord> history,
     WorkPrompt? pendingPrompt,
     @Default({}) Map<String, List<GameAction>> performedActionsByJobIdThisYear,
+    @Default([]) List<String> completedCasualJobIdsThisYear,
   }) = _WorkState;
 
   factory WorkState.fromJson(Map<String, dynamic> json) =>

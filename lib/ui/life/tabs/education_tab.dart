@@ -14,6 +14,7 @@ import 'package:alma/app/constants/sizing.dart';
 import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/ui/life/widgets/person_header_widget.dart';
 import 'package:alma/ui/life/widgets/log_list_widget.dart';
+import 'package:alma/ui/life/widgets/log_preview_section.dart';
 import 'package:alma/ui/shared/stat_bar_widget.dart';
 
 class EducationTab extends StatelessWidget {
@@ -79,7 +80,7 @@ class EducationTab extends StatelessWidget {
             logs: _buildHistoryLogs(eduState, l10n),
           ),
           kVerticalGap24,
-          LogListWidget(
+          LogPreviewSection(
             title: l10n.eventLog,
             emptyMessage: l10n.noEducationEvents,
             gameLogs: _filterEducationLogs(state.logs),

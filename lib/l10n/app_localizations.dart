@@ -406,6 +406,30 @@ abstract class AppLocalizations {
   /// **'No souls yet. Create one to get started!'**
   String get noSoulsYet;
 
+  /// No description provided for @noAchievementsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No achievements yet. Complete lives to unlock them.'**
+  String get noAchievementsYet;
+
+  /// No description provided for @createSoulError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not create soul. Please try again.'**
+  String get createSoulError;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// No description provided for @achievementsLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load achievements. Please try again.'**
+  String get achievementsLoadError;
+
   /// No description provided for @createSoul.
   ///
   /// In en, this message translates to:
@@ -1000,6 +1024,12 @@ abstract class AppLocalizations {
   /// **'Completed'**
   String get workRecordCasualCompleted;
 
+  /// No description provided for @workRecordCurrent.
+  ///
+  /// In en, this message translates to:
+  /// **'Current'**
+  String get workRecordCurrent;
+
   /// No description provided for @noCurrentJob.
   ///
   /// In en, this message translates to:
@@ -1077,6 +1107,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No logs recorded yet'**
   String get noLogsRecorded;
+
+  /// No description provided for @viewAllLogs.
+  ///
+  /// In en, this message translates to:
+  /// **'View all logs'**
+  String get viewAllLogs;
 
   /// No description provided for @filterEducation.
   ///

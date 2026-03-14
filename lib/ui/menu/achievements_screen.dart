@@ -38,15 +38,83 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen> {
       ),
       body: achievementState.isLoading
           ? const LoadingWidget()
-          : ListView.builder(
-              padding: padding,
-              itemCount: achievementState.achievements.length,
-              itemBuilder: (BuildContext context, int index) {
-                final Achievement achievement =
-                    achievementState.achievements[index];
-                return _AchievementCard(achievement: achievement);
-              },
+              : achievementState.error != null
+              ? const _ErrorState()
+              : achievementState.achievements.isEmpty
+                  ? _EmptyState(message: l10n.noAchievementsYet)
+                  : ListView.builder(
+                      padding: padding,
+                      itemCount: achievementState.achievements.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final Achievement achievement =
+                            achievementState.achievements[index];
+                        return _AchievementCard(achievement: achievement);
+                      },
+                    ),
+    );
+  }
+}
+
+class _EmptyState extends StatelessWidget {
+  const _EmptyState({required this.message});
+
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    final themeExt = Theme.of(context).extension<AppThemeExtension>();
+    final padding = themeExt?.screenPadding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
+    final mutedColor = themeExt?.mutedColor ?? Theme.of(context).colorScheme.onSurfaceVariant;
+    return Center(
+      child: Padding(
+        padding: padding,
+        child: Text(
+          message,
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                color: mutedColor,
+              ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ErrorState extends ConsumerWidget {
+  const _ErrorState();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeExt = Theme.of(context).extension<AppThemeExtension>();
+    final padding = themeExt?.screenPadding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
+    final errorColor = Theme.of(context).colorScheme.error;
+    final l10n = AppLocalizations.of(context)!;
+    return SingleChildScrollView(
+      padding: padding,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minHeight: MediaQuery.of(context).size.height - padding.top - padding.bottom - kToolbarHeight,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              l10n.achievementsLoadError,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: errorColor,
+                  ),
             ),
+            const SizedBox(height: 16),
+            FilledButton(
+              onPressed: () {
+                ref.read(achievementControllerProvider.notifier).loadAchievements();
+              },
+              child: Text(l10n.retry),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

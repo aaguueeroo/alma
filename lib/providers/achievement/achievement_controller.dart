@@ -1,4 +1,4 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:alma/core/models/achievement.dart';
 import 'package:alma/core/models/soul.dart';
 import 'package:alma/core/models/life.dart';
@@ -10,18 +10,23 @@ class AchievementState {
   const AchievementState({
     this.achievements = const [],
     this.isLoading = false,
+    this.error,
   });
 
   final List<Achievement> achievements;
   final bool isLoading;
+  final String? error;
 
   AchievementState copyWith({
     List<Achievement>? achievements,
     bool? isLoading,
+    String? error,
+    bool clearError = false,
   }) {
     return AchievementState(
       achievements: achievements ?? this.achievements,
       isLoading: isLoading ?? this.isLoading,
+      error: clearError ? null : (error ?? this.error),
     );
   }
 }
@@ -36,7 +41,7 @@ class AchievementController extends StateNotifier<AchievementState> {
   final SeedLoader seedLoader;
 
   Future<void> loadAchievements() async {
-    state = state.copyWith(isLoading: true);
+    state = state.copyWith(isLoading: true, clearError: true);
     try {
       final List<Achievement> seedAchievements =
           await seedLoader.loadAchievements();
@@ -46,7 +51,10 @@ class AchievementController extends StateNotifier<AchievementState> {
       state = state.copyWith(achievements: achievements, isLoading: false);
     } catch (e) {
       print('Error loading achievements: $e');
-      state = state.copyWith(isLoading: false);
+      state = state.copyWith(
+        isLoading: false,
+        error: e.toString(),
+      );
     }
   }
 

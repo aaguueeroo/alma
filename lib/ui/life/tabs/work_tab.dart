@@ -12,6 +12,7 @@ import 'package:alma/app/constants/sizing.dart';
 import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/ui/life/widgets/person_header_widget.dart';
 import 'package:alma/ui/life/widgets/log_list_widget.dart';
+import 'package:alma/ui/life/widgets/log_preview_section.dart';
 import 'package:alma/ui/shared/stat_bar_widget.dart';
 
 class WorkTab extends StatelessWidget {
@@ -85,10 +86,10 @@ class WorkTab extends StatelessWidget {
           LogListWidget(
             title: l10n.cv,
             emptyMessage: l10n.noWorkHistory,
-            logs: _buildHistoryLogs(workState, l10n),
+            logs: _buildHistoryLogs(workState, state.age, l10n),
           ),
           kVerticalGap24,
-          LogListWidget(
+          LogPreviewSection(
             title: l10n.eventLog,
             emptyMessage: l10n.noWorkEvents,
             gameLogs: state.logs
@@ -105,9 +106,20 @@ class WorkTab extends StatelessWidget {
     );
   }
 
-  List<String> _buildHistoryLogs(WorkState? workState, AppLocalizations l10n) {
+  List<String> _buildHistoryLogs(
+    WorkState? workState,
+    int currentAge,
+    AppLocalizations l10n,
+  ) {
     if (workState == null) return [];
-    return workState.history.map((WorkRecord record) {
+    final List<String> currentJobLogs = workState.currentEmployments
+        .where((Employment e) => e.type != JobType.casual)
+        .map((Employment e) =>
+            '${e.jobName} - ${l10n.workRecordCurrent} (${l10n.workYearsLabel(e.startAge, currentAge)})')
+        .toList();
+    final List<String> historyLogs = workState.history
+        .where((WorkRecord record) => record.type != JobType.casual)
+        .map((WorkRecord record) {
       final String reason = switch (record.quitReason) {
         'quit' => l10n.workRecordQuit,
         'fired' => l10n.workRecordFired,
@@ -116,6 +128,7 @@ class WorkTab extends StatelessWidget {
       };
       return '${record.jobName} - $reason (${l10n.workYearsLabel(record.startAge, record.endAge)})';
     }).toList();
+    return [...currentJobLogs, ...historyLogs];
   }
 
   void _showActionsDialog(
