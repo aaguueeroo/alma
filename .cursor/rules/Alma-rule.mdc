@@ -1,5 +1,10 @@
 ---
+description: 
 alwaysApply: true
 ---
 
 Every time something needs to be random inside a life, it should be seeded random so that the lives can be fully reproducible.
+
+Every feature needs to include a logging system. the logs are displayed to the user and classified by type of log.
+
+the architecture should allow as much as possible for mods. any content like repositories should be stored in json files that allow for easy modification and expansion.
