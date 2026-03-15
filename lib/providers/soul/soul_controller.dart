@@ -9,6 +9,7 @@ import 'package:alma/core/evaluation/soul_evaluator.dart';
 import 'package:alma/data/repositories/soul_repository.dart';
 import 'package:alma/data/repositories/life_repository.dart';
 import 'package:alma/data/seed/seed_loader.dart';
+import 'package:alma/app/utils/error_logger.dart';
 import 'package:alma/core/engine/seeded_random.dart';
 import 'package:alma/providers/game/game_state_provider.dart';
 
@@ -192,6 +193,20 @@ class SoulController extends StateNotifier<SoulState> {
 
   void clearSoul() {
     state = state.copyWith(clearCurrentSoul: true);
+  }
+
+  Soul? get currentSoul => state.currentSoul;
+
+  /// Replaces the current soul with the given one (for debug use).
+  /// Saves to repository and updates state.
+  Future<void> debugReplaceSoul(Soul soul) async {
+    try {
+      await soulRepository.updateSoul(soul);
+      state = state.copyWith(currentSoul: soul);
+    } catch (e, stackTrace) {
+      ErrorLogger.logError(e, stackTrace, 'debugReplaceSoul');
+      state = state.copyWith(error: e.toString());
+    }
   }
 
   /// Clears currentLifeId from the current soul if the life is complete or missing.

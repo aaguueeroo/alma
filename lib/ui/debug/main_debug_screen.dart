@@ -9,6 +9,7 @@ import 'package:alma/core/models/enums/hidden_metric_type.dart';
 import 'package:alma/core/models/enums/skill_type.dart';
 import 'package:alma/providers/debug/debug_controller.dart';
 import 'package:alma/providers/life/life_controller.dart';
+import 'package:alma/providers/soul/soul_controller.dart';
 import 'package:alma/ui/shared/back_button_leading.dart';
 import 'package:alma/ui/debug/widgets/debug_section_header.dart';
 import 'package:alma/ui/debug/widgets/debug_editable_value_tile.dart';
@@ -19,25 +20,36 @@ class MainDebugScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final Life? life = ref.watch(lifeControllerProvider).currentLife;
+    final soul = ref.watch(soulControllerProvider).currentSoul;
     final DebugController debugController = ref.read(debugControllerProvider);
     final theme = Theme.of(context);
+    final bool hasLife = life != null;
+    final bool hasSoul = soul != null;
     return Scaffold(
       appBar: AppBar(
         leading: const BackButtonLeading(),
         title: const Text('Debug'),
       ),
-      body: life == null
-          ? _buildNoLifeMessage(context, theme)
-          : _buildContent(context, ref, life, debugController, theme),
+      body: !hasLife && !hasSoul
+          ? _buildEmptyMessage(context, theme)
+          : _buildContent(
+              context,
+              ref,
+              life,
+              debugController,
+              theme,
+              hasLife,
+              hasSoul,
+            ),
     );
   }
 
-  Widget _buildNoLifeMessage(BuildContext context, ThemeData theme) {
+  Widget _buildEmptyMessage(BuildContext context, ThemeData theme) {
     return Center(
       child: Padding(
         padding: kPaddingAll24,
         child: Text(
-          'Load a life to use debug features',
+          'Load a soul or life to use debug features',
           style: theme.textTheme.bodyLarge?.copyWith(
             color: theme.colorScheme.onSurfaceVariant,
           ),
@@ -50,31 +62,64 @@ class MainDebugScreen extends ConsumerWidget {
   Widget _buildContent(
     BuildContext context,
     WidgetRef ref,
+    Life? life,
+    DebugController debugController,
+    ThemeData theme,
+    bool hasLife,
+    bool hasSoul,
+  ) {
+    return ListView(
+      padding: kPaddingAll16,
+      children: [
+        const DebugSectionHeader(title: 'Navigation'),
+        if (hasSoul)
+          _DebugNavButton(
+            label: 'Soul Debug',
+            onPressed: () => context.push('/debug/soul'),
+          ),
+        if (hasLife) ...[
+          _DebugNavButton(
+            label: 'Health Debug',
+            onPressed: () => context.push('/debug/health'),
+          ),
+          _DebugNavButton(
+            label: 'Work Debug',
+            onPressed: () => context.push('/debug/work'),
+          ),
+          _DebugNavButton(
+            label: 'Education Debug',
+            onPressed: () => context.push('/debug/education'),
+          ),
+          _DebugNavButton(
+            label: 'Social Debug',
+            onPressed: () => context.push('/debug/social'),
+          ),
+        ],
+        if (hasSoul && !hasLife)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: kSpacing16),
+            child: Text(
+              'No life loaded. Use Soul Debug to edit soul characteristics.',
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
+            ),
+          ),
+        if (hasLife) _buildLifeContent(context, life!, debugController, theme),
+      ],
+    );
+  }
+
+  Widget _buildLifeContent(
+    BuildContext context,
     Life life,
     DebugController debugController,
     ThemeData theme,
   ) {
     final state = life.state;
-    return ListView(
-      padding: kPaddingAll16,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const DebugSectionHeader(title: 'Navigation'),
-        _DebugNavButton(
-          label: 'Health Debug',
-          onPressed: () => context.push('/debug/health'),
-        ),
-        _DebugNavButton(
-          label: 'Work Debug',
-          onPressed: () => context.push('/debug/work'),
-        ),
-        _DebugNavButton(
-          label: 'Education Debug',
-          onPressed: () => context.push('/debug/education'),
-        ),
-        _DebugNavButton(
-          label: 'Social Debug',
-          onPressed: () => context.push('/debug/social'),
-        ),
         const DebugSectionHeader(title: 'General'),
         DebugEditableValueTile(
           label: 'Money',
@@ -210,7 +255,7 @@ class MainDebugScreen extends ConsumerWidget {
     );
   }
 
-  String _skillLabel(SkillType type) {
+  static String _skillLabel(SkillType type) {
     switch (type) {
       case SkillType.intelligence:
         return 'Intelligence';
@@ -225,7 +270,7 @@ class MainDebugScreen extends ConsumerWidget {
     }
   }
 
-  String _hiddenMetricLabel(HiddenMetricType type) {
+  static String _hiddenMetricLabel(HiddenMetricType type) {
     switch (type) {
       case HiddenMetricType.loyalty:
         return 'Loyalty';

@@ -7,6 +7,8 @@ import 'package:alma/core/models/health/health_state.dart';
 import 'package:alma/core/models/hidden_metrics.dart';
 import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/section.dart';
+import 'package:alma/core/models/soul.dart';
+import 'package:alma/core/models/soul_subject.dart';
 import 'package:alma/core/models/skill.dart';
 import 'package:alma/core/models/social/relationship.dart';
 import 'package:alma/core/models/social/social_state.dart';
@@ -15,9 +17,11 @@ import 'package:alma/core/models/work/work_state.dart';
 import 'package:alma/core/models/enums/hidden_metric_type.dart';
 import 'package:alma/core/models/enums/section_type.dart';
 import 'package:alma/core/models/enums/skill_type.dart';
+import 'package:alma/core/models/enums/soul_subject_type.dart';
 import 'package:alma/app/constants/game_constants.dart';
 import 'package:alma/core/engine/event_engine.dart';
 import 'package:alma/providers/life/life_controller.dart';
+import 'package:alma/providers/soul/soul_controller.dart';
 import 'package:alma/core/engine/health_engine.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:alma/data/seed/seed_loader.dart';
@@ -26,17 +30,20 @@ import 'package:alma/providers/game/game_state_provider.dart';
 class DebugController {
   DebugController({
     required this.lifeController,
+    required this.soulController,
     required this.seedLoader,
     required this.healthEngine,
     required this.eventEngine,
   });
 
   final LifeController lifeController;
+  final SoulController soulController;
   final SeedLoader seedLoader;
   final HealthEngine healthEngine;
   final EventEngine eventEngine;
 
   Life? get currentLife => lifeController.debugCurrentLife;
+  Soul? get currentSoul => soulController.currentSoul;
 
   Future<List<ConditionDefinition>> getConditionDefinitions() async {
     if (healthEngine.isLoaded) {
@@ -322,11 +329,43 @@ class DebugController {
   Future<void> debugPerformAction(GameAction action, {String? workJobContext}) async {
     await lifeController.performAction(action, workJobContext: workJobContext);
   }
+
+  Future<void> debugSetRemainingLives(int value) async {
+    final Soul? soul = currentSoul;
+    if (soul == null) return;
+    final int clamped = value.clamp(0, kDefaultMaxLives);
+    await soulController.debugReplaceSoul(soul.copyWith(remainingLives: clamped));
+  }
+
+  Future<void> debugSetSubjectPassed(SoulSubjectType type, bool isPassed) async {
+    final Soul? soul = currentSoul;
+    if (soul == null) return;
+    final List<SoulSubject> newSubjects = soul.subjects.map((s) {
+      if (s.type == type) return s.copyWith(isPassed: isPassed);
+      return s;
+    }).toList();
+    await soulController.debugReplaceSoul(soul.copyWith(subjects: newSubjects));
+  }
+
+  Future<void> debugSetMetaStat(String key, int value) async {
+    final Soul? soul = currentSoul;
+    if (soul == null) return;
+    final Map<String, int> newMetaStats = Map<String, int>.from(soul.metaStats);
+    newMetaStats[key] = value;
+    await soulController.debugReplaceSoul(soul.copyWith(metaStats: newMetaStats));
+  }
+
+  Future<void> debugClearCurrentLife() async {
+    final Soul? soul = currentSoul;
+    if (soul == null) return;
+    await soulController.debugReplaceSoul(soul.copyWith(currentLifeId: null));
+  }
 }
 
 final debugControllerProvider = Provider<DebugController>((ref) {
   return DebugController(
     lifeController: ref.watch(lifeControllerProvider.notifier),
+    soulController: ref.watch(soulControllerProvider.notifier),
     seedLoader: ref.watch(seedLoaderProvider),
     healthEngine: ref.watch(healthEngineProvider),
     eventEngine: ref.watch(eventEngineProvider),

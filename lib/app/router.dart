@@ -19,6 +19,7 @@ import 'package:alma/ui/debug/health_debug_screen.dart';
 import 'package:alma/ui/debug/work_debug_screen.dart';
 import 'package:alma/ui/debug/education_debug_screen.dart';
 import 'package:alma/ui/debug/social_debug_screen.dart';
+import 'package:alma/ui/debug/soul_debug_screen.dart';
 
 final GoRouter appRouter = GoRouter(
   initialLocation: '/',
@@ -133,6 +134,12 @@ final GoRouter appRouter = GoRouter(
           path: 'social',
           pageBuilder: (BuildContext context, GoRouterState state) {
             return buildPageWithSwipeBack(state, const SocialDebugScreen());
+          },
+        ),
+        GoRoute(
+          path: 'soul',
+          pageBuilder: (BuildContext context, GoRouterState state) {
+            return buildPageWithSwipeBack(state, const SoulDebugScreen());
           },
         ),
       ],
