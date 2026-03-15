@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:alma/core/models/access_condition.dart';
-import 'package:alma/core/models/enums/health_action_type.dart';
+import 'package:alma/core/models/health/health_action_type.dart';
 
 part 'health_action.freezed.dart';
 part 'health_action.g.dart';

@@ -1,11 +1,11 @@
 import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/action.dart';
-import 'package:alma/core/models/relationship.dart';
-import 'package:alma/core/models/relationship_effects.dart';
-import 'package:alma/core/models/relationship_state.dart';
-import 'package:alma/core/models/relationship_type.dart';
-import 'package:alma/core/models/social_state.dart';
-import 'package:alma/core/models/social_country_config.dart';
+import 'package:alma/core/models/social/relationship.dart';
+import 'package:alma/core/models/social/relationship_effects.dart';
+import 'package:alma/core/models/social/relationship_state.dart';
+import 'package:alma/core/models/social/relationship_type.dart';
+import 'package:alma/core/models/social/social_state.dart';
+import 'package:alma/core/models/social/social_country_config.dart';
 import 'package:alma/core/models/npc.dart';
 import 'package:alma/core/models/access_condition.dart';
 import 'package:alma/core/models/skill.dart';

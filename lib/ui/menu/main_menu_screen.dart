@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:alma/app/constants/sizing.dart';
 import 'package:alma/app/theme/theme_data.dart';
 import 'package:alma/l10n/app_localizations.dart';
 
@@ -12,7 +13,9 @@ class MainMenuScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context)!;
     final themeExt = Theme.of(context).extension<AppThemeExtension>();
     final colorScheme = Theme.of(context).colorScheme;
-    final padding = themeExt?.screenPadding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
+    final padding =
+        themeExt?.screenPadding ??
+        const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
     final sectionGap = themeExt?.sectionGap ?? 28.0;
     return Scaffold(
       body: SafeArea(
@@ -22,25 +25,34 @@ class MainMenuScreen extends ConsumerWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                Image.asset(
+                  'assets/images/logo/alma_logo.png',
+                  width: kHomeLogoSize,
+                  height: kHomeLogoSize,
+                  fit: BoxFit.contain,
+                ),
+                SizedBox(height: sectionGap),
                 Text(
                   l10n.appTitle,
-                  style: themeExt?.narrativeHeadlineLarge.copyWith(
+                  style:
+                      themeExt?.narrativeHeadlineLarge.copyWith(
                         fontWeight: FontWeight.w600,
                       ) ??
                       Theme.of(context).textTheme.headlineLarge?.copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: colorScheme.onSurface,
-                          ),
+                        fontWeight: FontWeight.w600,
+                        color: colorScheme.onSurface,
+                      ),
                 ),
                 SizedBox(height: sectionGap * 0.5),
                 Text(
                   'A Soul\'s Journey',
-                  style: themeExt?.narrativeTitleMedium.copyWith(
+                  style:
+                      themeExt?.narrativeTitleMedium.copyWith(
                         color: themeExt.mutedColor,
                       ) ??
                       Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: colorScheme.onSurfaceVariant,
-                          ),
+                        color: colorScheme.onSurfaceVariant,
+                      ),
                 ),
                 SizedBox(height: sectionGap * 1.5),
                 _MenuButton(
@@ -72,10 +84,7 @@ class MainMenuScreen extends ConsumerWidget {
 }
 
 class _MenuButton extends StatelessWidget {
-  const _MenuButton({
-    required this.label,
-    required this.onPressed,
-  });
+  const _MenuButton({required this.label, required this.onPressed});
 
   final String label;
   final VoidCallback onPressed;

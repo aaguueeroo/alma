@@ -1,7 +1,7 @@
 import 'package:alma/core/models/enums/soul_subject_type.dart';
 import 'package:alma/core/models/enums/hidden_metric_type.dart';
 import 'package:alma/core/models/enums/trait_type.dart';
-import 'package:alma/core/models/enums/habit_type.dart';
+import 'package:alma/core/models/habit/habit_type.dart';
 import 'package:alma/core/models/hidden_metrics.dart';
 import 'package:alma/core/models/life.dart';
 import 'package:alma/app/constants/game_constants.dart';

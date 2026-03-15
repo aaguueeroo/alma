@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:alma/core/models/life.dart';
-import 'package:alma/core/models/health_action.dart';
-import 'package:alma/core/models/health_state.dart';
+import 'package:alma/core/models/health/health_action.dart';
+import 'package:alma/core/models/health/health_state.dart';
 import 'package:alma/core/models/game_log.dart';
 import 'package:alma/core/models/enums/log_category.dart';
 import 'package:alma/app/constants/spacing.dart';

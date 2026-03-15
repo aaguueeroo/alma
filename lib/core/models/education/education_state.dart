@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:alma/core/models/enrollment.dart';
-import 'package:alma/core/models/education_record.dart';
-import 'package:alma/core/models/education_prompt.dart';
+import 'package:alma/core/models/education/enrollment.dart';
+import 'package:alma/core/models/education/education_record.dart';
+import 'package:alma/core/models/education/education_prompt.dart';
 
 part 'education_state.freezed.dart';
 part 'education_state.g.dart';

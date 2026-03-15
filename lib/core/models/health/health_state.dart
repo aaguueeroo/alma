@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:alma/core/models/condition.dart';
-import 'package:alma/core/models/health_predisposition.dart';
-import 'package:alma/core/models/symptom.dart';
+import 'package:alma/core/models/health/condition.dart';
+import 'package:alma/core/models/health/health_predisposition.dart';
+import 'package:alma/core/models/health/symptom.dart';
 
 part 'health_state.freezed.dart';
 part 'health_state.g.dart';

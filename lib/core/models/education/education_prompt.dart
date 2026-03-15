@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:alma/core/models/education_program.dart';
+import 'package:alma/core/models/education/education_program.dart';
 
 part 'education_prompt.freezed.dart';
 part 'education_prompt.g.dart';

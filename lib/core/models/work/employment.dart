@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:alma/core/models/enums/job_type.dart';
+import 'package:alma/core/models/work/job_type.dart';
 
 part 'employment.freezed.dart';
 part 'employment.g.dart';

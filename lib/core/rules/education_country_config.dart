@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:alma/core/models/enums/education_level.dart';
+import 'package:alma/core/models/education/education_level.dart';
 
 part 'education_country_config.freezed.dart';
 part 'education_country_config.g.dart';

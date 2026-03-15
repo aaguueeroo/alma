@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:alma/core/models/health_action.dart';
+import 'package:alma/core/models/health/health_action.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/app/constants/sizing.dart';
 import 'package:alma/app/theme/app_colors.dart';

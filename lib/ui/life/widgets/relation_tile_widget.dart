@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:alma/core/models/relationship.dart';
+import 'package:alma/core/models/social/relationship.dart';
 import 'package:alma/core/models/enums/gender.dart';
 import 'package:alma/core/models/enums/npc_role.dart';
 import 'package:alma/app/constants/spacing.dart';

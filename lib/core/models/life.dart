@@ -1,15 +1,15 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:alma/core/models/skill.dart';
 import 'package:alma/core/models/hidden_metrics.dart';
-import 'package:alma/core/models/habit.dart';
-import 'package:alma/core/models/relationship.dart';
+import 'package:alma/core/models/habit/habit.dart';
+import 'package:alma/core/models/social/relationship.dart';
 import 'package:alma/core/models/section.dart';
 import 'package:alma/core/models/event.dart';
 import 'package:alma/core/models/moral_impact.dart';
-import 'package:alma/core/models/education_state.dart';
-import 'package:alma/core/models/work_state.dart';
-import 'package:alma/core/models/social_state.dart';
-import 'package:alma/core/models/health_state.dart';
+import 'package:alma/core/models/education/education_state.dart';
+import 'package:alma/core/models/work/work_state.dart';
+import 'package:alma/core/models/social/social_state.dart';
+import 'package:alma/core/models/health/health_state.dart';
 import 'package:alma/core/models/game_log.dart';
 import 'package:alma/core/models/enums/trait_type.dart';
 

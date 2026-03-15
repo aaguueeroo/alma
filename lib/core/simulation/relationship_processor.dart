@@ -1,8 +1,8 @@
 import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/action.dart';
-import 'package:alma/core/models/relationship.dart';
-import 'package:alma/core/models/relationship_effects.dart';
-import 'package:alma/core/models/relationship_state.dart';
+import 'package:alma/core/models/social/relationship.dart';
+import 'package:alma/core/models/social/relationship_effects.dart';
+import 'package:alma/core/models/social/relationship_state.dart';
 import 'package:alma/core/models/enums/npc_role.dart';
 import 'package:alma/core/models/enums/trait_type.dart';
 import 'package:alma/core/engine/seeded_random.dart';

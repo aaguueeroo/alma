@@ -1,5 +1,5 @@
 import 'package:alma/core/models/npc.dart';
-import 'package:alma/core/models/relationship.dart';
+import 'package:alma/core/models/social/relationship.dart';
 
 /// Placeholder format in stored messages: {npc:ID}, {npc:ID:subject}, {npc:ID:possessive}.
 /// When displaying: if ID == contextNpcId use pronoun form (them/they/their), else use alias ?? name.

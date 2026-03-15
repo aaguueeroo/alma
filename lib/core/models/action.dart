@@ -2,10 +2,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:alma/core/models/enums/action_category.dart';
 import 'package:alma/core/models/enums/skill_type.dart';
 import 'package:alma/core/models/enums/hidden_metric_type.dart';
-import 'package:alma/core/models/enums/habit_type.dart';
+import 'package:alma/core/models/habit/habit_type.dart';
 import 'package:alma/core/models/moral_impact.dart';
 import 'package:alma/core/models/access_condition.dart';
-import 'package:alma/core/models/relationship_effects.dart';
+import 'package:alma/core/models/social/relationship_effects.dart';
 
 part 'action.freezed.dart';
 part 'action.g.dart';

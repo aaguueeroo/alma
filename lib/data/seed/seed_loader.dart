@@ -3,18 +3,18 @@ import 'package:flutter/services.dart';
 import 'package:alma/core/models/event.dart';
 import 'package:alma/core/models/action.dart';
 import 'package:alma/core/models/life_template.dart';
-import 'package:alma/core/models/achievement.dart';
-import 'package:alma/core/models/education_program.dart';
-import 'package:alma/core/models/job.dart';
+import 'package:alma/core/models/achievement/achievement.dart';
+import 'package:alma/core/models/education/education_program.dart';
+import 'package:alma/core/models/work/job.dart';
 import 'package:alma/core/models/life_maintenance_item.dart';
-import 'package:alma/core/models/relationship_type.dart';
+import 'package:alma/core/models/social/relationship_type.dart';
 import 'package:alma/core/models/name_repository.dart';
-import 'package:alma/core/models/social_country_config.dart';
+import 'package:alma/core/models/social/social_country_config.dart';
 import 'package:alma/core/rules/education_country_config.dart';
 import 'package:alma/core/rules/work_country_config.dart';
-import 'package:alma/core/models/condition_definition.dart';
-import 'package:alma/core/models/health_action.dart';
-import 'package:alma/core/models/symptom.dart';
+import 'package:alma/core/models/health/condition_definition.dart';
+import 'package:alma/core/models/health/health_action.dart';
+import 'package:alma/core/models/health/symptom.dart';
 
 class SeedLoader {
   List<GameEvent>? _cachedEvents;

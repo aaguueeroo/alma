@@ -1,7 +1,7 @@
 import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/action.dart';
-import 'package:alma/core/models/habit.dart';
-import 'package:alma/core/models/enums/habit_type.dart';
+import 'package:alma/core/models/habit/habit.dart';
+import 'package:alma/core/models/habit/habit_type.dart';
 import 'package:alma/app/constants/game_constants.dart';
 
 class HabitRules {

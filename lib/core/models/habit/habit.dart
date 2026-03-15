@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:alma/core/models/enums/habit_type.dart';
+import 'package:alma/core/models/habit/habit_type.dart';
 
 part 'habit.freezed.dart';
 part 'habit.g.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:alma/core/models/job.dart';
-import 'package:alma/core/models/enums/job_type.dart';
+import 'package:alma/core/models/work/job.dart';
+import 'package:alma/core/models/work/job_type.dart';
 import 'package:alma/core/engine/time_commitment.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/app/constants/sizing.dart';

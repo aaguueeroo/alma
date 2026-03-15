@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:alma/core/models/game_log.dart';
-import 'package:alma/core/models/relationship.dart';
+import 'package:alma/core/models/social/relationship.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/app/constants/sizing.dart';
 import 'package:alma/app/utils/log_message_resolver.dart';
@@ -14,6 +14,7 @@ class LogListWidget extends StatelessWidget {
     this.logs = const [],
     this.relationships,
     this.contextNpcId,
+    this.showTitle = true,
   });
 
   final String title;
@@ -22,6 +23,7 @@ class LogListWidget extends StatelessWidget {
   final List<String> logs;
   final List<Relationship>? relationships;
   final String? contextNpcId;
+  final bool showTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -30,19 +32,25 @@ class LogListWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: Theme.of(
-            context,
-          ).textTheme.titleSmall?.copyWith(color: colors.onSurfaceVariant),
-        ),
-        kVerticalGap12,
+        if (showTitle && title.isNotEmpty) ...[
+          Text(
+            title,
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  color: colors.onSurfaceVariant,
+                ),
+          ),
+          kVerticalGap12,
+        ],
         if (isEmpty)
           _EmptyLogMessage(message: emptyMessage)
         else ...[
           ...gameLogs.map((GameLog log) {
             final String displayMessage = relationships != null
-                ? resolveLogMessage(log.message, relationships!, contextNpcId)
+                ? resolveLogMessage(
+                    log.message,
+                    relationships!,
+                    contextNpcId,
+                  )
                 : log.message;
             return _GameLogEntry(log: log, displayMessage: displayMessage);
           }),
@@ -72,9 +80,9 @@ class _EmptyLogMessage extends StatelessWidget {
         message,
         textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-          color: colors.onSurfaceVariant,
-          fontStyle: FontStyle.italic,
-        ),
+              color: colors.onSurfaceVariant,
+              fontStyle: FontStyle.italic,
+            ),
       ),
     );
   }
@@ -110,15 +118,15 @@ class _GameLogEntry extends StatelessWidget {
                   TextSpan(
                     text: '[${log.age}] ',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: colors.primary,
-                      fontWeight: FontWeight.w600,
-                    ),
+                          color: colors.primary,
+                          fontWeight: FontWeight.w600,
+                        ),
                   ),
                   TextSpan(
                     text: displayMessage,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: colors.onSurfaceVariant,
-                    ),
+                          color: colors.onSurfaceVariant,
+                        ),
                   ),
                 ],
               ),
@@ -155,9 +163,9 @@ class _LogEntry extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: colors.onSurfaceVariant),
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: colors.onSurfaceVariant,
+                  ),
             ),
           ),
         ],

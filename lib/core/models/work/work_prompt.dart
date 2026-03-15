@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:alma/core/models/enums/work_prompt_type.dart';
-import 'package:alma/core/models/job.dart';
+import 'package:alma/core/models/work/work_prompt_type.dart';
+import 'package:alma/core/models/work/job.dart';
 
 part 'work_prompt.freezed.dart';
 part 'work_prompt.g.dart';

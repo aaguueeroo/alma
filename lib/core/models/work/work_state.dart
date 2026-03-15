@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:alma/core/models/action.dart';
-import 'package:alma/core/models/employment.dart';
-import 'package:alma/core/models/work_record.dart';
-import 'package:alma/core/models/work_prompt.dart';
+import 'package:alma/core/models/work/employment.dart';
+import 'package:alma/core/models/work/work_record.dart';
+import 'package:alma/core/models/work/work_prompt.dart';
 
 part 'work_state.freezed.dart';
 part 'work_state.g.dart';

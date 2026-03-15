@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:alma/core/models/education_prompt.dart';
-import 'package:alma/core/models/education_program.dart';
-import 'package:alma/core/models/enums/education_level.dart';
+import 'package:alma/core/models/education/education_prompt.dart';
+import 'package:alma/core/models/education/education_program.dart';
+import 'package:alma/core/models/education/education_level.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/app/constants/sizing.dart';
 import 'package:alma/l10n/app_localizations.dart';

@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
 import 'package:alma/data/database/app_database.dart';
-import 'package:alma/core/models/achievement.dart';
+import 'package:alma/core/models/achievement/achievement.dart';
 
 class AchievementRepository {
   AchievementRepository({required this.database});

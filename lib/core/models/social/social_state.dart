@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:alma/core/models/relationship.dart';
-import 'package:alma/core/models/social_prompt.dart';
+import 'package:alma/core/models/social/relationship.dart';
+import 'package:alma/core/models/social/social_prompt.dart';
 
 part 'social_state.freezed.dart';
 part 'social_state.g.dart';

@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/app/theme/theme_data.dart';
-import 'package:alma/core/models/achievement.dart';
+import 'package:alma/core/models/achievement/achievement.dart';
 import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/providers/achievement/achievement_controller.dart';
 import 'package:alma/ui/shared/back_button_leading.dart';

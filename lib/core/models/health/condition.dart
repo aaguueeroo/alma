@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:alma/core/models/enums/condition_type.dart';
+import 'package:alma/core/models/health/condition_type.dart';
 
 part 'condition.freezed.dart';
 part 'condition.g.dart';

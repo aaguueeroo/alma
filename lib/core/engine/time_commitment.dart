@@ -1,10 +1,10 @@
 import 'package:alma/core/models/life.dart';
-import 'package:alma/core/models/work_state.dart';
-import 'package:alma/core/models/employment.dart';
-import 'package:alma/core/models/education_state.dart';
-import 'package:alma/core/models/job.dart';
+import 'package:alma/core/models/work/work_state.dart';
+import 'package:alma/core/models/work/employment.dart';
+import 'package:alma/core/models/education/education_state.dart';
+import 'package:alma/core/models/work/job.dart';
 import 'package:alma/core/models/life_maintenance_item.dart';
-import 'package:alma/core/models/enums/job_type.dart';
+import 'package:alma/core/models/work/job_type.dart';
 import 'package:alma/app/constants/time_constants.dart';
 
 /// Commitment days per year for full-time education (40 h/week).

@@ -1,9 +1,9 @@
 import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/action.dart';
-import 'package:alma/core/models/health_state.dart';
+import 'package:alma/core/models/health/health_state.dart';
 import 'package:alma/core/models/event.dart';
-import 'package:alma/core/models/employment.dart';
-import 'package:alma/core/models/work_state.dart';
+import 'package:alma/core/models/work/employment.dart';
+import 'package:alma/core/models/work/work_state.dart';
 import 'package:alma/core/models/skill.dart';
 import 'package:alma/core/models/hidden_metrics.dart';
 import 'package:alma/core/models/moral_impact.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:alma/core/models/action.dart';
 import 'package:alma/core/models/game_log.dart';
-import 'package:alma/core/models/relationship.dart';
+import 'package:alma/core/models/social/relationship.dart';
 import 'package:alma/core/models/enums/log_category.dart';
 import 'package:alma/core/models/enums/npc_role.dart';
 import 'package:alma/app/constants/spacing.dart';

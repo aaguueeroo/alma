@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:alma/core/models/enums/job_type.dart';
-import 'package:alma/core/models/enums/education_level.dart';
-import 'package:alma/core/models/job_level.dart';
+import 'package:alma/core/models/work/job_type.dart';
+import 'package:alma/core/models/education/education_level.dart';
+import 'package:alma/core/models/work/job_level.dart';
 import 'package:alma/core/models/access_condition.dart';
 
 part 'job.freezed.dart';

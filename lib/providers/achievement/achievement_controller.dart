@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/legacy.dart';
-import 'package:alma/core/models/achievement.dart';
+import 'package:alma/core/models/achievement/achievement.dart';
 import 'package:alma/core/models/soul.dart';
 import 'package:alma/core/models/life.dart';
 import 'package:alma/data/repositories/achievement_repository.dart';

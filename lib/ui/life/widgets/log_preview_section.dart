@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:alma/core/models/game_log.dart';
-import 'package:alma/core/models/relationship.dart';
+import 'package:alma/core/models/social/relationship.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/app/constants/sizing.dart';
 import 'package:alma/ui/life/widgets/log_list_widget.dart';

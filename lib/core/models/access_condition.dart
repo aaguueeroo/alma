@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:alma/core/models/enums/education_level.dart';
+import 'package:alma/core/models/education/education_level.dart';
 import 'package:alma/core/models/enums/skill_type.dart';
 
 part 'access_condition.freezed.dart';

@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:alma/core/models/npc.dart';
-import 'package:alma/core/models/relationship_state.dart';
+import 'package:alma/core/models/social/relationship_state.dart';
 import 'package:alma/app/constants/game_constants.dart';
 
 part 'relationship.freezed.dart';
