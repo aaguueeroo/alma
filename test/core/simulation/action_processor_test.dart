@@ -83,7 +83,10 @@ void main() {
         skillEffects: const {SkillType.intelligence: 5},
       );
       final result = processor.performAction(state, action, rng);
-      expect(result.skills.intelligence, greaterThan(state.skills.intelligence));
+      expect(
+        result.skills.intelligence,
+        greaterThan(state.skills.intelligence),
+      );
     });
 
     test('performAction applies hidden metric changes', () {

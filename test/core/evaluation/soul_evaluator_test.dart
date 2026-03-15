@@ -56,21 +56,29 @@ void main() {
   }
 
   group('SoulEvaluator', () {
-    test('generateLifeSummary produces summary with lifeData and moralImpactSummary', () {
-      final state = createTestLifeState(
-        hiddenMetrics: const HiddenMetrics(compassion: 50.0, courage: 30.0),
-      );
-      final summary = evaluator.generateLifeSummary(state);
-      expect(summary.ageAtDeath, 70);
-      expect(summary.causeOfDeath, 'Old age');
-      expect(summary.subjectContributions, isNotEmpty);
-      expect(summary.lifeData['compassion'], 50.0);
-      expect(summary.lifeData['courage'], 30.0);
-      expect(summary.lifeData['age'], 70);
-      expect(summary.moralImpactSummary, isNotNull);
-      expect(summary.moralImpactSummary!.diversityScore, 0.0);
-      expect(summary.moralImpactSummary!.totalImpactFor(SoulSubjectType.compassion), 0.0);
-    });
+    test(
+      'generateLifeSummary produces summary with lifeData and moralImpactSummary',
+      () {
+        final state = createTestLifeState(
+          hiddenMetrics: const HiddenMetrics(compassion: 50.0, courage: 30.0),
+        );
+        final summary = evaluator.generateLifeSummary(state);
+        expect(summary.ageAtDeath, 70);
+        expect(summary.causeOfDeath, 'Old age');
+        expect(summary.subjectContributions, isNotEmpty);
+        expect(summary.lifeData['compassion'], 50.0);
+        expect(summary.lifeData['courage'], 30.0);
+        expect(summary.lifeData['age'], 70);
+        expect(summary.moralImpactSummary, isNotNull);
+        expect(summary.moralImpactSummary!.diversityScore, 0.0);
+        expect(
+          summary.moralImpactSummary!.totalImpactFor(
+            SoulSubjectType.compassion,
+          ),
+          0.0,
+        );
+      },
+    );
 
     test('compassion score increases with compassion metric', () {
       final stateHigh = createTestLifeState(
@@ -165,25 +173,28 @@ void main() {
       expect(compassionSubject.isPassed, isTrue);
     });
 
-    test('subject stays not passed when weighted impact rule does not match', () {
-      final soul = createTestSoul();
-      final state = createTestLifeState(
-        moralImpacts: <MoralImpact>[
-          MoralImpact(
-            axis: SoulSubjectType.compassion,
-            weight: 0.5,
-            contextMultiplier: 1.0,
-            year: 1,
-            wasDifficult: false,
-          ),
-        ],
-      );
-      final summary = evaluator.generateLifeSummary(state);
-      final updatedSoul = evaluator.applySoulProgress(soul, summary);
-      final compassionSubject = updatedSoul.subjects.firstWhere(
-        (s) => s.type == SoulSubjectType.compassion,
-      );
-      expect(compassionSubject.isPassed, isFalse);
-    });
+    test(
+      'subject stays not passed when weighted impact rule does not match',
+      () {
+        final soul = createTestSoul();
+        final state = createTestLifeState(
+          moralImpacts: <MoralImpact>[
+            MoralImpact(
+              axis: SoulSubjectType.compassion,
+              weight: 0.5,
+              contextMultiplier: 1.0,
+              year: 1,
+              wasDifficult: false,
+            ),
+          ],
+        );
+        final summary = evaluator.generateLifeSummary(state);
+        final updatedSoul = evaluator.applySoulProgress(soul, summary);
+        final compassionSubject = updatedSoul.subjects.firstWhere(
+          (s) => s.type == SoulSubjectType.compassion,
+        );
+        expect(compassionSubject.isPassed, isFalse);
+      },
+    );
   });
 }

@@ -13,9 +13,7 @@ import 'package:alma/app/constants/game_constants.dart';
 import 'package:alma/app/constants/log_narratives.dart';
 
 class EventEngine {
-  EventEngine({
-    required this.probabilityEngine,
-  });
+  EventEngine({required this.probabilityEngine});
 
   final ProbabilityEngine probabilityEngine;
   List<GameEvent> _events = [];
@@ -75,10 +73,7 @@ class EventEngine {
     LifeState newState = state.copyWith(
       pendingEvent: null,
       eventsTriggeredThisYear: state.eventsTriggeredThisYear + 1,
-      eventIdsTriggeredThisYear: [
-        ...state.eventIdsTriggeredThisYear,
-        event.id,
-      ],
+      eventIdsTriggeredThisYear: [...state.eventIdsTriggeredThisYear, event.id],
     );
     newState = _applySkillChanges(newState, consequences);
     newState = _applyHiddenMetricChanges(newState, consequences);
@@ -101,8 +96,9 @@ class EventEngine {
     }
     final String logMessage =
         choice.logMessage ?? '${event.title}: ${choice.description}';
-    final LogCategory logCategory =
-        _healthEventIds.contains(event.id) ? LogCategory.health : LogCategory.event;
+    final LogCategory logCategory = _healthEventIds.contains(event.id)
+        ? LogCategory.health
+        : LogCategory.event;
     newState = GameLogger.addLog(
       newState,
       message: logMessage,
@@ -150,9 +146,8 @@ class EventEngine {
       }
       if (conditions.requiredJobIds != null &&
           conditions.requiredJobIds!.isNotEmpty) {
-        final jobIds = state.workState?.currentEmployments
-                .map((e) => e.jobId)
-                .toList() ??
+        final jobIds =
+            state.workState?.currentEmployments.map((e) => e.jobId).toList() ??
             [];
         if (!jobIds.any((id) => conditions.requiredJobIds!.contains(id))) {
           return false;
@@ -182,7 +177,10 @@ class EventEngine {
     }).toList();
   }
 
-  LifeState _applySkillChanges(LifeState state, EventConsequences consequences) {
+  LifeState _applySkillChanges(
+    LifeState state,
+    EventConsequences consequences,
+  ) {
     var skills = state.skills;
     for (final entry in consequences.skillChanges.entries) {
       skills = skills.withChange(entry.key, entry.value);
@@ -201,13 +199,21 @@ class EventEngine {
     return state.copyWith(hiddenMetrics: metrics);
   }
 
-  LifeState _applyHealthChange(LifeState state, EventConsequences consequences) {
+  LifeState _applyHealthChange(
+    LifeState state,
+    EventConsequences consequences,
+  ) {
     if (consequences.healthChange == 0) return state;
-    final int newHealth = (state.health + consequences.healthChange)
-        .clamp(kMinHealthValue, kMaxHealthValue);
+    final int newHealth = (state.health + consequences.healthChange).clamp(
+      kMinHealthValue,
+      kMaxHealthValue,
+    );
     LifeState newState = state.copyWith(health: newHealth);
     if (newHealth <= 0) {
-      newState = newState.copyWith(isDead: true, causeOfDeath: 'Health reached zero');
+      newState = newState.copyWith(
+        isDead: true,
+        causeOfDeath: 'Health reached zero',
+      );
     }
     return newState;
   }
@@ -258,8 +264,6 @@ class EventEngine {
     final List<MoralImpact> newImpacts = consequences.moralImpactTemplates
         .map((t) => t.toImpact(state.currentYear))
         .toList();
-    return state.copyWith(
-      moralImpacts: [...state.moralImpacts, ...newImpacts],
-    );
+    return state.copyWith(moralImpacts: [...state.moralImpacts, ...newImpacts]);
   }
 }

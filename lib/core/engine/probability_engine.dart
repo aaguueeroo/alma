@@ -4,10 +4,7 @@ import 'package:alma/core/models/enums/trait_type.dart';
 import 'package:alma/core/engine/seeded_random.dart';
 
 class ProbabilityEngine {
-  double calculateEventProbability(
-    GameEvent event,
-    LifeState state,
-  ) {
+  double calculateEventProbability(GameEvent event, LifeState state) {
     double probability = event.triggerConditions.baseChance;
     probability *= _traitModifier(event.triggerConditions, state);
     probability *= _healthModifier(state);
@@ -15,11 +12,7 @@ class ProbabilityEngine {
     return probability.clamp(0.0, 1.0);
   }
 
-  bool rollEvent(
-    GameEvent event,
-    LifeState state,
-    SeededRandom rng,
-  ) {
+  bool rollEvent(GameEvent event, LifeState state, SeededRandom rng) {
     final double probability = calculateEventProbability(event, state);
     return rng.chance(probability);
   }

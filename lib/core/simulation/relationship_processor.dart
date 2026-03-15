@@ -16,7 +16,11 @@ class RelationshipProcessor {
 
   static const int _kFamilyAttractionValue = -100;
 
-  LifeState processAction(LifeState state, GameAction action, SeededRandom rng) {
+  LifeState processAction(
+    LifeState state,
+    GameAction action,
+    SeededRandom rng,
+  ) {
     if (action.targetNpcId == null) return state;
 
     final List<Relationship> socialRels =
@@ -47,11 +51,14 @@ class RelationshipProcessor {
   }
 
   LifeState applyYearlyDecay(LifeState state) {
-    final List<Relationship> relationships =
-        state.relationships.map((Relationship rel) {
+    final List<Relationship> relationships = state.relationships.map((
+      Relationship rel,
+    ) {
       final int decay = _getDecayRate(rel.npc.role);
-      final int newValue = (rel.value - decay)
-          .clamp(kMinRelationshipValue, kMaxRelationshipValue);
+      final int newValue = (rel.value - decay).clamp(
+        kMinRelationshipValue,
+        kMaxRelationshipValue,
+      );
       final RelationshipState newMetrics = rel.metrics.withChange(
         affectionDelta: -decay,
         trustDelta: -(decay ~/ 2),
@@ -71,13 +78,11 @@ class RelationshipProcessor {
     delta += _compatibilityBonus(rel, state);
 
     final RelationshipEffects eff = action.relationshipEffects;
-    final bool attractionAllowed = socialEngine
-            ?.getSubtype(rel.displayTypeId)
-            ?.attractionAllowed ??
-        true;
-    final int attractionDelta =
-        attractionAllowed ? eff.attraction : 0;
-    final bool hasSocialMetrics = eff.affection != 0 ||
+    final bool attractionAllowed =
+        socialEngine?.getSubtype(rel.displayTypeId)?.attractionAllowed ?? true;
+    final int attractionDelta = attractionAllowed ? eff.attraction : 0;
+    final bool hasSocialMetrics =
+        eff.affection != 0 ||
         eff.trust != 0 ||
         eff.respect != 0 ||
         attractionDelta != 0 ||
@@ -92,14 +97,17 @@ class RelationshipProcessor {
         attractionDelta: attractionDelta,
         conflictDelta: eff.conflict,
       );
-      if (!attractionAllowed && newMetrics.attraction != _kFamilyAttractionValue) {
+      if (!attractionAllowed &&
+          newMetrics.attraction != _kFamilyAttractionValue) {
         newMetrics = newMetrics.copyWith(attraction: _kFamilyAttractionValue);
       }
       delta = ((eff.affection + eff.trust + eff.respect) ~/ 3);
     }
 
-    final int newValue = (rel.value + delta)
-        .clamp(kMinRelationshipValue, kMaxRelationshipValue);
+    final int newValue = (rel.value + delta).clamp(
+      kMinRelationshipValue,
+      kMaxRelationshipValue,
+    );
     int discoveredCount = rel.discoveredTraitCount;
     if (discoveredCount < rel.npc.hiddenTraits.length && rng.chance(0.2)) {
       discoveredCount++;

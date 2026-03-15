@@ -1,6 +1,1 @@
-enum SectionType {
-  education,
-  work,
-  health,
-  social,
-}
+enum SectionType { education, work, health, social }

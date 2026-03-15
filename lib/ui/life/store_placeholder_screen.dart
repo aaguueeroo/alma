@@ -23,9 +23,9 @@ class StorePlaceholderScreen extends StatelessWidget {
           child: Text(
             l10n.notImplementedYet,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: colors.onSurfaceVariant,
-                  fontStyle: FontStyle.italic,
-                ),
+              color: colors.onSurfaceVariant,
+              fontStyle: FontStyle.italic,
+            ),
             textAlign: TextAlign.center,
           ),
         ),

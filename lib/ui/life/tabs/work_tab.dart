@@ -45,8 +45,10 @@ class WorkTab extends StatelessWidget {
     final String subtitle = employments.isEmpty
         ? l10n.unemployed
         : employments.map((Employment e) => e.jobName).join(', ');
-    final int totalSalary =
-        employments.fold(0, (int sum, Employment e) => sum + e.salary);
+    final int totalSalary = employments.fold(
+      0,
+      (int sum, Employment e) => sum + e.salary,
+    );
     return SingleChildScrollView(
       padding: kPaddingScreen,
       child: Column(
@@ -62,16 +64,16 @@ class WorkTab extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(kSpacing12),
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.errorContainer.withValues(
-                      alpha: 0.3,
-                    ),
+                color: Theme.of(
+                  context,
+                ).colorScheme.errorContainer.withValues(alpha: 0.3),
                 borderRadius: BorderRadius.circular(kBorderRadiusSmall),
               ),
               child: Text(
                 l10n.healthBlocksWork,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurface,
-                    ),
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
               ),
             ),
             kVerticalGap16,
@@ -81,8 +83,9 @@ class WorkTab extends StatelessWidget {
               final List<GameAction> jobActions =
                   actionsByJobId[employment.jobId] ?? [];
               final List<GameAction> performedThisYear =
-                  workState?.performedActionsByJobIdThisYear[employment.jobId] ??
-                      [];
+                  workState?.performedActionsByJobIdThisYear[employment
+                      .jobId] ??
+                  [];
               return _EmploymentCard(
                 employment: employment,
                 jobActions: jobActions,
@@ -118,10 +121,12 @@ class WorkTab extends StatelessWidget {
             title: l10n.eventLog,
             emptyMessage: l10n.noWorkEvents,
             gameLogs: state.logs
-                .where((GameLog log) =>
-                    log.category == LogCategory.work ||
-                    (log.category == LogCategory.social &&
-                        log.tags.contains('show_in_work')))
+                .where(
+                  (GameLog log) =>
+                      log.category == LogCategory.work ||
+                      (log.category == LogCategory.social &&
+                          log.tags.contains('show_in_work')),
+                )
                 .toList()
                 .reversed
                 .toList(),
@@ -139,20 +144,23 @@ class WorkTab extends StatelessWidget {
     if (workState == null) return [];
     final List<String> currentJobLogs = workState.currentEmployments
         .where((Employment e) => e.type != JobType.casual)
-        .map((Employment e) =>
-            '${e.jobName} - ${l10n.workRecordCurrent} (${l10n.workYearsLabel(e.startAge, currentAge)})')
+        .map(
+          (Employment e) =>
+              '${e.jobName} - ${l10n.workRecordCurrent} (${l10n.workYearsLabel(e.startAge, currentAge)})',
+        )
         .toList();
     final List<String> historyLogs = workState.history
         .where((WorkRecord record) => record.type != JobType.casual)
         .map((WorkRecord record) {
-      final String reason = switch (record.quitReason) {
-        'quit' => l10n.workRecordQuit,
-        'fired' => l10n.workRecordFired,
-        'casual_completed' => l10n.workRecordCasualCompleted,
-        _ => record.quitReason,
-      };
-      return '${record.jobName} - $reason (${l10n.workYearsLabel(record.startAge, record.endAge)})';
-    }).toList();
+          final String reason = switch (record.quitReason) {
+            'quit' => l10n.workRecordQuit,
+            'fired' => l10n.workRecordFired,
+            'casual_completed' => l10n.workRecordCasualCompleted,
+            _ => record.quitReason,
+          };
+          return '${record.jobName} - $reason (${l10n.workYearsLabel(record.startAge, record.endAge)})';
+        })
+        .toList();
     return [...currentJobLogs, ...historyLogs];
   }
 
@@ -170,9 +178,9 @@ class WorkTab extends StatelessWidget {
         content: jobActions.isEmpty
             ? Text(
                 l10n.noCurrentJob,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontStyle: FontStyle.italic,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(fontStyle: FontStyle.italic),
               )
             : SingleChildScrollView(
                 child: Column(
@@ -251,8 +259,9 @@ class _EmploymentCard extends StatelessWidget {
                       vertical: kSpacing4,
                     ),
                     decoration: BoxDecoration(
-                      color:
-                          Theme.of(context).colorScheme.surfaceContainerHighest,
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.surfaceContainerHighest,
                       borderRadius: BorderRadius.circular(kBorderRadiusSmall),
                     ),
                     child: Text(
@@ -266,14 +275,17 @@ class _EmploymentCard extends StatelessWidget {
               Text(
                 '${l10n.jobLevel(employment.currentLevel)} • ${l10n.jobSalary(employment.salary)}',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    ),
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
               ),
               kVerticalGap12,
               StatBarWidget(
                 label: l10n.effort,
-                value: (employment.performance + workPerformancePenalty)
-                    .clamp(0, 100) /
+                value:
+                    (employment.performance + workPerformancePenalty).clamp(
+                      0,
+                      100,
+                    ) /
                     100,
               ),
               if (performedThisYear.isNotEmpty) ...[
@@ -281,8 +293,8 @@ class _EmploymentCard extends StatelessWidget {
                 Text(
                   l10n.actionsThisYear,
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurfaceVariant,
-                      ),
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
                 ),
                 kVerticalGap4,
                 ...performedThisYear.map(
@@ -320,8 +332,9 @@ class _EmploymentCard extends StatelessWidget {
                   children: [
                     Expanded(
                       child: OutlinedButton(
-                        onPressed:
-                            isWorkBlockedByHealth ? null : onPromotionTap,
+                        onPressed: isWorkBlockedByHealth
+                            ? null
+                            : onPromotionTap,
                         child: Text(l10n.askPromotion),
                       ),
                     ),
@@ -367,10 +380,7 @@ class _WorkActionButtonsRow extends StatelessWidget {
 }
 
 class _WorkActionTile extends StatelessWidget {
-  const _WorkActionTile({
-    required this.action,
-    required this.onTap,
-  });
+  const _WorkActionTile({required this.action, required this.onTap});
 
   final GameAction action;
   final VoidCallback onTap;

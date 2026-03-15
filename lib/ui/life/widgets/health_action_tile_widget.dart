@@ -38,10 +38,9 @@ class HealthActionTileWidget extends StatelessWidget {
                   Icons.favorite,
                   color: isEnabled
                       ? AppColors.healthGreen
-                      : Theme.of(context)
-                          .colorScheme
-                          .onSurface
-                          .withValues(alpha: 0.38),
+                      : Theme.of(
+                          context,
+                        ).colorScheme.onSurface.withValues(alpha: 0.38),
                   size: kIconSizeSmall,
                 ),
               ),
@@ -53,22 +52,19 @@ class HealthActionTileWidget extends StatelessWidget {
                     Text(
                       action.name,
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                            color: isEnabled
-                                ? null
-                                : Theme.of(context)
-                                    .colorScheme
-                                    .onSurface
-                                    .withValues(alpha: 0.38),
-                          ),
+                        color: isEnabled
+                            ? null
+                            : Theme.of(
+                                context,
+                              ).colorScheme.onSurface.withValues(alpha: 0.38),
+                      ),
                     ),
                     Text(
                       action.description,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onSurfaceVariant
-                                .withValues(alpha: isEnabled ? 1.0 : 0.38),
-                          ),
+                        color: Theme.of(context).colorScheme.onSurfaceVariant
+                            .withValues(alpha: isEnabled ? 1.0 : 0.38),
+                      ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),

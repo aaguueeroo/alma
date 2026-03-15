@@ -93,7 +93,9 @@ class EvaluationRules {
       if (habit.strength <= 0) continue;
       switch (subject) {
         case SoulSubjectType.compassion:
-          if (habit.type == HabitType.volunteering) bonus += habit.strength * 1.5;
+          if (habit.type == HabitType.volunteering) {
+            bonus += habit.strength * 1.5;
+          }
         case SoulSubjectType.discipline:
           if (habit.type == HabitType.exercise) bonus += habit.strength * 1.0;
           if (habit.type == HabitType.meditation) bonus += habit.strength * 1.0;
@@ -103,9 +105,13 @@ class EvaluationRules {
           if (habit.type == HabitType.reading) bonus += habit.strength * 1.5;
           if (habit.type == HabitType.meditation) bonus += habit.strength * 1.0;
         case SoulSubjectType.fun:
-          if (habit.type == HabitType.socialMedia) bonus += habit.strength * 0.5;
+          if (habit.type == HabitType.socialMedia) {
+            bonus += habit.strength * 0.5;
+          }
         case SoulSubjectType.humility:
-          if (habit.type == HabitType.volunteering) bonus += habit.strength * 1.0;
+          if (habit.type == HabitType.volunteering) {
+            bonus += habit.strength * 1.0;
+          }
       }
     }
     return bonus;

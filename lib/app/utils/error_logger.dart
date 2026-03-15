@@ -5,20 +5,33 @@ import 'dart:developer' as developer;
 class ErrorLogger {
   ErrorLogger._();
 
-  static final List<void Function(Object error, StackTrace? stackTrace, String? context)> _handlers = [];
+  static final List<
+    void Function(Object error, StackTrace? stackTrace, String? context)
+  >
+  _handlers = [];
 
   /// Add a handler for errors (e.g. send to crash reporting). Handlers are invoked after logging.
-  static void addHandler(void Function(Object error, StackTrace? stackTrace, String? context) handler) {
+  static void addHandler(
+    void Function(Object error, StackTrace? stackTrace, String? context)
+    handler,
+  ) {
     _handlers.add(handler);
   }
 
   /// Remove a previously added handler.
-  static void removeHandler(void Function(Object error, StackTrace? stackTrace, String? context) handler) {
+  static void removeHandler(
+    void Function(Object error, StackTrace? stackTrace, String? context)
+    handler,
+  ) {
     _handlers.remove(handler);
   }
 
   /// Log an error. Always prints to debug console; then invokes any registered handlers.
-  static void logError(Object error, [StackTrace? stackTrace, String? context]) {
+  static void logError(
+    Object error, [
+    StackTrace? stackTrace,
+    String? context,
+  ]) {
     final String contextStr = context != null ? '[$context] ' : '';
     developer.log(
       '$contextStr$error',
@@ -30,7 +43,12 @@ class ErrorLogger {
       try {
         h(error, stackTrace, context);
       } catch (e, st) {
-        developer.log('Error in ErrorLogger handler: $e', name: 'ErrorLogger', error: e, stackTrace: st);
+        developer.log(
+          'Error in ErrorLogger handler: $e',
+          name: 'ErrorLogger',
+          error: e,
+          stackTrace: st,
+        );
       }
     }
   }

@@ -48,14 +48,16 @@ class SoulRepository {
   }
 
   Soul _rowToSoul(SoulsTableData row) {
-    final List<dynamic> subjectsList = jsonDecode(row.subjectsJson) as List<dynamic>;
+    final List<dynamic> subjectsList =
+        jsonDecode(row.subjectsJson) as List<dynamic>;
     final List<SoulSubject> subjects = subjectsList
         .map((s) => SoulSubject.fromJson(s as Map<String, dynamic>))
         .toList();
     final Map<String, dynamic> metaStatsRaw =
         jsonDecode(row.metaStatsJson) as Map<String, dynamic>;
-    final Map<String, int> metaStats =
-        metaStatsRaw.map((key, value) => MapEntry(key, value as int));
+    final Map<String, int> metaStats = metaStatsRaw.map(
+      (key, value) => MapEntry(key, value as int),
+    );
     return Soul(
       id: row.id,
       name: row.name,
@@ -72,7 +74,9 @@ class SoulRepository {
       id: Value(soul.id),
       name: Value(soul.name),
       remainingLives: Value(soul.remainingLives),
-      subjectsJson: Value(jsonEncode(soul.subjects.map((s) => s.toJson()).toList())),
+      subjectsJson: Value(
+        jsonEncode(soul.subjects.map((s) => s.toJson()).toList()),
+      ),
       metaStatsJson: Value(jsonEncode(soul.metaStats)),
       createdAt: Value(soul.createdAt),
       currentLifeId: Value(soul.currentLifeId),

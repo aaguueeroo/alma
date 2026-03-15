@@ -42,9 +42,7 @@ class EducationEngine {
   bool get isLoaded => _countryConfig != null;
 
   LifeState initializeEducation(LifeState state) {
-    return state.copyWith(
-      educationState: const EducationState(),
-    );
+    return state.copyWith(educationState: const EducationState());
   }
 
   LifeState processYearEnd(LifeState state, SeededRandom rng) {
@@ -64,14 +62,21 @@ class EducationEngine {
     if (passed) {
       state = _handleYearPassed(state, eduState, enrollment, performance);
     } else {
-      state = _handleYearFailed(state, eduState, enrollment, levelConfig, performance);
+      state = _handleYearFailed(
+        state,
+        eduState,
+        enrollment,
+        levelConfig,
+        performance,
+      );
     }
     return state;
   }
 
   LifeState checkAutoEnrollment(LifeState state) {
     if (_countryConfig == null) return state;
-    final EducationState eduState = state.educationState ?? const EducationState();
+    final EducationState eduState =
+        state.educationState ?? const EducationState();
     return _checkAutoEnrollment(state, eduState);
   }
 
@@ -116,7 +121,8 @@ class EducationEngine {
       finalGrade: performance,
       graduated: true,
       yearsSpent: enrollment.yearInProgram + enrollment.repeatsInLevel,
-      startAge: state.age - enrollment.yearInProgram - enrollment.repeatsInLevel + 1,
+      startAge:
+          state.age - enrollment.yearInProgram - enrollment.repeatsInLevel + 1,
       endAge: state.age,
       branch: enrollment.branch,
     );
@@ -128,7 +134,10 @@ class EducationEngine {
     state = state.copyWith(educationState: newEduState);
     state = GameLogger.addLog(
       state,
-      message: LogNarratives.educationGraduated(enrollment.programName, performance),
+      message: LogNarratives.educationGraduated(
+        enrollment.programName,
+        performance,
+      ),
       category: LogCategory.education,
       tags: ['program:${enrollment.programId}'],
     );
@@ -175,9 +184,7 @@ class EducationEngine {
       category: LogCategory.education,
       tags: ['program:${enrollment.programId}'],
     );
-    final Enrollment repeated = enrollment.copyWith(
-      repeatsInLevel: newRepeats,
-    );
+    final Enrollment repeated = enrollment.copyWith(repeatsInLevel: newRepeats);
     return state.copyWith(
       educationState: eduState.copyWith(currentEnrollment: repeated),
     );
@@ -196,7 +203,8 @@ class EducationEngine {
       finalGrade: performance,
       graduated: false,
       yearsSpent: enrollment.yearInProgram + enrollment.repeatsInLevel,
-      startAge: state.age - enrollment.yearInProgram - enrollment.repeatsInLevel + 1,
+      startAge:
+          state.age - enrollment.yearInProgram - enrollment.repeatsInLevel + 1,
       endAge: state.age,
       branch: enrollment.branch,
       isDropOut: false,
@@ -232,13 +240,17 @@ class EducationEngine {
         initialPerformance: carryOverPerformance,
       );
     }
-    final List<EducationProgram> available =
-        programsAvailableForEnrollment(state, nextLevel);
+    final List<EducationProgram> available = programsAvailableForEnrollment(
+      state,
+      nextLevel,
+    );
     if (available.isEmpty) return state;
-    final EducationState eduState = state.educationState ?? const EducationState();
+    final EducationState eduState =
+        state.educationState ?? const EducationState();
     final EducationPrompt prompt = EducationPrompt(
       title: 'Continue Education?',
-      description: 'You have graduated from ${completedEnrollment.programName}. '
+      description:
+          'You have graduated from ${completedEnrollment.programName}. '
           'Would you like to continue your education?',
       availablePrograms: available,
       canDecline: !nextConfig.isCompulsory,
@@ -275,17 +287,26 @@ class EducationEngine {
         .toList();
     if (programs.isEmpty) return state;
     if (programs.length == 1) {
-      return enrollInProgram(state, programs.first,
-          initialPerformance: initialPerformance);
+      return enrollInProgram(
+        state,
+        programs.first,
+        initialPerformance: initialPerformance,
+      );
     }
-    final List<EducationProgram> available =
-        programsAvailableForEnrollment(state, level);
+    final List<EducationProgram> available = programsAvailableForEnrollment(
+      state,
+      level,
+    );
     if (available.isEmpty) return state;
     if (available.length == 1) {
-      return enrollInProgram(state, available.first,
-          initialPerformance: initialPerformance);
+      return enrollInProgram(
+        state,
+        available.first,
+        initialPerformance: initialPerformance,
+      );
     }
-    final EducationState eduState = state.educationState ?? const EducationState();
+    final EducationState eduState =
+        state.educationState ?? const EducationState();
     final EducationLevelConfig? config = _getLevelConfig(level);
     final EducationPrompt prompt = EducationPrompt(
       title: 'Choose Your Studies',
@@ -301,8 +322,12 @@ class EducationEngine {
 
   /// Programs that meet access conditions (optionally for a given level).
   /// Does not exclude already-completed programs; use programsAvailableForEnrollment for that.
-  List<EducationProgram> getAvailablePrograms(LifeState state, [EducationLevel? level]) {
-    final EducationState eduState = state.educationState ?? const EducationState();
+  List<EducationProgram> getAvailablePrograms(
+    LifeState state, [
+    EducationLevel? level,
+  ]) {
+    final EducationState eduState =
+        state.educationState ?? const EducationState();
     return _allPrograms.where((program) {
       if (level != null && program.level != level) return false;
       return _meetsAccessConditions(program, state, eduState);
@@ -311,8 +336,12 @@ class EducationEngine {
 
   /// Programs the player can enroll in: meet access conditions and not already completed.
   /// Use this whenever building a list of programs to show (manual enroll or post-graduation prompt).
-  List<EducationProgram> programsAvailableForEnrollment(LifeState state, [EducationLevel? level]) {
-    final EducationState eduState = state.educationState ?? const EducationState();
+  List<EducationProgram> programsAvailableForEnrollment(
+    LifeState state, [
+    EducationLevel? level,
+  ]) {
+    final EducationState eduState =
+        state.educationState ?? const EducationState();
     final Set<String> completedProgramIds = _getCompletedProgramIds(eduState);
     final List<EducationProgram> eligible = getAvailablePrograms(state, level);
     return eligible
@@ -343,8 +372,11 @@ class EducationEngine {
           _hasPreviousLevel(eduState, level, requiredBranch),
         PreviousProgramCondition(:final requiredProgramId) =>
           _hasCompletedProgram(eduState, requiredProgramId),
-        MinGradeCondition(:final level, :final minGrade) =>
-          _hasMinGrade(eduState, level, minGrade),
+        MinGradeCondition(:final level, :final minGrade) => _hasMinGrade(
+          eduState,
+          level,
+          minGrade,
+        ),
         MinSkillCondition(:final skill, :final minValue) =>
           state.skills.getValue(skill) >= minValue,
         CustomCondition(:final key, :final operator, :final value) =>
@@ -362,19 +394,29 @@ class EducationEngine {
   ) {
     return eduState.history.any((record) {
       if (record.level != level || !record.graduated) return false;
-      if (requiredBranch != null && record.branch != requiredBranch) return false;
+      if (requiredBranch != null && record.branch != requiredBranch) {
+        return false;
+      }
       return true;
     });
   }
 
   bool _hasCompletedProgram(EducationState eduState, String programId) {
-    return eduState.history.any((EducationRecord record) =>
-        record.graduated && record.programId == programId);
+    return eduState.history.any(
+      (EducationRecord record) =>
+          record.graduated && record.programId == programId,
+    );
   }
 
-  bool _hasMinGrade(EducationState eduState, EducationLevel level, int minGrade) {
+  bool _hasMinGrade(
+    EducationState eduState,
+    EducationLevel level,
+    int minGrade,
+  ) {
     return eduState.history.any((record) {
-      return record.level == level && record.graduated && record.finalGrade >= minGrade;
+      return record.level == level &&
+          record.graduated &&
+          record.finalGrade >= minGrade;
     });
   }
 
@@ -406,9 +448,11 @@ class EducationEngine {
     if (state.timeRemaining < commitmentDays) {
       return state;
     }
-    final EducationState eduState = state.educationState ?? const EducationState();
+    final EducationState eduState =
+        state.educationState ?? const EducationState();
     final EducationLevelConfig? config = _getLevelConfig(program.level);
-    final int duration = program.durationOverride ?? config?.defaultDuration ?? 4;
+    final int duration =
+        program.durationOverride ?? config?.defaultDuration ?? 4;
     final Enrollment enrollment = Enrollment(
       programId: program.id,
       level: program.level,
@@ -419,10 +463,7 @@ class EducationEngine {
     final int performance = initialPerformance ?? _defaultPerformance;
     final List<Section> sections = state.sections.map((s) {
       if (s.type == SectionType.education) {
-        return s.copyWith(
-          contextLabel: program.name,
-          performance: performance,
-        );
+        return s.copyWith(contextLabel: program.name, performance: performance);
       }
       return s;
     }).toList();
@@ -443,7 +484,8 @@ class EducationEngine {
   }
 
   LifeState declineEnrollment(LifeState state) {
-    final EducationState eduState = state.educationState ?? const EducationState();
+    final EducationState eduState =
+        state.educationState ?? const EducationState();
     state = _resetEducationPerformance(state);
     return state.copyWith(
       educationState: eduState.copyWith(pendingPrompt: null),
@@ -457,7 +499,8 @@ class EducationEngine {
   }
 
   LifeState dropOut(LifeState state) {
-    final EducationState eduState = state.educationState ?? const EducationState();
+    final EducationState eduState =
+        state.educationState ?? const EducationState();
     final Enrollment? enrollment = eduState.currentEnrollment;
     if (enrollment == null) return state;
     final int performance = _getEducationPerformance(state);
@@ -468,7 +511,8 @@ class EducationEngine {
       finalGrade: performance,
       graduated: false,
       yearsSpent: enrollment.yearInProgram + enrollment.repeatsInLevel,
-      startAge: state.age - enrollment.yearInProgram - enrollment.repeatsInLevel + 1,
+      startAge:
+          state.age - enrollment.yearInProgram - enrollment.repeatsInLevel + 1,
       endAge: state.age,
       branch: enrollment.branch,
       isDropOut: true,
@@ -495,10 +539,7 @@ class EducationEngine {
     );
   }
 
-  List<GameAction> pickYearlyActions(
-    Enrollment enrollment,
-    SeededRandom rng,
-  ) {
+  List<GameAction> pickYearlyActions(Enrollment enrollment, SeededRandom rng) {
     final List<GameAction> eligible = _educationActions.where((action) {
       if (action.educationLevel == null && action.educationProgramId == null) {
         return true;

@@ -1,5 +1,1 @@
-enum JobType {
-  fullTime,
-  partTime,
-  casual,
-}
+enum JobType { fullTime, partTime, casual }

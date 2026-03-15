@@ -19,24 +19,26 @@ class HabitRules {
         strength: newStrength,
       );
     } else {
-      habits.add(Habit(
-        type: habitType,
-        strength: 0,
-        repetitions: 1,
-      ));
+      habits.add(Habit(type: habitType, strength: 0, repetitions: 1));
     }
     return state.copyWith(habits: habits);
   }
 
   LifeState applyYearlyDecay(LifeState state) {
-    final List<Habit> habits = state.habits.map((habit) {
-      if (habit.repetitions <= 0) return habit;
-      final int decayedReps = (habit.repetitions - 1).clamp(0, habit.repetitions);
-      return habit.copyWith(
-        repetitions: decayedReps,
-        strength: _calculateStrength(decayedReps),
-      );
-    }).where((h) => h.repetitions > 0 || h.strength > 0).toList();
+    final List<Habit> habits = state.habits
+        .map((habit) {
+          if (habit.repetitions <= 0) return habit;
+          final int decayedReps = (habit.repetitions - 1).clamp(
+            0,
+            habit.repetitions,
+          );
+          return habit.copyWith(
+            repetitions: decayedReps,
+            strength: _calculateStrength(decayedReps),
+          );
+        })
+        .where((h) => h.repetitions > 0 || h.strength > 0)
+        .toList();
     return state.copyWith(habits: habits);
   }
 
@@ -46,8 +48,10 @@ class HabitRules {
 
   int _calculateStrength(int repetitions) {
     if (repetitions >= kHabitFormationThreshold) {
-      return ((repetitions - kHabitFormationThreshold + 1))
-          .clamp(1, kHabitMaxStrength);
+      return ((repetitions - kHabitFormationThreshold + 1)).clamp(
+        1,
+        kHabitMaxStrength,
+      );
     }
     return 0;
   }

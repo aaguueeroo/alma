@@ -98,9 +98,9 @@ class EducationEnrollDialog extends StatelessWidget {
           child: Text(
             _levelDisplayName(l10n, level),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: Theme.of(context).colorScheme.primary,
-                  fontWeight: FontWeight.w600,
-                ),
+              color: Theme.of(context).colorScheme.primary,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       );
@@ -133,10 +133,7 @@ class EducationEnrollDialog extends StatelessWidget {
 }
 
 class _ProgramChoiceButton extends StatelessWidget {
-  const _ProgramChoiceButton({
-    required this.program,
-    required this.onTap,
-  });
+  const _ProgramChoiceButton({required this.program, required this.onTap});
 
   final EducationProgram program;
   final VoidCallback onTap;
@@ -166,8 +163,8 @@ class _ProgramChoiceButton extends StatelessWidget {
             Text(
               program.description,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
-                  ),
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
               textAlign: TextAlign.left,
             ),
           ],

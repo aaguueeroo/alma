@@ -95,7 +95,10 @@ final GoRouter appRouter = GoRouter(
         GoRoute(
           path: 'store',
           pageBuilder: (BuildContext context, GoRouterState state) {
-            return buildPageWithSwipeBack(state, const StorePlaceholderScreen());
+            return buildPageWithSwipeBack(
+              state,
+              const StorePlaceholderScreen(),
+            );
           },
         ),
         GoRoute(

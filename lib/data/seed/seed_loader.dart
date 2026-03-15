@@ -39,7 +39,9 @@ class SeedLoader {
 
   Future<List<GameEvent>> loadEvents() async {
     if (_cachedEvents != null) return _cachedEvents!;
-    final String jsonString = await rootBundle.loadString('assets/data/events.json');
+    final String jsonString = await rootBundle.loadString(
+      'assets/data/events.json',
+    );
     final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
     _cachedEvents = jsonList
         .map((e) => GameEvent.fromJson(e as Map<String, dynamic>))
@@ -49,7 +51,9 @@ class SeedLoader {
 
   Future<List<GameAction>> loadActions() async {
     if (_cachedActions != null) return _cachedActions!;
-    final String jsonString = await rootBundle.loadString('assets/data/actions.json');
+    final String jsonString = await rootBundle.loadString(
+      'assets/data/actions.json',
+    );
     final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
     _cachedActions = jsonList
         .map((a) => GameAction.fromJson(a as Map<String, dynamic>))
@@ -59,8 +63,9 @@ class SeedLoader {
 
   Future<List<LifeTemplate>> loadLifeTemplates() async {
     if (_cachedTemplates != null) return _cachedTemplates!;
-    final String jsonString =
-        await rootBundle.loadString('assets/data/life_templates.json');
+    final String jsonString = await rootBundle.loadString(
+      'assets/data/life_templates.json',
+    );
     final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
     _cachedTemplates = jsonList
         .map((t) => LifeTemplate.fromJson(t as Map<String, dynamic>))
@@ -70,8 +75,9 @@ class SeedLoader {
 
   Future<List<Achievement>> loadAchievements() async {
     if (_cachedAchievements != null) return _cachedAchievements!;
-    final String jsonString =
-        await rootBundle.loadString('assets/data/achievements.json');
+    final String jsonString = await rootBundle.loadString(
+      'assets/data/achievements.json',
+    );
     final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
     _cachedAchievements = jsonList
         .map((a) => Achievement.fromJson(a as Map<String, dynamic>))
@@ -81,8 +87,9 @@ class SeedLoader {
 
   Future<List<EducationProgram>> loadEducationPrograms() async {
     if (_cachedEducationPrograms != null) return _cachedEducationPrograms!;
-    final String jsonString =
-        await rootBundle.loadString('assets/data/education/programs.json');
+    final String jsonString = await rootBundle.loadString(
+      'assets/data/education/programs.json',
+    );
     final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
     _cachedEducationPrograms = jsonList
         .map((p) => EducationProgram.fromJson(p as Map<String, dynamic>))
@@ -90,26 +97,33 @@ class SeedLoader {
     return _cachedEducationPrograms!;
   }
 
-  Future<EducationCountryConfig> loadEducationCountryConfig(String country) async {
-    if (_cachedCountryConfigs != null && _cachedCountryConfigs!.containsKey(country)) {
+  Future<EducationCountryConfig> loadEducationCountryConfig(
+    String country,
+  ) async {
+    if (_cachedCountryConfigs != null &&
+        _cachedCountryConfigs!.containsKey(country)) {
       return _cachedCountryConfigs![country]!;
     }
     _cachedCountryConfigs ??= {};
-    final String jsonString =
-        await rootBundle.loadString('assets/data/education/country_configs.json');
+    final String jsonString = await rootBundle.loadString(
+      'assets/data/education/country_configs.json',
+    );
     final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
     for (final dynamic entry in jsonList) {
-      final EducationCountryConfig config =
-          EducationCountryConfig.fromJson(entry as Map<String, dynamic>);
+      final EducationCountryConfig config = EducationCountryConfig.fromJson(
+        entry as Map<String, dynamic>,
+      );
       _cachedCountryConfigs![config.countryCode] = config;
     }
-    return _cachedCountryConfigs![country] ?? _cachedCountryConfigs!.values.first;
+    return _cachedCountryConfigs![country] ??
+        _cachedCountryConfigs!.values.first;
   }
 
   Future<List<GameAction>> loadEducationActions() async {
     if (_cachedEducationActions != null) return _cachedEducationActions!;
-    final String jsonString =
-        await rootBundle.loadString('assets/data/education/education_actions.json');
+    final String jsonString = await rootBundle.loadString(
+      'assets/data/education/education_actions.json',
+    );
     final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
     _cachedEducationActions = jsonList
         .map((a) => GameAction.fromJson(a as Map<String, dynamic>))
@@ -119,8 +133,9 @@ class SeedLoader {
 
   Future<List<Job>> loadJobs() async {
     if (_cachedJobs != null) return _cachedJobs!;
-    final String jsonString =
-        await rootBundle.loadString('assets/data/work/jobs.json');
+    final String jsonString = await rootBundle.loadString(
+      'assets/data/work/jobs.json',
+    );
     final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
     _cachedJobs = jsonList
         .map((j) => Job.fromJson(j as Map<String, dynamic>))
@@ -134,12 +149,14 @@ class SeedLoader {
       return _cachedWorkCountryConfigs![country]!;
     }
     _cachedWorkCountryConfigs ??= {};
-    final String jsonString =
-        await rootBundle.loadString('assets/data/work/work_country_configs.json');
+    final String jsonString = await rootBundle.loadString(
+      'assets/data/work/work_country_configs.json',
+    );
     final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
     for (final dynamic entry in jsonList) {
-      final WorkCountryConfig config =
-          WorkCountryConfig.fromJson(entry as Map<String, dynamic>);
+      final WorkCountryConfig config = WorkCountryConfig.fromJson(
+        entry as Map<String, dynamic>,
+      );
       _cachedWorkCountryConfigs![config.countryCode] = config;
     }
     return _cachedWorkCountryConfigs![country] ??
@@ -148,8 +165,9 @@ class SeedLoader {
 
   Future<List<GameAction>> loadWorkActions() async {
     if (_cachedWorkActions != null) return _cachedWorkActions!;
-    final String jsonString =
-        await rootBundle.loadString('assets/data/work/work_actions.json');
+    final String jsonString = await rootBundle.loadString(
+      'assets/data/work/work_actions.json',
+    );
     final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
     _cachedWorkActions = jsonList
         .map((a) => GameAction.fromJson(a as Map<String, dynamic>))
@@ -159,8 +177,9 @@ class SeedLoader {
 
   Future<List<LifeMaintenanceItem>> loadLifeMaintenance() async {
     if (_cachedLifeMaintenance != null) return _cachedLifeMaintenance!;
-    final String jsonString =
-        await rootBundle.loadString('assets/data/life_maintenance.json');
+    final String jsonString = await rootBundle.loadString(
+      'assets/data/life_maintenance.json',
+    );
     final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
     _cachedLifeMaintenance = jsonList
         .map((e) => LifeMaintenanceItem.fromJson(e as Map<String, dynamic>))
@@ -170,8 +189,9 @@ class SeedLoader {
 
   Future<List<GameAction>> loadSocialActions() async {
     if (_cachedSocialActions != null) return _cachedSocialActions!;
-    final String jsonString =
-        await rootBundle.loadString('assets/data/social/social_actions.json');
+    final String jsonString = await rootBundle.loadString(
+      'assets/data/social/social_actions.json',
+    );
     final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
     _cachedSocialActions = jsonList
         .map((a) => GameAction.fromJson(a as Map<String, dynamic>))
@@ -181,8 +201,9 @@ class SeedLoader {
 
   Future<List<RelationshipCategory>> loadRelationshipTypes() async {
     if (_cachedRelationshipTypes != null) return _cachedRelationshipTypes!;
-    final String jsonString =
-        await rootBundle.loadString('assets/data/social/relationship_types.json');
+    final String jsonString = await rootBundle.loadString(
+      'assets/data/social/relationship_types.json',
+    );
     final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
     _cachedRelationshipTypes = jsonList
         .map((r) => RelationshipCategory.fromJson(r as Map<String, dynamic>))
@@ -196,8 +217,9 @@ class SeedLoader {
     }
     final String fileName = country.toLowerCase();
     try {
-      final String jsonString = await rootBundle
-          .loadString('assets/data/social/names/$fileName.json');
+      final String jsonString = await rootBundle.loadString(
+        'assets/data/social/names/$fileName.json',
+      );
       final Map<String, dynamic> jsonMap =
           jsonDecode(jsonString) as Map<String, dynamic>;
       final NameRepository repo = NameRepository.fromJson(jsonMap);
@@ -217,12 +239,14 @@ class SeedLoader {
       return _cachedSocialCountryConfigs![country]!;
     }
     _cachedSocialCountryConfigs ??= {};
-    final String jsonString = await rootBundle
-        .loadString('assets/data/social/social_country_config.json');
+    final String jsonString = await rootBundle.loadString(
+      'assets/data/social/social_country_config.json',
+    );
     final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
     for (final dynamic entry in jsonList) {
-      final SocialCountryConfig config =
-          SocialCountryConfig.fromJson(entry as Map<String, dynamic>);
+      final SocialCountryConfig config = SocialCountryConfig.fromJson(
+        entry as Map<String, dynamic>,
+      );
       _cachedSocialCountryConfigs![config.country] = config;
     }
     return _cachedSocialCountryConfigs![country] ??
@@ -231,9 +255,12 @@ class SeedLoader {
   }
 
   Future<List<ConditionDefinition>> loadConditions() async {
-    if (_cachedConditionDefinitions != null) return _cachedConditionDefinitions!;
-    final String jsonString = await rootBundle
-        .loadString('assets/data/health/conditions.json');
+    if (_cachedConditionDefinitions != null) {
+      return _cachedConditionDefinitions!;
+    }
+    final String jsonString = await rootBundle.loadString(
+      'assets/data/health/conditions.json',
+    );
     final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
     _cachedConditionDefinitions = jsonList
         .map((c) => ConditionDefinition.fromJson(c as Map<String, dynamic>))
@@ -243,8 +270,9 @@ class SeedLoader {
 
   Future<List<Symptom>> loadSymptoms() async {
     if (_cachedSymptoms != null) return _cachedSymptoms!;
-    final String jsonString = await rootBundle
-        .loadString('assets/data/health/symptoms.json');
+    final String jsonString = await rootBundle.loadString(
+      'assets/data/health/symptoms.json',
+    );
     final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
     _cachedSymptoms = jsonList
         .map((s) => Symptom.fromJson(s as Map<String, dynamic>))
@@ -254,8 +282,9 @@ class SeedLoader {
 
   Future<List<HealthAction>> loadHealthActions() async {
     if (_cachedHealthActions != null) return _cachedHealthActions!;
-    final String jsonString = await rootBundle
-        .loadString('assets/data/health/health_actions.json');
+    final String jsonString = await rootBundle.loadString(
+      'assets/data/health/health_actions.json',
+    );
     final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
     _cachedHealthActions = jsonList
         .map((a) => HealthAction.fromJson(a as Map<String, dynamic>))
@@ -265,8 +294,9 @@ class SeedLoader {
 
   Future<List<GameEvent>> loadHealthEvents() async {
     if (_cachedHealthEvents != null) return _cachedHealthEvents!;
-    final String jsonString = await rootBundle
-        .loadString('assets/data/health/health_events.json');
+    final String jsonString = await rootBundle.loadString(
+      'assets/data/health/health_events.json',
+    );
     final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
     _cachedHealthEvents = jsonList
         .map((e) => GameEvent.fromJson(e as Map<String, dynamic>))

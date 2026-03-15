@@ -31,12 +31,15 @@ class RelationsTab extends StatefulWidget {
   final List<Relationship> relationships;
   final List<GameLog> logs;
   final List<GameAction> genericActions;
-  final void Function(GameAction action, List<String> targetNpcIds)? onGenericActionTap;
+  final void Function(GameAction action, List<String> targetNpcIds)?
+  onGenericActionTap;
   final void Function(GameAction action, String npcId)? onNpcActionTap;
   final List<GameAction> Function(String npcId)? getNpcActions;
   final List<GameAction> Function(String npcId)? getPerformedActionsThisYear;
+
   /// Returns the relationship type label (e.g. "Mother", "Father") for [typeId]; null to use role-based label.
   final String? Function(String typeId)? getRelationshipTypeLabel;
+
   /// When false for a type (e.g. family), the spider chart shows 0 for attraction.
   final bool Function(String typeId)? getIsAttractionAllowed;
 
@@ -58,14 +61,17 @@ class _RelationsTabState extends State<RelationsTab> {
 
   Widget _buildDetailView() {
     final String npcId = _selectedRelationship!.npc.id;
-    final Relationship currentRel = widget.relationships
+    final Relationship currentRel =
+        widget.relationships
             .where((Relationship r) => r.npc.id == npcId)
             .firstOrNull ??
         _selectedRelationship!;
     final List<GameLog> npcLogs = widget.logs
-        .where((GameLog log) =>
-            log.category == LogCategory.social &&
-            log.tags.contains('npc:$npcId'))
+        .where(
+          (GameLog log) =>
+              log.category == LogCategory.social &&
+              log.tags.contains('npc:$npcId'),
+        )
         .toList()
         .reversed
         .toList();
@@ -84,7 +90,9 @@ class _RelationsTabState extends State<RelationsTab> {
         relationshipTypeLabel: widget.getRelationshipTypeLabel?.call(
           currentRel.displayTypeId,
         ),
-        attractionAllowed: widget.getIsAttractionAllowed?.call(currentRel.displayTypeId) ?? true,
+        attractionAllowed:
+            widget.getIsAttractionAllowed?.call(currentRel.displayTypeId) ??
+            true,
         onBack: () => setState(() => _selectedRelationship = null),
         onActionTap: (GameAction action) {
           widget.onNpcActionTap?.call(action, npcId);
@@ -124,9 +132,9 @@ class _RelationsTabState extends State<RelationsTab> {
                     child: Text(
                       l10n.noRelationships,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Theme.of(context).colorScheme.onSurfaceVariant,
-                            fontStyle: FontStyle.italic,
-                          ),
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                        fontStyle: FontStyle.italic,
+                      ),
                     ),
                   )
                 : ListView(
@@ -137,9 +145,8 @@ class _RelationsTabState extends State<RelationsTab> {
                           children: [
                             RelationTileWidget(
                               relationship: rel,
-                              onTap: () => setState(
-                                () => _selectedRelationship = rel,
-                              ),
+                              onTap: () =>
+                                  setState(() => _selectedRelationship = rel),
                             ),
                             const Divider(height: 1),
                           ],
@@ -220,10 +227,7 @@ class _RelationsTabState extends State<RelationsTab> {
 }
 
 class _FilterChips extends StatelessWidget {
-  const _FilterChips({
-    required this.selected,
-    required this.onChanged,
-  });
+  const _FilterChips({required this.selected, required this.onChanged});
 
   final _RelationFilter selected;
   final ValueChanged<_RelationFilter> onChanged;
@@ -273,7 +277,8 @@ class _GenericActionsSection extends StatelessWidget {
 
   final List<GameAction> actions;
   final List<Relationship> relationships;
-  final void Function(GameAction action, List<String> targetNpcIds)? onActionTap;
+  final void Function(GameAction action, List<String> targetNpcIds)?
+  onActionTap;
   final AppLocalizations l10n;
 
   static String _genericActionDisplayTitle(GameAction action) {
@@ -291,8 +296,8 @@ class _GenericActionsSection extends StatelessWidget {
         Text(
           l10n.socialGenericActions,
           style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
-              ),
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
+          ),
         ),
         kVerticalGap8,
         ...actions.map((GameAction action) {
@@ -317,8 +322,9 @@ class _GenericActionsSection extends StatelessWidget {
   }
 
   void _showNpcSelectionDialog(BuildContext context, GameAction action) {
-    final List<Relationship> activeRels =
-        relationships.where((Relationship r) => r.isActive).toList();
+    final List<Relationship> activeRels = relationships
+        .where((Relationship r) => r.isActive)
+        .toList();
     final Set<String> selectedIds = {};
     final String dialogTitle = _genericActionDisplayTitle(action);
     showDialog(

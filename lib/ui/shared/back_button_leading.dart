@@ -3,10 +3,7 @@ import 'package:go_router/go_router.dart';
 
 /// A leading widget for AppBar that goes back: pops if possible, otherwise navigates to home.
 class BackButtonLeading extends StatelessWidget {
-  const BackButtonLeading({
-    super.key,
-    this.fallbackRoute = '/',
-  });
+  const BackButtonLeading({super.key, this.fallbackRoute = '/'});
 
   final String fallbackRoute;
 

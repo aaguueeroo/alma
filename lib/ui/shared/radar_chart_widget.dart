@@ -46,10 +46,7 @@ class RadarChartWidget extends StatelessWidget {
 }
 
 class _RadarChartPainter extends CustomPainter {
-  _RadarChartPainter({
-    required this.values,
-    required this.color,
-  });
+  _RadarChartPainter({required this.values, required this.color});
 
   final Map<String, double> values;
   final Color color;
@@ -81,10 +78,12 @@ class _RadarChartPainter extends CustomPainter {
     final List<Offset> offsets = [];
     for (int i = 0; i < vertexCount; i++) {
       final double angle = -math.pi / 2 + (2 * math.pi * i / vertexCount);
-      offsets.add(Offset(
-        centerX + radius * math.cos(angle),
-        centerY + radius * math.sin(angle),
-      ));
+      offsets.add(
+        Offset(
+          centerX + radius * math.cos(angle),
+          centerY + radius * math.sin(angle),
+        ),
+      );
     }
     return offsets;
   }
@@ -133,10 +132,7 @@ class _RadarChartPainter extends CustomPainter {
 }
 
 class _RadarChartLabels extends StatelessWidget {
-  const _RadarChartLabels({
-    required this.values,
-    required this.size,
-  });
+  const _RadarChartLabels({required this.values, required this.size});
 
   final Map<String, double> values;
   final double size;
@@ -165,9 +161,9 @@ class _RadarChartLabels extends StatelessWidget {
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  color: labelColor,
-                  fontWeight: FontWeight.w600,
-                ),
+              color: labelColor,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       );
@@ -176,9 +172,7 @@ class _RadarChartLabels extends StatelessWidget {
       child: SizedBox(
         width: size + kSpacing64,
         height: size + kSpacing64,
-        child: Stack(
-          children: labelWidgets,
-        ),
+        child: Stack(children: labelWidgets),
       ),
     );
   }

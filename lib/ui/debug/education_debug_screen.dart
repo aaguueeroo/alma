@@ -37,9 +37,11 @@ class _EducationDebugScreenState extends ConsumerState<EducationDebugScreen> {
     final debugController = ref.read(debugControllerProvider);
     final events = await debugController.getAllEvents();
     final educationEvents = events
-        .where((e) =>
-            e.triggerConditions.requiredProgramIds != null &&
-            e.triggerConditions.requiredProgramIds!.isNotEmpty)
+        .where(
+          (e) =>
+              e.triggerConditions.requiredProgramIds != null &&
+              e.triggerConditions.requiredProgramIds!.isNotEmpty,
+        )
         .toList();
     if (mounted) {
       setState(() {
@@ -93,10 +95,12 @@ class _EducationDebugScreenState extends ConsumerState<EducationDebugScreen> {
           if (life.state.healthState != null &&
               life.state.healthState!.conditions.isNotEmpty) ...[
             const DebugSectionHeader(title: 'Condition study effects'),
-            ...life.state.healthState!.conditions.map((c) => DebugMultiplierTile(
-                  label: '${c.name} study perf',
-                  value: c.studyPerformanceEffect.toStringAsFixed(1),
-                )),
+            ...life.state.healthState!.conditions.map(
+              (c) => DebugMultiplierTile(
+                label: '${c.name} study perf',
+                value: c.studyPerformanceEffect.toStringAsFixed(1),
+              ),
+            ),
           ],
           const DebugSectionHeader(title: 'Education Actions'),
           ...educationActions.map((action) {
@@ -105,16 +109,17 @@ class _EducationDebugScreenState extends ConsumerState<EducationDebugScreen> {
               title: action.name,
               description: action.description,
               effectsSummary: effects,
-              onTrigger: () =>
-                  debugController.debugPerformAction(action),
+              onTrigger: () => debugController.debugPerformAction(action),
             );
           }),
           const DebugSectionHeader(title: 'Education Events'),
           ..._educationEvents.map((event) {
             final effects = event.choices
-                .map((c) =>
-                    'health${c.consequences.healthChange >= 0 ? '+' : ''}${c.consequences.healthChange}, '
-                    'money${c.consequences.moneyChange >= 0 ? '+' : ''}${c.consequences.moneyChange}')
+                .map(
+                  (c) =>
+                      'health${c.consequences.healthChange >= 0 ? '+' : ''}${c.consequences.healthChange}, '
+                      'money${c.consequences.moneyChange >= 0 ? '+' : ''}${c.consequences.moneyChange}',
+                )
                 .join(' | ');
             return DebugActionEventTile(
               title: event.title,

@@ -51,7 +51,8 @@ class TimeEngine {
   }
 
   LifeState startNewYear(LifeState state) {
-    final int commitment = getYearStartCommitmentDays(state) +
+    final int commitment =
+        getYearStartCommitmentDays(state) +
         getLifeMaintenanceCommitmentDays(_lifeMaintenance);
     final int available = (kDaysPerYear - commitment).clamp(0, kDaysPerYear);
     return state.copyWith(

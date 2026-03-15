@@ -30,7 +30,9 @@ class _CreateSoulScreenState extends ConsumerState<CreateSoulScreen> {
     final soulState = ref.watch(soulControllerProvider);
     final l10n = AppLocalizations.of(context)!;
     final themeExt = Theme.of(context).extension<AppThemeExtension>();
-    final padding = themeExt?.screenPadding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
+    final padding =
+        themeExt?.screenPadding ??
+        const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
     final sectionGap = themeExt?.sectionGap ?? 28.0;
     final radius = themeExt?.radiusDefault ?? 12.0;
     return Scaffold(

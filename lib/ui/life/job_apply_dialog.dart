@@ -47,27 +47,27 @@ class JobApplyDialog extends StatelessWidget {
                     ? Center(
                         child: Text(
                           l10n.noJobsAvailable,
-                          style:
-                              Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    fontStyle: FontStyle.italic,
-                                  ),
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(fontStyle: FontStyle.italic),
                         ),
                       )
                     : SingleChildScrollView(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
-                          children: _buildGroupedJobs(context, l10n, byType, timeRemaining),
+                          children: _buildGroupedJobs(
+                            context,
+                            l10n,
+                            byType,
+                            timeRemaining,
+                          ),
                         ),
                       ),
               ),
               kVerticalGap8,
               SizedBox(
                 width: double.infinity,
-                child: TextButton(
-                  onPressed: onDecline,
-                  child: Text(l10n.back),
-                ),
+                child: TextButton(onPressed: onDecline, child: Text(l10n.back)),
               ),
             ],
           ),
@@ -105,9 +105,9 @@ class JobApplyDialog extends StatelessWidget {
           child: Text(
             typeLabel,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: Theme.of(context).colorScheme.primary,
-                  fontWeight: FontWeight.w600,
-                ),
+              color: Theme.of(context).colorScheme.primary,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       );
@@ -157,43 +157,43 @@ class _JobChoiceButton extends StatelessWidget {
         message: canApply ? '' : l10n.jobNotEnoughTime(commitmentDays),
         child: OutlinedButton(
           onPressed: canApply ? onTap : null,
-        style: OutlinedButton.styleFrom(
-          alignment: Alignment.centerLeft,
-          padding: kPaddingAll16,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(kBorderRadius),
+          style: OutlinedButton.styleFrom(
+            alignment: Alignment.centerLeft,
+            padding: kPaddingAll16,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(kBorderRadius),
+            ),
           ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    job.name,
-                    style: Theme.of(context).textTheme.titleSmall,
-                    textAlign: TextAlign.left,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      job.name,
+                      style: Theme.of(context).textTheme.titleSmall,
+                      textAlign: TextAlign.left,
+                    ),
                   ),
-                ),
-                Text(
-                  l10n.jobSalary(salary),
-                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                ),
-              ],
-            ),
-            kVerticalGap4,
-            Text(
-              job.description,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  Text(
+                    l10n.jobSalary(salary),
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
                   ),
-              textAlign: TextAlign.left,
-            ),
-          ],
-        ),
+                ],
+              ),
+              kVerticalGap4,
+              Text(
+                job.description,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
+                textAlign: TextAlign.left,
+              ),
+            ],
+          ),
         ),
       ),
     );

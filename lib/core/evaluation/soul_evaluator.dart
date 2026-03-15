@@ -12,10 +12,9 @@ class SoulEvaluator {
 
   LifeSummary generateLifeSummary(LifeState state) {
     final Map<String, dynamic> lifeData = _buildLifeData(state);
-    final Map<String, double> contributions =
-        evaluationRules.evaluateLife(state).map(
-              (type, value) => MapEntry(type.name, value),
-            );
+    final Map<String, double> contributions = evaluationRules
+        .evaluateLife(state)
+        .map((type, value) => MapEntry(type.name, value));
     final moralImpactSummary = SoulSubjectEvaluator.computeSummary(
       state.moralImpacts,
       state.age,
@@ -51,10 +50,11 @@ class SoulEvaluator {
   Soul applySoulProgress(Soul soul, LifeSummary summary) {
     final List<SoulSubject> updatedSubjects = soul.subjects.map((subject) {
       if (subject.isPassed) return subject;
-      final SoulSubjectDefinition? definition =
-          SubjectDefinitions.getByType(subject.type);
-      final bool passed = definition != null &&
-          definition.evaluationRule.matches(summary);
+      final SoulSubjectDefinition? definition = SubjectDefinitions.getByType(
+        subject.type,
+      );
+      final bool passed =
+          definition != null && definition.evaluationRule.matches(summary);
       return subject.copyWith(isPassed: passed);
     }).toList();
     final Map<String, int> updatedStats = Map<String, int>.from(soul.metaStats);

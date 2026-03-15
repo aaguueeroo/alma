@@ -5,10 +5,7 @@ import 'package:alma/core/models/enums/trait_type.dart';
 part 'event.freezed.dart';
 part 'event.g.dart';
 
-enum EventTriggerPhase {
-  afterAction,
-  yearEnd,
-}
+enum EventTriggerPhase { afterAction, yearEnd }
 
 @freezed
 sealed class GameEvent with _$GameEvent {

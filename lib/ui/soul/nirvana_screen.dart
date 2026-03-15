@@ -13,8 +13,11 @@ class NirvanaScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
     final themeExt = Theme.of(context).extension<AppThemeExtension>();
-    final padding = themeExt?.screenPadding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
-    final accentColor = themeExt?.accentColor ?? Theme.of(context).colorScheme.secondary;
+    final padding =
+        themeExt?.screenPadding ??
+        const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
+    final accentColor =
+        themeExt?.accentColor ?? Theme.of(context).colorScheme.secondary;
     final radius = themeExt?.radiusDefault ?? 12.0;
     return Scaffold(
       appBar: AppBar(
@@ -44,27 +47,23 @@ class NirvanaScreen extends ConsumerWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Icon(
-                    Icons.emoji_events,
-                    size: 128,
-                    color: accentColor,
-                  ),
+                  Icon(Icons.emoji_events, size: 128, color: accentColor),
                   const SizedBox(height: 32),
                   Text(
                     l10n.nirvana,
                     style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: accentColor,
-                          letterSpacing: 2,
-                        ),
+                      fontWeight: FontWeight.bold,
+                      color: accentColor,
+                      letterSpacing: 2,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   Text(
                     l10n.nirvanaMessage,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: Theme.of(context).colorScheme.onSurface,
-                        ),
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
                   ),
                   const SizedBox(height: 48),
                   SizedBox(
@@ -81,8 +80,12 @@ class NirvanaScreen extends ConsumerWidget {
                         }
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-                        foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
+                        backgroundColor: Theme.of(
+                          context,
+                        ).colorScheme.primaryContainer,
+                        foregroundColor: Theme.of(
+                          context,
+                        ).colorScheme.onPrimaryContainer,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(radius),
                         ),

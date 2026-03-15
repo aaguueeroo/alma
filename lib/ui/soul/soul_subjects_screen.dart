@@ -37,7 +37,9 @@ class SoulSubjectsScreen extends ConsumerWidget {
     }
     final l10n = AppLocalizations.of(context)!;
     final themeExt = Theme.of(context).extension<AppThemeExtension>();
-    final padding = themeExt?.screenPadding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
+    final padding =
+        themeExt?.screenPadding ??
+        const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
     return Scaffold(
       appBar: AppBar(
         leading: const BackButtonLeading(fallbackRoute: '/soul'),
@@ -65,7 +67,8 @@ class _SubjectDetailCard extends StatelessWidget {
 
   Color _colorForSubject(BuildContext context, SoulSubjectType type) {
     final themeExt = Theme.of(context).extension<AppThemeExtension>();
-    final base = themeExt?.accentColor ?? Theme.of(context).colorScheme.secondary;
+    final base =
+        themeExt?.accentColor ?? Theme.of(context).colorScheme.secondary;
     final opacities = <SoulSubjectType, double>{
       SoulSubjectType.compassion: 0.9,
       SoulSubjectType.discipline: 0.75,
@@ -140,8 +143,10 @@ class _SubjectDetailCard extends StatelessWidget {
     final themeExt = Theme.of(context).extension<AppThemeExtension>();
     final radius = themeExt?.radiusDefault ?? 12.0;
     final radiusSmall = themeExt?.radiusSmall ?? 8.0;
-    final positiveColor = themeExt?.accentColor ?? Theme.of(context).colorScheme.primary;
-    final mutedColor = themeExt?.mutedColor ?? Theme.of(context).colorScheme.onSurfaceVariant;
+    final positiveColor =
+        themeExt?.accentColor ?? Theme.of(context).colorScheme.primary;
+    final mutedColor =
+        themeExt?.mutedColor ?? Theme.of(context).colorScheme.onSurfaceVariant;
     return Card(
       margin: const EdgeInsets.only(bottom: 18),
       shape: RoundedRectangleBorder(
@@ -174,16 +179,16 @@ class _SubjectDetailCard extends StatelessWidget {
                   Text(
                     label,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: color,
-                        ),
+                      fontWeight: FontWeight.bold,
+                      color: color,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     description,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: mutedColor,
-                        ),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyMedium?.copyWith(color: mutedColor),
                   ),
                   const SizedBox(height: 8),
                   Container(
@@ -200,11 +205,9 @@ class _SubjectDetailCard extends StatelessWidget {
                     child: Text(
                       subject.isPassed ? l10n.passed : l10n.notPassed,
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: subject.isPassed
-                                ? positiveColor
-                                : mutedColor,
-                          ),
+                        fontWeight: FontWeight.w600,
+                        color: subject.isPassed ? positiveColor : mutedColor,
+                      ),
                     ),
                   ),
                 ],

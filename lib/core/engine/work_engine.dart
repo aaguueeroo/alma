@@ -47,9 +47,7 @@ class WorkEngine {
   bool get isLoaded => _countryConfig != null;
 
   LifeState initializeWork(LifeState state) {
-    return state.copyWith(
-      workState: const WorkState(),
-    );
+    return state.copyWith(workState: const WorkState());
   }
 
   List<Job> getAvailableJobs(LifeState state, SeededRandom rng) {
@@ -70,8 +68,7 @@ class WorkEngine {
       }
       if (_isAlreadyEmployed(workState, job.id)) return false;
       if (!_canTakeJobType(workState, job.type)) return false;
-      if (job.type == JobType.casual &&
-          completedCasualIds.contains(job.id)) {
+      if (job.type == JobType.casual && completedCasualIds.contains(job.id)) {
         return false;
       }
       return true;
@@ -91,7 +88,8 @@ class WorkEngine {
 
   LifeState applyToJob(LifeState state, Job job, SeededRandom rng) {
     final WorkState workState = state.workState ?? const WorkState();
-    final EducationState eduState = state.educationState ?? const EducationState();
+    final EducationState eduState =
+        state.educationState ?? const EducationState();
     if (!_meetsAccessConditions(job.accessConditions, state, eduState)) {
       state = GameLogger.addLog(
         state,
@@ -234,8 +232,9 @@ class WorkEngine {
 
   LifeState quitJob(LifeState state, String jobId) {
     final WorkState workState = state.workState ?? const WorkState();
-    final int index = workState.currentEmployments
-        .indexWhere((Employment e) => e.jobId == jobId);
+    final int index = workState.currentEmployments.indexWhere(
+      (Employment e) => e.jobId == jobId,
+    );
     if (index < 0) return state;
     final Employment employment = workState.currentEmployments[index];
     final WorkRecord record = WorkRecord(
@@ -250,16 +249,18 @@ class WorkEngine {
       finalSalary: employment.salary,
       wasFriendlyDismissal: true,
     );
-    final List<Employment> updatedEmployments =
-        List<Employment>.from(workState.currentEmployments)..removeAt(index);
+    final List<Employment> updatedEmployments = List<Employment>.from(
+      workState.currentEmployments,
+    )..removeAt(index);
     final List<WorkRecord> updatedHistory = [...workState.history, record];
     final String contextLabel = _buildContextLabel(updatedEmployments);
     final List<Section> sections = state.sections.map((Section s) {
       if (s.type == SectionType.work) {
         return s.copyWith(
           contextLabel: contextLabel,
-          performance:
-              updatedEmployments.isEmpty ? _defaultPerformance : s.performance,
+          performance: updatedEmployments.isEmpty
+              ? _defaultPerformance
+              : s.performance,
         );
       }
       return s;
@@ -281,9 +282,7 @@ class WorkEngine {
 
   LifeState dismissPrompt(LifeState state) {
     final WorkState workState = state.workState ?? const WorkState();
-    return state.copyWith(
-      workState: workState.copyWith(pendingPrompt: null),
-    );
+    return state.copyWith(workState: workState.copyWith(pendingPrompt: null));
   }
 
   LifeState processYearEnd(LifeState state, SeededRandom rng) {
@@ -294,9 +293,7 @@ class WorkEngine {
     );
     if (workState.currentEmployments.isEmpty) {
       return state.copyWith(
-        workState: resetWorkState.copyWith(
-          performedActionsByJobIdThisYear: {},
-        ),
+        workState: resetWorkState.copyWith(performedActionsByJobIdThisYear: {}),
       );
     }
     final List<Employment> updatedEmployments = [];
@@ -306,22 +303,24 @@ class WorkEngine {
     final int workPenalty =
         _healthEngine?.getWorkPerformancePenalty(state.healthState) ?? 0;
     for (final Employment employment in workState.currentEmployments) {
-      final int effectivePerformance =
-          (employment.performance + workPenalty).clamp(0, 100);
+      final int effectivePerformance = (employment.performance + workPenalty)
+          .clamp(0, 100);
       final bool fired = _checkFired(employment, rng, effectivePerformance);
       if (fired) {
-        newRecords.add(WorkRecord(
-          jobId: employment.jobId,
-          jobName: employment.jobName,
-          type: employment.type,
-          finalLevel: employment.currentLevel,
-          startAge: employment.startAge,
-          endAge: state.age,
-          yearsWorked: employment.yearsWorked,
-          quitReason: 'fired',
-          finalSalary: employment.salary,
-          wasFriendlyDismissal: false,
-        ));
+        newRecords.add(
+          WorkRecord(
+            jobId: employment.jobId,
+            jobName: employment.jobName,
+            type: employment.type,
+            finalLevel: employment.currentLevel,
+            startAge: employment.startAge,
+            endAge: state.age,
+            yearsWorked: employment.yearsWorked,
+            quitReason: 'fired',
+            finalSalary: employment.salary,
+            wasFriendlyDismissal: false,
+          ),
+        );
         firedPrompt ??= WorkPrompt(
           type: WorkPromptType.fired,
           title: 'Dismissed',
@@ -351,10 +350,16 @@ class WorkEngine {
         yearsWorked: employment.yearsWorked + 1,
       );
       if (promotionPrompt == null) {
-        final int effectivePerf =
-            (updated.performance + workPenalty).clamp(0, 100);
-        final _PromotionResult result =
-            _checkPromotion(state, updated, effectivePerf, rng);
+        final int effectivePerf = (updated.performance + workPenalty).clamp(
+          0,
+          100,
+        );
+        final _PromotionResult result = _checkPromotion(
+          state,
+          updated,
+          effectivePerf,
+          rng,
+        );
         if (result.promoted) {
           updated = result.employment;
           promotionPrompt = WorkPrompt(
@@ -386,8 +391,9 @@ class WorkEngine {
       if (s.type == SectionType.work) {
         return s.copyWith(
           contextLabel: contextLabel,
-          performance:
-              updatedEmployments.isEmpty ? _defaultPerformance : s.performance,
+          performance: updatedEmployments.isEmpty
+              ? _defaultPerformance
+              : s.performance,
         );
       }
       return s;
@@ -404,23 +410,28 @@ class WorkEngine {
     );
   }
 
-  LifeState requestPromotion(
-      LifeState state, String jobId, SeededRandom rng) {
+  LifeState requestPromotion(LifeState state, String jobId, SeededRandom rng) {
     final WorkState workState = state.workState ?? const WorkState();
-    final int index = workState.currentEmployments
-        .indexWhere((Employment e) => e.jobId == jobId);
+    final int index = workState.currentEmployments.indexWhere(
+      (Employment e) => e.jobId == jobId,
+    );
     if (index < 0) return state;
     final Employment employment = workState.currentEmployments[index];
     final int workPenalty =
         _healthEngine?.getWorkPerformancePenalty(state.healthState) ?? 0;
-    final int effectivePerformance =
-        (employment.performance + workPenalty).clamp(0, 100);
-    final _PromotionResult result =
-        _checkPromotion(state, employment, effectivePerformance, rng,
-            isRequest: true);
+    final int effectivePerformance = (employment.performance + workPenalty)
+        .clamp(0, 100);
+    final _PromotionResult result = _checkPromotion(
+      state,
+      employment,
+      effectivePerformance,
+      rng,
+      isRequest: true,
+    );
     if (result.promoted) {
-      final List<Employment> updatedEmployments =
-          List<Employment>.from(workState.currentEmployments);
+      final List<Employment> updatedEmployments = List<Employment>.from(
+        workState.currentEmployments,
+      );
       updatedEmployments[index] = result.employment;
       final String contextLabel = _buildContextLabel(updatedEmployments);
       final List<Section> sections = state.sections.map((Section s) {
@@ -492,15 +503,13 @@ class WorkEngine {
         shuffled[i] = shuffled[j];
         shuffled[j] = temp;
       }
-      result[employment.jobId] =
-          shuffled.take(_actionsPerYear).toList();
+      result[employment.jobId] = shuffled.take(_actionsPerYear).toList();
     }
     return result;
   }
 
   bool _isAlreadyEmployed(WorkState workState, String jobId) {
-    return workState.currentEmployments
-        .any((Employment e) => e.jobId == jobId);
+    return workState.currentEmployments.any((Employment e) => e.jobId == jobId);
   }
 
   bool _canTakeJobType(WorkState workState, JobType type) {
@@ -532,8 +541,11 @@ class WorkEngine {
           _hasPreviousLevel(eduState, level, requiredBranch),
         PreviousProgramCondition(:final requiredProgramId) =>
           _hasCompletedProgram(eduState, requiredProgramId),
-        MinGradeCondition(:final level, :final minGrade) =>
-          _hasMinGrade(eduState, level, minGrade),
+        MinGradeCondition(:final level, :final minGrade) => _hasMinGrade(
+          eduState,
+          level,
+          minGrade,
+        ),
         MinSkillCondition(:final skill, :final minValue) =>
           state.skills.getValue(skill) >= minValue,
         CustomCondition(:final key, :final operator, :final value) =>
@@ -551,18 +563,25 @@ class WorkEngine {
   ) {
     return eduState.history.any((EducationRecord record) {
       if (record.level != level || !record.graduated) return false;
-      if (requiredBranch != null && record.branch != requiredBranch) return false;
+      if (requiredBranch != null && record.branch != requiredBranch) {
+        return false;
+      }
       return true;
     });
   }
 
   bool _hasCompletedProgram(EducationState eduState, String programId) {
-    return eduState.history.any((EducationRecord record) =>
-        record.graduated && record.programId == programId);
+    return eduState.history.any(
+      (EducationRecord record) =>
+          record.graduated && record.programId == programId,
+    );
   }
 
   bool _hasMinGrade(
-      EducationState eduState, EducationLevel level, int minGrade) {
+    EducationState eduState,
+    EducationLevel level,
+    int minGrade,
+  ) {
     return eduState.history.any((EducationRecord record) {
       return record.level == level &&
           record.graduated &&
@@ -599,8 +618,9 @@ class WorkEngine {
     if (_countryConfig == null) {
       return _PromotionResult(promoted: false, employment: employment);
     }
-    final Job? job =
-        _allJobs.where((Job j) => j.id == employment.jobId).firstOrNull;
+    final Job? job = _allJobs
+        .where((Job j) => j.id == employment.jobId)
+        .firstOrNull;
     if (job == null) {
       return _PromotionResult(promoted: false, employment: employment);
     }
@@ -650,14 +670,14 @@ class WorkEngine {
   ) {
     if (_countryConfig == null) return false;
     final int performance = effectivePerformance;
-    if (performance <= 0 &&
-        _countryConfig!.fireAtZeroPerformance) {
+    if (performance <= 0 && _countryConfig!.fireAtZeroPerformance) {
       return true;
     }
     if (performance >= _countryConfig!.firePerformanceThreshold) {
       return false;
     }
-    final double chance = _countryConfig!.fireBaseChance +
+    final double chance =
+        _countryConfig!.fireBaseChance +
         (_countryConfig!.firePerformanceThreshold - performance) *
             _countryConfig!.fireChanceScaling;
     return rng.chance(chance.clamp(0.0, 1.0));

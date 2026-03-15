@@ -69,8 +69,9 @@ void main() {
       final event = createTestEvent(id: 'once_per_year');
       eventEngine.loadEvents([event]);
       final stateFresh = createTestState();
-      final stateAlreadyTriggered =
-          createTestState(eventIdsTriggeredThisYear: ['once_per_year']);
+      final stateAlreadyTriggered = createTestState(
+        eventIdsTriggeredThisYear: ['once_per_year'],
+      );
       expect(eventEngine.checkTriggers(stateFresh, rng), isNotNull);
       expect(
         eventEngine.checkTriggers(

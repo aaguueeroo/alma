@@ -38,7 +38,9 @@ class SocialEngine {
   bool get isLoaded => _countryConfig != null;
 
   SocialState initializeSocial(List<Relationship> existingRelationships) {
-    final List<Relationship> migrated = existingRelationships.map((Relationship rel) {
+    final List<Relationship> migrated = existingRelationships.map((
+      Relationship rel,
+    ) {
       final String typeId =
           rel.relationshipTypeId ?? _inferTypeIdFromRole(rel.npc.role.name);
       return rel.copyWith(
@@ -64,7 +66,11 @@ class SocialEngine {
       if (!_isActionAllowedForRelationshipType(action, typeId)) return false;
       return true;
     }).toList();
-    final List<GameAction> picked = _shuffleAndTake(eligible, _actionsPerYear, rng);
+    final List<GameAction> picked = _shuffleAndTake(
+      eligible,
+      _actionsPerYear,
+      rng,
+    );
     return picked.map((GameAction a) => a.id).toList();
   }
 
@@ -100,28 +106,28 @@ class SocialEngine {
   }
 
   /// Returns the 4 generic action IDs chosen for this year (used at year start or life creation).
-  List<String> pickYearlyGenericActionIds(
-    LifeState state,
-    SeededRandom rng,
-  ) {
+  List<String> pickYearlyGenericActionIds(LifeState state, SeededRandom rng) {
     final List<GameAction> eligible = _socialActions.where((GameAction action) {
       if (action.relationshipTypeIds.isNotEmpty) return false;
       if (!_meetsAgeCondition(action, state)) return false;
       if (!_meetsConditions(action, state)) return false;
       return true;
     }).toList();
-    final List<GameAction> picked = _shuffleAndTake(eligible, _actionsPerYear, rng);
+    final List<GameAction> picked = _shuffleAndTake(
+      eligible,
+      _actionsPerYear,
+      rng,
+    );
     return picked.map((GameAction a) => a.id).toList();
   }
 
   /// Returns the generic actions available this year (max 4). Performed ones are excluded; no new action takes their place until next year.
-  List<GameAction> pickYearlyGenericActions(
-    LifeState state,
-    SeededRandom rng,
-  ) {
+  List<GameAction> pickYearlyGenericActions(LifeState state, SeededRandom rng) {
     final SocialState socialState = state.socialState ?? const SocialState();
     final List<String> idsForYear = socialState.genericActionIdsThisYear;
-    final Set<String> performedIds = {...socialState.performedGenericActionIdsThisYear};
+    final Set<String> performedIds = {
+      ...socialState.performedGenericActionIdsThisYear,
+    };
     if (idsForYear.isNotEmpty) {
       final Map<String, GameAction> byId = {
         for (final GameAction a in _socialActions) a.id: a,
@@ -149,8 +155,8 @@ class SocialEngine {
     SeededRandom rng,
   ) {
     // Use legacy state.relationships when socialState is null (e.g. life created before social engine was loaded).
-    SocialState socialState = state.socialState ??
-        SocialState(relationships: state.relationships);
+    SocialState socialState =
+        state.socialState ?? SocialState(relationships: state.relationships);
     final bool isGeneric = action.relationshipTypeIds.isEmpty;
     if (targetNpcIds.isEmpty) {
       if (isGeneric) {
@@ -162,7 +168,10 @@ class SocialEngine {
         );
       }
       state = state.copyWith(socialState: socialState);
-      state = _applyReputationChange(state, action.relationshipEffects.reputation);
+      state = _applyReputationChange(
+        state,
+        action.relationshipEffects.reputation,
+      );
       state = GameLogger.addLog(
         state,
         message: action.logMessage ?? '${action.name}.',
@@ -175,19 +184,21 @@ class SocialEngine {
     final List<String> acceptedNpcIds = [];
 
     for (final String npcId in targetNpcIds) {
-      final int relIndex = socialState.relationships
-          .indexWhere((Relationship r) => r.npc.id == npcId);
+      final int relIndex = socialState.relationships.indexWhere(
+        (Relationship r) => r.npc.id == npcId,
+      );
       if (relIndex < 0) continue;
 
       Relationship rel = socialState.relationships[relIndex];
-      final bool npcDeclined = action.npcResponseChance > 0 &&
-          rng.chance(action.npcResponseChance);
+      final bool npcDeclined =
+          action.npcResponseChance > 0 && rng.chance(action.npcResponseChance);
 
       if (npcDeclined) {
         rel = _applyDeclineConsequences(rel, action);
         state = GameLogger.addLog(
           state,
-          message: '{npc:$npcId} declined your invitation to ${action.name.toLowerCase()}.',
+          message:
+              '{npc:$npcId} declined your invitation to ${action.name.toLowerCase()}.',
           category: LogCategory.social,
           tags: ['npc:$npcId'],
         );
@@ -234,7 +245,10 @@ class SocialEngine {
       relationships: _normalizeFamilyAttraction(socialState.relationships),
     );
     state = state.copyWith(socialState: socialState);
-    state = _applyReputationChange(state, action.relationshipEffects.reputation);
+    state = _applyReputationChange(
+      state,
+      action.relationshipEffects.reputation,
+    );
     return state;
   }
 
@@ -257,7 +271,10 @@ class SocialEngine {
       return rel.copyWith(actionIdsThisYear: ids);
     }).toList();
 
-    final List<String> nextYearGenericIds = pickYearlyGenericActionIds(state, rng);
+    final List<String> nextYearGenericIds = pickYearlyGenericActionIds(
+      state,
+      rng,
+    );
     socialState = socialState.copyWith(
       relationships: relationships,
       performedGenericActionIdsThisYear: [],
@@ -270,11 +287,7 @@ class SocialEngine {
     return state;
   }
 
-  LifeState meetNewNpc(
-    LifeState state,
-    String environment,
-    SeededRandom rng,
-  ) {
+  LifeState meetNewNpc(LifeState state, String environment, SeededRandom rng) {
     if (_npcFactory == null || _countryConfig == null) return state;
     final String country = state.lifeData['country'] as String? ?? 'default';
     final String typeId = _typeIdForEnvironment(environment, rng);
@@ -297,9 +310,17 @@ class SocialEngine {
       relationships: [...socialState.relationships, newRel],
     );
     state = state.copyWith(socialState: socialState);
-    final List<String> newRelActionIds = pickYearlyActionIdsForNpc(newRel, state, rng);
-    final List<Relationship> updatedRels = List<Relationship>.from(socialState.relationships);
-    updatedRels[updatedRels.length - 1] = updatedRels.last.copyWith(actionIdsThisYear: newRelActionIds);
+    final List<String> newRelActionIds = pickYearlyActionIdsForNpc(
+      newRel,
+      state,
+      rng,
+    );
+    final List<Relationship> updatedRels = List<Relationship>.from(
+      socialState.relationships,
+    );
+    updatedRels[updatedRels.length - 1] = updatedRels.last.copyWith(
+      actionIdsThisYear: newRelActionIds,
+    );
     state = state.copyWith(
       socialState: state.socialState!.copyWith(relationships: updatedRels),
     );
@@ -343,8 +364,10 @@ class SocialEngine {
       final double modifier = _countryConfig?.friendshipDecayModifier ?? 1.0;
       final int adjustedDecay = (decay * modifier).round();
       return rel.copyWith(
-        value: (rel.value - adjustedDecay)
-            .clamp(kMinRelationshipValue, kMaxRelationshipValue),
+        value: (rel.value - adjustedDecay).clamp(
+          kMinRelationshipValue,
+          kMaxRelationshipValue,
+        ),
         metrics: rel.metrics.withChange(
           affectionDelta: -adjustedDecay,
           trustDelta: -(adjustedDecay ~/ 2),
@@ -374,8 +397,10 @@ class SocialEngine {
 
       if (!shouldImprove) return rel;
       return rel.copyWith(
-        value: (rel.value + kAutoImprovePerYear)
-            .clamp(kMinRelationshipValue, kMaxRelationshipValue),
+        value: (rel.value + kAutoImprovePerYear).clamp(
+          kMinRelationshipValue,
+          kMaxRelationshipValue,
+        ),
         metrics: rel.metrics.withChange(
           affectionDelta: kAutoImprovePerYear,
           trustDelta: kAutoImprovePerYear ~/ 2,
@@ -420,11 +445,15 @@ class SocialEngine {
   }
 
   /// Ensures family (and any type with attractionAllowed: false) always has metrics.attraction == -100.
-  List<Relationship> _normalizeFamilyAttraction(List<Relationship> relationships) {
+  List<Relationship> _normalizeFamilyAttraction(
+    List<Relationship> relationships,
+  ) {
     const int kFamilyAttractionValue = -100;
     return relationships.map((Relationship rel) {
       final RelationshipSubtype? subtype = getSubtype(rel.displayTypeId);
-      if (subtype != null && !subtype.attractionAllowed && rel.metrics.attraction != kFamilyAttractionValue) {
+      if (subtype != null &&
+          !subtype.attractionAllowed &&
+          rel.metrics.attraction != kFamilyAttractionValue) {
         return rel.copyWith(
           metrics: rel.metrics.copyWith(attraction: kFamilyAttractionValue),
         );
@@ -485,9 +514,11 @@ class SocialEngine {
       attractionDelta: attractionDelta,
       conflictDelta: eff.conflict,
     );
-    final int newValue = (rel.value +
-            ((eff.affection + eff.trust + eff.respect) ~/ 3))
-        .clamp(kMinRelationshipValue, kMaxRelationshipValue);
+    final int newValue =
+        (rel.value + ((eff.affection + eff.trust + eff.respect) ~/ 3)).clamp(
+          kMinRelationshipValue,
+          kMaxRelationshipValue,
+        );
     return rel.copyWith(metrics: newMetrics, value: newValue);
   }
 
@@ -499,10 +530,7 @@ class SocialEngine {
         : (decline['attractionEffect'] ?? 0);
     if (decline.isEmpty) {
       return rel.copyWith(
-        metrics: rel.metrics.withChange(
-          affectionDelta: -3,
-          conflictDelta: 5,
-        ),
+        metrics: rel.metrics.withChange(affectionDelta: -3, conflictDelta: 5),
       );
     }
     return rel.copyWith(
@@ -519,8 +547,10 @@ class SocialEngine {
   LifeState _applyReputationChange(LifeState state, int delta) {
     if (delta == 0) return state;
     final SocialState socialState = state.socialState ?? const SocialState();
-    final int newReputation = (socialState.reputation + delta)
-        .clamp(kMinReputation, kMaxReputation);
+    final int newReputation = (socialState.reputation + delta).clamp(
+      kMinReputation,
+      kMaxReputation,
+    );
     return state.copyWith(
       socialState: socialState.copyWith(reputation: newReputation),
     );
@@ -530,11 +560,14 @@ class SocialEngine {
     final String placeholdersPhrase = npcIds.length == 1
         ? '{npc:${npcIds.single}}'
         : npcIds.length == 2
-            ? '{npc:${npcIds[0]}} and {npc:${npcIds[1]}}'
-            : '${npcIds.sublist(0, npcIds.length - 1).map((String id) => '{npc:$id}').join(', ')} and {npc:${npcIds.last}}';
+        ? '{npc:${npcIds[0]}} and {npc:${npcIds[1]}}'
+        : '${npcIds.sublist(0, npcIds.length - 1).map((String id) => '{npc:$id}').join(', ')} and {npc:${npcIds.last}}';
     final String base = action.logMessage ?? action.name;
     final String firstClause = base.split(RegExp(r'[,.]')).first.trim();
-    final String shortBase = firstClause.replaceFirst(RegExp(r' together$'), '');
+    final String shortBase = firstClause.replaceFirst(
+      RegExp(r' together$'),
+      '',
+    );
     return '$shortBase with $placeholdersPhrase.';
   }
 
@@ -590,8 +623,9 @@ class SocialEngine {
   bool _sharesWorkplace(Relationship rel, LifeState state) {
     final String? npcJobId = rel.npc.jobId;
     if (npcJobId == null) return false;
-    return state.workState?.currentEmployments
-            .any((e) => e.jobId == npcJobId) ??
+    return state.workState?.currentEmployments.any(
+          (e) => e.jobId == npcJobId,
+        ) ??
         false;
   }
 

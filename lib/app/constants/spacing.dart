@@ -37,10 +37,16 @@ const EdgeInsets kPaddingAll12 = EdgeInsets.all(kSpacing12);
 const EdgeInsets kPaddingAll16 = EdgeInsets.all(kSpacing16);
 const EdgeInsets kPaddingAll24 = EdgeInsets.all(kSpacing24);
 
-const EdgeInsets kPaddingHorizontal16 = EdgeInsets.symmetric(horizontal: kSpacing16);
-const EdgeInsets kPaddingHorizontal24 = EdgeInsets.symmetric(horizontal: kSpacing24);
+const EdgeInsets kPaddingHorizontal16 = EdgeInsets.symmetric(
+  horizontal: kSpacing16,
+);
+const EdgeInsets kPaddingHorizontal24 = EdgeInsets.symmetric(
+  horizontal: kSpacing24,
+);
 const EdgeInsets kPaddingVertical8 = EdgeInsets.symmetric(vertical: kSpacing8);
-const EdgeInsets kPaddingVertical16 = EdgeInsets.symmetric(vertical: kSpacing16);
+const EdgeInsets kPaddingVertical16 = EdgeInsets.symmetric(
+  vertical: kSpacing16,
+);
 
 const EdgeInsets kPaddingScreen = EdgeInsets.symmetric(
   horizontal: kSpacing16,

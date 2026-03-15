@@ -35,8 +35,12 @@ class NpcFactory {
     final NpcRole role = _roleFromTypeId(relationshipTypeId);
     final int age = _generateAge(rng, relationshipTypeId, playerAge ?? 20);
     final List<TraitType> visibleTraits = _pickTraits(rng, 1, 2);
-    final List<TraitType> hiddenTraits = _pickTraits(rng, 1, 3,
-        exclude: visibleTraits);
+    final List<TraitType> hiddenTraits = _pickTraits(
+      rng,
+      1,
+      3,
+      exclude: visibleTraits,
+    );
     final double compatibility = 0.2 + rng.nextDouble() * 0.6;
 
     final Pronoun pronoun = _pronounFromGender(gender);
@@ -84,9 +88,7 @@ class NpcFactory {
         names = repo.firstNames.female;
         break;
       case Gender.other:
-        names = rng.nextBool()
-            ? repo.firstNames.male
-            : repo.firstNames.female;
+        names = rng.nextBool() ? repo.firstNames.male : repo.firstNames.female;
         break;
     }
     return rng.pickRandom(names);

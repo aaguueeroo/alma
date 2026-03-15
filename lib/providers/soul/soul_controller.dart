@@ -88,11 +88,14 @@ class SoulController extends StateNotifier<SoulState> {
       final Map<String, LifePreview> previews = {};
       for (final soul in souls) {
         if (soul.currentLifeId != null) {
-          final Life? life = await lifeRepository.getLifeById(soul.currentLifeId!);
+          final Life? life = await lifeRepository.getLifeById(
+            soul.currentLifeId!,
+          );
           if (life != null && !life.isComplete) {
             final matching = templates.where((t) => t.id == life.templateId);
-            final String templateName =
-                matching.isEmpty ? life.templateId : matching.first.name;
+            final String templateName = matching.isEmpty
+                ? life.templateId
+                : matching.first.name;
             previews[soul.id] = LifePreview(
               templateName: templateName,
               currentYear: life.state.currentYear,
@@ -146,8 +149,9 @@ class SoulController extends StateNotifier<SoulState> {
   Future<void> deleteSoul(String soulId) async {
     try {
       await soulRepository.deleteSoul(soulId);
-      final List<Soul> remaining =
-          state.souls.where((s) => s.id != soulId).toList();
+      final List<Soul> remaining = state.souls
+          .where((s) => s.id != soulId)
+          .toList();
       state = state.copyWith(
         souls: remaining,
         clearCurrentSoul: state.currentSoul?.id == soulId,
@@ -160,11 +164,13 @@ class SoulController extends StateNotifier<SoulState> {
 
   Future<Life> startLife(LifeTemplate template) async {
     final Soul soul = state.currentSoul!;
-    final List<LifeMaintenanceItem> maintenance =
-        await seedLoader.loadLifeMaintenance();
+    final List<LifeMaintenanceItem> maintenance = await seedLoader
+        .loadLifeMaintenance();
     timeEngine.loadLifeMaintenance(maintenance);
     final int initialTime = timeEngine.getInitialTimeRemainingForNewLife();
-    final SeededRandom rng = SeededRandom(DateTime.now().millisecondsSinceEpoch);
+    final SeededRandom rng = SeededRandom(
+      DateTime.now().millisecondsSinceEpoch,
+    );
     final Life life = lifeEngine.createLife(
       soulId: soul.id,
       template: template,
@@ -221,14 +227,15 @@ class SoulController extends StateNotifier<SoulState> {
   }
 }
 
-final soulControllerProvider =
-    StateNotifierProvider<SoulController, SoulState>((ref) {
-  return SoulController(
-    soulRepository: ref.watch(soulRepositoryProvider),
-    lifeRepository: ref.watch(lifeRepositoryProvider),
-    lifeEngine: ref.watch(lifeEngineProvider),
-    timeEngine: ref.watch(timeEngineProvider),
-    soulEvaluator: ref.watch(soulEvaluatorProvider),
-    seedLoader: ref.watch(seedLoaderProvider),
-  );
-});
+final soulControllerProvider = StateNotifierProvider<SoulController, SoulState>(
+  (ref) {
+    return SoulController(
+      soulRepository: ref.watch(soulRepositoryProvider),
+      lifeRepository: ref.watch(lifeRepositoryProvider),
+      lifeEngine: ref.watch(lifeEngineProvider),
+      timeEngine: ref.watch(timeEngineProvider),
+      soulEvaluator: ref.watch(soulEvaluatorProvider),
+      seedLoader: ref.watch(seedLoaderProvider),
+    );
+  },
+);

@@ -20,6 +20,7 @@ sealed class Npc with _$Npc {
     int? age,
     Gender? gender,
     Pronoun? pronoun,
+
     /// Optional. Use only for clear familial roles (e.g. Mother, Brother) or
     /// nicknames earned in the relationship. Not for relationship descriptions
     /// like "Neighborhood Friend"; use [name] for those.

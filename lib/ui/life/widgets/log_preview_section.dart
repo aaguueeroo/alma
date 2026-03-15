@@ -8,10 +8,7 @@ import 'package:alma/ui/life/widgets/log_list_widget.dart';
 
 /// Configuration for a single filter chip option in the log preview dialog.
 class LogPreviewFilterOption {
-  const LogPreviewFilterOption({
-    required this.label,
-    this.category,
-  });
+  const LogPreviewFilterOption({required this.label, this.category});
 
   final String label;
   final LogCategory? category;
@@ -35,6 +32,7 @@ class LogPreviewSection extends StatelessWidget {
   final List<String> logs;
   final List<Relationship>? relationships;
   final String? contextNpcId;
+
   /// When provided, the dialog shows filter chips to filter logs by category.
   final List<LogPreviewFilterOption>? filterOptions;
 
@@ -45,17 +43,18 @@ class LogPreviewSection extends StatelessWidget {
     final int previewCount = kLogPreviewVisibleCount;
     final List<GameLog> previewGameLogs = gameLogs.take(previewCount).toList();
     final int remainingSlots = previewCount - previewGameLogs.length;
-    final List<String> previewLogs =
-        logs.take(remainingSlots > 0 ? remainingSlots : 0).toList();
+    final List<String> previewLogs = logs
+        .take(remainingSlots > 0 ? remainingSlots : 0)
+        .toList();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           title,
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: colors.onSurface,
-                fontWeight: FontWeight.w600,
-              ),
+            color: colors.onSurface,
+            fontWeight: FontWeight.w600,
+          ),
         ),
         kVerticalGap12,
         if (isEmpty)
@@ -129,9 +128,9 @@ class _EmptyLogMessage extends StatelessWidget {
         message,
         textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: colors.onSurfaceVariant,
-              fontStyle: FontStyle.italic,
-            ),
+          color: colors.onSurfaceVariant,
+          fontStyle: FontStyle.italic,
+        ),
       ),
     );
   }
@@ -169,10 +168,10 @@ class _LogPreviewDialogState extends State<_LogPreviewDialog> {
     final List<GameLog> filteredGameLogs = widget.filterOptions == null
         ? widget.gameLogs
         : _selectedFilter == null
-            ? widget.gameLogs
-            : widget.gameLogs
-                .where((GameLog log) => log.category == _selectedFilter)
-                .toList();
+        ? widget.gameLogs
+        : widget.gameLogs
+              .where((GameLog log) => log.category == _selectedFilter)
+              .toList();
     final List<String> filteredLogs = widget.filterOptions == null
         ? widget.logs
         : widget.logs;
@@ -194,8 +193,8 @@ class _LogPreviewDialogState extends State<_LogPreviewDialog> {
                       child: Text(
                         widget.title,
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -208,7 +207,8 @@ class _LogPreviewDialogState extends State<_LogPreviewDialog> {
                   ),
                 ],
               ),
-              if (widget.filterOptions != null && widget.filterOptions!.isNotEmpty) ...[
+              if (widget.filterOptions != null &&
+                  widget.filterOptions!.isNotEmpty) ...[
                 kVerticalGap12,
                 SizedBox(
                   height: kSpacing32 + kSpacing8,
@@ -222,7 +222,9 @@ class _LogPreviewDialogState extends State<_LogPreviewDialog> {
                               label: Text(option.label),
                               selected: _selectedFilter == option.category,
                               onSelected: (_) {
-                                setState(() => _selectedFilter = option.category);
+                                setState(
+                                  () => _selectedFilter = option.category,
+                                );
                               },
                             ),
                           ),

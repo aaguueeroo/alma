@@ -31,7 +31,9 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen> {
     final achievementState = ref.watch(achievementControllerProvider);
     final l10n = AppLocalizations.of(context)!;
     final themeExt = Theme.of(context).extension<AppThemeExtension>();
-    final padding = themeExt?.screenPadding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
+    final padding =
+        themeExt?.screenPadding ??
+        const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
     return Scaffold(
       appBar: AppBar(
         leading: const BackButtonLeading(),
@@ -42,19 +44,19 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen> {
       ),
       body: achievementState.isLoading
           ? const LoadingWidget()
-              : achievementState.error != null
-              ? const _ErrorState()
-              : achievementState.achievements.isEmpty
-                  ? _EmptyState(message: l10n.noAchievementsYet)
-                  : ListView.builder(
-                      padding: padding,
-                      itemCount: achievementState.achievements.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        final Achievement achievement =
-                            achievementState.achievements[index];
-                        return _AchievementCard(achievement: achievement);
-                      },
-                    ),
+          : achievementState.error != null
+          ? const _ErrorState()
+          : achievementState.achievements.isEmpty
+          ? _EmptyState(message: l10n.noAchievementsYet)
+          : ListView.builder(
+              padding: padding,
+              itemCount: achievementState.achievements.length,
+              itemBuilder: (BuildContext context, int index) {
+                final Achievement achievement =
+                    achievementState.achievements[index];
+                return _AchievementCard(achievement: achievement);
+              },
+            ),
     );
   }
 }
@@ -67,17 +69,20 @@ class _EmptyState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeExt = Theme.of(context).extension<AppThemeExtension>();
-    final padding = themeExt?.screenPadding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
-    final mutedColor = themeExt?.mutedColor ?? Theme.of(context).colorScheme.onSurfaceVariant;
+    final padding =
+        themeExt?.screenPadding ??
+        const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
+    final mutedColor =
+        themeExt?.mutedColor ?? Theme.of(context).colorScheme.onSurfaceVariant;
     return Center(
       child: Padding(
         padding: padding,
         child: Text(
           message,
           textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: mutedColor,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.bodyLarge?.copyWith(color: mutedColor),
         ),
       ),
     );
@@ -90,14 +95,20 @@ class _ErrorState extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final themeExt = Theme.of(context).extension<AppThemeExtension>();
-    final padding = themeExt?.screenPadding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
+    final padding =
+        themeExt?.screenPadding ??
+        const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
     final errorColor = Theme.of(context).colorScheme.error;
     final l10n = AppLocalizations.of(context)!;
     return SingleChildScrollView(
       padding: padding,
       child: ConstrainedBox(
         constraints: BoxConstraints(
-          minHeight: MediaQuery.of(context).size.height - padding.top - padding.bottom - kToolbarHeight,
+          minHeight:
+              MediaQuery.of(context).size.height -
+              padding.top -
+              padding.bottom -
+              kToolbarHeight,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -105,14 +116,16 @@ class _ErrorState extends ConsumerWidget {
             Text(
               l10n.achievementsLoadError,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: errorColor,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyLarge?.copyWith(color: errorColor),
             ),
             const SizedBox(height: 16),
             FilledButton(
               onPressed: () {
-                ref.read(achievementControllerProvider.notifier).loadAchievements();
+                ref
+                    .read(achievementControllerProvider.notifier)
+                    .loadAchievements();
               },
               child: Text(l10n.retry),
             ),
@@ -133,8 +146,10 @@ class _AchievementCard extends StatelessWidget {
     final dateFormat = DateFormat.yMMMd();
     final bool isUnlocked = achievement.isUnlocked;
     final themeExt = Theme.of(context).extension<AppThemeExtension>();
-    final accentColor = themeExt?.accentColor ?? Theme.of(context).colorScheme.secondary;
-    final mutedColor = themeExt?.mutedColor ?? Theme.of(context).colorScheme.onSurfaceVariant;
+    final accentColor =
+        themeExt?.accentColor ?? Theme.of(context).colorScheme.secondary;
+    final mutedColor =
+        themeExt?.mutedColor ?? Theme.of(context).colorScheme.onSurfaceVariant;
     final radius = themeExt?.radiusDefault ?? 12.0;
     return Card(
       margin: const EdgeInsets.only(bottom: 18),
@@ -165,25 +180,27 @@ class _AchievementCard extends StatelessWidget {
                   Text(
                     achievement.name,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: isUnlocked ? Theme.of(context).colorScheme.onSurface : mutedColor,
-                        ),
+                      fontWeight: FontWeight.bold,
+                      color: isUnlocked
+                          ? Theme.of(context).colorScheme.onSurface
+                          : mutedColor,
+                    ),
                   ),
                   kVerticalGap4,
                   Text(
                     achievement.description,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: isUnlocked ? null : mutedColor,
-                        ),
+                      color: isUnlocked ? null : mutedColor,
+                    ),
                   ),
                   if (achievement.unlockedAt != null) ...<Widget>[
                     kVerticalGap8,
                     Text(
                       dateFormat.format(achievement.unlockedAt!),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: accentColor,
-                            fontWeight: FontWeight.w500,
-                          ),
+                        color: accentColor,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ],
                 ],

@@ -38,8 +38,7 @@ class WeightedImpactRule implements SubjectEvaluationRule {
     if (minDiversity != null && s.diversityScore < minDiversity!) {
       return false;
     }
-    if (minConsistency != null &&
-        s.consistencyScore < minConsistency!) {
+    if (minConsistency != null && s.consistencyScore < minConsistency!) {
       return false;
     }
     if (minDifficultActionCount != null &&

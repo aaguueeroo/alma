@@ -150,39 +150,41 @@ class _HealthDebugScreenState extends ConsumerState<HealthDebugScreen> {
             label: 'Natural decay mental factor',
             value: '0.5',
           ),
-          DebugMultiplierTile(
-            label: 'Aging penalty start age',
-            value: '60',
-          ),
-          DebugMultiplierTile(
-            label: 'Aging degeneration base',
-            value: '0.3',
-          ),
+          DebugMultiplierTile(label: 'Aging penalty start age', value: '60'),
+          DebugMultiplierTile(label: 'Aging degeneration base', value: '0.3'),
           if (healthState != null && healthState.conditions.isNotEmpty) ...[
             const DebugSectionHeader(title: 'Active condition multipliers'),
-            ...healthState.conditions.map((c) => DebugMultiplierTile(
-                  label: '${c.name} (timeCost)',
-                  value: c.timeCostMultiplier.toStringAsFixed(2),
-                )),
-            ...healthState.conditions.map((c) => DebugMultiplierTile(
-                  label: '${c.name} (work perf)',
-                  value: c.workPerformanceEffect.toStringAsFixed(1),
-                )),
-            ...healthState.conditions.map((c) => DebugMultiplierTile(
-                  label: '${c.name} (study perf)',
-                  value: c.studyPerformanceEffect.toStringAsFixed(1),
-                )),
-            ...healthState.conditions.map((c) => DebugMultiplierTile(
-                  label: '${c.name} (relationship)',
-                  value: c.relationshipEffect.toStringAsFixed(1),
-                )),
+            ...healthState.conditions.map(
+              (c) => DebugMultiplierTile(
+                label: '${c.name} (timeCost)',
+                value: c.timeCostMultiplier.toStringAsFixed(2),
+              ),
+            ),
+            ...healthState.conditions.map(
+              (c) => DebugMultiplierTile(
+                label: '${c.name} (work perf)',
+                value: c.workPerformanceEffect.toStringAsFixed(1),
+              ),
+            ),
+            ...healthState.conditions.map(
+              (c) => DebugMultiplierTile(
+                label: '${c.name} (study perf)',
+                value: c.studyPerformanceEffect.toStringAsFixed(1),
+              ),
+            ),
+            ...healthState.conditions.map(
+              (c) => DebugMultiplierTile(
+                label: '${c.name} (relationship)',
+                value: c.relationshipEffect.toStringAsFixed(1),
+              ),
+            ),
           ],
           const DebugSectionHeader(title: 'Conditions (Sicknesses)'),
           ..._conditions.map((def) {
-            final hasCondition = healthState?.conditions
-                    .any((c) => c.id == def.id) ??
-                false;
-            final effects = 'phys: ${def.physicalHealthEffect}, '
+            final hasCondition =
+                healthState?.conditions.any((c) => c.id == def.id) ?? false;
+            final effects =
+                'phys: ${def.physicalHealthEffect}, '
                 'ment: ${def.mentalHealthEffect}, '
                 'timeCost: ${def.timeCostMultiplier}, '
                 'work: ${def.workPerformanceEffect}, '
@@ -199,22 +201,26 @@ class _HealthDebugScreenState extends ConsumerState<HealthDebugScreen> {
           }),
           const DebugSectionHeader(title: 'Health Actions'),
           ..._healthActions.map((action) {
-            final effects = 'phys: ${action.physicalHealthEffect}, '
+            final effects =
+                'phys: ${action.physicalHealthEffect}, '
                 'ment: ${action.mentalHealthEffect}';
             return DebugActionEventTile(
               title: action.name,
               description: action.description,
               effectsSummary: effects,
-              onTrigger: () =>
-                  ref.read(lifeControllerProvider.notifier).performHealthAction(action),
+              onTrigger: () => ref
+                  .read(lifeControllerProvider.notifier)
+                  .performHealthAction(action),
             );
           }),
           const DebugSectionHeader(title: 'Health Events'),
           ..._healthEvents.map((event) {
             final effects = event.choices
-                .map((c) =>
-                    '${c.description}: health${c.consequences.healthChange >= 0 ? '+' : ''}${c.consequences.healthChange}, '
-                    'money${c.consequences.moneyChange >= 0 ? '+' : ''}${c.consequences.moneyChange}')
+                .map(
+                  (c) =>
+                      '${c.description}: health${c.consequences.healthChange >= 0 ? '+' : ''}${c.consequences.healthChange}, '
+                      'money${c.consequences.moneyChange >= 0 ? '+' : ''}${c.consequences.moneyChange}',
+                )
                 .join(' | ');
             return DebugActionEventTile(
               title: event.title,

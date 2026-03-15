@@ -10,6 +10,7 @@ sealed class LifeMaintenanceItem with _$LifeMaintenanceItem {
   const factory LifeMaintenanceItem({
     required String id,
     required String name,
+
     /// Default hours per day for this activity. Yearly days = (hoursPerDay * 365) / 24.
     required double hoursPerDay,
   }) = _LifeMaintenanceItem;

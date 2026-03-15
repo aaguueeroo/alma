@@ -4,9 +4,5 @@ import 'package:alma/app/app.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(
-    const ProviderScope(
-      child: AlmaApp(),
-    ),
-  );
+  runApp(const ProviderScope(child: AlmaApp()));
 }

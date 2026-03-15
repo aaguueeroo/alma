@@ -13,7 +13,9 @@ class GameOverScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
     final themeExt = Theme.of(context).extension<AppThemeExtension>();
-    final padding = themeExt?.screenPadding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
+    final padding =
+        themeExt?.screenPadding ??
+        const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
     final colorScheme = Theme.of(context).colorScheme;
     final mutedColor = themeExt?.mutedColor ?? colorScheme.onSurfaceVariant;
     final radius = themeExt?.radiusDefault ?? 12.0;
@@ -40,18 +42,18 @@ class GameOverScreen extends ConsumerWidget {
                 Text(
                   l10n.gameOver,
                   style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: colorScheme.error,
-                        letterSpacing: 2,
-                      ),
+                    fontWeight: FontWeight.bold,
+                    color: colorScheme.error,
+                    letterSpacing: 2,
+                  ),
                 ),
                 const SizedBox(height: 16),
                 Text(
                   l10n.gameOverMessage,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: mutedColor,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleMedium?.copyWith(color: mutedColor),
                 ),
                 const SizedBox(height: 48),
                 SizedBox(

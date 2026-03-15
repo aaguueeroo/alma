@@ -32,7 +32,9 @@ class _SaveSlotsScreenState extends ConsumerState<SaveSlotsScreen> {
     final soulState = ref.watch(soulControllerProvider);
     final l10n = AppLocalizations.of(context)!;
     final themeExt = Theme.of(context).extension<AppThemeExtension>();
-    final padding = themeExt?.screenPadding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
+    final padding =
+        themeExt?.screenPadding ??
+        const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
     return Scaffold(
       appBar: AppBar(
         leading: const BackButtonLeading(),
@@ -44,21 +46,21 @@ class _SaveSlotsScreenState extends ConsumerState<SaveSlotsScreen> {
       body: soulState.isLoading
           ? const LoadingWidget()
           : soulState.souls.isEmpty
-              ? _EmptyState(message: l10n.noSoulsYet)
-              : ListView.builder(
-                  padding: padding,
-                  itemCount: soulState.souls.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final Soul soul = soulState.souls[index];
-                    final preview = soulState.currentLifePreviews[soul.id];
-                    return _SoulCard(
-                      soul: soul,
-                      lifePreview: preview,
-                      onTap: () => _selectSoul(soul),
-                      onLongPress: () => _showDeleteDialog(soul),
-                    );
-                  },
-                ),
+          ? _EmptyState(message: l10n.noSoulsYet)
+          : ListView.builder(
+              padding: padding,
+              itemCount: soulState.souls.length,
+              itemBuilder: (BuildContext context, int index) {
+                final Soul soul = soulState.souls[index];
+                final preview = soulState.currentLifePreviews[soul.id];
+                return _SoulCard(
+                  soul: soul,
+                  lifePreview: preview,
+                  onTap: () => _selectSoul(soul),
+                  onLongPress: () => _showDeleteDialog(soul),
+                );
+              },
+            ),
     );
   }
 
@@ -87,7 +89,10 @@ class _SaveSlotsScreenState extends ConsumerState<SaveSlotsScreen> {
               ref.read(soulControllerProvider.notifier).deleteSoul(soul.id);
               Navigator.of(context).pop();
             },
-            child: Text(l10n.confirm, style: TextStyle(color: Theme.of(context).colorScheme.error)),
+            child: Text(
+              l10n.confirm,
+              style: TextStyle(color: Theme.of(context).colorScheme.error),
+            ),
           ),
         ],
       ),
@@ -103,17 +108,20 @@ class _EmptyState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeExt = Theme.of(context).extension<AppThemeExtension>();
-    final padding = themeExt?.screenPadding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
-    final mutedColor = themeExt?.mutedColor ?? Theme.of(context).colorScheme.onSurfaceVariant;
+    final padding =
+        themeExt?.screenPadding ??
+        const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
+    final mutedColor =
+        themeExt?.mutedColor ?? Theme.of(context).colorScheme.onSurfaceVariant;
     return Center(
       child: Padding(
         padding: padding,
         child: Text(
           message,
           textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: mutedColor,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.bodyLarge?.copyWith(color: mutedColor),
         ),
       ),
     );
@@ -156,16 +164,16 @@ class _SoulCard extends StatelessWidget {
             children: <Widget>[
               Text(
                 soul.name,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
               kVerticalGap8,
               Text(
                 l10n.livesRemaining(soul.remainingLives),
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: colorScheme.primary,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(color: colorScheme.primary),
               ),
               if (lifePreview != null) ...[
                 kVerticalGap4,
@@ -173,11 +181,15 @@ class _SoulCard extends StatelessWidget {
                   builder: (BuildContext context) {
                     final p = lifePreview!;
                     return Text(
-                      l10n.currentLifeInfo(p.templateName, p.currentYear, p.age),
+                      l10n.currentLifeInfo(
+                        p.templateName,
+                        p.currentYear,
+                        p.age,
+                      ),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: colorScheme.secondary,
-                            fontStyle: FontStyle.italic,
-                          ),
+                        color: colorScheme.secondary,
+                        fontStyle: FontStyle.italic,
+                      ),
                     );
                   },
                 ),
@@ -186,8 +198,8 @@ class _SoulCard extends StatelessWidget {
               Text(
                 dateFormat.format(soul.createdAt),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: colorScheme.onSurfaceVariant,
-                    ),
+                  color: colorScheme.onSurfaceVariant,
+                ),
               ),
             ],
           ),

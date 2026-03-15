@@ -24,10 +24,12 @@ const double kBaseMortality = 0.001;
 const double kAgeDeathFactor = 0.002;
 const double kPhysicalDeathPenalty = 0.0005;
 const double kStressDeathPenalty = 0.0003;
+
 /// Minimum age for natural causes death. Below this, death only occurs if
 /// health is depleted, max age reached, or bad habits (smoking, drinking) with
 /// high strength combined with poor health.
 const int kNaturalCausesMinAge = 50;
+
 /// Habit strength threshold for "bad habits" that can cause early natural death.
 const int kBadHabitStrengthThreshold = 4;
 
@@ -37,14 +39,12 @@ class HealthEngine {
   List<HealthAction> _healthActions = [];
 
   bool get isLoaded =>
-      _conditionDefinitions.isNotEmpty &&
-      _healthActions.isNotEmpty;
+      _conditionDefinitions.isNotEmpty && _healthActions.isNotEmpty;
 
   List<ConditionDefinition> getConditionDefinitions() =>
       List.unmodifiable(_conditionDefinitions);
 
-  List<HealthAction> getAllHealthActions() =>
-      List.unmodifiable(_healthActions);
+  List<HealthAction> getAllHealthActions() => List.unmodifiable(_healthActions);
 
   void loadData({
     required List<ConditionDefinition> conditionDefinitions,
@@ -91,8 +91,9 @@ class HealthEngine {
     healthState = _applyModifiers(healthState, modifiers);
     healthState = _applyConditionEffects(healthState);
     healthState = _applyTreatmentEffects(healthState);
-    final Set<String> conditionIdsBeforeNew =
-        healthState.conditions.map((c) => c.id).toSet();
+    final Set<String> conditionIdsBeforeNew = healthState.conditions
+        .map((c) => c.id)
+        .toSet();
     healthState = _checkNewConditionTriggers(state, healthState, rng);
     for (final cond in healthState.conditions) {
       if (!conditionIdsBeforeNew.contains(cond.id)) {
@@ -105,7 +106,9 @@ class HealthEngine {
       }
     }
     healthState = _applyAgingPenalty(state.age, healthState);
-    final Set<String> symptomIdsBefore = healthState.symptoms.map((s) => s.id).toSet();
+    final Set<String> symptomIdsBefore = healthState.symptoms
+        .map((s) => s.id)
+        .toSet();
     healthState = _checkSymptomAppearance(healthState, state.age, rng);
     final List<Symptom> newSymptoms = healthState.symptoms
         .where((s) => !symptomIdsBefore.contains(s.id))
@@ -122,8 +125,9 @@ class HealthEngine {
       for (final c in healthState.conditions) c.id: c.name,
     };
     healthState = _checkConditionRecovery(healthState, state.age);
-    final Set<String> conditionIdsAfterRecovery =
-        healthState.conditions.map((c) => c.id).toSet();
+    final Set<String> conditionIdsAfterRecovery = healthState.conditions
+        .map((c) => c.id)
+        .toSet();
     for (final entry in conditionNamesBeforeRecovery.entries) {
       if (!conditionIdsAfterRecovery.contains(entry.key)) {
         state = GameLogger.addLog(
@@ -134,8 +138,11 @@ class HealthEngine {
         );
       }
     }
-    final List<HealthAction> generalActions =
-        pickYearlyGeneralActions(healthState, state, rng);
+    final List<HealthAction> generalActions = pickYearlyGeneralActions(
+      healthState,
+      state,
+      rng,
+    );
     healthState = healthState.copyWith(
       performedHospitalActionIds: [],
       performedGeneralActionIdsThisYear: [],
@@ -157,8 +164,10 @@ class HealthEngine {
   HealthState _applyNaturalDecay(HealthState state, int age) {
     final double ageDecay = age * kNaturalDecayAgeFactor;
     return state.copyWith(
-      physicalHealth: (state.physicalHealth - ageDecay)
-          .clamp(0.0, kMaxHealthValue.toDouble()),
+      physicalHealth: (state.physicalHealth - ageDecay).clamp(
+        0.0,
+        kMaxHealthValue.toDouble(),
+      ),
       mentalHealth: (state.mentalHealth - ageDecay * kNaturalDecayMentalFactor)
           .clamp(0.0, kMaxHealthValue.toDouble()),
     );
@@ -169,83 +178,102 @@ class HealthEngine {
     final workState = state.workState;
     if (workState != null && workState.currentEmployments.isNotEmpty) {
       for (final emp in workState.currentEmployments) {
-        modifiers.add(HealthModifier(
-          source: 'job:${emp.jobId}',
-          physicalDelta: -1.5,
-          mentalDelta: -1.0,
-          stressDelta: 2.0,
-        ));
+        modifiers.add(
+          HealthModifier(
+            source: 'job:${emp.jobId}',
+            physicalDelta: -1.5,
+            mentalDelta: -1.0,
+            stressDelta: 2.0,
+          ),
+        );
       }
     }
     if (state.educationState?.currentEnrollment != null) {
-      modifiers.add(const HealthModifier(
-        source: 'education',
-        physicalDelta: 0,
-        mentalDelta: -2.0,
-        stressDelta: 3.0,
-      ));
+      modifiers.add(
+        const HealthModifier(
+          source: 'education',
+          physicalDelta: 0,
+          mentalDelta: -2.0,
+          stressDelta: 3.0,
+        ),
+      );
     }
-    final relationships = state.socialState?.relationships ?? state.relationships;
+    final relationships =
+        state.socialState?.relationships ?? state.relationships;
     for (final rel in relationships) {
       if (!rel.isActive) continue;
       if (rel.value < 30) {
-        modifiers.add(HealthModifier(
-          source: 'relationship:${rel.npc.id}',
-          physicalDelta: 0,
-          mentalDelta: -3.0,
-          stressDelta: 4.0,
-        ));
+        modifiers.add(
+          HealthModifier(
+            source: 'relationship:${rel.npc.id}',
+            physicalDelta: 0,
+            mentalDelta: -3.0,
+            stressDelta: 4.0,
+          ),
+        );
       } else if (rel.value > 70) {
-        modifiers.add(HealthModifier(
-          source: 'relationship:${rel.npc.id}',
-          physicalDelta: 0.5,
-          mentalDelta: 2.0,
-          stressDelta: -1.0,
-        ));
+        modifiers.add(
+          HealthModifier(
+            source: 'relationship:${rel.npc.id}',
+            physicalDelta: 0.5,
+            mentalDelta: 2.0,
+            stressDelta: -1.0,
+          ),
+        );
       }
     }
     for (final habit in state.habits) {
       if (habit.strength < 3) continue;
       switch (habit.type) {
         case HabitType.exercise:
-          modifiers.add(const HealthModifier(
-            source: 'habit:exercise',
-            physicalDelta: 3.0,
-            mentalDelta: 2.0,
-            stressDelta: -2.0,
-          ));
+          modifiers.add(
+            const HealthModifier(
+              source: 'habit:exercise',
+              physicalDelta: 3.0,
+              mentalDelta: 2.0,
+              stressDelta: -2.0,
+            ),
+          );
           break;
         case HabitType.smoking:
-          modifiers.add(const HealthModifier(
-            source: 'habit:smoking',
-            physicalDelta: -2.0,
-            mentalDelta: 0,
-            stressDelta: 1.0,
-          ));
+          modifiers.add(
+            const HealthModifier(
+              source: 'habit:smoking',
+              physicalDelta: -2.0,
+              mentalDelta: 0,
+              stressDelta: 1.0,
+            ),
+          );
           break;
         case HabitType.meditation:
-          modifiers.add(const HealthModifier(
-            source: 'habit:meditation',
-            physicalDelta: 0.5,
-            mentalDelta: 3.0,
-            stressDelta: -3.0,
-          ));
+          modifiers.add(
+            const HealthModifier(
+              source: 'habit:meditation',
+              physicalDelta: 0.5,
+              mentalDelta: 3.0,
+              stressDelta: -3.0,
+            ),
+          );
           break;
         case HabitType.volunteering:
-          modifiers.add(const HealthModifier(
-            source: 'habit:volunteering',
-            physicalDelta: 0,
-            mentalDelta: 2.0,
-            stressDelta: -1.0,
-          ));
+          modifiers.add(
+            const HealthModifier(
+              source: 'habit:volunteering',
+              physicalDelta: 0,
+              mentalDelta: 2.0,
+              stressDelta: -1.0,
+            ),
+          );
           break;
         case HabitType.drinking:
-          modifiers.add(const HealthModifier(
-            source: 'habit:drinking',
-            physicalDelta: -1.0,
-            mentalDelta: -0.5,
-            stressDelta: 0.5,
-          ));
+          modifiers.add(
+            const HealthModifier(
+              source: 'habit:drinking',
+              physicalDelta: -1.0,
+              mentalDelta: -0.5,
+              stressDelta: 0.5,
+            ),
+          );
           break;
         default:
           break;
@@ -267,10 +295,14 @@ class HealthEngine {
       stressDelta += m.stressDelta;
     }
     return state.copyWith(
-      physicalHealth: (state.physicalHealth + physicalDelta)
-          .clamp(0.0, kMaxHealthValue.toDouble()),
-      mentalHealth: (state.mentalHealth + mentalDelta)
-          .clamp(0.0, kMaxHealthValue.toDouble()),
+      physicalHealth: (state.physicalHealth + physicalDelta).clamp(
+        0.0,
+        kMaxHealthValue.toDouble(),
+      ),
+      mentalHealth: (state.mentalHealth + mentalDelta).clamp(
+        0.0,
+        kMaxHealthValue.toDouble(),
+      ),
       stress: (state.stress + stressDelta).clamp(0.0, 100.0),
     );
   }
@@ -284,10 +316,14 @@ class HealthEngine {
       mentalDelta += cond.mentalHealthEffect;
     }
     return state.copyWith(
-      physicalHealth: (state.physicalHealth + physicalDelta)
-          .clamp(0.0, kMaxHealthValue.toDouble()),
-      mentalHealth: (state.mentalHealth + mentalDelta)
-          .clamp(0.0, kMaxHealthValue.toDouble()),
+      physicalHealth: (state.physicalHealth + physicalDelta).clamp(
+        0.0,
+        kMaxHealthValue.toDouble(),
+      ),
+      mentalHealth: (state.mentalHealth + mentalDelta).clamp(
+        0.0,
+        kMaxHealthValue.toDouble(),
+      ),
     );
   }
 
@@ -300,10 +336,14 @@ class HealthEngine {
       mentalRecovery += 1.0;
     }
     return state.copyWith(
-      physicalHealth: (state.physicalHealth + physicalRecovery)
-          .clamp(0.0, kMaxHealthValue.toDouble()),
-      mentalHealth: (state.mentalHealth + mentalRecovery)
-          .clamp(0.0, kMaxHealthValue.toDouble()),
+      physicalHealth: (state.physicalHealth + physicalRecovery).clamp(
+        0.0,
+        kMaxHealthValue.toDouble(),
+      ),
+      mentalHealth: (state.mentalHealth + mentalRecovery).clamp(
+        0.0,
+        kMaxHealthValue.toDouble(),
+      ),
     );
   }
 
@@ -340,10 +380,14 @@ class HealthEngine {
     final double healthProtection = state.physicalHealth * 0.01;
     final double degenerationRate = kAgingDegenerationBase - healthProtection;
     return state.copyWith(
-      physicalHealth: (state.physicalHealth - degenerationRate)
-          .clamp(0.0, kMaxHealthValue.toDouble()),
-      mentalHealth: (state.mentalHealth - degenerationRate * 0.5)
-          .clamp(0.0, kMaxHealthValue.toDouble()),
+      physicalHealth: (state.physicalHealth - degenerationRate).clamp(
+        0.0,
+        kMaxHealthValue.toDouble(),
+      ),
+      mentalHealth: (state.mentalHealth - degenerationRate * 0.5).clamp(
+        0.0,
+        kMaxHealthValue.toDouble(),
+      ),
     );
   }
 
@@ -367,9 +411,7 @@ class HealthEngine {
       }
     }
     if (newSymptoms.isEmpty) return state;
-    return state.copyWith(
-      symptoms: [...state.symptoms, ...newSymptoms],
-    );
+    return state.copyWith(symptoms: [...state.symptoms, ...newSymptoms]);
   }
 
   HealthState _checkConditionRecovery(HealthState state, int age) {
@@ -415,7 +457,10 @@ class HealthEngine {
       );
       return state.copyWith(isDead: true, causeOfDeath: 'Old age');
     }
-    final double? deathChance = _computeNaturalCausesDeathChance(state, healthState);
+    final double? deathChance = _computeNaturalCausesDeathChance(
+      state,
+      healthState,
+    );
     if (deathChance != null && rng.chance(deathChance)) {
       state = GameLogger.addLog(
         state,
@@ -429,12 +474,18 @@ class HealthEngine {
 
   /// Returns the chance of natural causes death, or null if natural causes
   /// death should not be possible (e.g. young and healthy with no bad habits).
-  double? _computeNaturalCausesDeathChance(LifeState state, HealthState? healthState) {
-    final double physical = healthState?.physicalHealth ?? state.health.toDouble();
+  double? _computeNaturalCausesDeathChance(
+    LifeState state,
+    HealthState? healthState,
+  ) {
+    final double physical =
+        healthState?.physicalHealth ?? state.health.toDouble();
     final double stress = healthState?.stress ?? 0;
-    final bool hasBadHabits = state.habits.any((h) =>
-        (h.type == HabitType.smoking || h.type == HabitType.drinking) &&
-        h.strength >= kBadHabitStrengthThreshold);
+    final bool hasBadHabits = state.habits.any(
+      (h) =>
+          (h.type == HabitType.smoking || h.type == HabitType.drinking) &&
+          h.strength >= kBadHabitStrengthThreshold,
+    );
     if (state.age < kNaturalCausesMinAge) {
       if (physical >= 70 && !hasBadHabits) {
         return null;
@@ -506,8 +557,9 @@ class HealthEngine {
       if (a.type != HealthActionType.hospital) return false;
       if (performed.contains(a.id)) return false;
       if (a.requiresDiagnosedConditionIds.isEmpty) return true;
-      return a.requiresDiagnosedConditionIds
-          .any((id) => diagnosedIds.contains(id));
+      return a.requiresDiagnosedConditionIds.any(
+        (id) => diagnosedIds.contains(id),
+      );
     }).toList();
   }
 
@@ -524,14 +576,13 @@ class HealthEngine {
     SeededRandom rng,
   ) {
     final Set<String> diagnosedIds = healthState.diagnosedConditionIds.toSet();
-    final List<HealthAction> general = _healthActions
-        .where((a) {
-          if (a.type != HealthActionType.general) return false;
-          if (a.requiresDiagnosedConditionIds.isEmpty) return true;
-          return a.requiresDiagnosedConditionIds
-              .any((id) => diagnosedIds.contains(id));
-        })
-        .toList();
+    final List<HealthAction> general = _healthActions.where((a) {
+      if (a.type != HealthActionType.general) return false;
+      if (a.requiresDiagnosedConditionIds.isEmpty) return true;
+      return a.requiresDiagnosedConditionIds.any(
+        (id) => diagnosedIds.contains(id),
+      );
+    }).toList();
     if (general.length <= kHealthGeneralActionsPerYear) {
       return general;
     }
@@ -553,8 +604,10 @@ class HealthEngine {
     HealthState newState = state.copyWith(
       physicalHealth: (state.physicalHealth + action.physicalHealthEffect)
           .clamp(0.0, kMaxHealthValue.toDouble()),
-      mentalHealth: (state.mentalHealth + action.mentalHealthEffect)
-          .clamp(0.0, kMaxHealthValue.toDouble()),
+      mentalHealth: (state.mentalHealth + action.mentalHealthEffect).clamp(
+        0.0,
+        kMaxHealthValue.toDouble(),
+      ),
       performedHospitalActionIds: [
         ...state.performedHospitalActionIds,
         action.id,
@@ -577,7 +630,8 @@ class HealthEngine {
     for (final condId in action.canTreatConditionIds) {
       final cond = newState.conditions.where((c) => c.id == condId).firstOrNull;
       if (cond == null || !cond.isDiagnosed) continue;
-      double successRate = action.treatmentSuccessRateByConditionId[condId] ??
+      double successRate =
+          action.treatmentSuccessRateByConditionId[condId] ??
           _conditionDefinitions
               .where((d) => d.id == condId)
               .firstOrNull
@@ -603,8 +657,10 @@ class HealthEngine {
     HealthState newState = state.copyWith(
       physicalHealth: (state.physicalHealth + action.physicalHealthEffect)
           .clamp(0.0, kMaxHealthValue.toDouble()),
-      mentalHealth: (state.mentalHealth + action.mentalHealthEffect)
-          .clamp(0.0, kMaxHealthValue.toDouble()),
+      mentalHealth: (state.mentalHealth + action.mentalHealthEffect).clamp(
+        0.0,
+        kMaxHealthValue.toDouble(),
+      ),
       performedGeneralActionIdsThisYear: [
         ...state.performedGeneralActionIdsThisYear,
         action.id,
@@ -613,7 +669,8 @@ class HealthEngine {
     for (final condId in action.canTreatConditionIds) {
       final cond = newState.conditions.where((c) => c.id == condId).firstOrNull;
       if (cond == null || !cond.isDiagnosed) continue;
-      double successRate = action.treatmentSuccessRateByConditionId[condId] ??
+      double successRate =
+          action.treatmentSuccessRateByConditionId[condId] ??
           _conditionDefinitions
               .where((d) => d.id == condId)
               .firstOrNull

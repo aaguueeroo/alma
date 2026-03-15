@@ -56,7 +56,11 @@ class ActionProcessor {
     state = timeEngine.consumeTime(state, action);
     state = _applySkillChanges(state, action);
     state = _applyHealthChange(state, action);
-    state = _applySectionPerformance(state, action, workJobContext: workJobContext);
+    state = _applySectionPerformance(
+      state,
+      action,
+      workJobContext: workJobContext,
+    );
     if (workJobContext != null && action.category == ActionCategory.work) {
       state = _recordWorkActionPerformed(state, action, workJobContext);
     }
@@ -128,8 +132,10 @@ class ActionProcessor {
       final double delta = action.healthEffect.toDouble();
       final double newPhysical = (healthState.physicalHealth + delta * 0.5)
           .clamp(0.0, kMaxHealthValue.toDouble());
-      final double newMental = (healthState.mentalHealth + delta * 0.5)
-          .clamp(0.0, kMaxHealthValue.toDouble());
+      final double newMental = (healthState.mentalHealth + delta * 0.5).clamp(
+        0.0,
+        kMaxHealthValue.toDouble(),
+      );
       return state.copyWith(
         healthState: healthState.copyWith(
           physicalHealth: newPhysical,
@@ -137,8 +143,10 @@ class ActionProcessor {
         ),
       );
     }
-    final int newHealth = (state.health + action.healthEffect)
-        .clamp(kMinHealthValue, kMaxHealthValue);
+    final int newHealth = (state.health + action.healthEffect).clamp(
+      kMinHealthValue,
+      kMaxHealthValue,
+    );
     return state.copyWith(health: newHealth);
   }
 
@@ -157,19 +165,21 @@ class ActionProcessor {
       if (workState == null || workState.currentEmployments.isEmpty) {
         return state;
       }
-      final List<Employment> updated = workState.currentEmployments
-          .map((Employment e) {
-            final bool appliesToJob = action.workJobId == null ||
-                action.workJobId == e.jobId;
-            final bool inContext = workJobContext == null ||
-                e.jobId == workJobContext;
-            if (!appliesToJob || !inContext) return e;
-            final int newPerformance =
-                (e.performance + action.sectionPerformanceEffect)
-                    .clamp(kMinSectionPerformance, kMaxSectionPerformance);
-            return e.copyWith(performance: newPerformance);
-          })
-          .toList();
+      final List<Employment> updated = workState.currentEmployments.map((
+        Employment e,
+      ) {
+        final bool appliesToJob =
+            action.workJobId == null || action.workJobId == e.jobId;
+        final bool inContext =
+            workJobContext == null || e.jobId == workJobContext;
+        if (!appliesToJob || !inContext) return e;
+        final int newPerformance =
+            (e.performance + action.sectionPerformanceEffect).clamp(
+              kMinSectionPerformance,
+              kMaxSectionPerformance,
+            );
+        return e.copyWith(performance: newPerformance);
+      }).toList();
       return state.copyWith(
         workState: workState.copyWith(currentEmployments: updated),
       );
@@ -177,8 +187,10 @@ class ActionProcessor {
     final sections = state.sections.map((section) {
       if (section.type == targetSection) {
         final int newPerformance =
-            (section.performance + action.sectionPerformanceEffect)
-                .clamp(kMinSectionPerformance, kMaxSectionPerformance);
+            (section.performance + action.sectionPerformanceEffect).clamp(
+              kMinSectionPerformance,
+              kMaxSectionPerformance,
+            );
         return section.copyWith(performance: newPerformance);
       }
       return section;
@@ -197,13 +209,11 @@ class ActionProcessor {
         workState.performedActionsByJobIdThisYear[jobId] ?? [];
     final Map<String, List<GameAction>> updated =
         Map<String, List<GameAction>>.from(
-      workState.performedActionsByJobIdThisYear,
-    );
+          workState.performedActionsByJobIdThisYear,
+        );
     updated[jobId] = [...existing, action];
     return state.copyWith(
-      workState: workState.copyWith(
-        performedActionsByJobIdThisYear: updated,
-      ),
+      workState: workState.copyWith(performedActionsByJobIdThisYear: updated),
     );
   }
 
@@ -220,9 +230,7 @@ class ActionProcessor {
     final List<MoralImpact> newImpacts = action.moralImpactTemplates
         .map((t) => t.toImpact(state.currentYear))
         .toList();
-    return state.copyWith(
-      moralImpacts: [...state.moralImpacts, ...newImpacts],
-    );
+    return state.copyWith(moralImpacts: [...state.moralImpacts, ...newImpacts]);
   }
 
   LifeState _logAction(
@@ -238,7 +246,8 @@ class ActionProcessor {
     if (action.targetNpcId != null) {
       tags.add('npc:${action.targetNpcId}');
     }
-    final String message = action.logMessage ??
+    final String message =
+        action.logMessage ??
         (action.name.isEmpty
             ? 'You did something.'
             : 'You ${action.name[0].toLowerCase()}${action.name.length > 1 ? action.name.substring(1) : ''}.');

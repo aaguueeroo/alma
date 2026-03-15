@@ -31,8 +31,10 @@ class RelationDetailWidget extends StatelessWidget {
   final List<GameAction> npcActions;
   final List<GameAction> performedActionsThisYear;
   final List<Relationship> relationships;
+
   /// When set (e.g. "Mother", "Father"), used as subtitle instead of generic role label.
   final String? relationshipTypeLabel;
+
   /// When false (e.g. family), attraction is shown as 0 on the spider chart.
   final bool attractionAllowed;
   final void Function(GameAction action)? onActionTap;
@@ -44,10 +46,7 @@ class RelationDetailWidget extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(
-            left: kSpacing4,
-            top: kSpacing8,
-          ),
+          padding: const EdgeInsets.only(left: kSpacing4, top: kSpacing8),
           child: Align(
             alignment: Alignment.centerLeft,
             child: IconButton(
@@ -65,7 +64,8 @@ class RelationDetailWidget extends StatelessWidget {
               children: [
                 PersonHeaderWidget(
                   name: relationship.npc.name,
-                  subtitle: relationshipTypeLabel ??
+                  subtitle:
+                      relationshipTypeLabel ??
                       _getRoleLabel(relationship.npc.role, l10n),
                   gender: relationship.npc.gender,
                   trailing: Icon(
@@ -78,8 +78,8 @@ class RelationDetailWidget extends StatelessWidget {
                 Text(
                   l10n.relationshipProgress,
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        color: colors.onSurfaceVariant,
-                      ),
+                    color: colors.onSurfaceVariant,
+                  ),
                 ),
                 kVerticalGap8,
                 BidirectionalBarWidget(
@@ -90,7 +90,8 @@ class RelationDetailWidget extends StatelessWidget {
                 Center(
                   child: RadarChartWidget(
                     values: {
-                      l10n.affection: (relationship.metrics.affection + 100) / 200,
+                      l10n.affection:
+                          (relationship.metrics.affection + 100) / 200,
                       l10n.trust: (relationship.metrics.trust + 100) / 200,
                       l10n.respect: (relationship.metrics.respect + 100) / 200,
                       l10n.attraction: attractionAllowed
@@ -105,8 +106,8 @@ class RelationDetailWidget extends StatelessWidget {
                 Text(
                   l10n.npcActions,
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        color: colors.onSurfaceVariant,
-                      ),
+                    color: colors.onSurfaceVariant,
+                  ),
                 ),
                 kVerticalGap12,
                 if (npcActions.isEmpty)
@@ -121,9 +122,9 @@ class RelationDetailWidget extends StatelessWidget {
                       l10n.noSocialActionsAvailable,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: colors.onSurfaceVariant,
-                            fontStyle: FontStyle.italic,
-                          ),
+                        color: colors.onSurfaceVariant,
+                        fontStyle: FontStyle.italic,
+                      ),
                     ),
                   )
                 else
@@ -138,8 +139,8 @@ class RelationDetailWidget extends StatelessWidget {
                   Text(
                     l10n.usedActions,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: colors.onSurfaceVariant,
-                        ),
+                      color: colors.onSurfaceVariant,
+                    ),
                   ),
                   kVerticalGap8,
                   ...performedActionsThisYear.map(
@@ -169,7 +170,9 @@ class RelationDetailWidget extends StatelessWidget {
                   title: l10n.eventLog,
                   emptyMessage: l10n.noInteractionsRecorded,
                   gameLogs: logs,
-                  relationships: relationships.isNotEmpty ? relationships : null,
+                  relationships: relationships.isNotEmpty
+                      ? relationships
+                      : null,
                   contextNpcId: relationship.npc.id,
                 ),
                 kVerticalGap32,
@@ -265,10 +268,7 @@ class RelationDetailWidget extends StatelessWidget {
 }
 
 class _NpcActionTile extends StatelessWidget {
-  const _NpcActionTile({
-    required this.action,
-    required this.onTap,
-  });
+  const _NpcActionTile({required this.action, required this.onTap});
 
   final GameAction action;
   final VoidCallback onTap;

@@ -65,10 +65,7 @@ class DebugConditionTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 if (hasCondition)
-                  TextButton(
-                    onPressed: onRemove,
-                    child: const Text('Remove'),
-                  ),
+                  TextButton(onPressed: onRemove, child: const Text('Remove')),
                 FilledButton.tonal(
                   onPressed: onGive,
                   child: Text(hasCondition ? 'Give again' : 'Give'),

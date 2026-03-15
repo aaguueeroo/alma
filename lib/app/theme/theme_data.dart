@@ -37,9 +37,9 @@ class AppThemeData {
   final AppThemeExtension extension;
 
   EdgeInsets get screenPadding => EdgeInsets.symmetric(
-        horizontal: screenPaddingHorizontal,
-        vertical: screenPaddingVertical,
-      );
+    horizontal: screenPaddingHorizontal,
+    vertical: screenPaddingVertical,
+  );
 }
 
 /// Optional extension for narrative-specific styles and semantic colors.
@@ -92,9 +92,12 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
     double? radiusSmall,
   }) {
     return AppThemeExtension(
-      narrativeDisplayLarge: narrativeDisplayLarge ?? this.narrativeDisplayLarge,
-      narrativeHeadlineLarge: narrativeHeadlineLarge ?? this.narrativeHeadlineLarge,
-      narrativeHeadlineMedium: narrativeHeadlineMedium ?? this.narrativeHeadlineMedium,
+      narrativeDisplayLarge:
+          narrativeDisplayLarge ?? this.narrativeDisplayLarge,
+      narrativeHeadlineLarge:
+          narrativeHeadlineLarge ?? this.narrativeHeadlineLarge,
+      narrativeHeadlineMedium:
+          narrativeHeadlineMedium ?? this.narrativeHeadlineMedium,
       narrativeTitleLarge: narrativeTitleLarge ?? this.narrativeTitleLarge,
       narrativeTitleMedium: narrativeTitleMedium ?? this.narrativeTitleMedium,
       narrativeBodyLarge: narrativeBodyLarge ?? this.narrativeBodyLarge,
@@ -112,13 +115,41 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
   AppThemeExtension lerp(ThemeExtension<AppThemeExtension>? other, double t) {
     if (other is! AppThemeExtension) return this;
     return AppThemeExtension(
-      narrativeDisplayLarge: TextStyle.lerp(narrativeDisplayLarge, other.narrativeDisplayLarge, t)!,
-      narrativeHeadlineLarge: TextStyle.lerp(narrativeHeadlineLarge, other.narrativeHeadlineLarge, t)!,
-      narrativeHeadlineMedium: TextStyle.lerp(narrativeHeadlineMedium, other.narrativeHeadlineMedium, t)!,
-      narrativeTitleLarge: TextStyle.lerp(narrativeTitleLarge, other.narrativeTitleLarge, t)!,
-      narrativeTitleMedium: TextStyle.lerp(narrativeTitleMedium, other.narrativeTitleMedium, t)!,
-      narrativeBodyLarge: TextStyle.lerp(narrativeBodyLarge, other.narrativeBodyLarge, t)!,
-      narrativeBodyMedium: TextStyle.lerp(narrativeBodyMedium, other.narrativeBodyMedium, t)!,
+      narrativeDisplayLarge: TextStyle.lerp(
+        narrativeDisplayLarge,
+        other.narrativeDisplayLarge,
+        t,
+      )!,
+      narrativeHeadlineLarge: TextStyle.lerp(
+        narrativeHeadlineLarge,
+        other.narrativeHeadlineLarge,
+        t,
+      )!,
+      narrativeHeadlineMedium: TextStyle.lerp(
+        narrativeHeadlineMedium,
+        other.narrativeHeadlineMedium,
+        t,
+      )!,
+      narrativeTitleLarge: TextStyle.lerp(
+        narrativeTitleLarge,
+        other.narrativeTitleLarge,
+        t,
+      )!,
+      narrativeTitleMedium: TextStyle.lerp(
+        narrativeTitleMedium,
+        other.narrativeTitleMedium,
+        t,
+      )!,
+      narrativeBodyLarge: TextStyle.lerp(
+        narrativeBodyLarge,
+        other.narrativeBodyLarge,
+        t,
+      )!,
+      narrativeBodyMedium: TextStyle.lerp(
+        narrativeBodyMedium,
+        other.narrativeBodyMedium,
+        t,
+      )!,
       accentColor: Color.lerp(accentColor, other.accentColor, t)!,
       mutedColor: Color.lerp(mutedColor, other.mutedColor, t)!,
       screenPadding: EdgeInsets.lerp(screenPadding, other.screenPadding, t)!,

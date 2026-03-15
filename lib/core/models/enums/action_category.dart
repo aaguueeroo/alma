@@ -1,6 +1,1 @@
-enum ActionCategory {
-  education,
-  work,
-  health,
-  social,
-}
+enum ActionCategory { education, work, health, social }

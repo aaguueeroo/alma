@@ -1,8 +1,1 @@
-enum LogCategory {
-  education,
-  work,
-  health,
-  social,
-  event,
-  life,
-}
+enum LogCategory { education, work, health, social, event, life }

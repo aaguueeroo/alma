@@ -38,14 +38,15 @@ class LifeRepository {
         jsonDecode(row.stateJson) as Map<String, dynamic>;
     LifeState state = LifeState.fromJson(stateMap);
     if (state.timeRemaining <= 100) {
-      final int migratedDays =
-          (state.timeRemaining * kDaysPerYear / 100).round();
+      final int migratedDays = (state.timeRemaining * kDaysPerYear / 100)
+          .round();
       state = state.copyWith(timeRemaining: migratedDays);
     }
     LifeSummary? summary;
     if (row.summaryJson != null) {
       summary = LifeSummary.fromJson(
-          jsonDecode(row.summaryJson!) as Map<String, dynamic>);
+        jsonDecode(row.summaryJson!) as Map<String, dynamic>,
+      );
     }
     return Life(
       id: row.id,

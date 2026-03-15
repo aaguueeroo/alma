@@ -103,10 +103,13 @@ class DebugController {
     final HealthState? healthState = life.state.healthState;
     if (healthState == null) return;
     final double clamped = value.clamp(0.0, kMaxHealthValue.toDouble());
-    final HealthState newHealthState =
-        healthState.copyWith(physicalHealth: clamped);
-    final LifeState newState =
-        life.state.copyWith(healthState: newHealthState, health: clamped.round());
+    final HealthState newHealthState = healthState.copyWith(
+      physicalHealth: clamped,
+    );
+    final LifeState newState = life.state.copyWith(
+      healthState: newHealthState,
+      health: clamped.round(),
+    );
     await lifeController.debugReplaceLife(life.copyWith(state: newState));
   }
 
@@ -116,10 +119,13 @@ class DebugController {
     final HealthState? healthState = life.state.healthState;
     if (healthState == null) return;
     final double clamped = value.clamp(0.0, kMaxHealthValue.toDouble());
-    final HealthState newHealthState =
-        healthState.copyWith(mentalHealth: clamped);
-    final LifeState newState =
-        life.state.copyWith(healthState: newHealthState, health: clamped.round());
+    final HealthState newHealthState = healthState.copyWith(
+      mentalHealth: clamped,
+    );
+    final LifeState newState = life.state.copyWith(
+      healthState: newHealthState,
+      health: clamped.round(),
+    );
     await lifeController.debugReplaceLife(life.copyWith(state: newState));
   }
 
@@ -130,8 +136,7 @@ class DebugController {
     if (healthState == null) return;
     final double clamped = value.clamp(0.0, 100.0);
     final HealthState newHealthState = healthState.copyWith(stress: clamped);
-    final LifeState newState =
-        life.state.copyWith(healthState: newHealthState);
+    final LifeState newState = life.state.copyWith(healthState: newHealthState);
     await lifeController.debugReplaceLife(life.copyWith(state: newState));
   }
 
@@ -222,8 +227,10 @@ class DebugController {
   Future<void> debugSetSectionPerformance(SectionType type, int value) async {
     final Life? life = currentLife;
     if (life == null) return;
-    final int clamped =
-        value.clamp(kMinSectionPerformance, kMaxSectionPerformance);
+    final int clamped = value.clamp(
+      kMinSectionPerformance,
+      kMaxSectionPerformance,
+    );
     final List<Section> sections = life.state.sections.map((s) {
       if (s.type == type) return s.copyWith(performance: clamped);
       return s;
@@ -237,40 +244,47 @@ class DebugController {
     if (life == null) return;
     final workState = life.state.workState;
     if (workState == null) return;
-    final int clamped =
-        value.clamp(kMinSectionPerformance, kMaxSectionPerformance);
-    final List<Employment> employments =
-        workState.currentEmployments.map((e) {
+    final int clamped = value.clamp(
+      kMinSectionPerformance,
+      kMaxSectionPerformance,
+    );
+    final List<Employment> employments = workState.currentEmployments.map((e) {
       if (e.jobId == jobId) return e.copyWith(performance: clamped);
       return e;
     }).toList();
-    final WorkState newWorkState =
-        workState.copyWith(currentEmployments: employments);
-    final LifeState newState =
-        life.state.copyWith(workState: newWorkState);
+    final WorkState newWorkState = workState.copyWith(
+      currentEmployments: employments,
+    );
+    final LifeState newState = life.state.copyWith(workState: newWorkState);
     await lifeController.debugReplaceLife(life.copyWith(state: newState));
   }
 
   Future<void> debugSetRelationshipValue(String npcId, int value) async {
     final Life? life = currentLife;
     if (life == null) return;
-    final int clamped =
-        value.clamp(kMinRelationshipValue, kMaxRelationshipValue);
+    final int clamped = value.clamp(
+      kMinRelationshipValue,
+      kMaxRelationshipValue,
+    );
     final List<Relationship> relationships =
-        (life.state.socialState?.relationships ?? life.state.relationships)
-            .map((r) {
-      if (r.npc.id == npcId) return r.copyWith(value: clamped);
-      return r;
-    }).toList();
+        (life.state.socialState?.relationships ?? life.state.relationships).map(
+          (r) {
+            if (r.npc.id == npcId) return r.copyWith(value: clamped);
+            return r;
+          },
+        ).toList();
     if (life.state.socialState != null) {
-      final SocialState newSocialState =
-          life.state.socialState!.copyWith(relationships: relationships);
-      final LifeState newState =
-          life.state.copyWith(socialState: newSocialState);
+      final SocialState newSocialState = life.state.socialState!.copyWith(
+        relationships: relationships,
+      );
+      final LifeState newState = life.state.copyWith(
+        socialState: newSocialState,
+      );
       await lifeController.debugReplaceLife(life.copyWith(state: newState));
     } else {
-      final LifeState newState =
-          life.state.copyWith(relationships: relationships);
+      final LifeState newState = life.state.copyWith(
+        relationships: relationships,
+      );
       await lifeController.debugReplaceLife(life.copyWith(state: newState));
     }
   }
@@ -288,14 +302,15 @@ class DebugController {
     }
     if (healthState == null) return;
     if (healthState.conditions.any((c) => c.id == def.id)) return;
-    final Condition condition =
-        def.toCondition(startAge: life.state.age, isDiagnosed: true);
+    final Condition condition = def.toCondition(
+      startAge: life.state.age,
+      isDiagnosed: true,
+    );
     final HealthState newHealthState = healthState.copyWith(
       conditions: [...healthState.conditions, condition],
       diagnosedConditionIds: [...healthState.diagnosedConditionIds, def.id],
     );
-    final LifeState newState =
-        life.state.copyWith(healthState: newHealthState);
+    final LifeState newState = life.state.copyWith(healthState: newHealthState);
     await lifeController.debugReplaceLife(life.copyWith(state: newState));
   }
 
@@ -304,16 +319,17 @@ class DebugController {
     if (life == null) return;
     final HealthState? healthState = life.state.healthState;
     if (healthState == null) return;
-    final List<Condition> newConditions =
-        healthState.conditions.where((c) => c.id != conditionId).toList();
-    final List<String> newDiagnosed =
-        healthState.diagnosedConditionIds.where((id) => id != conditionId).toList();
+    final List<Condition> newConditions = healthState.conditions
+        .where((c) => c.id != conditionId)
+        .toList();
+    final List<String> newDiagnosed = healthState.diagnosedConditionIds
+        .where((id) => id != conditionId)
+        .toList();
     final HealthState newHealthState = healthState.copyWith(
       conditions: newConditions,
       diagnosedConditionIds: newDiagnosed,
     );
-    final LifeState newState =
-        life.state.copyWith(healthState: newHealthState);
+    final LifeState newState = life.state.copyWith(healthState: newHealthState);
     await lifeController.debugReplaceLife(life.copyWith(state: newState));
   }
 
@@ -326,7 +342,10 @@ class DebugController {
     await lifeController.debugReplaceLife(life.copyWith(state: newState));
   }
 
-  Future<void> debugPerformAction(GameAction action, {String? workJobContext}) async {
+  Future<void> debugPerformAction(
+    GameAction action, {
+    String? workJobContext,
+  }) async {
     await lifeController.performAction(action, workJobContext: workJobContext);
   }
 
@@ -334,10 +353,15 @@ class DebugController {
     final Soul? soul = currentSoul;
     if (soul == null) return;
     final int clamped = value.clamp(0, kDefaultMaxLives);
-    await soulController.debugReplaceSoul(soul.copyWith(remainingLives: clamped));
+    await soulController.debugReplaceSoul(
+      soul.copyWith(remainingLives: clamped),
+    );
   }
 
-  Future<void> debugSetSubjectPassed(SoulSubjectType type, bool isPassed) async {
+  Future<void> debugSetSubjectPassed(
+    SoulSubjectType type,
+    bool isPassed,
+  ) async {
     final Soul? soul = currentSoul;
     if (soul == null) return;
     final List<SoulSubject> newSubjects = soul.subjects.map((s) {
@@ -352,7 +376,9 @@ class DebugController {
     if (soul == null) return;
     final Map<String, int> newMetaStats = Map<String, int>.from(soul.metaStats);
     newMetaStats[key] = value;
-    await soulController.debugReplaceSoul(soul.copyWith(metaStats: newMetaStats));
+    await soulController.debugReplaceSoul(
+      soul.copyWith(metaStats: newMetaStats),
+    );
   }
 
   Future<void> debugClearCurrentLife() async {

@@ -51,7 +51,8 @@ int getYearStartCommitmentDays(LifeState state) {
   final WorkState? workState = state.workState;
   if (workState != null) {
     for (final Employment e in workState.currentEmployments) {
-      final int hours = e.hoursPerWeek ?? _defaultHoursPerWeekForJobType(e.type);
+      final int hours =
+          e.hoursPerWeek ?? _defaultHoursPerWeekForJobType(e.type);
       days += getCommitmentDaysFromHoursPerWeek(hours);
     }
   }

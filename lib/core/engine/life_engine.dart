@@ -49,10 +49,12 @@ class LifeEngine {
   }) {
     final int timeRemaining = initialTimeRemaining ?? kDaysPerYear;
     final List<Relationship> startingRelationships = template.startingNpcs
-        .map((npc) => Relationship(
-              npc: npc,
-              relationshipTypeId: npc.relationshipTypeId,
-            ))
+        .map(
+          (npc) => Relationship(
+            npc: npc,
+            relationshipTypeId: npc.relationshipTypeId,
+          ),
+        )
         .toList();
     SocialState? socialState = socialEngine.isLoaded
         ? socialEngine.initializeSocial(startingRelationships)
@@ -90,13 +92,18 @@ class LifeEngine {
       final SeededRandom rng = SeededRandom(
         seed + 1 * _kSocialGenericActionRngOffset + kStartingAge,
       );
-      final List<String> genericIds =
-          socialEngine.pickYearlyGenericActionIds(initialState, rng);
+      final List<String> genericIds = socialEngine.pickYearlyGenericActionIds(
+        initialState,
+        rng,
+      );
       socialState = socialState.copyWith(genericActionIdsThisYear: genericIds);
       final List<Relationship> rels = socialState.relationships;
       final List<Relationship> relsWithActions = rels.map((Relationship rel) {
-        final List<String> actionIds =
-            socialEngine.pickYearlyActionIdsForNpc(rel, initialState, rng);
+        final List<String> actionIds = socialEngine.pickYearlyActionIdsForNpc(
+          rel,
+          initialState,
+          rng,
+        );
         return rel.copyWith(actionIdsThisYear: actionIds);
       }).toList();
       socialState = socialState.copyWith(relationships: relsWithActions);
@@ -136,10 +143,7 @@ class LifeEngine {
 
   Life progressYear(Life life) {
     final SeededRandom rng = _createRng(life);
-    final LifeState newState = actionProcessor.processNextYear(
-      life.state,
-      rng,
-    );
+    final LifeState newState = actionProcessor.processNextYear(life.state, rng);
     return life.copyWith(state: newState);
   }
 
@@ -148,6 +152,8 @@ class LifeEngine {
   }
 
   SeededRandom _createRng(Life life) {
-    return SeededRandom(life.seed + life.state.currentYear * 1000 + life.state.age);
+    return SeededRandom(
+      life.seed + life.state.currentYear * 1000 + life.state.age,
+    );
   }
 }

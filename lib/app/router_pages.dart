@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart' show TargetPlatform, defaultTargetPlatform;
+import 'package:flutter/foundation.dart'
+    show TargetPlatform, defaultTargetPlatform;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -12,9 +13,15 @@ Page<void> buildPageWithSwipeBack(GoRouterState state, Widget child) {
       child: child,
       transitionDuration: fadeDuration,
       reverseTransitionDuration: fadeDuration,
-      transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
-        return FadeTransition(opacity: animation, child: child);
-      },
+      transitionsBuilder:
+          (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+            Widget child,
+          ) {
+            return FadeTransition(opacity: animation, child: child);
+          },
     );
   }
   return CustomTransitionPage<void>(
@@ -22,8 +29,14 @@ Page<void> buildPageWithSwipeBack(GoRouterState state, Widget child) {
     child: child,
     transitionDuration: fadeDuration,
     reverseTransitionDuration: fadeDuration,
-    transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
-      return FadeTransition(opacity: animation, child: child);
-    },
+    transitionsBuilder:
+        (
+          BuildContext context,
+          Animation<double> animation,
+          Animation<double> secondaryAnimation,
+          Widget child,
+        ) {
+          return FadeTransition(opacity: animation, child: child);
+        },
   );
 }

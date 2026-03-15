@@ -38,8 +38,7 @@ class LogNarratives {
 
   // --- Work: employment ---
   static String workQuit(String jobName) => 'You left your job at $jobName.';
-  static String workFired(String jobName) =>
-      'You were let go from $jobName.';
+  static String workFired(String jobName) => 'You were let go from $jobName.';
   static String workPromoted(String newTitle, String jobName) =>
       'You were promoted to $newTitle at $jobName.';
   static String workPromotionDenied(String jobName) =>

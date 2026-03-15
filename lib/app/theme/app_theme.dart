@@ -65,23 +65,33 @@ class AppTheme {
           borderRadius: BorderRadius.circular(data.radiusDefault),
           borderSide: BorderSide(color: data.colorScheme.primary),
         ),
-        labelStyle: data.uiTextTheme.bodyMedium?.copyWith(color: data.colorScheme.onSurfaceVariant),
-        hintStyle: data.uiTextTheme.bodyMedium?.copyWith(color: data.colorScheme.outline),
+        labelStyle: data.uiTextTheme.bodyMedium?.copyWith(
+          color: data.colorScheme.onSurfaceVariant,
+        ),
+        hintStyle: data.uiTextTheme.bodyMedium?.copyWith(
+          color: data.colorScheme.outline,
+        ),
       ),
       dialogTheme: DialogThemeData(
         backgroundColor: data.colorScheme.surface,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(data.radiusLarge),
         ),
-        titleTextStyle: data.uiTextTheme.titleLarge?.copyWith(color: data.colorScheme.onSurface),
-        contentTextStyle: data.uiTextTheme.bodyMedium?.copyWith(color: data.colorScheme.onSurface),
+        titleTextStyle: data.uiTextTheme.titleLarge?.copyWith(
+          color: data.colorScheme.onSurface,
+        ),
+        contentTextStyle: data.uiTextTheme.bodyMedium?.copyWith(
+          color: data.colorScheme.onSurface,
+        ),
       ),
       appBarTheme: AppBarTheme(
         backgroundColor: data.colorScheme.surface,
         elevation: 0,
         scrolledUnderElevation: 0,
         iconTheme: IconThemeData(color: data.colorScheme.onSurface),
-        titleTextStyle: data.uiTextTheme.titleLarge?.copyWith(color: data.colorScheme.onSurface),
+        titleTextStyle: data.uiTextTheme.titleLarge?.copyWith(
+          color: data.colorScheme.onSurface,
+        ),
       ),
       iconTheme: IconThemeData(color: data.colorScheme.onSurface),
       extensions: <ThemeExtension<dynamic>>[data.extension],

@@ -44,9 +44,11 @@ class _WorkDebugScreenState extends ConsumerState<WorkDebugScreen> {
     } catch (_) {}
     final events = await debugController.getAllEvents();
     final workEvents = events
-        .where((e) =>
-            e.triggerConditions.requiredJobIds != null &&
-            e.triggerConditions.requiredJobIds!.isNotEmpty)
+        .where(
+          (e) =>
+              e.triggerConditions.requiredJobIds != null &&
+              e.triggerConditions.requiredJobIds!.isNotEmpty,
+        )
         .toList();
     if (mounted) {
       setState(() {
@@ -82,31 +84,35 @@ class _WorkDebugScreenState extends ConsumerState<WorkDebugScreen> {
         padding: kPaddingAll16,
         children: [
           const DebugSectionHeader(title: 'Editable Values'),
-          ...employments.map((emp) => DebugEditableValueTile(
-                label: '${emp.jobName} performance',
-                value: emp.performance,
-                onEdit: () => _showEditDialog(
-                  context,
-                  '${emp.jobName} performance',
-                  emp.performance.toString(),
-                  (v) => debugController.debugSetWorkPerformance(
-                    emp.jobId,
-                    int.tryParse(v) ?? emp.performance,
-                  ),
+          ...employments.map(
+            (emp) => DebugEditableValueTile(
+              label: '${emp.jobName} performance',
+              value: emp.performance,
+              onEdit: () => _showEditDialog(
+                context,
+                '${emp.jobName} performance',
+                emp.performance.toString(),
+                (v) => debugController.debugSetWorkPerformance(
+                  emp.jobId,
+                  int.tryParse(v) ?? emp.performance,
                 ),
-              )),
+              ),
+            ),
+          ),
           DebugEditableValueTile(
             label: 'Work section performance',
-            value: life.state.sections
-                .where((s) => s.type == SectionType.work)
-                .firstOrNull
-                ?.performance ??
+            value:
+                life.state.sections
+                    .where((s) => s.type == SectionType.work)
+                    .firstOrNull
+                    ?.performance ??
                 50,
             onEdit: () {
-              final current = life.state.sections
-                  .where((s) => s.type == SectionType.work)
-                  .firstOrNull
-                  ?.performance ??
+              final current =
+                  life.state.sections
+                      .where((s) => s.type == SectionType.work)
+                      .firstOrNull
+                      ?.performance ??
                   50;
               _showEditDialog(
                 context,
@@ -120,17 +126,23 @@ class _WorkDebugScreenState extends ConsumerState<WorkDebugScreen> {
             },
           ),
           const DebugSectionHeader(title: 'Multipliers'),
-          ..._jobs.expand((job) => job.levels.map((level) => DebugMultiplierTile(
+          ..._jobs.expand(
+            (job) => job.levels.map(
+              (level) => DebugMultiplierTile(
                 label: '${job.name} L${level.level} (${level.title})',
                 value: level.salaryMultiplier.toStringAsFixed(2),
-              ))),
+              ),
+            ),
+          ),
           if (life.state.healthState != null &&
               life.state.healthState!.conditions.isNotEmpty) ...[
             const DebugSectionHeader(title: 'Condition work effects'),
-            ...life.state.healthState!.conditions.map((c) => DebugMultiplierTile(
-                  label: '${c.name} work perf',
-                  value: c.workPerformanceEffect.toStringAsFixed(1),
-                )),
+            ...life.state.healthState!.conditions.map(
+              (c) => DebugMultiplierTile(
+                label: '${c.name} work perf',
+                value: c.workPerformanceEffect.toStringAsFixed(1),
+              ),
+            ),
           ],
           const DebugSectionHeader(title: 'Work Actions'),
           ...workActions.map((action) {
@@ -153,9 +165,11 @@ class _WorkDebugScreenState extends ConsumerState<WorkDebugScreen> {
           const DebugSectionHeader(title: 'Work Events'),
           ..._workEvents.map((event) {
             final effects = event.choices
-                .map((c) =>
-                    'health${c.consequences.healthChange >= 0 ? '+' : ''}${c.consequences.healthChange}, '
-                    'money${c.consequences.moneyChange >= 0 ? '+' : ''}${c.consequences.moneyChange}')
+                .map(
+                  (c) =>
+                      'health${c.consequences.healthChange >= 0 ? '+' : ''}${c.consequences.healthChange}, '
+                      'money${c.consequences.moneyChange >= 0 ? '+' : ''}${c.consequences.moneyChange}',
+                )
                 .join(' | ');
             return DebugActionEventTile(
               title: event.title,

@@ -8,7 +8,11 @@ class TraitRules {
   static const double _gainBaseChance = 0.05;
   static const double _lossBaseChance = 0.02;
 
-  LifeState checkEvolution(LifeState state, GameAction action, SeededRandom rng) {
+  LifeState checkEvolution(
+    LifeState state,
+    GameAction action,
+    SeededRandom rng,
+  ) {
     final List<TraitType> traits = List<TraitType>.from(state.traits);
     bool changed = false;
     final TraitType? candidateGain = _getGainCandidate(action);
@@ -46,10 +50,12 @@ class TraitRules {
   }
 
   TraitType? _getLossCandidate(GameAction action, List<TraitType> traits) {
-    if (action.category == ActionCategory.health && traits.contains(TraitType.lazy)) {
+    if (action.category == ActionCategory.health &&
+        traits.contains(TraitType.lazy)) {
       return TraitType.lazy;
     }
-    if (action.category == ActionCategory.social && traits.contains(TraitType.shy)) {
+    if (action.category == ActionCategory.social &&
+        traits.contains(TraitType.shy)) {
       return TraitType.shy;
     }
     return null;

@@ -26,8 +26,10 @@ sealed class RelationshipSubtype with _$RelationshipSubtype {
     @Default(false) bool requiresActionToTransition,
     String? transitionsTo,
     int? autoTransitionThreshold,
+
     /// When false, attraction is always 0 and never changed by actions (e.g. family).
     @Default(true) bool attractionAllowed,
+
     /// When non-null, only actions whose [GameAction.socialActionType] is in this list are eligible. When null, all action types allowed.
     @Default(null) List<String>? allowedActionTypes,
   }) = _RelationshipSubtype;

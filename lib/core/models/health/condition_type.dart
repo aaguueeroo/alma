@@ -1,4 +1,1 @@
-enum ConditionType {
-  physical,
-  mental,
-}
+enum ConditionType { physical, mental }

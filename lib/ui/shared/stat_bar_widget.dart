@@ -28,10 +28,7 @@ class StatBarWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              label,
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
+            Text(label, style: Theme.of(context).textTheme.bodyMedium),
             Text(
               '${(clampedValue * 100).round()}%',
               style: Theme.of(context).textTheme.bodySmall,
@@ -43,7 +40,9 @@ class StatBarWidget extends StatelessWidget {
           height: effectiveHeight,
           child: LinearProgressIndicator(
             value: clampedValue,
-            backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+            backgroundColor: Theme.of(
+              context,
+            ).colorScheme.surfaceContainerHighest,
             valueColor: AlwaysStoppedAnimation<Color>(effectiveColor),
             borderRadius: BorderRadius.circular(kBorderRadiusSmall),
           ),

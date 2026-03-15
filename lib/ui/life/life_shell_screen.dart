@@ -69,9 +69,7 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
     final LifeControllerState lifeState = ref.watch(lifeControllerProvider);
     final Life? life = lifeState.currentLife;
     if (life == null) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
     ref.listen<LifeControllerState>(lifeControllerProvider, (prev, next) {
       if (next.error != null && prev?.error != next.error) {
@@ -112,26 +110,27 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
       child: Scaffold(
         appBar: _buildAppBar(context, l10n, state),
         body: Column(
-        children: [
-          Expanded(
-            child: PageView(
-              controller: _pageController,
-              onPageChanged: (int index) {
-                setState(() => _currentIndex = index);
-              },
-              children: _buildAllPages(state: state, lifeState: lifeState),
+          children: [
+            Expanded(
+              child: PageView(
+                controller: _pageController,
+                onPageChanged: (int index) {
+                  setState(() => _currentIndex = index);
+                },
+                children: _buildAllPages(state: state, lifeState: lifeState),
+              ),
             ),
-          ),
-          _YearProgressSection(
-            timeRemaining: state.timeRemaining,
-            onNextYear: () {
-              ref.read(lifeControllerProvider.notifier).progressYear();
-            },
-          ),
-        ],
+            _YearProgressSection(
+              timeRemaining: state.timeRemaining,
+              onNextYear: () {
+                ref.read(lifeControllerProvider.notifier).progressYear();
+              },
+            ),
+          ],
+        ),
+        bottomNavigationBar: _buildBottomNav(context, l10n),
       ),
-      bottomNavigationBar: _buildBottomNav(context, l10n),
-    ));
+    );
   }
 
   PreferredSizeWidget _buildAppBar(
@@ -182,30 +181,40 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
       WorkTab(
         key: const ValueKey<int>(0),
         state: state,
-        actionsByJobId: ref.read(lifeControllerProvider.notifier).getWorkActions(),
+        actionsByJobId: ref
+            .read(lifeControllerProvider.notifier)
+            .getWorkActions(),
         onActionTap: _performAction,
         onGetJobTap: () => _showJobApplyDialog(context),
         onQuitJobTap: (String jobId) => _showQuitJobDialog(context, jobId),
         onAskPromotionTap: (String jobId) {
           ref.read(lifeControllerProvider.notifier).requestPromotion(jobId);
         },
-        isWorkBlockedByHealth:
-            ref.read(lifeControllerProvider.notifier).isWorkBlockedByHealth,
-        workPerformancePenalty:
-            ref.read(lifeControllerProvider.notifier).workPerformancePenalty,
+        isWorkBlockedByHealth: ref
+            .read(lifeControllerProvider.notifier)
+            .isWorkBlockedByHealth,
+        workPerformancePenalty: ref
+            .read(lifeControllerProvider.notifier)
+            .workPerformancePenalty,
       ),
       EducationTab(
         key: const ValueKey<int>(1),
         state: state,
-        actions: ref.read(lifeControllerProvider.notifier).getEducationActions(),
+        actions: ref
+            .read(lifeControllerProvider.notifier)
+            .getEducationActions(),
         onActionTap: _performAction,
         onEnrollTap: () => _showEducationPrompt(context),
         onDropOutTap: () => ref.read(lifeControllerProvider.notifier).dropOut(),
-        canDropOut: ref.read(lifeControllerProvider.notifier).canDropOutFromCurrentEnrollment,
-        isStudyBlockedByHealth:
-            ref.read(lifeControllerProvider.notifier).isStudyBlockedByHealth,
-        studyPerformancePenalty:
-            ref.read(lifeControllerProvider.notifier).studyPerformancePenalty,
+        canDropOut: ref
+            .read(lifeControllerProvider.notifier)
+            .canDropOutFromCurrentEnrollment,
+        isStudyBlockedByHealth: ref
+            .read(lifeControllerProvider.notifier)
+            .isStudyBlockedByHealth,
+        studyPerformancePenalty: ref
+            .read(lifeControllerProvider.notifier)
+            .studyPerformancePenalty,
       ),
       LifeMainTab(key: const ValueKey<int>(2), state: state),
       HealthTab(
@@ -218,30 +227,37 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
         key: const ValueKey<int>(4),
         relationships: state.socialState?.relationships ?? state.relationships,
         logs: state.logs,
-        genericActions: ref.read(lifeControllerProvider.notifier).getSocialGenericActions(),
+        genericActions: ref
+            .read(lifeControllerProvider.notifier)
+            .getSocialGenericActions(),
         getNpcActions: (String npcId) {
           return ref.read(lifeControllerProvider.notifier).getNpcActions(npcId);
         },
         getPerformedActionsThisYear: (String npcId) {
-          return ref.read(lifeControllerProvider.notifier).getPerformedActionsThisYear(npcId);
+          return ref
+              .read(lifeControllerProvider.notifier)
+              .getPerformedActionsThisYear(npcId);
         },
         getRelationshipTypeLabel: (String typeId) {
-          return ref.read(lifeControllerProvider.notifier).getRelationshipTypeLabel(typeId);
+          return ref
+              .read(lifeControllerProvider.notifier)
+              .getRelationshipTypeLabel(typeId);
         },
         getIsAttractionAllowed: (String typeId) {
-          return ref.read(lifeControllerProvider.notifier).isAttractionAllowedForRelationshipType(typeId);
+          return ref
+              .read(lifeControllerProvider.notifier)
+              .isAttractionAllowedForRelationshipType(typeId);
         },
         onGenericActionTap: (action, targetNpcIds) {
-          ref.read(lifeControllerProvider.notifier).performSocialAction(
-                action,
-                targetNpcIds,
-              );
+          ref
+              .read(lifeControllerProvider.notifier)
+              .performSocialAction(action, targetNpcIds);
         },
         onNpcActionTap: (action, npcId) {
           ref.read(lifeControllerProvider.notifier).performSocialAction(
-                action,
-                [npcId],
-              );
+            action,
+            [npcId],
+          );
         },
       ),
     ];
@@ -290,10 +306,9 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
   }
 
   void _performAction(GameAction action, {String? workJobId}) {
-    ref.read(lifeControllerProvider.notifier).performAction(
-          action,
-          workJobContext: workJobId,
-        );
+    ref
+        .read(lifeControllerProvider.notifier)
+        .performAction(action, workJobContext: workJobId);
   }
 
   void _showEventDialog(BuildContext context) {
@@ -324,12 +339,16 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
       );
       return;
     }
-    EducationPrompt? prompt = lifeState.currentLife?.state.educationState?.pendingPrompt;
+    EducationPrompt? prompt =
+        lifeState.currentLife?.state.educationState?.pendingPrompt;
     if (prompt == null) {
-      final List<EducationProgram> programs = controller.getAvailableProgramsForEnrollment();
+      final List<EducationProgram> programs = controller
+          .getAvailableProgramsForEnrollment();
       if (programs.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(AppLocalizations.of(context)!.noProgramsAvailable)),
+          SnackBar(
+            content: Text(AppLocalizations.of(context)!.noProgramsAvailable),
+          ),
         );
         return;
       }
@@ -348,14 +367,17 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
         prompt: dialogPrompt,
         onProgramSelected: (EducationProgram program) {
           Navigator.of(context).pop();
-          ref.read(lifeControllerProvider.notifier).enrollInProgram(
+          ref
+              .read(lifeControllerProvider.notifier)
+              .enrollInProgram(
                 program,
                 initialPerformance: dialogPrompt.carryOverPerformance,
               );
         },
         onDecline: () {
           Navigator.of(context).pop();
-          if (lifeState.currentLife?.state.educationState?.pendingPrompt != null) {
+          if (lifeState.currentLife?.state.educationState?.pendingPrompt !=
+              null) {
             ref.read(lifeControllerProvider.notifier).declineEnrollment();
           }
         },
@@ -368,9 +390,7 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
     final LifeControllerState lifeState = ref.read(lifeControllerProvider);
     if (controller.isWorkBlockedByHealth) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(AppLocalizations.of(context)!.healthBlocksWork),
-        ),
+        SnackBar(content: Text(AppLocalizations.of(context)!.healthBlocksWork)),
       );
       return;
     }
@@ -393,8 +413,8 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
   void _showQuitJobDialog(BuildContext context, String jobId) {
     final AppLocalizations l10n = AppLocalizations.of(context)!;
     final LifeControllerState lifeState = ref.read(lifeControllerProvider);
-    final String jobName = lifeState.currentLife?.state.workState
-            ?.currentEmployments
+    final String jobName =
+        lifeState.currentLife?.state.workState?.currentEmployments
             .where((e) => e.jobId == jobId)
             .firstOrNull
             ?.jobName ??
@@ -510,9 +530,7 @@ class _YearProgressSection extends StatelessWidget {
                 onPressed: onNextYear,
                 icon: const Icon(Icons.skip_next),
                 label: Text(
-                  hasTimeRemaining
-                      ? l10n.nextYearSkipRemaining
-                      : l10n.nextYear,
+                  hasTimeRemaining ? l10n.nextYearSkipRemaining : l10n.nextYear,
                 ),
               ),
             ),

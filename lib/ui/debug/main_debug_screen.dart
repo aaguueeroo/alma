@@ -128,7 +128,8 @@ class MainDebugScreen extends ConsumerWidget {
             context,
             'Money',
             state.money.toString(),
-            (v) => debugController.debugSetMoney(int.tryParse(v) ?? state.money),
+            (v) =>
+                debugController.debugSetMoney(int.tryParse(v) ?? state.money),
           ),
         ),
         DebugEditableValueTile(
@@ -138,7 +139,9 @@ class MainDebugScreen extends ConsumerWidget {
             context,
             'Health',
             state.displayHealth.toString(),
-            (v) => debugController.debugSetHealth(int.tryParse(v) ?? state.displayHealth),
+            (v) => debugController.debugSetHealth(
+              int.tryParse(v) ?? state.displayHealth,
+            ),
           ),
         ),
         if (state.healthState != null) ...[
@@ -226,10 +229,8 @@ class MainDebugScreen extends ConsumerWidget {
               context,
               _skillLabel(type),
               value.toString(),
-              (v) => debugController.debugSetSkill(
-                type,
-                int.tryParse(v) ?? value,
-              ),
+              (v) =>
+                  debugController.debugSetSkill(type, int.tryParse(v) ?? value),
             ),
           );
         }),
@@ -326,10 +327,7 @@ class MainDebugScreen extends ConsumerWidget {
 }
 
 class _DebugNavButton extends StatelessWidget {
-  const _DebugNavButton({
-    required this.label,
-    required this.onPressed,
-  });
+  const _DebugNavButton({required this.label, required this.onPressed});
 
   final String label;
   final VoidCallback onPressed;

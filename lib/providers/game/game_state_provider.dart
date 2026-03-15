@@ -56,9 +56,7 @@ final probabilityEngineProvider = Provider<ProbabilityEngine>((ref) {
 });
 
 final eventEngineProvider = Provider<EventEngine>((ref) {
-  return EventEngine(
-    probabilityEngine: ref.watch(probabilityEngineProvider),
-  );
+  return EventEngine(probabilityEngine: ref.watch(probabilityEngineProvider));
 });
 
 final traitRulesProvider = Provider<TraitRules>((ref) {

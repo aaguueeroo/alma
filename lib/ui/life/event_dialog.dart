@@ -53,10 +53,7 @@ class EventDialog extends StatelessWidget {
 }
 
 class _EventChoiceButton extends StatelessWidget {
-  const _EventChoiceButton({
-    required this.description,
-    required this.onTap,
-  });
+  const _EventChoiceButton({required this.description, required this.onTap});
 
   final String description;
   final VoidCallback onTap;

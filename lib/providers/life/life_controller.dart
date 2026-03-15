@@ -103,17 +103,18 @@ class LifeController extends StateNotifier<LifeControllerState> {
       final List<GameAction> actions = await seedLoader.loadActions();
       final List<GameEvent> events = await seedLoader.loadEvents();
       try {
-        final List<GameEvent> healthEvents = await seedLoader.loadHealthEvents();
+        final List<GameEvent> healthEvents = await seedLoader
+            .loadHealthEvents();
         eventEngine.loadEvents([...events, ...healthEvents]);
-        eventEngine.loadHealthEventIds(
-          healthEvents.map((e) => e.id).toSet(),
-        );
+        eventEngine.loadHealthEventIds(healthEvents.map((e) => e.id).toSet());
       } catch (_) {
         eventEngine.loadEvents(events);
       }
       final String country = 'default';
       final programs = await seedLoader.loadEducationPrograms();
-      final countryConfig = await seedLoader.loadEducationCountryConfig(country);
+      final countryConfig = await seedLoader.loadEducationCountryConfig(
+        country,
+      );
       final eduActions = await seedLoader.loadEducationActions();
       educationEngine.loadData(
         countryConfig: countryConfig,
@@ -125,8 +126,9 @@ class LifeController extends StateNotifier<LifeControllerState> {
       List<GameAction> workActions = [];
       try {
         final jobs = await seedLoader.loadJobs();
-        final workCountryConfig =
-            await seedLoader.loadWorkCountryConfig(country);
+        final workCountryConfig = await seedLoader.loadWorkCountryConfig(
+          country,
+        );
         final workActs = await seedLoader.loadWorkActions();
         workEngine.loadData(
           countryConfig: workCountryConfig,
@@ -141,8 +143,9 @@ class LifeController extends StateNotifier<LifeControllerState> {
       try {
         final socialActs = await seedLoader.loadSocialActions();
         final relationshipTypes = await seedLoader.loadRelationshipTypes();
-        final socialCountryConfig =
-            await seedLoader.loadSocialCountryConfig(country);
+        final socialCountryConfig = await seedLoader.loadSocialCountryConfig(
+          country,
+        );
         final nameRepo = await seedLoader.loadNameRepository(country);
         npcFactory.loadNameRepository(nameRepo);
         final defaultNameRepo = await seedLoader.loadNameRepository('default');
@@ -189,12 +192,11 @@ class LifeController extends StateNotifier<LifeControllerState> {
             (Relationship r) => r.actionIdsThisYear.isEmpty,
           )) {
         final SeededRandom rng = SeededRandom(
-          life.seed +
-              life.state.currentYear * 700 +
-              life.state.age,
+          life.seed + life.state.currentYear * 700 + life.state.age,
         );
-        final List<Relationship> updatedRels =
-            loadedSocial.relationships.map((Relationship rel) {
+        final List<Relationship> updatedRels = loadedSocial.relationships.map((
+          Relationship rel,
+        ) {
           if (rel.actionIdsThisYear.isNotEmpty) return rel;
           final List<String> ids = socialEngine.pickYearlyActionIdsForNpc(
             rel,
@@ -215,23 +217,28 @@ class LifeController extends StateNotifier<LifeControllerState> {
           socialEngine.isLoaded &&
           life.state.relationships.isNotEmpty) {
         final SeededRandom rng = SeededRandom(
-          life.seed +
-              life.state.currentYear * 700 +
-              life.state.age,
+          life.seed + life.state.currentYear * 700 + life.state.age,
         );
-        SocialState initialized =
-            socialEngine.initializeSocial(life.state.relationships);
-        final List<String> genericIds =
-            socialEngine.pickYearlyGenericActionIds(life.state, rng);
+        SocialState initialized = socialEngine.initializeSocial(
+          life.state.relationships,
+        );
+        final List<String> genericIds = socialEngine.pickYearlyGenericActionIds(
+          life.state,
+          rng,
+        );
         initialized = initialized.copyWith(
           genericActionIdsThisYear: genericIds,
         );
-        final List<Relationship> relsWithActions =
-            initialized.relationships.map((Relationship rel) {
-          final List<String> ids =
-              socialEngine.pickYearlyActionIdsForNpc(rel, life.state, rng);
-          return rel.copyWith(actionIdsThisYear: ids);
-        }).toList();
+        final List<Relationship> relsWithActions = initialized.relationships
+            .map((Relationship rel) {
+              final List<String> ids = socialEngine.pickYearlyActionIdsForNpc(
+                rel,
+                life.state,
+                rng,
+              );
+              return rel.copyWith(actionIdsThisYear: ids);
+            })
+            .toList();
         initialized = initialized.copyWith(relationships: relsWithActions);
         lifeToSet = life.copyWith(
           state: life.state.copyWith(socialState: initialized),
@@ -264,7 +271,10 @@ class LifeController extends StateNotifier<LifeControllerState> {
     }
   }
 
-  Future<void> performAction(GameAction action, {String? workJobContext}) async {
+  Future<void> performAction(
+    GameAction action, {
+    String? workJobContext,
+  }) async {
     if (state.currentLife == null) return;
     if (action.category == ActionCategory.work && isWorkBlockedByHealth) {
       return;
@@ -357,7 +367,9 @@ class LifeController extends StateNotifier<LifeControllerState> {
   Future<void> dropOut() async {
     if (state.currentLife == null) return;
     try {
-      final LifeState newState = educationEngine.dropOut(state.currentLife!.state);
+      final LifeState newState = educationEngine.dropOut(
+        state.currentLife!.state,
+      );
       final Life updatedLife = state.currentLife!.copyWith(state: newState);
       await lifeRepository.saveLife(updatedLife);
       state = state.copyWith(currentLife: updatedLife);
@@ -522,8 +534,10 @@ class LifeController extends StateNotifier<LifeControllerState> {
     final SeededRandom rng = SeededRandom(
       life.seed + life.state.currentYear * 500 + life.state.age,
     );
-    final Map<String, List<GameAction>> allByJob =
-        workEngine.pickYearlyActions(employments, rng);
+    final Map<String, List<GameAction>> allByJob = workEngine.pickYearlyActions(
+      employments,
+      rng,
+    );
     final Map<String, List<GameAction>> performedByJob =
         life.state.workState?.performedActionsByJobIdThisYear ?? {};
     final Map<String, List<GameAction>> result = {};
@@ -563,7 +577,10 @@ class LifeController extends StateNotifier<LifeControllerState> {
         .firstOrNull;
     if (rel == null) return [];
     final SeededRandom rng = SeededRandom(
-      life.seed + life.state.currentYear * 700 + life.state.age + npcId.hashCode,
+      life.seed +
+          life.state.currentYear * 700 +
+          life.state.age +
+          npcId.hashCode,
     );
     return socialEngine.pickYearlyActionsForNpc(rel, life.state, rng);
   }
@@ -669,7 +686,8 @@ class LifeController extends StateNotifier<LifeControllerState> {
     final HealthState? healthState = life.state.healthState;
     if (healthState == null) return [];
     final List<String> ids = healthState.generalActionIdsThisYear;
-    final List<String> performed = healthState.performedGeneralActionIdsThisYear;
+    final List<String> performed =
+        healthState.performedGeneralActionIdsThisYear;
     return healthEngine
         .getHealthActionsByIds(ids)
         .where((a) => !performed.contains(a.id))
@@ -685,8 +703,8 @@ class LifeController extends StateNotifier<LifeControllerState> {
       );
       HealthState? healthState = life.state.healthState;
       if (healthState == null) return;
-      final Set<String> diagnosedBefore =
-          healthState.diagnosedConditionIds.toSet();
+      final Set<String> diagnosedBefore = healthState.diagnosedConditionIds
+          .toSet();
       final Map<String, bool> treatedBefore = {
         for (final c in healthState.conditions) c.id: c.isTreated,
       };
@@ -713,7 +731,8 @@ class LifeController extends StateNotifier<LifeControllerState> {
       );
       for (final condId in healthState.diagnosedConditionIds) {
         if (!diagnosedBefore.contains(condId)) {
-          final String condName = healthState.conditions
+          final String condName =
+              healthState.conditions
                   .where((c) => c.id == condId)
                   .firstOrNull
                   ?.name ??
@@ -748,16 +767,16 @@ class LifeController extends StateNotifier<LifeControllerState> {
 
 final lifeControllerProvider =
     StateNotifierProvider<LifeController, LifeControllerState>((ref) {
-  return LifeController(
-    lifeEngine: ref.watch(lifeEngineProvider),
-    lifeRepository: ref.watch(lifeRepositoryProvider),
-    seedLoader: ref.watch(seedLoaderProvider),
-    healthEngine: ref.watch(healthEngineProvider),
-    eventEngine: ref.watch(eventEngineProvider),
-    educationEngine: ref.watch(educationEngineProvider),
-    workEngine: ref.watch(workEngineProvider),
-    socialEngine: ref.watch(socialEngineProvider),
-    npcFactory: ref.watch(npcFactoryProvider),
-    timeEngine: ref.watch(timeEngineProvider),
-  );
-});
+      return LifeController(
+        lifeEngine: ref.watch(lifeEngineProvider),
+        lifeRepository: ref.watch(lifeRepositoryProvider),
+        seedLoader: ref.watch(seedLoaderProvider),
+        healthEngine: ref.watch(healthEngineProvider),
+        eventEngine: ref.watch(eventEngineProvider),
+        educationEngine: ref.watch(educationEngineProvider),
+        workEngine: ref.watch(workEngineProvider),
+        socialEngine: ref.watch(socialEngineProvider),
+        npcFactory: ref.watch(npcFactoryProvider),
+        timeEngine: ref.watch(timeEngineProvider),
+      );
+    });

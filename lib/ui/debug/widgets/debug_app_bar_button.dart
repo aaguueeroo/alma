@@ -11,10 +11,7 @@ enum DebugNavigationContext {
 }
 
 class DebugAppBarButton extends StatelessWidget {
-  const DebugAppBarButton({
-    super.key,
-    required this.navigationContext,
-  });
+  const DebugAppBarButton({super.key, required this.navigationContext});
 
   final DebugNavigationContext navigationContext;
 

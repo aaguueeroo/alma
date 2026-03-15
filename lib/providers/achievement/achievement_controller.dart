@@ -43,18 +43,15 @@ class AchievementController extends StateNotifier<AchievementState> {
   Future<void> loadAchievements() async {
     state = state.copyWith(isLoading: true, clearError: true);
     try {
-      final List<Achievement> seedAchievements =
-          await seedLoader.loadAchievements();
+      final List<Achievement> seedAchievements = await seedLoader
+          .loadAchievements();
       await achievementRepository.seedAchievements(seedAchievements);
-      final List<Achievement> achievements =
-          await achievementRepository.getAllAchievements();
+      final List<Achievement> achievements = await achievementRepository
+          .getAllAchievements();
       state = state.copyWith(achievements: achievements, isLoading: false);
     } catch (e) {
       print('Error loading achievements: $e');
-      state = state.copyWith(
-        isLoading: false,
-        error: e.toString(),
-      );
+      state = state.copyWith(isLoading: false, error: e.toString());
     }
   }
 
@@ -74,8 +71,9 @@ class AchievementController extends StateNotifier<AchievementState> {
     if (_allSkillsAbove50(life)) {
       await _tryUnlock('jack_of_all_trades');
     }
-    final int formedHabits =
-        life.state.habits.where((h) => h.strength > 0).length;
+    final int formedHabits = life.state.habits
+        .where((h) => h.strength > 0)
+        .length;
     if (formedHabits >= 3) {
       await _tryUnlock('creature_of_habit');
     }
@@ -96,8 +94,8 @@ class AchievementController extends StateNotifier<AchievementState> {
   Future<void> _tryUnlock(String key) async {
     try {
       await achievementRepository.unlockAchievement(key);
-      final List<Achievement> updated =
-          await achievementRepository.getAllAchievements();
+      final List<Achievement> updated = await achievementRepository
+          .getAllAchievements();
       state = state.copyWith(achievements: updated);
     } catch (e) {
       print('Error unlocking achievement $key: $e');
@@ -116,8 +114,8 @@ class AchievementController extends StateNotifier<AchievementState> {
 
 final achievementControllerProvider =
     StateNotifierProvider<AchievementController, AchievementState>((ref) {
-  return AchievementController(
-    achievementRepository: ref.watch(achievementRepositoryProvider),
-    seedLoader: ref.watch(seedLoaderProvider),
-  );
-});
+      return AchievementController(
+        achievementRepository: ref.watch(achievementRepositoryProvider),
+        seedLoader: ref.watch(seedLoaderProvider),
+      );
+    });

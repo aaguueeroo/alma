@@ -6,10 +6,7 @@ import 'package:alma/app/constants/sizing.dart';
 import 'package:alma/app/theme/app_colors.dart';
 
 class SectionCardWidget extends StatelessWidget {
-  const SectionCardWidget({
-    super.key,
-    required this.section,
-  });
+  const SectionCardWidget({super.key, required this.section});
 
   final Section section;
 
@@ -47,8 +44,8 @@ class SectionCardWidget extends StatelessWidget {
               Text(
                 section.contextLabel,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    ),
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
               ),
             ],
             kVerticalGap8,
@@ -58,8 +55,9 @@ class SectionCardWidget extends StatelessWidget {
                 value: section.performance / 100,
                 minHeight: kProgressBarHeight,
                 color: sectionColor,
-                backgroundColor:
-                    Theme.of(context).colorScheme.surfaceContainerHighest,
+                backgroundColor: Theme.of(
+                  context,
+                ).colorScheme.surfaceContainerHighest,
               ),
             ),
           ],

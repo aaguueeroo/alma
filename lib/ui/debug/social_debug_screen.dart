@@ -36,10 +36,13 @@ class _SocialDebugScreenState extends ConsumerState<SocialDebugScreen> {
     final debugController = ref.read(debugControllerProvider);
     final events = await debugController.getAllEvents();
     final socialEvents = events
-        .where((e) =>
-            e.choices.any((c) =>
+        .where(
+          (e) => e.choices.any(
+            (c) =>
                 c.consequences.relationshipTargetId != null ||
-                c.consequences.relationshipChange != 0))
+                c.consequences.relationshipChange != 0,
+          ),
+        )
         .toList();
     if (mounted) {
       setState(() {
@@ -100,7 +103,7 @@ class _SocialDebugScreenState extends ConsumerState<SocialDebugScreen> {
               onEdit: () => _showEditDialog(
                 context,
                 '$displayName value',
-                  rel.value.toString(),
+                rel.value.toString(),
                 (v) => debugController.debugSetRelationshipValue(
                   rel.npc.id,
                   int.tryParse(v) ?? rel.value,
@@ -112,10 +115,12 @@ class _SocialDebugScreenState extends ConsumerState<SocialDebugScreen> {
           if (life.state.healthState != null &&
               life.state.healthState!.conditions.isNotEmpty) ...[
             const DebugSectionHeader(title: 'Condition relationship effects'),
-            ...life.state.healthState!.conditions.map((c) => DebugMultiplierTile(
-                  label: '${c.name} relationship',
-                  value: c.relationshipEffect.toStringAsFixed(1),
-                )),
+            ...life.state.healthState!.conditions.map(
+              (c) => DebugMultiplierTile(
+                label: '${c.name} relationship',
+                value: c.relationshipEffect.toStringAsFixed(1),
+              ),
+            ),
           ],
           const DebugSectionHeader(title: 'Social Actions'),
           ...socialActions.map((action) {
@@ -129,14 +134,14 @@ class _SocialDebugScreenState extends ConsumerState<SocialDebugScreen> {
                 if (action.targetNpcId != null &&
                     npcIds.contains(action.targetNpcId)) {
                   ref.read(lifeControllerProvider.notifier).performSocialAction(
-                        action,
-                        [action.targetNpcId!],
-                      );
+                    action,
+                    [action.targetNpcId!],
+                  );
                 } else if (npcIds.isNotEmpty) {
                   ref.read(lifeControllerProvider.notifier).performSocialAction(
-                        action,
-                        [npcIds.first],
-                      );
+                    action,
+                    [npcIds.first],
+                  );
                 } else {
                   debugController.debugPerformAction(action);
                 }
@@ -146,8 +151,10 @@ class _SocialDebugScreenState extends ConsumerState<SocialDebugScreen> {
           const DebugSectionHeader(title: 'Social Events'),
           ..._socialEvents.map((event) {
             final effects = event.choices
-                .map((c) =>
-                    'rel${c.consequences.relationshipChange >= 0 ? '+' : ''}${c.consequences.relationshipChange}')
+                .map(
+                  (c) =>
+                      'rel${c.consequences.relationshipChange >= 0 ? '+' : ''}${c.consequences.relationshipChange}',
+                )
                 .join(' | ');
             return DebugActionEventTile(
               title: event.title,

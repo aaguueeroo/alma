@@ -38,6 +38,7 @@ sealed class GameAction with _$GameAction {
     @Default(RelationshipEffects()) RelationshipEffects relationshipEffects,
     int? minAge,
     int? maxAge,
+
     /// Type of social action (e.g. "friendly", "romantic", "mischievous"). Used to filter actions per relationship type (e.g. romantic not allowed for family). When null, treated as "friendly".
     String? socialActionType,
   }) = _GameAction;

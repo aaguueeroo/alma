@@ -44,8 +44,10 @@ class EducationTab extends StatelessWidget {
     final AppLocalizations l10n = AppLocalizations.of(context)!;
     final Section? eduSection = _findSection(SectionType.education);
     final int basePerformance = eduSection?.performance ?? 0;
-    final int performance =
-        (basePerformance + studyPerformancePenalty).clamp(0, 100);
+    final int performance = (basePerformance + studyPerformancePenalty).clamp(
+      0,
+      100,
+    );
     final EducationState? eduState = state.educationState;
     final Enrollment? enrollment = eduState?.currentEnrollment;
     final String subtitle = _buildSubtitle(enrollment, l10n);
@@ -65,16 +67,16 @@ class EducationTab extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(kSpacing12),
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.errorContainer.withValues(
-                      alpha: 0.3,
-                    ),
+                color: Theme.of(
+                  context,
+                ).colorScheme.errorContainer.withValues(alpha: 0.3),
                 borderRadius: BorderRadius.circular(kBorderRadiusSmall),
               ),
               child: Text(
                 l10n.healthBlocksStudy,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurface,
-                    ),
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
               ),
             ),
             kVerticalGap16,
@@ -82,7 +84,8 @@ class EducationTab extends StatelessWidget {
           if (enrollment != null) ...[
             StatBarWidget(
               label: l10n.effort,
-              value: (performance + studyPerformancePenalty).clamp(0, 100) / 100,
+              value:
+                  (performance + studyPerformancePenalty).clamp(0, 100) / 100,
             ),
             kVerticalGap24,
           ],
@@ -120,9 +123,16 @@ class EducationTab extends StatelessWidget {
     return enrollment.programName;
   }
 
-  String _buildDetail(Enrollment? enrollment, AppLocalizations l10n, int performance) {
+  String _buildDetail(
+    Enrollment? enrollment,
+    AppLocalizations l10n,
+    int performance,
+  ) {
     if (enrollment == null) return '';
-    String detail = l10n.enrollmentYear(enrollment.yearInProgram, enrollment.totalYears);
+    String detail = l10n.enrollmentYear(
+      enrollment.yearInProgram,
+      enrollment.totalYears,
+    );
     if (enrollment.repeatsInLevel > 0) {
       detail += ' - ${l10n.yearRepeated(enrollment.repeatsInLevel)}';
     }
@@ -130,7 +140,10 @@ class EducationTab extends StatelessWidget {
     return detail;
   }
 
-  List<String> _buildHistoryLogs(EducationState? eduState, AppLocalizations l10n) {
+  List<String> _buildHistoryLogs(
+    EducationState? eduState,
+    AppLocalizations l10n,
+  ) {
     if (eduState == null) return [];
     return eduState.history.map((EducationRecord record) {
       final String status = record.graduated
@@ -139,17 +152,19 @@ class EducationTab extends StatelessWidget {
       final String details = record.isDropOut
           ? l10n.educationYearsLabel(record.startAge, record.endAge)
           : '${l10n.educationGradeLabel(record.finalGrade)}, '
-              '${l10n.educationYearsLabel(record.startAge, record.endAge)}';
+                '${l10n.educationYearsLabel(record.startAge, record.endAge)}';
       return '${record.programName} - $status ($details)';
     }).toList();
   }
 
   List<GameLog> _filterEducationLogs(List<GameLog> logs) {
     return logs
-        .where((GameLog log) =>
-            log.category == LogCategory.education ||
-            (log.category == LogCategory.social &&
-                log.tags.contains('show_in_education')))
+        .where(
+          (GameLog log) =>
+              log.category == LogCategory.education ||
+              (log.category == LogCategory.social &&
+                  log.tags.contains('show_in_education')),
+        )
         .toList()
         .reversed
         .toList();
@@ -170,9 +185,9 @@ class EducationTab extends StatelessWidget {
         content: actions.isEmpty
             ? Text(
                 l10n.notEnrolled,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontStyle: FontStyle.italic,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(fontStyle: FontStyle.italic),
               )
             : SingleChildScrollView(
                 child: Column(
@@ -232,7 +247,9 @@ class _ActionButtonsRow extends StatelessWidget {
           child: OutlinedButton(
             onPressed: isEnrolled
                 ? (canDropOut ? onDropOutTap : null)
-                : (isStudyBlockedByHealth ? null : (canEnroll ? onEnrollTap : null)),
+                : (isStudyBlockedByHealth
+                      ? null
+                      : (canEnroll ? onEnrollTap : null)),
             child: Text(isEnrolled ? dropOutLabel : enrollLabel),
           ),
         ),
@@ -251,10 +268,7 @@ class _ActionButtonsRow extends StatelessWidget {
 }
 
 class _EducationActionTile extends StatelessWidget {
-  const _EducationActionTile({
-    required this.action,
-    required this.onTap,
-  });
+  const _EducationActionTile({required this.action, required this.onTap});
 
   final GameAction action;
   final VoidCallback onTap;

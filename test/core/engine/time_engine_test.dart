@@ -70,8 +70,9 @@ void main() {
     });
 
     test('startNewYear resets eventIdsTriggeredThisYear', () {
-      final state = createTestState(timeRemaining: 0)
-          .copyWith(eventIdsTriggeredThisYear: ['event_a', 'event_b']);
+      final state = createTestState(
+        timeRemaining: 0,
+      ).copyWith(eventIdsTriggeredThisYear: ['event_a', 'event_b']);
       final result = timeEngine.startNewYear(state);
       expect(result.eventIdsTriggeredThisYear, isEmpty);
     });
@@ -79,7 +80,11 @@ void main() {
     test('startNewYear subtracts life maintenance when loaded', () {
       timeEngine.loadLifeMaintenance([
         const LifeMaintenanceItem(id: 'sleep', name: 'Sleep', hoursPerDay: 8),
-        const LifeMaintenanceItem(id: 'hygiene', name: 'Hygiene', hoursPerDay: 1),
+        const LifeMaintenanceItem(
+          id: 'hygiene',
+          name: 'Hygiene',
+          hoursPerDay: 1,
+        ),
         const LifeMaintenanceItem(id: 'eating', name: 'Eating', hoursPerDay: 2),
       ]);
       final state = createTestState(timeRemaining: 0);
@@ -90,8 +95,14 @@ void main() {
     });
 
     test('hasTimeRemaining returns correct value', () {
-      expect(timeEngine.hasTimeRemaining(createTestState(timeRemaining: 10)), isTrue);
-      expect(timeEngine.hasTimeRemaining(createTestState(timeRemaining: 0)), isFalse);
+      expect(
+        timeEngine.hasTimeRemaining(createTestState(timeRemaining: 10)),
+        isTrue,
+      );
+      expect(
+        timeEngine.hasTimeRemaining(createTestState(timeRemaining: 0)),
+        isFalse,
+      );
     });
 
     test('high skill reduces time cost', () {
@@ -101,9 +112,7 @@ void main() {
       final action = createTestAction(timeCost: 22);
       final adjustedCost = timeEngine.calculateAdjustedTimeCost(
         highSkillState,
-        action.copyWith(skillEffects: {
-          ...action.skillEffects,
-        }),
+        action.copyWith(skillEffects: {...action.skillEffects}),
       );
       expect(adjustedCost, 22);
     });

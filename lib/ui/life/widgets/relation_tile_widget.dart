@@ -36,8 +36,8 @@ class RelationTileWidget extends StatelessWidget {
               child: Text(
                 displayName.isNotEmpty ? displayName[0].toUpperCase() : '?',
                 style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: colors.onPrimaryContainer,
-                    ),
+                  color: colors.onPrimaryContainer,
+                ),
               ),
             ),
             kHorizontalGap12,

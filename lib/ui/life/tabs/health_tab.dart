@@ -35,7 +35,8 @@ class HealthTab extends StatelessWidget {
     final double mentalHealth =
         (healthState?.mentalHealth ?? displayHealth.toDouble()) / 100;
     final List<HealthAction> hospitalActions = controller.getHospitalActions();
-    final List<HealthAction> generalActions = controller.getGeneralHealthActions();
+    final List<HealthAction> generalActions = controller
+        .getGeneralHealthActions();
     final List<String> diagnosedConditions =
         healthState?.conditions
             .where((c) => c.isDiagnosed)
@@ -54,22 +55,16 @@ class HealthTab extends StatelessWidget {
             subtitle: l10n.healthStatus(displayHealth),
           ),
           kVerticalGap24,
-          StatBarWidget(
-            label: l10n.physicalHealth,
-            value: physicalHealth,
-          ),
+          StatBarWidget(label: l10n.physicalHealth, value: physicalHealth),
           kVerticalGap12,
-          StatBarWidget(
-            label: l10n.mentalHealth,
-            value: mentalHealth,
-          ),
+          StatBarWidget(label: l10n.mentalHealth, value: mentalHealth),
           if (diagnosedConditions.isNotEmpty) ...[
             kVerticalGap16,
             Text(
               l10n.diagnosedConditions,
               style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
-                  ),
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
             ),
             kVerticalGap8,
             Wrap(
@@ -79,32 +74,35 @@ class HealthTab extends StatelessWidget {
                   .map(
                     (name) => Chip(
                       label: Text(name),
-                      backgroundColor:
-                          Theme.of(context).colorScheme.surfaceContainerHighest,
+                      backgroundColor: Theme.of(
+                        context,
+                      ).colorScheme.surfaceContainerHighest,
                     ),
                   )
                   .toList(),
             ),
           ],
-          if (controller.isWorkBlockedByHealth || controller.isStudyBlockedByHealth) ...[
+          if (controller.isWorkBlockedByHealth ||
+              controller.isStudyBlockedByHealth) ...[
             kVerticalGap16,
             Container(
               padding: const EdgeInsets.all(kSpacing12),
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.errorContainer.withValues(
-                      alpha: 0.3,
-                    ),
+                color: Theme.of(
+                  context,
+                ).colorScheme.errorContainer.withValues(alpha: 0.3),
                 borderRadius: BorderRadius.circular(kBorderRadiusSmall),
               ),
               child: Text(
-                controller.isWorkBlockedByHealth && controller.isStudyBlockedByHealth
+                controller.isWorkBlockedByHealth &&
+                        controller.isStudyBlockedByHealth
                     ? l10n.healthBlocksWorkAndStudy
                     : controller.isWorkBlockedByHealth
-                        ? l10n.healthBlocksWork
-                        : l10n.healthBlocksStudy,
+                    ? l10n.healthBlocksWork
+                    : l10n.healthBlocksStudy,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurface,
-                    ),
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
               ),
             ),
           ],
@@ -113,8 +111,8 @@ class HealthTab extends StatelessWidget {
             Text(
               l10n.symptoms,
               style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
-                  ),
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
             ),
             kVerticalGap8,
             Text(
@@ -126,8 +124,8 @@ class HealthTab extends StatelessWidget {
           Text(
             l10n.healthActions,
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
           ),
           kVerticalGap12,
           if (hospitalActions.isEmpty && generalActions.isEmpty)
@@ -136,8 +134,8 @@ class HealthTab extends StatelessWidget {
               child: Text(
                 l10n.noHealthActionsAvailable,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    ),
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
               ),
             )
           else ...[
@@ -153,8 +151,10 @@ class HealthTab extends StatelessWidget {
               OutlinedButton.icon(
                 onPressed: () => _showGeneralActionsDialog(context),
                 icon: const Icon(Icons.self_improvement_outlined),
-                label: Text(l10n.healthActions,
-                    style: Theme.of(context).textTheme.labelLarge),
+                label: Text(
+                  l10n.healthActions,
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
               ),
           ],
           kVerticalGap32,
@@ -186,8 +186,8 @@ class HealthTab extends StatelessWidget {
                   child: Text(
                     AppLocalizations.of(context)!.noHealthActionsAvailable,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        ),
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
                   ),
                 )
               : ListView.builder(
@@ -234,8 +234,8 @@ class HealthTab extends StatelessWidget {
                   child: Text(
                     AppLocalizations.of(context)!.noHealthActionsAvailable,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        ),
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
                   ),
                 )
               : ListView.builder(

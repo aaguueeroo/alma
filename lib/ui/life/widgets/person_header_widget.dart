@@ -32,9 +32,9 @@ class PersonHeaderWidget extends StatelessWidget {
           backgroundColor: effectiveAvatarColor,
           child: Text(
             name.isNotEmpty ? name[0].toUpperCase() : '?',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: colors.onPrimaryContainer,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(color: colors.onPrimaryContainer),
           ),
         ),
         kHorizontalGap16,
@@ -66,9 +66,9 @@ class PersonHeaderWidget extends StatelessWidget {
               kVerticalGap4,
               Text(
                 subtitle,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: colors.onSurfaceVariant,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: colors.onSurfaceVariant),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -77,8 +77,8 @@ class PersonHeaderWidget extends StatelessWidget {
                 Text(
                   detailText,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: colors.onSurfaceVariant,
-                      ),
+                    color: colors.onSurfaceVariant,
+                  ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),

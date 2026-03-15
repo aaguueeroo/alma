@@ -40,8 +40,10 @@ class SoulSubjectEvaluator {
           (impactByYear[impact.year] ?? 0.0) + impact.effectiveImpact;
     }
     final double diversityScore = _computeDiversity(totalByAxis);
-    final double consistencyScore =
-        _computeConsistency(impactByYear, lifeYears);
+    final double consistencyScore = _computeConsistency(
+      impactByYear,
+      lifeYears,
+    );
     return MoralImpactSummary(
       totalWeightedImpactByAxis: totalByAxis,
       diversityScore: diversityScore,
@@ -60,8 +62,7 @@ class SoulSubjectEvaluator {
   /// Diversity: share of axes that received at least one impact (0..1).
   /// More axes touched = more diverse moral life.
   static double _computeDiversity(Map<SoulSubjectType, double> totalByAxis) {
-    final int axesWithImpact =
-        totalByAxis.values.where((v) => v > 0).length;
+    final int axesWithImpact = totalByAxis.values.where((v) => v > 0).length;
     return axesWithImpact / _totalAxes;
   }
 

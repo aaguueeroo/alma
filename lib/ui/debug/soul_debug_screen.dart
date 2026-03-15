@@ -182,7 +182,10 @@ class SoulDebugScreen extends ConsumerWidget {
     );
   }
 
-  void _showAddMetaStatDialog(BuildContext context, DebugController debugController) {
+  void _showAddMetaStatDialog(
+    BuildContext context,
+    DebugController debugController,
+  ) {
     final keyController = TextEditingController();
     final valueController = TextEditingController(text: '0');
     showDialog(
@@ -244,10 +247,7 @@ class _SubjectToggleTile extends StatelessWidget {
     final theme = Theme.of(context);
     return ListTile(
       title: Text(label, style: theme.textTheme.bodyMedium),
-      trailing: Switch(
-        value: isPassed,
-        onChanged: onChanged,
-      ),
+      trailing: Switch(value: isPassed, onChanged: onChanged),
     );
   }
 }
