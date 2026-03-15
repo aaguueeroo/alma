@@ -1,0 +1,13 @@
+---
+alwaysApply: true
+---
+
+Try to separate the files as much as possible. Create each widget, enum and class in a separate file, and use appropiate folder strucutre. 
+
+## UI
+Each widget has a separate file. The views have a base class. There's a folder /widgets inside of each major view, with the separate files for each widget of the view.
+New widgets that are similar or the same than existing widgets should be abstracted to reuse code if possible. 
+Common widgets are in the /shared folder.
+
+## Logic
+Each class should perform only one action. Separate the concerns as much as possible and separate everything in files with a structured folder structure.
