@@ -18,6 +18,8 @@ const double kAvatarSizeLarge = 64.0;
 
 const double kRadarChartSize = 200.0;
 
+const double kHomeLogoSize = 120.0;
+
 const double kProgressBarHeight = 8.0;
 const double kProgressBarHeightLarge = 12.0;
 
