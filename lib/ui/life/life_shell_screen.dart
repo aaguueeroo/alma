@@ -225,6 +225,7 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
       ),
       RelationsTab(
         key: const ValueKey<int>(4),
+        lifeName: state.lifeData['name'] as String? ?? 'Unknown',
         relationships: state.socialState?.relationships ?? state.relationships,
         logs: state.logs,
         genericActions: ref

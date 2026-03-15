@@ -3,8 +3,10 @@ import 'package:alma/core/models/soul.dart';
 import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/life_maintenance_item.dart';
 import 'package:alma/core/models/life_template.dart';
+import 'package:alma/core/models/name_repository.dart';
 import 'package:alma/core/engine/life_engine.dart';
 import 'package:alma/core/engine/time_engine.dart';
+import 'package:alma/core/engine/player_name_generator.dart';
 import 'package:alma/core/evaluation/soul_evaluator.dart';
 import 'package:alma/data/repositories/soul_repository.dart';
 import 'package:alma/data/repositories/life_repository.dart';
@@ -171,11 +173,25 @@ class SoulController extends StateNotifier<SoulState> {
     final SeededRandom rng = SeededRandom(
       DateTime.now().millisecondsSinceEpoch,
     );
+    final int seed = rng.nextInt(999999999);
+    String name = 'Unknown';
+    try {
+      final NameRepository nameRepo = await seedLoader.loadNameRepository(
+        template.country,
+      );
+      name = PlayerNameGenerator.generate(
+        nameRepo,
+        SeededRandom(seed),
+      );
+    } catch (e, stackTrace) {
+      ErrorLogger.logError(e, stackTrace, 'startLife: loadNameRepository');
+    }
     final Life life = lifeEngine.createLife(
       soulId: soul.id,
       template: template,
-      seed: rng.nextInt(999999999),
+      seed: seed,
       initialTimeRemaining: initialTime,
+      name: name,
     );
     await lifeRepository.saveLife(life);
     final Soul updatedSoul = soul.copyWith(currentLifeId: life.id);

@@ -46,6 +46,7 @@ class LifeEngine {
     required LifeTemplate template,
     required int seed,
     int? initialTimeRemaining,
+    String? name,
   }) {
     final int timeRemaining = initialTimeRemaining ?? kDaysPerYear;
     final List<Relationship> startingRelationships = template.startingNpcs
@@ -64,6 +65,8 @@ class LifeEngine {
       final SeededRandom rng = SeededRandom(seed);
       healthState = healthEngine.initializeHealth(rng, template.startingHealth);
     }
+    final Map<String, dynamic> lifeData =
+        name != null ? <String, dynamic>{'name': name} : <String, dynamic>{};
     LifeState initialState = LifeState(
       currentYear: 1,
       age: kStartingAge,
@@ -80,6 +83,7 @@ class LifeEngine {
       educationState: const EducationState(),
       workState: const WorkState(),
       socialState: socialState,
+      lifeData: lifeData,
       logs: [
         GameLog(
           age: kStartingAge,

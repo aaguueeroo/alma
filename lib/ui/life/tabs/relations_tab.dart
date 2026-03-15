@@ -7,6 +7,7 @@ import 'package:alma/core/models/enums/npc_role.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/app/constants/durations.dart';
 import 'package:alma/l10n/app_localizations.dart';
+import 'package:alma/ui/life/widgets/person_header_widget.dart';
 import 'package:alma/ui/life/widgets/relation_tile_widget.dart';
 import 'package:alma/ui/life/widgets/relation_detail_widget.dart';
 import 'package:alma/ui/life/widgets/log_preview_section.dart';
@@ -18,6 +19,7 @@ class RelationsTab extends StatefulWidget {
   const RelationsTab({
     super.key,
     required this.relationships,
+    required this.lifeName,
     this.logs = const [],
     this.genericActions = const [],
     this.onGenericActionTap,
@@ -29,6 +31,7 @@ class RelationsTab extends StatefulWidget {
   });
 
   final List<Relationship> relationships;
+  final String lifeName;
   final List<GameLog> logs;
   final List<GameAction> genericActions;
   final void Function(GameAction action, List<String> targetNpcIds)?
@@ -116,6 +119,13 @@ class _RelationsTabState extends State<RelationsTab> {
       child: Column(
         key: const ValueKey('list'),
         children: [
+          Padding(
+            padding: kPaddingScreen,
+            child: PersonHeaderWidget(
+              name: widget.lifeName,
+              subtitle: l10n.tabRelations,
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: kSpacing16,
