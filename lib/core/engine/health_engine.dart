@@ -21,17 +21,25 @@ const double kNaturalDecayAgeFactor = 0.001;
 const double kNaturalDecayMentalFactor = 0.5;
 const int kAgingPenaltyStartAge = 60;
 const double kAgingDegenerationBase = 0.3;
-const double kBaseMortality = 0.001;
-const double kAgeDeathFactor = 0.002;
-const double kPhysicalDeathPenalty = 0.0005;
-const double kStressDeathPenalty = 0.0003;
+/// Base mortality chance per year (very low - natural death should be rare).
+const double kBaseMortality = 0.00005;
+/// Age factor applied only after 60. Before 60, natural death is very rare.
+const double kAgeDeathFactor = 0.0003;
+/// Physical health penalty - only significant when health is poor.
+const double kPhysicalDeathPenalty = 0.0001;
+/// Stress penalty - only significant when stress is high.
+const double kStressDeathPenalty = 0.00005;
+/// Extra penalty when character has bad habits (smoking/drinking) with high strength.
+const double kBadHabitDeathPenalty = 0.001;
 
-/// Minimum age for natural causes death. Below this, death only occurs if
-/// health is depleted, max age reached, or bad habits (smoking, drinking) with
-/// high strength combined with poor health.
-const int kNaturalCausesMinAge = 50;
+/// Minimum age for natural causes death. Below this, death only occurs from
+/// health depleted, max age, accidents, or sicknesses - never natural causes.
+const int kNaturalCausesMinAge = 45;
 
-/// Habit strength threshold for "bad habits" that can cause early natural death.
+/// Age at which aging starts to contribute to natural death probability.
+const int kNaturalDeathAgingStartAge = 60;
+
+/// Habit strength threshold for "bad habits" that can increase natural death risk.
 const int kBadHabitStrengthThreshold = 4;
 
 class HealthEngine {
@@ -497,11 +505,15 @@ class HealthEngine {
   }
 
   /// Returns the chance of natural causes death, or null if natural causes
-  /// death should not be possible (e.g. young and healthy with no bad habits).
+  /// death should not be possible. Natural death is only possible after 45,
+  /// and remains very rare unless the character has bad habits and poor health.
   double? _computeNaturalCausesDeathChance(
     LifeState state,
     HealthState? healthState,
   ) {
+    if (state.age < kNaturalCausesMinAge) {
+      return null;
+    }
     final double physical =
         healthState?.physicalHealth ?? state.health.toDouble();
     final double stress = healthState?.stress ?? 0;
@@ -510,20 +522,17 @@ class HealthEngine {
           (h.type == HabitType.smoking || h.type == HabitType.drinking) &&
           h.strength >= kBadHabitStrengthThreshold,
     );
-    if (state.age < kNaturalCausesMinAge) {
-      if (physical >= 70 && !hasBadHabits) {
-        return null;
-      }
-      final double physicalPenalty = (100 - physical) * kPhysicalDeathPenalty;
-      final double stressPenalty = stress * kStressDeathPenalty;
-      final double badHabitPenalty = hasBadHabits ? 0.002 : 0;
-      return physicalPenalty + stressPenalty + badHabitPenalty;
+    double chance = kBaseMortality;
+    final double ageFactor = state.age >= kNaturalDeathAgingStartAge
+        ? (state.age - kNaturalDeathAgingStartAge) * kAgeDeathFactor
+        : 0;
+    chance += ageFactor;
+    chance += (100 - physical) * kPhysicalDeathPenalty;
+    chance += stress * kStressDeathPenalty;
+    if (hasBadHabits) {
+      chance += kBadHabitDeathPenalty;
     }
-    final double ageFactor =
-        (state.age > 50 ? state.age - 50 : 0) * kAgeDeathFactor;
-    final double physicalPenalty = (100 - physical) * kPhysicalDeathPenalty;
-    final double stressPenalty = stress * kStressDeathPenalty;
-    return kBaseMortality + ageFactor + physicalPenalty + stressPenalty;
+    return chance;
   }
 
   bool blocksWork(HealthState? state) {

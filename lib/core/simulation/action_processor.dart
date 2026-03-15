@@ -290,17 +290,18 @@ class ActionProcessor {
   }
 
   LifeState _checkAgeBasedDeath(LifeState state, SeededRandom rng) {
-    if (state.age >= 70) {
-      final double deathChance = (state.age - 70) * 0.03;
-      final double healthPenalty = (100 - state.displayHealth) * 0.005;
-      if (rng.chance(deathChance + healthPenalty)) {
-        state = GameLogger.addLog(
-          state,
-          message: LogNarratives.lifeDiedNatural,
-          category: LogCategory.life,
-        );
-        return state.copyWith(isDead: true, causeOfDeath: 'Natural causes');
-      }
+    if (state.age < 45) return state;
+    final double ageFactor =
+        state.age >= 60 ? (state.age - 60) * 0.0005 : 0;
+    final double healthPenalty = (100 - state.displayHealth) * 0.0002;
+    final double deathChance = 0.00005 + ageFactor + healthPenalty;
+    if (rng.chance(deathChance)) {
+      state = GameLogger.addLog(
+        state,
+        message: LogNarratives.lifeDiedNatural,
+        category: LogCategory.life,
+      );
+      return state.copyWith(isDead: true, causeOfDeath: 'Natural causes');
     }
     return state;
   }
