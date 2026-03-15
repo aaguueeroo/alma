@@ -29,6 +29,18 @@ class EventEngine {
     _healthEventIds = ids;
   }
 
+  List<GameEvent> getAllEvents() => List.unmodifiable(_events);
+
+  GameEvent? getEventById(String id) {
+    try {
+      return _events.firstWhere((e) => e.id == id);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  bool isHealthEvent(String eventId) => _healthEventIds.contains(eventId);
+
   GameEvent? checkTriggers(
     LifeState state,
     SeededRandom rng, {

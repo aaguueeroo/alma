@@ -15,6 +15,7 @@ import 'package:alma/providers/soul/soul_controller.dart';
 import 'package:alma/providers/achievement/achievement_controller.dart';
 import 'package:alma/ui/life/widgets/log_list_widget.dart';
 import 'package:alma/ui/shared/back_button_leading.dart';
+import 'package:alma/ui/debug/widgets/debug_app_bar_button.dart';
 import 'package:alma/ui/shared/stat_bar_widget.dart';
 import 'package:alma/ui/shared/trait_tag_widget.dart';
 
@@ -65,6 +66,9 @@ class _LifeSummaryScreenState extends ConsumerState<LifeSummaryScreen> {
       appBar: AppBar(
         leading: const BackButtonLeading(fallbackRoute: '/soul'),
         title: const Text('Life Summary'),
+        actions: const [
+          DebugAppBarButton(navigationContext: DebugNavigationContext.mainMenu),
+        ],
       ),
       body: SingleChildScrollView(
         padding: kPaddingScreen,

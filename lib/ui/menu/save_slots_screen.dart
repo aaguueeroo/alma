@@ -9,6 +9,7 @@ import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/providers/soul/soul_controller.dart';
 import 'package:alma/ui/shared/back_button_leading.dart';
 import 'package:alma/ui/shared/loading_widget.dart';
+import 'package:alma/ui/debug/widgets/debug_app_bar_button.dart';
 
 class SaveSlotsScreen extends ConsumerStatefulWidget {
   const SaveSlotsScreen({super.key});
@@ -36,6 +37,9 @@ class _SaveSlotsScreenState extends ConsumerState<SaveSlotsScreen> {
       appBar: AppBar(
         leading: const BackButtonLeading(),
         title: Text(l10n.saveSlots),
+        actions: const [
+          DebugAppBarButton(navigationContext: DebugNavigationContext.mainMenu),
+        ],
       ),
       body: soulState.isLoading
           ? const LoadingWidget()

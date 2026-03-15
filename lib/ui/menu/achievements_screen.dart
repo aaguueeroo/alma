@@ -8,6 +8,7 @@ import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/providers/achievement/achievement_controller.dart';
 import 'package:alma/ui/shared/back_button_leading.dart';
 import 'package:alma/ui/shared/loading_widget.dart';
+import 'package:alma/ui/debug/widgets/debug_app_bar_button.dart';
 
 class AchievementsScreen extends ConsumerStatefulWidget {
   const AchievementsScreen({super.key});
@@ -35,6 +36,9 @@ class _AchievementsScreenState extends ConsumerState<AchievementsScreen> {
       appBar: AppBar(
         leading: const BackButtonLeading(),
         title: Text(l10n.achievements),
+        actions: const [
+          DebugAppBarButton(navigationContext: DebugNavigationContext.mainMenu),
+        ],
       ),
       body: achievementState.isLoading
           ? const LoadingWidget()

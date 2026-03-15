@@ -14,6 +14,11 @@ import 'package:alma/ui/life/life_shell_screen.dart';
 import 'package:alma/ui/life/store_placeholder_screen.dart';
 import 'package:alma/ui/life/life_summary_screen.dart';
 import 'package:alma/ui/menu/settings_screen.dart';
+import 'package:alma/ui/debug/main_debug_screen.dart';
+import 'package:alma/ui/debug/health_debug_screen.dart';
+import 'package:alma/ui/debug/work_debug_screen.dart';
+import 'package:alma/ui/debug/education_debug_screen.dart';
+import 'package:alma/ui/debug/social_debug_screen.dart';
 
 final GoRouter appRouter = GoRouter(
   initialLocation: '/',
@@ -96,6 +101,38 @@ final GoRouter appRouter = GoRouter(
           path: 'summary',
           pageBuilder: (BuildContext context, GoRouterState state) {
             return buildPageWithSwipeBack(state, const LifeSummaryScreen());
+          },
+        ),
+      ],
+    ),
+    GoRoute(
+      path: '/debug',
+      pageBuilder: (BuildContext context, GoRouterState state) {
+        return buildPageWithSwipeBack(state, const MainDebugScreen());
+      },
+      routes: <RouteBase>[
+        GoRoute(
+          path: 'health',
+          pageBuilder: (BuildContext context, GoRouterState state) {
+            return buildPageWithSwipeBack(state, const HealthDebugScreen());
+          },
+        ),
+        GoRoute(
+          path: 'work',
+          pageBuilder: (BuildContext context, GoRouterState state) {
+            return buildPageWithSwipeBack(state, const WorkDebugScreen());
+          },
+        ),
+        GoRoute(
+          path: 'education',
+          pageBuilder: (BuildContext context, GoRouterState state) {
+            return buildPageWithSwipeBack(state, const EducationDebugScreen());
+          },
+        ),
+        GoRoute(
+          path: 'social',
+          pageBuilder: (BuildContext context, GoRouterState state) {
+            return buildPageWithSwipeBack(state, const SocialDebugScreen());
           },
         ),
       ],

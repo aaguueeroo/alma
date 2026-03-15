@@ -597,10 +597,25 @@ class LifeController extends StateNotifier<LifeControllerState> {
     state = state.copyWith(clearLife: true);
   }
 
+  /// Replaces the current life with the given one (for debug use).
+  /// Saves to repository and updates state.
+  Future<void> debugReplaceLife(Life life) async {
+    try {
+      await lifeRepository.saveLife(life);
+      state = state.copyWith(currentLife: life);
+    } catch (e, stackTrace) {
+      ErrorLogger.logError(e, stackTrace, 'debugReplaceLife');
+      state = state.copyWith(error: e.toString());
+    }
+  }
+
   /// Clears the current error message (e.g. after the user has acknowledged it).
   void clearError() {
     state = state.copyWith(clearError: true);
   }
+
+  /// Returns the current life (for debug use).
+  Life? get debugCurrentLife => state.currentLife;
 
   List<HealthAction> getHospitalActions() {
     if (state.currentLife == null || !healthEngine.isLoaded) return [];

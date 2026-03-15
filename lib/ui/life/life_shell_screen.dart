@@ -21,6 +21,24 @@ import 'package:alma/ui/life/tabs/education_tab.dart';
 import 'package:alma/ui/life/tabs/health_tab.dart';
 import 'package:alma/ui/life/tabs/relations_tab.dart';
 import 'package:alma/ui/life/widgets/time_budget_bar.dart';
+import 'package:alma/ui/debug/widgets/debug_app_bar_button.dart';
+
+DebugNavigationContext _debugContextFromTabIndex(int index) {
+  switch (index) {
+    case 0:
+      return DebugNavigationContext.workTab;
+    case 1:
+      return DebugNavigationContext.educationTab;
+    case 2:
+      return DebugNavigationContext.lifeTab;
+    case 3:
+      return DebugNavigationContext.healthTab;
+    case 4:
+      return DebugNavigationContext.relationsTab;
+    default:
+      return DebugNavigationContext.lifeTab;
+  }
+}
 
 class LifeShellScreen extends ConsumerStatefulWidget {
   const LifeShellScreen({super.key});
@@ -139,6 +157,9 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
         ],
       ),
       actions: [
+        DebugAppBarButton(
+          navigationContext: _debugContextFromTabIndex(_currentIndex),
+        ),
         IconButton(
           icon: const Icon(Icons.store_outlined),
           tooltip: l10n.store,

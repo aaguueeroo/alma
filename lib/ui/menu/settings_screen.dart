@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:alma/app/theme/theme_data.dart';
 import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/ui/shared/back_button_leading.dart';
+import 'package:alma/ui/debug/widgets/debug_app_bar_button.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -15,6 +16,9 @@ class SettingsScreen extends StatelessWidget {
       appBar: AppBar(
         leading: const BackButtonLeading(),
         title: Text(l10n.settings),
+        actions: const [
+          DebugAppBarButton(navigationContext: DebugNavigationContext.mainMenu),
+        ],
       ),
       body: Padding(
         padding: padding,

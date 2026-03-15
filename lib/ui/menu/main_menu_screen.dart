@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:alma/app/constants/sizing.dart';
 import 'package:alma/app/theme/theme_data.dart';
 import 'package:alma/l10n/app_localizations.dart';
+import 'package:alma/ui/debug/widgets/debug_app_bar_button.dart';
 
 class MainMenuScreen extends ConsumerWidget {
   const MainMenuScreen({super.key});
@@ -18,6 +19,11 @@ class MainMenuScreen extends ConsumerWidget {
         const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
     final sectionGap = themeExt?.sectionGap ?? 28.0;
     return Scaffold(
+      appBar: AppBar(
+        actions: const [
+          DebugAppBarButton(navigationContext: DebugNavigationContext.mainMenu),
+        ],
+      ),
       body: SafeArea(
         child: Padding(
           padding: padding,

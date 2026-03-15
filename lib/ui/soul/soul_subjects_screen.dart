@@ -8,6 +8,7 @@ import 'package:alma/core/models/soul_subject.dart';
 import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/providers/soul/soul_controller.dart';
 import 'package:alma/ui/shared/back_button_leading.dart';
+import 'package:alma/ui/debug/widgets/debug_app_bar_button.dart';
 
 class SoulSubjectsScreen extends ConsumerWidget {
   const SoulSubjectsScreen({super.key});
@@ -41,6 +42,9 @@ class SoulSubjectsScreen extends ConsumerWidget {
       appBar: AppBar(
         leading: const BackButtonLeading(fallbackRoute: '/soul'),
         title: Text(l10n.soulSubjects),
+        actions: const [
+          DebugAppBarButton(navigationContext: DebugNavigationContext.mainMenu),
+        ],
       ),
       body: ListView.builder(
         padding: padding,

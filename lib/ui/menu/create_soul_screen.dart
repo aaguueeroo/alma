@@ -5,6 +5,7 @@ import 'package:alma/app/theme/theme_data.dart';
 import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/providers/soul/soul_controller.dart';
 import 'package:alma/ui/shared/back_button_leading.dart';
+import 'package:alma/ui/debug/widgets/debug_app_bar_button.dart';
 
 class CreateSoulScreen extends ConsumerStatefulWidget {
   const CreateSoulScreen({super.key});
@@ -36,6 +37,9 @@ class _CreateSoulScreenState extends ConsumerState<CreateSoulScreen> {
       appBar: AppBar(
         leading: const BackButtonLeading(),
         title: Text(l10n.createSoul),
+        actions: const [
+          DebugAppBarButton(navigationContext: DebugNavigationContext.mainMenu),
+        ],
       ),
       body: Padding(
         padding: padding,

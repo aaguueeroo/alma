@@ -10,6 +10,7 @@ import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/providers/life/life_controller.dart';
 import 'package:alma/providers/soul/soul_controller.dart';
 import 'package:alma/ui/shared/back_button_leading.dart';
+import 'package:alma/ui/debug/widgets/debug_app_bar_button.dart';
 
 class SoulHomeScreen extends ConsumerWidget {
   const SoulHomeScreen({super.key});
@@ -24,6 +25,9 @@ class SoulHomeScreen extends ConsumerWidget {
         appBar: AppBar(
           leading: const BackButtonLeading(),
           title: Text(l10n.saveSlots),
+          actions: const [
+            DebugAppBarButton(navigationContext: DebugNavigationContext.mainMenu),
+          ],
         ),
         body: Center(
           child: Padding(
@@ -73,6 +77,9 @@ class SoulHomeScreen extends ConsumerWidget {
       appBar: AppBar(
         leading: const BackButtonLeading(),
         title: Text(soul.name),
+        actions: const [
+          DebugAppBarButton(navigationContext: DebugNavigationContext.mainMenu),
+        ],
       ),
       body: SingleChildScrollView(
         padding: padding,

@@ -40,6 +40,12 @@ class HealthEngine {
       _conditionDefinitions.isNotEmpty &&
       _healthActions.isNotEmpty;
 
+  List<ConditionDefinition> getConditionDefinitions() =>
+      List.unmodifiable(_conditionDefinitions);
+
+  List<HealthAction> getAllHealthActions() =>
+      List.unmodifiable(_healthActions);
+
   void loadData({
     required List<ConditionDefinition> conditionDefinitions,
     required List<Symptom> symptoms,

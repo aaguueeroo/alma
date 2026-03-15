@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:alma/app/theme/theme_data.dart';
 import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/ui/shared/back_button_leading.dart';
+import 'package:alma/ui/debug/widgets/debug_app_bar_button.dart';
 
 class NirvanaScreen extends ConsumerWidget {
   const NirvanaScreen({super.key});
@@ -21,6 +22,9 @@ class NirvanaScreen extends ConsumerWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: IconThemeData(color: accentColor),
+        actions: const [
+          DebugAppBarButton(navigationContext: DebugNavigationContext.mainMenu),
+        ],
       ),
       body: Container(
         decoration: BoxDecoration(

@@ -10,6 +10,7 @@ import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/providers/life/life_controller.dart';
 import 'package:alma/providers/soul/soul_controller.dart';
 import 'package:alma/ui/shared/back_button_leading.dart';
+import 'package:alma/ui/debug/widgets/debug_app_bar_button.dart';
 
 class LifeSelectionScreen extends ConsumerWidget {
   const LifeSelectionScreen({super.key});
@@ -26,6 +27,9 @@ class LifeSelectionScreen extends ConsumerWidget {
       appBar: AppBar(
         leading: const BackButtonLeading(fallbackRoute: '/soul'),
         title: Text(l10n.chooseLife),
+        actions: const [
+          DebugAppBarButton(navigationContext: DebugNavigationContext.mainMenu),
+        ],
       ),
       body: templates.isEmpty
           ? Center(
