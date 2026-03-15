@@ -9,7 +9,11 @@
     "mentalHealthEffect": 1,
     "canDiagnoseConditionIds": ["asthma", "type1_diabetes", "broken_bone"],
     "canTreatConditionIds": [],
-    "conditions": []
+    "conditions": [],
+    "logMessage": "You go to the doctor and they run some routine tests.",
+    "logMessageWhenAllClear": "You go to the doctor and they run some routine tests. Everything seems to be fine.",
+    "logMessageWhenDiagnosed": "You go to the doctor and they run some routine tests. Something was found that needs attention.",
+    "logMessageWhenTreated": "You go to the doctor and they run some routine tests. Treatment has been started for your condition."
   },
   {
     "id": "deep_tests",
@@ -21,7 +25,11 @@
     "mentalHealthEffect": 2,
     "canDiagnoseConditionIds": ["asthma", "type1_diabetes", "depression", "adhd", "anxiety", "broken_bone", "cancer", "burnout"],
     "canTreatConditionIds": [],
-    "conditions": []
+    "conditions": [],
+    "logMessage": "You undergo comprehensive medical tests at the clinic.",
+    "logMessageWhenAllClear": "You undergo comprehensive medical tests at the clinic. The results come back and everything looks normal.",
+    "logMessageWhenDiagnosed": "You undergo comprehensive medical tests at the clinic. The results reveal something that needs further follow-up.",
+    "logMessageWhenTreated": "You undergo comprehensive medical tests at the clinic. Treatment has been started for your condition."
   },
   {
     "id": "go_to_er",
@@ -34,7 +42,11 @@
     "canDiagnoseConditionIds": ["asthma", "type1_diabetes", "broken_bone", "cancer"],
     "canTreatConditionIds": ["broken_bone", "asthma"],
     "conditions": [],
-    "treatmentSuccessRateByConditionId": {"broken_bone": 0.92, "asthma": 0.90}
+    "treatmentSuccessRateByConditionId": {"broken_bone": 0.92, "asthma": 0.90},
+    "logMessage": "You go to the emergency room for urgent care.",
+    "logMessageWhenAllClear": "You go to the emergency room for urgent care. The staff assess you and everything stabilizes.",
+    "logMessageWhenDiagnosed": "You go to the emergency room for urgent care. Something was found that needs attention.",
+    "logMessageWhenTreated": "You go to the emergency room for urgent care. The staff provide immediate treatment for your condition."
   },
   {
     "id": "go_to_therapy",
@@ -47,7 +59,11 @@
     "canDiagnoseConditionIds": ["depression", "anxiety", "burnout"],
     "canTreatConditionIds": ["depression", "anxiety", "burnout"],
     "conditions": [],
-    "treatmentSuccessRateByConditionId": {"depression": 0.37, "anxiety": 0.45, "burnout": 0.55}
+    "treatmentSuccessRateByConditionId": {"depression": 0.37, "anxiety": 0.45, "burnout": 0.55},
+    "logMessage": "You attend a therapy session and talk through things with someone who listens.",
+    "logMessageWhenAllClear": "You attend a therapy session and talk through things with someone who listens. It feels good to be heard.",
+    "logMessageWhenDiagnosed": "You attend a therapy session and talk through things with someone who listens. Your therapist helps you understand what you have been experiencing.",
+    "logMessageWhenTreated": "You attend a therapy session and talk through things with someone who listens. You feel hopeful about the path forward."
   },
   {
     "id": "asthma_management",
@@ -61,7 +77,9 @@
     "canTreatConditionIds": ["asthma"],
     "conditions": [],
     "requiresDiagnosedConditionIds": ["asthma"],
-    "treatmentSuccessRateByConditionId": {"asthma": 0.90}
+    "treatmentSuccessRateByConditionId": {"asthma": 0.90},
+    "logMessage": "You meet with a specialist to create an asthma management plan with inhalers and triggers to avoid.",
+    "logMessageWhenTreated": "You meet with a specialist to create an asthma management plan with inhalers and triggers to avoid. You feel hopeful about the path forward."
   },
   {
     "id": "diabetes_management",
@@ -75,7 +93,9 @@
     "canTreatConditionIds": ["type1_diabetes"],
     "conditions": [],
     "requiresDiagnosedConditionIds": ["type1_diabetes"],
-    "treatmentSuccessRateByConditionId": {"type1_diabetes": 0.95}
+    "treatmentSuccessRateByConditionId": {"type1_diabetes": 0.95},
+    "logMessage": "You work with an endocrinologist on insulin therapy and blood sugar monitoring.",
+    "logMessageWhenTreated": "You work with an endocrinologist on insulin therapy and blood sugar monitoring. You feel hopeful about the path forward."
   },
   {
     "id": "cancer_treatment",
@@ -89,7 +109,9 @@
     "canTreatConditionIds": ["cancer"],
     "conditions": [],
     "requiresDiagnosedConditionIds": ["cancer"],
-    "treatmentSuccessRateByConditionId": {"cancer": 0.50}
+    "treatmentSuccessRateByConditionId": {"cancer": 0.50},
+    "logMessage": "You begin cancer treatment. It is a difficult journey, but you are taking the steps to fight it.",
+    "logMessageWhenTreated": "You begin cancer treatment. It is a difficult journey, but you are taking the steps to fight it. You feel hopeful about the path forward."
   },
   {
     "id": "fracture_care",
@@ -103,7 +125,9 @@
     "canTreatConditionIds": ["broken_bone"],
     "conditions": [],
     "requiresDiagnosedConditionIds": ["broken_bone"],
-    "treatmentSuccessRateByConditionId": {"broken_bone": 0.92}
+    "treatmentSuccessRateByConditionId": {"broken_bone": 0.92},
+    "logMessage": "You receive proper casting and follow-up care for your fracture.",
+    "logMessageWhenTreated": "You receive proper casting and follow-up care for your fracture. The healing process begins."
   },
   {
     "id": "psychiatric_consultation",
@@ -116,7 +140,11 @@
     "canDiagnoseConditionIds": ["depression", "adhd", "anxiety", "burnout"],
     "canTreatConditionIds": ["depression", "adhd", "anxiety"],
     "conditions": [],
-    "treatmentSuccessRateByConditionId": {"depression": 0.37, "adhd": 0.70, "anxiety": 0.45}
+    "treatmentSuccessRateByConditionId": {"depression": 0.37, "adhd": 0.70, "anxiety": 0.45},
+    "logMessage": "You meet with a psychiatrist for evaluation and treatment options.",
+    "logMessageWhenAllClear": "You meet with a psychiatrist for evaluation. They discuss your options and you leave with a clearer picture.",
+    "logMessageWhenDiagnosed": "You meet with a psychiatrist for evaluation. They provide a diagnosis and recommend a treatment plan.",
+    "logMessageWhenTreated": "You meet with a psychiatrist for evaluation and treatment options. You feel hopeful about the path forward."
   },
   {
     "id": "join_support_group",
@@ -128,7 +156,9 @@
     "mentalHealthEffect": 4,
     "canDiagnoseConditionIds": [],
     "canTreatConditionIds": ["depression", "anxiety", "burnout"],
-    "conditions": []
+    "conditions": [],
+    "logMessage": "You join a support group and connect with others who understand. Sharing experiences brings relief.",
+    "logMessageWhenTreated": "You join a support group and connect with others who understand. Sharing experiences brings relief. You feel hopeful about the path forward."
   },
   {
     "id": "take_vitamins",
@@ -140,7 +170,8 @@
     "mentalHealthEffect": 1,
     "canDiagnoseConditionIds": [],
     "canTreatConditionIds": [],
-    "conditions": []
+    "conditions": [],
+    "logMessage": "You add vitamins to your daily routine. Your body feels a little stronger."
   },
   {
     "id": "meditate",
@@ -152,7 +183,9 @@
     "mentalHealthEffect": 4,
     "canDiagnoseConditionIds": [],
     "canTreatConditionIds": ["anxiety", "burnout"],
-    "conditions": []
+    "conditions": [],
+    "logMessage": "You take time to meditate and practice breathing exercises. Your mind feels calmer.",
+    "logMessageWhenTreated": "You take time to meditate and practice breathing exercises. Your mind feels calmer. You feel hopeful about the path forward."
   },
   {
     "id": "yoga_class",
@@ -164,7 +197,9 @@
     "mentalHealthEffect": 3,
     "canDiagnoseConditionIds": [],
     "canTreatConditionIds": ["anxiety", "burnout"],
-    "conditions": []
+    "conditions": [],
+    "logMessage": "You attend a yoga class. Your body feels more flexible and your mind more at peace.",
+    "logMessageWhenTreated": "You attend a yoga class. Your body feels more flexible and your mind more at peace. You feel hopeful about the path forward."
   },
   {
     "id": "nature_walks",
@@ -176,7 +211,9 @@
     "mentalHealthEffect": 3,
     "canDiagnoseConditionIds": [],
     "canTreatConditionIds": ["depression", "anxiety"],
-    "conditions": []
+    "conditions": [],
+    "logMessage": "You spend time walking in nature. The fresh air and quiet help clear your head.",
+    "logMessageWhenTreated": "You spend time walking in nature. The fresh air and quiet help clear your head. You feel hopeful about the path forward."
   },
   {
     "id": "digital_detox",
@@ -188,7 +225,9 @@
     "mentalHealthEffect": 3,
     "canDiagnoseConditionIds": [],
     "canTreatConditionIds": ["anxiety", "burnout"],
-    "conditions": []
+    "conditions": [],
+    "logMessage": "You take a break from screens and social media. The mental space feels refreshing.",
+    "logMessageWhenTreated": "You take a break from screens and social media. The mental space feels refreshing. You feel hopeful about the path forward."
   },
   {
     "id": "journaling",
@@ -200,7 +239,9 @@
     "mentalHealthEffect": 3,
     "canDiagnoseConditionIds": [],
     "canTreatConditionIds": ["depression", "anxiety"],
-    "conditions": []
+    "conditions": [],
+    "logMessage": "You spend time journaling, writing down your thoughts and feelings. It helps process what has been going on.",
+    "logMessageWhenTreated": "You spend time journaling, writing down your thoughts and feelings. It helps process what has been going on. You feel hopeful about the path forward."
   },
   {
     "id": "sleep_hygiene",
@@ -212,7 +253,9 @@
     "mentalHealthEffect": 4,
     "canDiagnoseConditionIds": [],
     "canTreatConditionIds": ["anxiety", "burnout"],
-    "conditions": []
+    "conditions": [],
+    "logMessage": "You establish better sleep habits. You wake up feeling more rested.",
+    "logMessageWhenTreated": "You establish better sleep habits. You wake up feeling more rested. You feel hopeful about the path forward."
   },
   {
     "id": "healthy_cooking",
@@ -224,7 +267,8 @@
     "mentalHealthEffect": 2,
     "canDiagnoseConditionIds": [],
     "canTreatConditionIds": [],
-    "conditions": []
+    "conditions": [],
+    "logMessage": "You prepare nutritious meals at home. Your body appreciates the nourishment."
   },
   {
     "id": "get_a_pet",
@@ -236,7 +280,9 @@
     "mentalHealthEffect": 5,
     "canDiagnoseConditionIds": [],
     "canTreatConditionIds": ["depression", "anxiety"],
-    "conditions": []
+    "conditions": [],
+    "logMessage": "You welcome a pet into your life. The companionship brings comfort and joy.",
+    "logMessageWhenTreated": "You welcome a pet into your life. The companionship brings comfort and joy. You feel hopeful about the path forward."
   },
   {
     "id": "use_inhaler",
@@ -249,7 +295,9 @@
     "canDiagnoseConditionIds": [],
     "canTreatConditionIds": ["asthma"],
     "conditions": [],
-    "requiresDiagnosedConditionIds": ["asthma"]
+    "requiresDiagnosedConditionIds": ["asthma"],
+    "logMessage": "You use your inhaler as prescribed. Your breathing feels easier.",
+    "logMessageWhenTreated": "You use your inhaler as prescribed. Your breathing feels easier. You feel hopeful about the path forward."
   },
   {
     "id": "blood_sugar_monitoring",
@@ -262,7 +310,9 @@
     "canDiagnoseConditionIds": [],
     "canTreatConditionIds": ["type1_diabetes"],
     "conditions": [],
-    "requiresDiagnosedConditionIds": ["type1_diabetes"]
+    "requiresDiagnosedConditionIds": ["type1_diabetes"],
+    "logMessage": "You carefully monitor your blood sugar levels throughout the day. Keeping track helps you stay on top of things.",
+    "logMessageWhenTreated": "You carefully monitor your blood sugar levels throughout the day. Keeping track helps you stay on top of things. You feel hopeful about the path forward."
   },
   {
     "id": "adhd_routine",
@@ -275,7 +325,9 @@
     "canDiagnoseConditionIds": [],
     "canTreatConditionIds": ["adhd"],
     "conditions": [],
-    "requiresDiagnosedConditionIds": ["adhd"]
+    "requiresDiagnosedConditionIds": ["adhd"],
+    "logMessage": "You establish a structured routine to manage ADHD. Having a clear plan helps.",
+    "logMessageWhenTreated": "You establish a structured routine to manage ADHD. Having a clear plan helps. You feel hopeful about the path forward."
   },
   {
     "id": "diabetes_diet",
@@ -288,6 +340,8 @@
     "canDiagnoseConditionIds": [],
     "canTreatConditionIds": ["type1_diabetes"],
     "conditions": [],
-    "requiresDiagnosedConditionIds": ["type1_diabetes"]
+    "requiresDiagnosedConditionIds": ["type1_diabetes"],
+    "logMessage": "You follow a balanced diet designed for diabetes. You feel more in control of your health.",
+    "logMessageWhenTreated": "You follow a balanced diet designed for diabetes. You feel more in control of your health. You feel hopeful about the path forward."
   }
 ]

@@ -342,7 +342,7 @@ class _SubjectCard extends StatelessWidget {
                     ).textTheme.bodySmall?.copyWith(color: mutedColor),
                   ),
                   const SizedBox(height: 4),
-                  Spacer(),
+                  const Spacer(),
                   Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 8,

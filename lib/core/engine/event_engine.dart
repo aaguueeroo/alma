@@ -1,3 +1,4 @@
+import 'package:alma/core/models/health/health_log_templates.dart';
 import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/event.dart';
 import 'package:alma/core/models/event_option.dart';
@@ -10,7 +11,6 @@ import 'package:alma/core/engine/game_logger.dart';
 import 'package:alma/core/engine/seeded_random.dart';
 import 'package:alma/core/engine/probability_engine.dart';
 import 'package:alma/app/constants/game_constants.dart';
-import 'package:alma/app/constants/log_narratives.dart';
 
 class EventEngine {
   EventEngine({required this.probabilityEngine});
@@ -18,6 +18,7 @@ class EventEngine {
   final ProbabilityEngine probabilityEngine;
   List<GameEvent> _events = [];
   Set<String> _healthEventIds = const {};
+  HealthLogTemplates? _logTemplates;
 
   void loadEvents(List<GameEvent> events) {
     _events = events;
@@ -25,6 +26,10 @@ class EventEngine {
 
   void loadHealthEventIds(Set<String> ids) {
     _healthEventIds = ids;
+  }
+
+  void loadLogTemplates(HealthLogTemplates templates) {
+    _logTemplates = templates;
   }
 
   List<GameEvent> getAllEvents() => List.unmodifiable(_events);
@@ -106,9 +111,15 @@ class EventEngine {
       tags: tags,
     );
     if (consequences.causesDeath) {
+      final String deathMessage = _logTemplates != null
+          ? _logTemplates!.resolveEvent(
+              'lifeEndedDuringEvent',
+              {'eventTitle': event.title},
+            )
+          : 'Your life ended during: ${event.title}.';
       newState = GameLogger.addLog(
         newState,
-        message: LogNarratives.lifeDiedEvent(event.title),
+        message: deathMessage,
         category: LogCategory.life,
       );
       newState = newState.copyWith(

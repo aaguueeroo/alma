@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$HealthAction {
 
- String get id; String get name; String get description; HealthActionType get type; int get timeCost; double get physicalHealthEffect; double get mentalHealthEffect; List<String> get canDiagnoseConditionIds; List<String> get canTreatConditionIds; List<AccessCondition> get conditions; List<String> get requiresDiagnosedConditionIds; Map<String, double> get treatmentSuccessRateByConditionId;
+ String get id; String get name; String get description; HealthActionType get type; int get timeCost; double get physicalHealthEffect; double get mentalHealthEffect; List<String> get canDiagnoseConditionIds; List<String> get canTreatConditionIds; List<AccessCondition> get conditions; List<String> get requiresDiagnosedConditionIds; Map<String, double> get treatmentSuccessRateByConditionId; String? get logMessage; String? get logMessageWhenAllClear; String? get logMessageWhenDiagnosed; String? get logMessageWhenTreated;
 /// Create a copy of HealthAction
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $HealthActionCopyWith<HealthAction> get copyWith => _$HealthActionCopyWithImpl<H
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HealthAction&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.type, type) || other.type == type)&&(identical(other.timeCost, timeCost) || other.timeCost == timeCost)&&(identical(other.physicalHealthEffect, physicalHealthEffect) || other.physicalHealthEffect == physicalHealthEffect)&&(identical(other.mentalHealthEffect, mentalHealthEffect) || other.mentalHealthEffect == mentalHealthEffect)&&const DeepCollectionEquality().equals(other.canDiagnoseConditionIds, canDiagnoseConditionIds)&&const DeepCollectionEquality().equals(other.canTreatConditionIds, canTreatConditionIds)&&const DeepCollectionEquality().equals(other.conditions, conditions)&&const DeepCollectionEquality().equals(other.requiresDiagnosedConditionIds, requiresDiagnosedConditionIds)&&const DeepCollectionEquality().equals(other.treatmentSuccessRateByConditionId, treatmentSuccessRateByConditionId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HealthAction&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.type, type) || other.type == type)&&(identical(other.timeCost, timeCost) || other.timeCost == timeCost)&&(identical(other.physicalHealthEffect, physicalHealthEffect) || other.physicalHealthEffect == physicalHealthEffect)&&(identical(other.mentalHealthEffect, mentalHealthEffect) || other.mentalHealthEffect == mentalHealthEffect)&&const DeepCollectionEquality().equals(other.canDiagnoseConditionIds, canDiagnoseConditionIds)&&const DeepCollectionEquality().equals(other.canTreatConditionIds, canTreatConditionIds)&&const DeepCollectionEquality().equals(other.conditions, conditions)&&const DeepCollectionEquality().equals(other.requiresDiagnosedConditionIds, requiresDiagnosedConditionIds)&&const DeepCollectionEquality().equals(other.treatmentSuccessRateByConditionId, treatmentSuccessRateByConditionId)&&(identical(other.logMessage, logMessage) || other.logMessage == logMessage)&&(identical(other.logMessageWhenAllClear, logMessageWhenAllClear) || other.logMessageWhenAllClear == logMessageWhenAllClear)&&(identical(other.logMessageWhenDiagnosed, logMessageWhenDiagnosed) || other.logMessageWhenDiagnosed == logMessageWhenDiagnosed)&&(identical(other.logMessageWhenTreated, logMessageWhenTreated) || other.logMessageWhenTreated == logMessageWhenTreated));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,description,type,timeCost,physicalHealthEffect,mentalHealthEffect,const DeepCollectionEquality().hash(canDiagnoseConditionIds),const DeepCollectionEquality().hash(canTreatConditionIds),const DeepCollectionEquality().hash(conditions),const DeepCollectionEquality().hash(requiresDiagnosedConditionIds),const DeepCollectionEquality().hash(treatmentSuccessRateByConditionId));
+int get hashCode => Object.hash(runtimeType,id,name,description,type,timeCost,physicalHealthEffect,mentalHealthEffect,const DeepCollectionEquality().hash(canDiagnoseConditionIds),const DeepCollectionEquality().hash(canTreatConditionIds),const DeepCollectionEquality().hash(conditions),const DeepCollectionEquality().hash(requiresDiagnosedConditionIds),const DeepCollectionEquality().hash(treatmentSuccessRateByConditionId),logMessage,logMessageWhenAllClear,logMessageWhenDiagnosed,logMessageWhenTreated);
 
 @override
 String toString() {
-  return 'HealthAction(id: $id, name: $name, description: $description, type: $type, timeCost: $timeCost, physicalHealthEffect: $physicalHealthEffect, mentalHealthEffect: $mentalHealthEffect, canDiagnoseConditionIds: $canDiagnoseConditionIds, canTreatConditionIds: $canTreatConditionIds, conditions: $conditions, requiresDiagnosedConditionIds: $requiresDiagnosedConditionIds, treatmentSuccessRateByConditionId: $treatmentSuccessRateByConditionId)';
+  return 'HealthAction(id: $id, name: $name, description: $description, type: $type, timeCost: $timeCost, physicalHealthEffect: $physicalHealthEffect, mentalHealthEffect: $mentalHealthEffect, canDiagnoseConditionIds: $canDiagnoseConditionIds, canTreatConditionIds: $canTreatConditionIds, conditions: $conditions, requiresDiagnosedConditionIds: $requiresDiagnosedConditionIds, treatmentSuccessRateByConditionId: $treatmentSuccessRateByConditionId, logMessage: $logMessage, logMessageWhenAllClear: $logMessageWhenAllClear, logMessageWhenDiagnosed: $logMessageWhenDiagnosed, logMessageWhenTreated: $logMessageWhenTreated)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $HealthActionCopyWith<$Res>  {
   factory $HealthActionCopyWith(HealthAction value, $Res Function(HealthAction) _then) = _$HealthActionCopyWithImpl;
 @useResult
 $Res call({
- String id, String name, String description, HealthActionType type, int timeCost, double physicalHealthEffect, double mentalHealthEffect, List<String> canDiagnoseConditionIds, List<String> canTreatConditionIds, List<AccessCondition> conditions, List<String> requiresDiagnosedConditionIds, Map<String, double> treatmentSuccessRateByConditionId
+ String id, String name, String description, HealthActionType type, int timeCost, double physicalHealthEffect, double mentalHealthEffect, List<String> canDiagnoseConditionIds, List<String> canTreatConditionIds, List<AccessCondition> conditions, List<String> requiresDiagnosedConditionIds, Map<String, double> treatmentSuccessRateByConditionId, String? logMessage, String? logMessageWhenAllClear, String? logMessageWhenDiagnosed, String? logMessageWhenTreated
 });
 
 
@@ -65,7 +65,7 @@ class _$HealthActionCopyWithImpl<$Res>
 
 /// Create a copy of HealthAction
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? description = null,Object? type = null,Object? timeCost = null,Object? physicalHealthEffect = null,Object? mentalHealthEffect = null,Object? canDiagnoseConditionIds = null,Object? canTreatConditionIds = null,Object? conditions = null,Object? requiresDiagnosedConditionIds = null,Object? treatmentSuccessRateByConditionId = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? description = null,Object? type = null,Object? timeCost = null,Object? physicalHealthEffect = null,Object? mentalHealthEffect = null,Object? canDiagnoseConditionIds = null,Object? canTreatConditionIds = null,Object? conditions = null,Object? requiresDiagnosedConditionIds = null,Object? treatmentSuccessRateByConditionId = null,Object? logMessage = freezed,Object? logMessageWhenAllClear = freezed,Object? logMessageWhenDiagnosed = freezed,Object? logMessageWhenTreated = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -79,7 +79,11 @@ as List<String>,canTreatConditionIds: null == canTreatConditionIds ? _self.canTr
 as List<String>,conditions: null == conditions ? _self.conditions : conditions // ignore: cast_nullable_to_non_nullable
 as List<AccessCondition>,requiresDiagnosedConditionIds: null == requiresDiagnosedConditionIds ? _self.requiresDiagnosedConditionIds : requiresDiagnosedConditionIds // ignore: cast_nullable_to_non_nullable
 as List<String>,treatmentSuccessRateByConditionId: null == treatmentSuccessRateByConditionId ? _self.treatmentSuccessRateByConditionId : treatmentSuccessRateByConditionId // ignore: cast_nullable_to_non_nullable
-as Map<String, double>,
+as Map<String, double>,logMessage: freezed == logMessage ? _self.logMessage : logMessage // ignore: cast_nullable_to_non_nullable
+as String?,logMessageWhenAllClear: freezed == logMessageWhenAllClear ? _self.logMessageWhenAllClear : logMessageWhenAllClear // ignore: cast_nullable_to_non_nullable
+as String?,logMessageWhenDiagnosed: freezed == logMessageWhenDiagnosed ? _self.logMessageWhenDiagnosed : logMessageWhenDiagnosed // ignore: cast_nullable_to_non_nullable
+as String?,logMessageWhenTreated: freezed == logMessageWhenTreated ? _self.logMessageWhenTreated : logMessageWhenTreated // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -161,10 +165,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String description,  HealthActionType type,  int timeCost,  double physicalHealthEffect,  double mentalHealthEffect,  List<String> canDiagnoseConditionIds,  List<String> canTreatConditionIds,  List<AccessCondition> conditions,  List<String> requiresDiagnosedConditionIds,  Map<String, double> treatmentSuccessRateByConditionId)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String description,  HealthActionType type,  int timeCost,  double physicalHealthEffect,  double mentalHealthEffect,  List<String> canDiagnoseConditionIds,  List<String> canTreatConditionIds,  List<AccessCondition> conditions,  List<String> requiresDiagnosedConditionIds,  Map<String, double> treatmentSuccessRateByConditionId,  String? logMessage,  String? logMessageWhenAllClear,  String? logMessageWhenDiagnosed,  String? logMessageWhenTreated)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _HealthAction() when $default != null:
-return $default(_that.id,_that.name,_that.description,_that.type,_that.timeCost,_that.physicalHealthEffect,_that.mentalHealthEffect,_that.canDiagnoseConditionIds,_that.canTreatConditionIds,_that.conditions,_that.requiresDiagnosedConditionIds,_that.treatmentSuccessRateByConditionId);case _:
+return $default(_that.id,_that.name,_that.description,_that.type,_that.timeCost,_that.physicalHealthEffect,_that.mentalHealthEffect,_that.canDiagnoseConditionIds,_that.canTreatConditionIds,_that.conditions,_that.requiresDiagnosedConditionIds,_that.treatmentSuccessRateByConditionId,_that.logMessage,_that.logMessageWhenAllClear,_that.logMessageWhenDiagnosed,_that.logMessageWhenTreated);case _:
   return orElse();
 
 }
@@ -182,10 +186,10 @@ return $default(_that.id,_that.name,_that.description,_that.type,_that.timeCost,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String description,  HealthActionType type,  int timeCost,  double physicalHealthEffect,  double mentalHealthEffect,  List<String> canDiagnoseConditionIds,  List<String> canTreatConditionIds,  List<AccessCondition> conditions,  List<String> requiresDiagnosedConditionIds,  Map<String, double> treatmentSuccessRateByConditionId)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String description,  HealthActionType type,  int timeCost,  double physicalHealthEffect,  double mentalHealthEffect,  List<String> canDiagnoseConditionIds,  List<String> canTreatConditionIds,  List<AccessCondition> conditions,  List<String> requiresDiagnosedConditionIds,  Map<String, double> treatmentSuccessRateByConditionId,  String? logMessage,  String? logMessageWhenAllClear,  String? logMessageWhenDiagnosed,  String? logMessageWhenTreated)  $default,) {final _that = this;
 switch (_that) {
 case _HealthAction():
-return $default(_that.id,_that.name,_that.description,_that.type,_that.timeCost,_that.physicalHealthEffect,_that.mentalHealthEffect,_that.canDiagnoseConditionIds,_that.canTreatConditionIds,_that.conditions,_that.requiresDiagnosedConditionIds,_that.treatmentSuccessRateByConditionId);}
+return $default(_that.id,_that.name,_that.description,_that.type,_that.timeCost,_that.physicalHealthEffect,_that.mentalHealthEffect,_that.canDiagnoseConditionIds,_that.canTreatConditionIds,_that.conditions,_that.requiresDiagnosedConditionIds,_that.treatmentSuccessRateByConditionId,_that.logMessage,_that.logMessageWhenAllClear,_that.logMessageWhenDiagnosed,_that.logMessageWhenTreated);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -199,10 +203,10 @@ return $default(_that.id,_that.name,_that.description,_that.type,_that.timeCost,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String description,  HealthActionType type,  int timeCost,  double physicalHealthEffect,  double mentalHealthEffect,  List<String> canDiagnoseConditionIds,  List<String> canTreatConditionIds,  List<AccessCondition> conditions,  List<String> requiresDiagnosedConditionIds,  Map<String, double> treatmentSuccessRateByConditionId)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String description,  HealthActionType type,  int timeCost,  double physicalHealthEffect,  double mentalHealthEffect,  List<String> canDiagnoseConditionIds,  List<String> canTreatConditionIds,  List<AccessCondition> conditions,  List<String> requiresDiagnosedConditionIds,  Map<String, double> treatmentSuccessRateByConditionId,  String? logMessage,  String? logMessageWhenAllClear,  String? logMessageWhenDiagnosed,  String? logMessageWhenTreated)?  $default,) {final _that = this;
 switch (_that) {
 case _HealthAction() when $default != null:
-return $default(_that.id,_that.name,_that.description,_that.type,_that.timeCost,_that.physicalHealthEffect,_that.mentalHealthEffect,_that.canDiagnoseConditionIds,_that.canTreatConditionIds,_that.conditions,_that.requiresDiagnosedConditionIds,_that.treatmentSuccessRateByConditionId);case _:
+return $default(_that.id,_that.name,_that.description,_that.type,_that.timeCost,_that.physicalHealthEffect,_that.mentalHealthEffect,_that.canDiagnoseConditionIds,_that.canTreatConditionIds,_that.conditions,_that.requiresDiagnosedConditionIds,_that.treatmentSuccessRateByConditionId,_that.logMessage,_that.logMessageWhenAllClear,_that.logMessageWhenDiagnosed,_that.logMessageWhenTreated);case _:
   return null;
 
 }
@@ -214,7 +218,7 @@ return $default(_that.id,_that.name,_that.description,_that.type,_that.timeCost,
 @JsonSerializable()
 
 class _HealthAction implements HealthAction {
-  const _HealthAction({required this.id, required this.name, required this.description, required this.type, required this.timeCost, this.physicalHealthEffect = 0.0, this.mentalHealthEffect = 0.0, final  List<String> canDiagnoseConditionIds = const [], final  List<String> canTreatConditionIds = const [], final  List<AccessCondition> conditions = const [], final  List<String> requiresDiagnosedConditionIds = const [], final  Map<String, double> treatmentSuccessRateByConditionId = const {}}): _canDiagnoseConditionIds = canDiagnoseConditionIds,_canTreatConditionIds = canTreatConditionIds,_conditions = conditions,_requiresDiagnosedConditionIds = requiresDiagnosedConditionIds,_treatmentSuccessRateByConditionId = treatmentSuccessRateByConditionId;
+  const _HealthAction({required this.id, required this.name, required this.description, required this.type, required this.timeCost, this.physicalHealthEffect = 0.0, this.mentalHealthEffect = 0.0, final  List<String> canDiagnoseConditionIds = const [], final  List<String> canTreatConditionIds = const [], final  List<AccessCondition> conditions = const [], final  List<String> requiresDiagnosedConditionIds = const [], final  Map<String, double> treatmentSuccessRateByConditionId = const {}, this.logMessage, this.logMessageWhenAllClear, this.logMessageWhenDiagnosed, this.logMessageWhenTreated}): _canDiagnoseConditionIds = canDiagnoseConditionIds,_canTreatConditionIds = canTreatConditionIds,_conditions = conditions,_requiresDiagnosedConditionIds = requiresDiagnosedConditionIds,_treatmentSuccessRateByConditionId = treatmentSuccessRateByConditionId;
   factory _HealthAction.fromJson(Map<String, dynamic> json) => _$HealthActionFromJson(json);
 
 @override final  String id;
@@ -259,6 +263,10 @@ class _HealthAction implements HealthAction {
   return EqualUnmodifiableMapView(_treatmentSuccessRateByConditionId);
 }
 
+@override final  String? logMessage;
+@override final  String? logMessageWhenAllClear;
+@override final  String? logMessageWhenDiagnosed;
+@override final  String? logMessageWhenTreated;
 
 /// Create a copy of HealthAction
 /// with the given fields replaced by the non-null parameter values.
@@ -273,16 +281,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HealthAction&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.type, type) || other.type == type)&&(identical(other.timeCost, timeCost) || other.timeCost == timeCost)&&(identical(other.physicalHealthEffect, physicalHealthEffect) || other.physicalHealthEffect == physicalHealthEffect)&&(identical(other.mentalHealthEffect, mentalHealthEffect) || other.mentalHealthEffect == mentalHealthEffect)&&const DeepCollectionEquality().equals(other._canDiagnoseConditionIds, _canDiagnoseConditionIds)&&const DeepCollectionEquality().equals(other._canTreatConditionIds, _canTreatConditionIds)&&const DeepCollectionEquality().equals(other._conditions, _conditions)&&const DeepCollectionEquality().equals(other._requiresDiagnosedConditionIds, _requiresDiagnosedConditionIds)&&const DeepCollectionEquality().equals(other._treatmentSuccessRateByConditionId, _treatmentSuccessRateByConditionId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HealthAction&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.type, type) || other.type == type)&&(identical(other.timeCost, timeCost) || other.timeCost == timeCost)&&(identical(other.physicalHealthEffect, physicalHealthEffect) || other.physicalHealthEffect == physicalHealthEffect)&&(identical(other.mentalHealthEffect, mentalHealthEffect) || other.mentalHealthEffect == mentalHealthEffect)&&const DeepCollectionEquality().equals(other._canDiagnoseConditionIds, _canDiagnoseConditionIds)&&const DeepCollectionEquality().equals(other._canTreatConditionIds, _canTreatConditionIds)&&const DeepCollectionEquality().equals(other._conditions, _conditions)&&const DeepCollectionEquality().equals(other._requiresDiagnosedConditionIds, _requiresDiagnosedConditionIds)&&const DeepCollectionEquality().equals(other._treatmentSuccessRateByConditionId, _treatmentSuccessRateByConditionId)&&(identical(other.logMessage, logMessage) || other.logMessage == logMessage)&&(identical(other.logMessageWhenAllClear, logMessageWhenAllClear) || other.logMessageWhenAllClear == logMessageWhenAllClear)&&(identical(other.logMessageWhenDiagnosed, logMessageWhenDiagnosed) || other.logMessageWhenDiagnosed == logMessageWhenDiagnosed)&&(identical(other.logMessageWhenTreated, logMessageWhenTreated) || other.logMessageWhenTreated == logMessageWhenTreated));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,description,type,timeCost,physicalHealthEffect,mentalHealthEffect,const DeepCollectionEquality().hash(_canDiagnoseConditionIds),const DeepCollectionEquality().hash(_canTreatConditionIds),const DeepCollectionEquality().hash(_conditions),const DeepCollectionEquality().hash(_requiresDiagnosedConditionIds),const DeepCollectionEquality().hash(_treatmentSuccessRateByConditionId));
+int get hashCode => Object.hash(runtimeType,id,name,description,type,timeCost,physicalHealthEffect,mentalHealthEffect,const DeepCollectionEquality().hash(_canDiagnoseConditionIds),const DeepCollectionEquality().hash(_canTreatConditionIds),const DeepCollectionEquality().hash(_conditions),const DeepCollectionEquality().hash(_requiresDiagnosedConditionIds),const DeepCollectionEquality().hash(_treatmentSuccessRateByConditionId),logMessage,logMessageWhenAllClear,logMessageWhenDiagnosed,logMessageWhenTreated);
 
 @override
 String toString() {
-  return 'HealthAction(id: $id, name: $name, description: $description, type: $type, timeCost: $timeCost, physicalHealthEffect: $physicalHealthEffect, mentalHealthEffect: $mentalHealthEffect, canDiagnoseConditionIds: $canDiagnoseConditionIds, canTreatConditionIds: $canTreatConditionIds, conditions: $conditions, requiresDiagnosedConditionIds: $requiresDiagnosedConditionIds, treatmentSuccessRateByConditionId: $treatmentSuccessRateByConditionId)';
+  return 'HealthAction(id: $id, name: $name, description: $description, type: $type, timeCost: $timeCost, physicalHealthEffect: $physicalHealthEffect, mentalHealthEffect: $mentalHealthEffect, canDiagnoseConditionIds: $canDiagnoseConditionIds, canTreatConditionIds: $canTreatConditionIds, conditions: $conditions, requiresDiagnosedConditionIds: $requiresDiagnosedConditionIds, treatmentSuccessRateByConditionId: $treatmentSuccessRateByConditionId, logMessage: $logMessage, logMessageWhenAllClear: $logMessageWhenAllClear, logMessageWhenDiagnosed: $logMessageWhenDiagnosed, logMessageWhenTreated: $logMessageWhenTreated)';
 }
 
 
@@ -293,7 +301,7 @@ abstract mixin class _$HealthActionCopyWith<$Res> implements $HealthActionCopyWi
   factory _$HealthActionCopyWith(_HealthAction value, $Res Function(_HealthAction) _then) = __$HealthActionCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name, String description, HealthActionType type, int timeCost, double physicalHealthEffect, double mentalHealthEffect, List<String> canDiagnoseConditionIds, List<String> canTreatConditionIds, List<AccessCondition> conditions, List<String> requiresDiagnosedConditionIds, Map<String, double> treatmentSuccessRateByConditionId
+ String id, String name, String description, HealthActionType type, int timeCost, double physicalHealthEffect, double mentalHealthEffect, List<String> canDiagnoseConditionIds, List<String> canTreatConditionIds, List<AccessCondition> conditions, List<String> requiresDiagnosedConditionIds, Map<String, double> treatmentSuccessRateByConditionId, String? logMessage, String? logMessageWhenAllClear, String? logMessageWhenDiagnosed, String? logMessageWhenTreated
 });
 
 
@@ -310,7 +318,7 @@ class __$HealthActionCopyWithImpl<$Res>
 
 /// Create a copy of HealthAction
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? description = null,Object? type = null,Object? timeCost = null,Object? physicalHealthEffect = null,Object? mentalHealthEffect = null,Object? canDiagnoseConditionIds = null,Object? canTreatConditionIds = null,Object? conditions = null,Object? requiresDiagnosedConditionIds = null,Object? treatmentSuccessRateByConditionId = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? description = null,Object? type = null,Object? timeCost = null,Object? physicalHealthEffect = null,Object? mentalHealthEffect = null,Object? canDiagnoseConditionIds = null,Object? canTreatConditionIds = null,Object? conditions = null,Object? requiresDiagnosedConditionIds = null,Object? treatmentSuccessRateByConditionId = null,Object? logMessage = freezed,Object? logMessageWhenAllClear = freezed,Object? logMessageWhenDiagnosed = freezed,Object? logMessageWhenTreated = freezed,}) {
   return _then(_HealthAction(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -324,7 +332,11 @@ as List<String>,canTreatConditionIds: null == canTreatConditionIds ? _self._canT
 as List<String>,conditions: null == conditions ? _self._conditions : conditions // ignore: cast_nullable_to_non_nullable
 as List<AccessCondition>,requiresDiagnosedConditionIds: null == requiresDiagnosedConditionIds ? _self._requiresDiagnosedConditionIds : requiresDiagnosedConditionIds // ignore: cast_nullable_to_non_nullable
 as List<String>,treatmentSuccessRateByConditionId: null == treatmentSuccessRateByConditionId ? _self._treatmentSuccessRateByConditionId : treatmentSuccessRateByConditionId // ignore: cast_nullable_to_non_nullable
-as Map<String, double>,
+as Map<String, double>,logMessage: freezed == logMessage ? _self.logMessage : logMessage // ignore: cast_nullable_to_non_nullable
+as String?,logMessageWhenAllClear: freezed == logMessageWhenAllClear ? _self.logMessageWhenAllClear : logMessageWhenAllClear // ignore: cast_nullable_to_non_nullable
+as String?,logMessageWhenDiagnosed: freezed == logMessageWhenDiagnosed ? _self.logMessageWhenDiagnosed : logMessageWhenDiagnosed // ignore: cast_nullable_to_non_nullable
+as String?,logMessageWhenTreated: freezed == logMessageWhenTreated ? _self.logMessageWhenTreated : logMessageWhenTreated // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

@@ -14,6 +14,7 @@ import 'package:alma/core/rules/education_country_config.dart';
 import 'package:alma/core/rules/work_country_config.dart';
 import 'package:alma/core/models/health/condition_definition.dart';
 import 'package:alma/core/models/health/health_action.dart';
+import 'package:alma/core/models/health/health_log_templates.dart';
 import 'package:alma/core/models/health/symptom.dart';
 
 class SeedLoader {
@@ -36,6 +37,7 @@ class SeedLoader {
   List<Symptom>? _cachedSymptoms;
   List<HealthAction>? _cachedHealthActions;
   List<GameEvent>? _cachedHealthEvents;
+  HealthLogTemplates? _cachedHealthLogTemplates;
 
   Future<List<GameEvent>> loadEvents() async {
     if (_cachedEvents != null) return _cachedEvents!;
@@ -302,5 +304,16 @@ class SeedLoader {
         .map((e) => GameEvent.fromJson(e as Map<String, dynamic>))
         .toList();
     return _cachedHealthEvents!;
+  }
+
+  Future<HealthLogTemplates> loadHealthLogTemplates() async {
+    if (_cachedHealthLogTemplates != null) return _cachedHealthLogTemplates!;
+    final String jsonString = await rootBundle.loadString(
+      'assets/data/health/health_log_templates.json',
+    );
+    final Map<String, dynamic> jsonMap =
+        jsonDecode(jsonString) as Map<String, dynamic>;
+    _cachedHealthLogTemplates = HealthLogTemplates.fromJson(jsonMap);
+    return _cachedHealthLogTemplates!;
   }
 }

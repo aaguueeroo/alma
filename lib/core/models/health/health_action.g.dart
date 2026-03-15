@@ -41,6 +41,10 @@ _HealthAction _$HealthActionFromJson(Map<String, dynamic> json) =>
           (json['treatmentSuccessRateByConditionId'] as Map<String, dynamic>?)
               ?.map((k, e) => MapEntry(k, (e as num).toDouble())) ??
           const {},
+      logMessage: json['logMessage'] as String?,
+      logMessageWhenAllClear: json['logMessageWhenAllClear'] as String?,
+      logMessageWhenDiagnosed: json['logMessageWhenDiagnosed'] as String?,
+      logMessageWhenTreated: json['logMessageWhenTreated'] as String?,
     );
 
 Map<String, dynamic> _$HealthActionToJson(_HealthAction instance) =>
@@ -58,6 +62,10 @@ Map<String, dynamic> _$HealthActionToJson(_HealthAction instance) =>
       'requiresDiagnosedConditionIds': instance.requiresDiagnosedConditionIds,
       'treatmentSuccessRateByConditionId':
           instance.treatmentSuccessRateByConditionId,
+      'logMessage': instance.logMessage,
+      'logMessageWhenAllClear': instance.logMessageWhenAllClear,
+      'logMessageWhenDiagnosed': instance.logMessageWhenDiagnosed,
+      'logMessageWhenTreated': instance.logMessageWhenTreated,
     };
 
 const _$HealthActionTypeEnumMap = {

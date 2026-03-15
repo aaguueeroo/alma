@@ -5,6 +5,7 @@ import 'package:alma/core/models/health/health_state.dart';
 import 'package:alma/core/models/health/health_predisposition.dart';
 import 'package:alma/core/models/health/health_action.dart';
 import 'package:alma/core/models/health/health_action_type.dart';
+import 'package:alma/core/models/health/health_log_templates.dart';
 import 'package:alma/core/models/enums/action_category.dart';
 import 'package:alma/core/models/event.dart';
 import 'package:alma/core/models/social/relationship.dart';
@@ -26,7 +27,6 @@ import 'package:alma/data/seed/seed_loader.dart';
 import 'package:alma/core/engine/event_engine.dart';
 import 'package:alma/core/engine/game_logger.dart';
 import 'package:alma/core/models/enums/log_category.dart';
-import 'package:alma/app/constants/log_narratives.dart';
 import 'package:alma/providers/game/game_state_provider.dart';
 import 'package:alma/app/utils/error_logger.dart';
 
@@ -164,11 +164,14 @@ class LifeController extends StateNotifier<LifeControllerState> {
         final conditions = await seedLoader.loadConditions();
         final symptoms = await seedLoader.loadSymptoms();
         final healthActions = await seedLoader.loadHealthActions();
+        final logTemplates = await seedLoader.loadHealthLogTemplates();
         healthEngine.loadData(
           conditionDefinitions: conditions,
           symptoms: symptoms,
           healthActions: healthActions,
+          logTemplates: logTemplates,
         );
+        eventEngine.loadLogTemplates(logTemplates);
       } catch (e) {
         print('Health data not loaded (asset missing or invalid): $e');
       }
@@ -694,6 +697,29 @@ class LifeController extends StateNotifier<LifeControllerState> {
         .toList();
   }
 
+  String _resolveHealthActionLogMessage(
+    HealthAction action, {
+    required int newlyDiagnosedCount,
+    required int newlyTreatedCount,
+  }) {
+    final bool canDiagnose = action.canDiagnoseConditionIds.isNotEmpty;
+    final bool hasFindings =
+        newlyDiagnosedCount > 0 || newlyTreatedCount > 0;
+    if (canDiagnose && newlyDiagnosedCount > 0 &&
+        action.logMessageWhenDiagnosed != null) {
+      return action.logMessageWhenDiagnosed!;
+    }
+    if (hasFindings && newlyTreatedCount > 0 &&
+        action.logMessageWhenTreated != null) {
+      return action.logMessageWhenTreated!;
+    }
+    if (canDiagnose && !hasFindings &&
+        action.logMessageWhenAllClear != null) {
+      return action.logMessageWhenAllClear!;
+    }
+    return action.logMessage ?? 'You took a step to care for your health.';
+  }
+
   Future<void> performHealthAction(HealthAction action) async {
     if (state.currentLife == null || !healthEngine.isLoaded) return;
     try {
@@ -722,13 +748,25 @@ class LifeController extends StateNotifier<LifeControllerState> {
           rng,
         );
       }
+      final int newlyDiagnosedCount = healthState.diagnosedConditionIds
+          .where((id) => !diagnosedBefore.contains(id))
+          .length;
+      final int newlyTreatedCount = healthState.conditions
+          .where((c) => c.isTreated && (treatedBefore[c.id] != true))
+          .length;
+      final String actionLogMessage = _resolveHealthActionLogMessage(
+        action,
+        newlyDiagnosedCount: newlyDiagnosedCount,
+        newlyTreatedCount: newlyTreatedCount,
+      );
       LifeState newLifeState = life.state.copyWith(healthState: healthState);
       newLifeState = GameLogger.addLog(
         newLifeState,
-        message: LogNarratives.healthActionPerformed(action.name),
+        message: actionLogMessage,
         category: LogCategory.health,
         tags: ['health_action:${action.id}'],
       );
+      final HealthLogTemplates? templates = healthEngine.logTemplates;
       for (final condId in healthState.diagnosedConditionIds) {
         if (!diagnosedBefore.contains(condId)) {
           final String condName =
@@ -737,9 +775,15 @@ class LifeController extends StateNotifier<LifeControllerState> {
                   .firstOrNull
                   ?.name ??
               condId;
+          final String message = templates != null
+              ? templates.resolveHealth(
+                  'conditionDiagnosed',
+                  {'name': condName},
+                )
+              : '$condName was diagnosed.';
           newLifeState = GameLogger.addLog(
             newLifeState,
-            message: LogNarratives.healthConditionDiagnosed(condName),
+            message: message,
             category: LogCategory.health,
             tags: ['condition_diagnosed:$condId'],
           );
@@ -747,9 +791,15 @@ class LifeController extends StateNotifier<LifeControllerState> {
       }
       for (final cond in healthState.conditions) {
         if (cond.isTreated && (treatedBefore[cond.id] != true)) {
+          final String message = templates != null
+              ? templates.resolveHealth(
+                  'conditionTreated',
+                  {'name': cond.name},
+                )
+              : 'You began treatment for ${cond.name}.';
           newLifeState = GameLogger.addLog(
             newLifeState,
-            message: LogNarratives.healthConditionTreated(cond.name),
+            message: message,
             category: LogCategory.health,
             tags: ['condition_treated:${cond.id}'],
           );

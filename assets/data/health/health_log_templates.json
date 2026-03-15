@@ -1,0 +1,12 @@
+{
+  "health": {
+    "conditionDeveloped": "You developed {name}.",
+    "conditionDiagnosed": "{name} was diagnosed.",
+    "conditionTreated": "You began treatment for {name}.",
+    "conditionRecovered": "You recovered from {name}.",
+    "symptomAppeared": "You noticed new symptoms: {description}."
+  },
+  "event": {
+    "lifeEndedDuringEvent": "Your life ended during: {eventTitle}."
+  }
+}

@@ -107,7 +107,7 @@
     "choices": [
       {
         "description": "Undergo the procedure.",
-        "logMessage": "You had surgery and are recovering.",
+        "logMessage": "You underwent the procedure. The recovery was long and costly, but you made it through.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {},
@@ -138,7 +138,7 @@
     "choices": [
       {
         "description": "Focus on recovery.",
-        "logMessage": "You spent time in the hospital recovering from a serious health issue.",
+        "logMessage": "You spent weeks in the hospital. Work and daily life were put on hold while you focused on getting better.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {},
@@ -169,7 +169,7 @@
     "choices": [
       {
         "description": "Adapt to the new reality.",
-        "logMessage": "You adapted to living with a disability.",
+        "logMessage": "Your condition worsened and life changed. You learned to adapt, though it was not easy.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {},

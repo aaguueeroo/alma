@@ -1,6 +1,7 @@
 import 'package:alma/core/models/health/condition.dart';
 import 'package:alma/core/models/health/condition_definition.dart';
 import 'package:alma/core/models/health/health_action.dart';
+import 'package:alma/core/models/health/health_log_templates.dart';
 import 'package:alma/core/models/health/health_modifier.dart';
 import 'package:alma/core/models/health/health_predisposition.dart';
 import 'package:alma/core/models/health/health_state.dart';
@@ -37,9 +38,12 @@ class HealthEngine {
   List<ConditionDefinition> _conditionDefinitions = [];
   List<Symptom> _symptoms = [];
   List<HealthAction> _healthActions = [];
+  HealthLogTemplates? _logTemplates;
 
   bool get isLoaded =>
       _conditionDefinitions.isNotEmpty && _healthActions.isNotEmpty;
+
+  HealthLogTemplates? get logTemplates => _logTemplates;
 
   List<ConditionDefinition> getConditionDefinitions() =>
       List.unmodifiable(_conditionDefinitions);
@@ -50,10 +54,12 @@ class HealthEngine {
     required List<ConditionDefinition> conditionDefinitions,
     required List<Symptom> symptoms,
     required List<HealthAction> healthActions,
+    HealthLogTemplates? logTemplates,
   }) {
     _conditionDefinitions = conditionDefinitions;
     _symptoms = symptoms;
     _healthActions = healthActions;
+    _logTemplates = logTemplates;
   }
 
   HealthState initializeHealth(SeededRandom rng, int startingHealth) {
@@ -97,9 +103,15 @@ class HealthEngine {
     healthState = _checkNewConditionTriggers(state, healthState, rng);
     for (final cond in healthState.conditions) {
       if (!conditionIdsBeforeNew.contains(cond.id)) {
+        final String message = _logTemplates != null
+            ? _logTemplates!.resolveHealth(
+                'conditionDeveloped',
+                {'name': cond.name},
+              )
+            : 'You developed ${cond.name}.';
         state = GameLogger.addLog(
           state,
-          message: LogNarratives.healthConditionDeveloped(cond.name),
+          message: message,
           category: LogCategory.health,
           tags: ['condition:${cond.id}'],
         );
@@ -114,9 +126,15 @@ class HealthEngine {
         .where((s) => !symptomIdsBefore.contains(s.id))
         .toList();
     for (final symptom in newSymptoms) {
+      final String message = _logTemplates != null
+          ? _logTemplates!.resolveHealth(
+              'symptomAppeared',
+              {'description': symptom.description},
+            )
+          : 'You noticed new symptoms: ${symptom.description}.';
       state = GameLogger.addLog(
         state,
-        message: LogNarratives.healthSymptomAppeared(symptom.description),
+        message: message,
         category: LogCategory.health,
         tags: ['symptom:${symptom.id}'],
       );
@@ -130,9 +148,15 @@ class HealthEngine {
         .toSet();
     for (final entry in conditionNamesBeforeRecovery.entries) {
       if (!conditionIdsAfterRecovery.contains(entry.key)) {
+        final String message = _logTemplates != null
+            ? _logTemplates!.resolveHealth(
+                'conditionRecovered',
+                {'name': entry.value},
+              )
+            : 'You recovered from ${entry.value}.';
         state = GameLogger.addLog(
           state,
-          message: LogNarratives.healthConditionRecovered(entry.value),
+          message: message,
           category: LogCategory.health,
           tags: ['condition_recovered:${entry.key}'],
         );
