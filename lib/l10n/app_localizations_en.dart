@@ -613,6 +613,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ok => 'OK';
 
   @override
+  String get eventResultDialogTitle => 'What happened';
+
+  @override
   String get actionsThisYear => 'Actions done this year';
 
   @override

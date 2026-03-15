@@ -15,7 +15,8 @@
     "choices": [
       {
         "description": "Survive with lasting effects.",
-        "logMessage": "You survived a heart attack but your health has been permanently affected.",
+        "logMessage": "You survived. Life would be different from now on.",
+        "resultDialogText": "The hospital released you weeks later. Your body had been through too much. You would have to slow down.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {},
@@ -30,7 +31,8 @@
       },
       {
         "description": "The damage was too severe.",
-        "logMessage": "Despite emergency care, the heart attack proved fatal.",
+        "logMessage": "The end came suddenly.",
+        "resultDialogText": "Despite everything they tried, it was not enough.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {},
@@ -61,7 +63,8 @@
     "choices": [
       {
         "description": "Seek intensive treatment.",
-        "logMessage": "You sought help during a severe depressive episode and began recovery.",
+        "logMessage": "You reached for help. The road ahead would be long.",
+        "resultDialogText": "Treatment began. It was hard. But slowly, the weight began to lift.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {},
@@ -76,7 +79,8 @@
       },
       {
         "description": "Withdraw and isolate.",
-        "logMessage": "You withdrew from the world during a dark period.",
+        "logMessage": "You retreated. The darkness stayed.",
+        "resultDialogText": "You closed the door. The world felt too heavy. Time passed in a haze.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {},
@@ -107,7 +111,8 @@
     "choices": [
       {
         "description": "Undergo the procedure.",
-        "logMessage": "You underwent the procedure. The recovery was long and costly, but you made it through.",
+        "logMessage": "You went through with it. The cost was real—in time and in savings.",
+        "resultDialogText": "The surgery was successful. The recovery took months. The bills piled up. But you made it.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {},
@@ -138,7 +143,8 @@
     "choices": [
       {
         "description": "Focus on recovery.",
-        "logMessage": "You spent weeks in the hospital. Work and daily life were put on hold while you focused on getting better.",
+        "logMessage": "Weeks passed in white rooms. Life was put on hold.",
+        "resultDialogText": "You left the hospital eventually. Work had moved on. So had your savings. But you were alive.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {},
@@ -169,7 +175,8 @@
     "choices": [
       {
         "description": "Adapt to the new reality.",
-        "logMessage": "Your condition worsened and life changed. You learned to adapt, though it was not easy.",
+        "logMessage": "Life changed. You learned to adapt, though it was not easy.",
+        "resultDialogText": "You learned new ways to do old things. Some doors closed. Others opened, slowly.",
         "consequences": {
           "skillChanges": {},
           "hiddenMetricChanges": {},

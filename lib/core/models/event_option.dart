@@ -13,6 +13,7 @@ sealed class EventOption with _$EventOption {
     required String description,
     required EventConsequences consequences,
     String? logMessage,
+    String? resultDialogText,
   }) = _EventOption;
 
   factory EventOption.fromJson(Map<String, dynamic> json) =>

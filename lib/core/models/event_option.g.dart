@@ -12,6 +12,7 @@ _EventOption _$EventOptionFromJson(Map<String, dynamic> json) => _EventOption(
     json['consequences'] as Map<String, dynamic>,
   ),
   logMessage: json['logMessage'] as String?,
+  resultDialogText: json['resultDialogText'] as String?,
 );
 
 Map<String, dynamic> _$EventOptionToJson(_EventOption instance) =>
@@ -19,6 +20,7 @@ Map<String, dynamic> _$EventOptionToJson(_EventOption instance) =>
       'description': instance.description,
       'consequences': instance.consequences,
       'logMessage': instance.logMessage,
+      'resultDialogText': instance.resultDialogText,
     };
 
 _EventConsequences _$EventConsequencesFromJson(

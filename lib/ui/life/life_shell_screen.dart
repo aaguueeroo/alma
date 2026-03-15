@@ -11,6 +11,7 @@ import 'package:alma/app/constants/durations.dart';
 import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/providers/life/life_controller.dart';
 import 'package:alma/ui/life/event_dialog.dart';
+import 'package:alma/ui/life/event_result_dialog.dart';
 import 'package:alma/ui/life/education_enroll_dialog.dart';
 import 'package:alma/ui/life/job_apply_dialog.dart';
 import 'package:alma/core/models/work/job.dart';
@@ -323,7 +324,23 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
         event: event,
         onChoiceSelected: (index) {
           Navigator.of(context).pop();
-          ref.read(lifeControllerProvider.notifier).resolveEvent(index);
+          final choice = event.choices[index];
+          final resultText = choice.resultDialogText;
+          final causesDeath = choice.consequences.causesDeath;
+          ref.read(lifeControllerProvider.notifier).resolveEvent(index).then(
+            (_) {
+              if (context.mounted &&
+                  resultText != null &&
+                  resultText.isNotEmpty &&
+                  !causesDeath) {
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (_) => EventResultDialog(message: resultText),
+                );
+              }
+            },
+          );
         },
       ),
     );

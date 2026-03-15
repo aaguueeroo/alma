@@ -306,6 +306,7 @@
   "promotionGranted": "Promoted!",
   "promotionDenied": "Promotion Denied",
   "ok": "OK",
+  "eventResultDialogTitle": "What happened",
   "actionsThisYear": "Actions done this year",
 
   "logAgePrefix": "[Age {age}]",

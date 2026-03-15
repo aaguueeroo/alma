@@ -105,7 +105,7 @@ class SoulHomeScreen extends ConsumerWidget {
                 context,
               ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: sectionGap * 0.5),
+            SizedBox(height: sectionGap * 0.7),
             GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -307,66 +307,51 @@ class _SubjectCard extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final positiveColor = themeExt?.accentColor ?? colorScheme.primary;
     final mutedColor = themeExt?.mutedColor ?? colorScheme.onSurfaceVariant;
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(radius),
-        side: subject.isPassed
-            ? BorderSide(color: positiveColor, width: 2)
-            : BorderSide.none,
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Icon(icon, color: color, size: 16),
-            kHorizontalGap8,
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Text(
-                    label,
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: color,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    description,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodySmall?.copyWith(color: mutedColor),
-                  ),
-                  const SizedBox(height: 4),
-                  const Spacer(),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
-                    ),
-                    decoration: BoxDecoration(
-                      color: subject.isPassed
-                          ? positiveColor.withValues(alpha: 0.2)
-                          : mutedColor.withValues(alpha: 0.2),
-                      borderRadius: BorderRadius.circular(radiusSmall),
-                    ),
-                    child: Text(
-                      subject.isPassed ? l10n.passed : l10n.notPassed,
-                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: subject.isPassed ? positiveColor : mutedColor,
-                      ),
-                    ),
-                  ),
-                ],
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Icon(icon, color: color, size: 16),
+        kHorizontalGap8,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(
+                label,
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: color,
+                ),
+                overflow: TextOverflow.ellipsis,
               ),
-            ),
-          ],
+              const SizedBox(height: 2),
+              Text(
+                description,
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: mutedColor),
+              ),
+              const SizedBox(height: 4),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(
+                  color: subject.isPassed
+                      ? positiveColor.withValues(alpha: 0.2)
+                      : mutedColor.withValues(alpha: 0.2),
+                  borderRadius: BorderRadius.circular(radiusSmall),
+                ),
+                child: Text(
+                  subject.isPassed ? l10n.passed : l10n.notPassed,
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    color: subject.isPassed ? positiveColor : mutedColor,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }
