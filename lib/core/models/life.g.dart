@@ -57,6 +57,11 @@ _LifeState _$LifeStateFromJson(Map<String, dynamic> json) => _LifeState(
           ?.map((e) => e as String)
           .toList() ??
       const [],
+  eventIdsTriggeredInLife:
+      (json['eventIdsTriggeredInLife'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      const [],
   unlockedEventIds:
       (json['unlockedEventIds'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -107,6 +112,7 @@ Map<String, dynamic> _$LifeStateToJson(_LifeState instance) =>
       'hiddenMetrics': instance.hiddenMetrics,
       'eventsTriggeredThisYear': instance.eventsTriggeredThisYear,
       'eventIdsTriggeredThisYear': instance.eventIdsTriggeredThisYear,
+      'eventIdsTriggeredInLife': instance.eventIdsTriggeredInLife,
       'unlockedEventIds': instance.unlockedEventIds,
       'pendingEvent': instance.pendingEvent,
       'isDead': instance.isDead,

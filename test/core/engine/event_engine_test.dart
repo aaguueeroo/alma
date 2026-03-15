@@ -20,6 +20,7 @@ void main() {
 
   LifeState createTestState({
     List<String> eventIdsTriggeredThisYear = const [],
+    List<String> eventIdsTriggeredInLife = const [],
     List<String> unlockedEventIds = const [],
   }) {
     return LifeState(
@@ -35,6 +36,7 @@ void main() {
       sections: [],
       hiddenMetrics: const HiddenMetrics(),
       eventIdsTriggeredThisYear: eventIdsTriggeredThisYear,
+      eventIdsTriggeredInLife: eventIdsTriggeredInLife,
       unlockedEventIds: unlockedEventIds,
     );
   }
@@ -112,6 +114,32 @@ void main() {
       final resolved = eventEngine.resolveEvent(state, event, 0, rng);
       expect(resolved.eventIdsTriggeredThisYear, contains('resolved_event'));
       expect(resolved.eventsTriggeredThisYear, 1);
+    });
+
+    test('same event does not trigger twice in same life', () {
+      final event = createTestEvent(id: 'once_per_life');
+      eventEngine.loadEvents([event]);
+      final stateNeverTriggered = createTestState();
+      final stateAlreadyTriggeredInLife = createTestState(
+        eventIdsTriggeredInLife: ['once_per_life'],
+      );
+      expect(eventEngine.checkTriggers(stateNeverTriggered, rng), isNotNull);
+      expect(
+        eventEngine.checkTriggers(
+          stateAlreadyTriggeredInLife,
+          rng,
+          triggerPhaseFilter: EventTriggerPhase.afterAction,
+        ),
+        isNull,
+      );
+    });
+
+    test('resolveEvent adds event id to eventIdsTriggeredInLife', () {
+      final event = createTestEvent(id: 'resolved_event');
+      eventEngine.loadEvents([event]);
+      final state = createTestState();
+      final resolved = eventEngine.resolveEvent(state, event, 0, rng);
+      expect(resolved.eventIdsTriggeredInLife, contains('resolved_event'));
     });
 
     test('resolveEvent adds unlockEventId to unlockedEventIds', () {

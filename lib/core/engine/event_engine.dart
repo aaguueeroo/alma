@@ -79,6 +79,7 @@ class EventEngine {
       pendingEvent: null,
       eventsTriggeredThisYear: state.eventsTriggeredThisYear + 1,
       eventIdsTriggeredThisYear: [...state.eventIdsTriggeredThisYear, event.id],
+      eventIdsTriggeredInLife: [...state.eventIdsTriggeredInLife, event.id],
     );
     newState = _applySkillChanges(newState, consequences);
     newState = _applyHiddenMetricChanges(newState, consequences);
@@ -137,6 +138,9 @@ class EventEngine {
   }) {
     return _events.where((event) {
       if (state.eventIdsTriggeredThisYear.contains(event.id)) {
+        return false;
+      }
+      if (state.eventIdsTriggeredInLife.contains(event.id)) {
         return false;
       }
       final EventTriggerConditions conditions = event.triggerConditions;
