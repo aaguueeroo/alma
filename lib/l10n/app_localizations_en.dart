@@ -492,6 +492,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notEnrolled => 'Not enrolled';
 
   @override
+  String get noStudyActionsAvailable =>
+      'No more study actions available this year.';
+
+  @override
   String enrollmentYear(int current, int total) {
     return 'Year $current of $total';
   }

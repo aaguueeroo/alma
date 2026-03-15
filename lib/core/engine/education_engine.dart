@@ -50,7 +50,9 @@ class EducationEngine {
     EducationState eduState = state.educationState ?? const EducationState();
     final Enrollment? enrollment = eduState.currentEnrollment;
     if (enrollment == null || !enrollment.isActive) {
-      return state;
+      return state.copyWith(
+        educationState: eduState.copyWith(performedActionIdsThisYear: []),
+      );
     }
     final EducationLevelConfig? levelConfig = _getLevelConfig(enrollment.level);
     if (levelConfig == null) return state;
@@ -70,6 +72,10 @@ class EducationEngine {
         performance,
       );
     }
+    state = state.copyWith(
+      educationState: (state.educationState ?? eduState)
+          .copyWith(performedActionIdsThisYear: []),
+    );
     return state;
   }
 

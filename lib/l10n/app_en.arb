@@ -220,6 +220,7 @@
   },
 
   "notEnrolled": "Not enrolled",
+  "noStudyActionsAvailable": "No more study actions available this year.",
   "enrollmentYear": "Year {current} of {total}",
   "@enrollmentYear": {
     "placeholders": {

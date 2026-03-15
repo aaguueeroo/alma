@@ -20,6 +20,11 @@ _EducationState _$EducationStateFromJson(
   pendingPrompt: json['pendingPrompt'] == null
       ? null
       : EducationPrompt.fromJson(json['pendingPrompt'] as Map<String, dynamic>),
+  performedActionIdsThisYear:
+      (json['performedActionIdsThisYear'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      const [],
 );
 
 Map<String, dynamic> _$EducationStateToJson(_EducationState instance) =>
@@ -27,4 +32,5 @@ Map<String, dynamic> _$EducationStateToJson(_EducationState instance) =>
       'currentEnrollment': instance.currentEnrollment,
       'history': instance.history,
       'pendingPrompt': instance.pendingPrompt,
+      'performedActionIdsThisYear': instance.performedActionIdsThisYear,
     };

@@ -12,6 +12,7 @@ sealed class EducationState with _$EducationState {
     Enrollment? currentEnrollment,
     @Default([]) List<EducationRecord> history,
     EducationPrompt? pendingPrompt,
+    @Default([]) List<String> performedActionIdsThisYear,
   }) = _EducationState;
 
   factory EducationState.fromJson(Map<String, dynamic> json) =>

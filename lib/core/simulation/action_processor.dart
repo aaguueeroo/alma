@@ -71,6 +71,9 @@ class ActionProcessor {
     if (workJobContext != null && action.category == ActionCategory.work) {
       state = _recordWorkActionPerformed(state, action, workJobContext);
     }
+    if (action.category == ActionCategory.education) {
+      state = _recordEducationActionPerformed(state, action);
+    }
     state = relationshipProcessor.processAction(state, action, rng);
     state = habitProcessor.process(state, action);
     state = traitRules.checkEvolution(state, action, rng);
@@ -221,6 +224,20 @@ class ActionProcessor {
     updated[jobId] = [...existing, action];
     return state.copyWith(
       workState: workState.copyWith(performedActionsByJobIdThisYear: updated),
+    );
+  }
+
+  LifeState _recordEducationActionPerformed(LifeState state, GameAction action) {
+    final educationState = state.educationState;
+    if (educationState == null) return state;
+    final List<String> updated = [
+      ...educationState.performedActionIdsThisYear,
+      action.id,
+    ];
+    return state.copyWith(
+      educationState: educationState.copyWith(
+        performedActionIdsThisYear: updated,
+      ),
     );
   }
 

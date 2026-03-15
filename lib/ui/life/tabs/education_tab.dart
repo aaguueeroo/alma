@@ -181,13 +181,17 @@ class EducationTab extends StatelessWidget {
   }
 
   void _showActionsDialog(BuildContext context, AppLocalizations l10n) {
+    final Enrollment? enrollment = state.educationState?.currentEnrollment;
+    final String emptyMessage = enrollment == null
+        ? l10n.notEnrolled
+        : l10n.noStudyActionsAvailable;
     showDialog(
       context: context,
       builder: (BuildContext ctx) => AlertDialog(
         title: Text(l10n.studyActions),
         content: actions.isEmpty
             ? Text(
-                l10n.notEnrolled,
+                emptyMessage,
                 style: Theme.of(
                   context,
                 ).textTheme.bodyMedium?.copyWith(fontStyle: FontStyle.italic),

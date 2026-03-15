@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$EducationState {
 
- Enrollment? get currentEnrollment; List<EducationRecord> get history; EducationPrompt? get pendingPrompt;
+ Enrollment? get currentEnrollment; List<EducationRecord> get history; EducationPrompt? get pendingPrompt; List<String> get performedActionIdsThisYear;
 /// Create a copy of EducationState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $EducationStateCopyWith<EducationState> get copyWith => _$EducationStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EducationState&&(identical(other.currentEnrollment, currentEnrollment) || other.currentEnrollment == currentEnrollment)&&const DeepCollectionEquality().equals(other.history, history)&&(identical(other.pendingPrompt, pendingPrompt) || other.pendingPrompt == pendingPrompt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EducationState&&(identical(other.currentEnrollment, currentEnrollment) || other.currentEnrollment == currentEnrollment)&&const DeepCollectionEquality().equals(other.history, history)&&(identical(other.pendingPrompt, pendingPrompt) || other.pendingPrompt == pendingPrompt)&&const DeepCollectionEquality().equals(other.performedActionIdsThisYear, performedActionIdsThisYear));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,currentEnrollment,const DeepCollectionEquality().hash(history),pendingPrompt);
+int get hashCode => Object.hash(runtimeType,currentEnrollment,const DeepCollectionEquality().hash(history),pendingPrompt,const DeepCollectionEquality().hash(performedActionIdsThisYear));
 
 @override
 String toString() {
-  return 'EducationState(currentEnrollment: $currentEnrollment, history: $history, pendingPrompt: $pendingPrompt)';
+  return 'EducationState(currentEnrollment: $currentEnrollment, history: $history, pendingPrompt: $pendingPrompt, performedActionIdsThisYear: $performedActionIdsThisYear)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $EducationStateCopyWith<$Res>  {
   factory $EducationStateCopyWith(EducationState value, $Res Function(EducationState) _then) = _$EducationStateCopyWithImpl;
 @useResult
 $Res call({
- Enrollment? currentEnrollment, List<EducationRecord> history, EducationPrompt? pendingPrompt
+ Enrollment? currentEnrollment, List<EducationRecord> history, EducationPrompt? pendingPrompt, List<String> performedActionIdsThisYear
 });
 
 
@@ -65,12 +65,13 @@ class _$EducationStateCopyWithImpl<$Res>
 
 /// Create a copy of EducationState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? currentEnrollment = freezed,Object? history = null,Object? pendingPrompt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? currentEnrollment = freezed,Object? history = null,Object? pendingPrompt = freezed,Object? performedActionIdsThisYear = null,}) {
   return _then(_self.copyWith(
 currentEnrollment: freezed == currentEnrollment ? _self.currentEnrollment : currentEnrollment // ignore: cast_nullable_to_non_nullable
 as Enrollment?,history: null == history ? _self.history : history // ignore: cast_nullable_to_non_nullable
 as List<EducationRecord>,pendingPrompt: freezed == pendingPrompt ? _self.pendingPrompt : pendingPrompt // ignore: cast_nullable_to_non_nullable
-as EducationPrompt?,
+as EducationPrompt?,performedActionIdsThisYear: null == performedActionIdsThisYear ? _self.performedActionIdsThisYear : performedActionIdsThisYear // ignore: cast_nullable_to_non_nullable
+as List<String>,
   ));
 }
 /// Create a copy of EducationState
@@ -176,10 +177,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Enrollment? currentEnrollment,  List<EducationRecord> history,  EducationPrompt? pendingPrompt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Enrollment? currentEnrollment,  List<EducationRecord> history,  EducationPrompt? pendingPrompt,  List<String> performedActionIdsThisYear)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _EducationState() when $default != null:
-return $default(_that.currentEnrollment,_that.history,_that.pendingPrompt);case _:
+return $default(_that.currentEnrollment,_that.history,_that.pendingPrompt,_that.performedActionIdsThisYear);case _:
   return orElse();
 
 }
@@ -197,10 +198,10 @@ return $default(_that.currentEnrollment,_that.history,_that.pendingPrompt);case 
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Enrollment? currentEnrollment,  List<EducationRecord> history,  EducationPrompt? pendingPrompt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Enrollment? currentEnrollment,  List<EducationRecord> history,  EducationPrompt? pendingPrompt,  List<String> performedActionIdsThisYear)  $default,) {final _that = this;
 switch (_that) {
 case _EducationState():
-return $default(_that.currentEnrollment,_that.history,_that.pendingPrompt);}
+return $default(_that.currentEnrollment,_that.history,_that.pendingPrompt,_that.performedActionIdsThisYear);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -214,10 +215,10 @@ return $default(_that.currentEnrollment,_that.history,_that.pendingPrompt);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Enrollment? currentEnrollment,  List<EducationRecord> history,  EducationPrompt? pendingPrompt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Enrollment? currentEnrollment,  List<EducationRecord> history,  EducationPrompt? pendingPrompt,  List<String> performedActionIdsThisYear)?  $default,) {final _that = this;
 switch (_that) {
 case _EducationState() when $default != null:
-return $default(_that.currentEnrollment,_that.history,_that.pendingPrompt);case _:
+return $default(_that.currentEnrollment,_that.history,_that.pendingPrompt,_that.performedActionIdsThisYear);case _:
   return null;
 
 }
@@ -229,7 +230,7 @@ return $default(_that.currentEnrollment,_that.history,_that.pendingPrompt);case 
 @JsonSerializable()
 
 class _EducationState implements EducationState {
-  const _EducationState({this.currentEnrollment, final  List<EducationRecord> history = const [], this.pendingPrompt}): _history = history;
+  const _EducationState({this.currentEnrollment, final  List<EducationRecord> history = const [], this.pendingPrompt, final  List<String> performedActionIdsThisYear = const []}): _history = history,_performedActionIdsThisYear = performedActionIdsThisYear;
   factory _EducationState.fromJson(Map<String, dynamic> json) => _$EducationStateFromJson(json);
 
 @override final  Enrollment? currentEnrollment;
@@ -241,6 +242,13 @@ class _EducationState implements EducationState {
 }
 
 @override final  EducationPrompt? pendingPrompt;
+ final  List<String> _performedActionIdsThisYear;
+@override@JsonKey() List<String> get performedActionIdsThisYear {
+  if (_performedActionIdsThisYear is EqualUnmodifiableListView) return _performedActionIdsThisYear;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_performedActionIdsThisYear);
+}
+
 
 /// Create a copy of EducationState
 /// with the given fields replaced by the non-null parameter values.
@@ -255,16 +263,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EducationState&&(identical(other.currentEnrollment, currentEnrollment) || other.currentEnrollment == currentEnrollment)&&const DeepCollectionEquality().equals(other._history, _history)&&(identical(other.pendingPrompt, pendingPrompt) || other.pendingPrompt == pendingPrompt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EducationState&&(identical(other.currentEnrollment, currentEnrollment) || other.currentEnrollment == currentEnrollment)&&const DeepCollectionEquality().equals(other._history, _history)&&(identical(other.pendingPrompt, pendingPrompt) || other.pendingPrompt == pendingPrompt)&&const DeepCollectionEquality().equals(other._performedActionIdsThisYear, _performedActionIdsThisYear));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,currentEnrollment,const DeepCollectionEquality().hash(_history),pendingPrompt);
+int get hashCode => Object.hash(runtimeType,currentEnrollment,const DeepCollectionEquality().hash(_history),pendingPrompt,const DeepCollectionEquality().hash(_performedActionIdsThisYear));
 
 @override
 String toString() {
-  return 'EducationState(currentEnrollment: $currentEnrollment, history: $history, pendingPrompt: $pendingPrompt)';
+  return 'EducationState(currentEnrollment: $currentEnrollment, history: $history, pendingPrompt: $pendingPrompt, performedActionIdsThisYear: $performedActionIdsThisYear)';
 }
 
 
@@ -275,7 +283,7 @@ abstract mixin class _$EducationStateCopyWith<$Res> implements $EducationStateCo
   factory _$EducationStateCopyWith(_EducationState value, $Res Function(_EducationState) _then) = __$EducationStateCopyWithImpl;
 @override @useResult
 $Res call({
- Enrollment? currentEnrollment, List<EducationRecord> history, EducationPrompt? pendingPrompt
+ Enrollment? currentEnrollment, List<EducationRecord> history, EducationPrompt? pendingPrompt, List<String> performedActionIdsThisYear
 });
 
 
@@ -292,12 +300,13 @@ class __$EducationStateCopyWithImpl<$Res>
 
 /// Create a copy of EducationState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? currentEnrollment = freezed,Object? history = null,Object? pendingPrompt = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? currentEnrollment = freezed,Object? history = null,Object? pendingPrompt = freezed,Object? performedActionIdsThisYear = null,}) {
   return _then(_EducationState(
 currentEnrollment: freezed == currentEnrollment ? _self.currentEnrollment : currentEnrollment // ignore: cast_nullable_to_non_nullable
 as Enrollment?,history: null == history ? _self._history : history // ignore: cast_nullable_to_non_nullable
 as List<EducationRecord>,pendingPrompt: freezed == pendingPrompt ? _self.pendingPrompt : pendingPrompt // ignore: cast_nullable_to_non_nullable
-as EducationPrompt?,
+as EducationPrompt?,performedActionIdsThisYear: null == performedActionIdsThisYear ? _self._performedActionIdsThisYear : performedActionIdsThisYear // ignore: cast_nullable_to_non_nullable
+as List<String>,
   ));
 }
 

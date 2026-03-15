@@ -426,7 +426,15 @@ class LifeController extends StateNotifier<LifeControllerState> {
     final SeededRandom rng = SeededRandom(
       life.seed + life.state.currentYear * 100 + life.state.age,
     );
-    return educationEngine.pickYearlyActions(enrollment, rng);
+    final List<GameAction> yearlyActions =
+        educationEngine.pickYearlyActions(enrollment, rng);
+    final Set<String> performedIds = (life.state.educationState
+                ?.performedActionIdsThisYear ??
+            [])
+        .toSet();
+    return yearlyActions
+        .where((GameAction a) => !performedIds.contains(a.id))
+        .toList();
   }
 
   List<EducationProgram> getAvailableProgramsForEnrollment() {

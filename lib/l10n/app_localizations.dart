@@ -988,6 +988,12 @@ abstract class AppLocalizations {
   /// **'Not enrolled'**
   String get notEnrolled;
 
+  /// No description provided for @noStudyActionsAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No more study actions available this year.'**
+  String get noStudyActionsAvailable;
+
   /// No description provided for @enrollmentYear.
   ///
   /// In en, this message translates to:
