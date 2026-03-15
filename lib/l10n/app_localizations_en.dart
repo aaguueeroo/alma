@@ -165,6 +165,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get lifeSummary => 'Life Summary';
 
   @override
+  String get pastLivesSummary => 'Past Lives Summary';
+
+  @override
+  String get noPastLivesYet =>
+      'No past lives yet. Complete a life to see its summary here.';
+
+  @override
+  String get viewPastLives => 'View Past Lives';
+
+  @override
   String get death => 'Death';
 
   @override

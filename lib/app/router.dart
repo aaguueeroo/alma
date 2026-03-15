@@ -10,6 +10,8 @@ import 'package:alma/ui/soul/life_selection_screen.dart';
 import 'package:alma/ui/soul/soul_subjects_screen.dart';
 import 'package:alma/ui/soul/nirvana_screen.dart';
 import 'package:alma/ui/soul/game_over_screen.dart';
+import 'package:alma/ui/soul/past_lives_summary_screen.dart';
+import 'package:alma/ui/soul/past_life_detail_screen.dart';
 import 'package:alma/ui/life/life_shell_screen.dart';
 import 'package:alma/ui/life/store_placeholder_screen.dart';
 import 'package:alma/ui/life/life_summary_screen.dart';
@@ -83,6 +85,30 @@ final GoRouter appRouter = GoRouter(
           pageBuilder: (BuildContext context, GoRouterState state) {
             return buildPageWithSwipeBack(state, const GameOverScreen());
           },
+        ),
+        GoRoute(
+          path: 'past-lives',
+          pageBuilder: (BuildContext context, GoRouterState state) {
+            return buildPageWithSwipeBack(state, const PastLivesSummaryScreen());
+          },
+          routes: <RouteBase>[
+            GoRoute(
+              path: ':lifeId',
+              pageBuilder: (BuildContext context, GoRouterState state) {
+                final String? lifeId = state.pathParameters['lifeId'];
+                if (lifeId == null) {
+                  return buildPageWithSwipeBack(
+                    state,
+                    const PastLivesSummaryScreen(),
+                  );
+                }
+                return buildPageWithSwipeBack(
+                  state,
+                  PastLifeDetailScreen(lifeId: lifeId),
+                );
+              },
+            ),
+          ],
         ),
       ],
     ),

@@ -376,6 +376,24 @@ abstract class AppLocalizations {
   /// **'Life Summary'**
   String get lifeSummary;
 
+  /// No description provided for @pastLivesSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Past Lives Summary'**
+  String get pastLivesSummary;
+
+  /// No description provided for @noPastLivesYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No past lives yet. Complete a life to see its summary here.'**
+  String get noPastLivesYet;
+
+  /// No description provided for @viewPastLives.
+  ///
+  /// In en, this message translates to:
+  /// **'View Past Lives'**
+  String get viewPastLives;
+
   /// No description provided for @death.
   ///
   /// In en, this message translates to:

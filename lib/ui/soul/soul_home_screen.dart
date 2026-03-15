@@ -97,6 +97,7 @@ class SoulHomeScreen extends ConsumerWidget {
             _LivesChip(
               count: soul.remainingLives,
               label: l10n.livesRemaining(soul.remainingLives),
+              onTap: () => context.push('/soul/past-lives'),
             ),
             SizedBox(height: sectionGap),
             Text(
@@ -203,20 +204,30 @@ class _Banner extends StatelessWidget {
 }
 
 class _LivesChip extends StatelessWidget {
-  const _LivesChip({required this.count, required this.label});
+  const _LivesChip({
+    required this.count,
+    required this.label,
+    this.onTap,
+  });
 
   final int count;
   final String label;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     final themeExt = Theme.of(context).extension<AppThemeExtension>();
     final accentColor =
         themeExt?.accentColor ?? Theme.of(context).colorScheme.secondary;
-    return Chip(
+    final chip = Chip(
       avatar: Icon(Icons.favorite, color: accentColor, size: 16),
       label: Text(label),
       backgroundColor: accentColor.withValues(alpha: 0.12),
+    );
+    if (onTap == null) return chip;
+    return GestureDetector(
+      onTap: onTap,
+      child: chip,
     );
   }
 }
