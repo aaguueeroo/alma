@@ -1,5 +1,6 @@
 import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/action.dart';
+import 'package:alma/core/models/health_state.dart';
 import 'package:alma/core/models/event.dart';
 import 'package:alma/core/models/employment.dart';
 import 'package:alma/core/models/work_state.dart';
@@ -11,6 +12,7 @@ import 'package:alma/core/models/enums/log_category.dart';
 import 'package:alma/core/models/enums/section_type.dart';
 import 'package:alma/core/engine/time_engine.dart';
 import 'package:alma/core/engine/event_engine.dart';
+import 'package:alma/core/engine/health_engine.dart';
 import 'package:alma/core/engine/education_engine.dart';
 import 'package:alma/core/engine/work_engine.dart';
 import 'package:alma/core/engine/social_engine.dart';
@@ -25,6 +27,7 @@ import 'package:alma/app/constants/log_narratives.dart';
 class ActionProcessor {
   ActionProcessor({
     required this.timeEngine,
+    required this.healthEngine,
     required this.eventEngine,
     required this.educationEngine,
     required this.workEngine,
@@ -35,6 +38,7 @@ class ActionProcessor {
   });
 
   final TimeEngine timeEngine;
+  final HealthEngine healthEngine;
   final EventEngine eventEngine;
   final EducationEngine educationEngine;
   final WorkEngine workEngine;
@@ -83,6 +87,9 @@ class ActionProcessor {
     state = socialEngine.processYearEnd(state, rng);
     state = relationshipProcessor.applyYearlyDecay(state);
     state = habitProcessor.processYearEnd(state);
+    if (healthEngine.isLoaded) {
+      state = healthEngine.processYearEnd(state, rng);
+    }
     state = timeEngine.startNewYear(state);
     state = GameLogger.addLog(
       state,
@@ -98,7 +105,11 @@ class ActionProcessor {
     if (yearEndEvent != null) {
       state = state.copyWith(pendingEvent: yearEndEvent);
     }
-    state = _checkAgeBasedDeath(state, rng);
+    if (healthEngine.isLoaded) {
+      state = healthEngine.checkDeath(state, rng);
+    } else {
+      state = _checkAgeBasedDeath(state, rng);
+    }
     return state;
   }
 
@@ -112,6 +123,20 @@ class ActionProcessor {
 
   LifeState _applyHealthChange(LifeState state, GameAction action) {
     if (action.healthEffect == 0) return state;
+    final HealthState? healthState = state.healthState;
+    if (healthEngine.isLoaded && healthState != null) {
+      final double delta = action.healthEffect.toDouble();
+      final double newPhysical = (healthState.physicalHealth + delta * 0.5)
+          .clamp(0.0, kMaxHealthValue.toDouble());
+      final double newMental = (healthState.mentalHealth + delta * 0.5)
+          .clamp(0.0, kMaxHealthValue.toDouble());
+      return state.copyWith(
+        healthState: healthState.copyWith(
+          physicalHealth: newPhysical,
+          mentalHealth: newMental,
+        ),
+      );
+    }
     final int newHealth = (state.health + action.healthEffect)
         .clamp(kMinHealthValue, kMaxHealthValue);
     return state.copyWith(health: newHealth);
@@ -235,7 +260,8 @@ class ActionProcessor {
   }
 
   LifeState _checkDeathConditions(LifeState state, SeededRandom rng) {
-    if (state.health <= 0) {
+    final int health = state.displayHealth;
+    if (health <= 0) {
       state = GameLogger.addLog(
         state,
         message: LogNarratives.lifeDiedHealth,
@@ -257,7 +283,7 @@ class ActionProcessor {
   LifeState _checkAgeBasedDeath(LifeState state, SeededRandom rng) {
     if (state.age >= 70) {
       final double deathChance = (state.age - 70) * 0.03;
-      final double healthPenalty = (100 - state.health) * 0.005;
+      final double healthPenalty = (100 - state.displayHealth) * 0.005;
       if (rng.chance(deathChance + healthPenalty)) {
         state = GameLogger.addLog(
           state,

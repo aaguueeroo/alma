@@ -28,6 +28,7 @@ const int kMinSectionPerformance = 0;
 const int kMaxSectionPerformance = 100;
 
 const int kSocialActionsPerYear = 4;
+const int kHealthGeneralActionsPerYear = 4;
 const int kDefaultReputation = 0;
 const int kMinReputation = -100;
 const int kMaxReputation = 100;

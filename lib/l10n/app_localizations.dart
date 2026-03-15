@@ -742,6 +742,48 @@ abstract class AppLocalizations {
   /// **'Health Actions'**
   String get healthActions;
 
+  /// No description provided for @physicalHealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Physical Health'**
+  String get physicalHealth;
+
+  /// No description provided for @mentalHealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Mental Health'**
+  String get mentalHealth;
+
+  /// No description provided for @diagnosedConditions.
+  ///
+  /// In en, this message translates to:
+  /// **'Diagnosed Conditions'**
+  String get diagnosedConditions;
+
+  /// No description provided for @symptoms.
+  ///
+  /// In en, this message translates to:
+  /// **'Symptoms'**
+  String get symptoms;
+
+  /// No description provided for @youFeelSymptoms.
+  ///
+  /// In en, this message translates to:
+  /// **'You feel: {symptoms}'**
+  String youFeelSymptoms(String symptoms);
+
+  /// No description provided for @hospital.
+  ///
+  /// In en, this message translates to:
+  /// **'Hospital'**
+  String get hospital;
+
+  /// No description provided for @noHealthActionsAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No health actions available this year.'**
+  String get noHealthActionsAvailable;
+
   /// No description provided for @filterAll.
   ///
   /// In en, this message translates to:

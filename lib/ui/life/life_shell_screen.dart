@@ -5,7 +5,6 @@ import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/action.dart';
 import 'package:alma/core/models/education_program.dart';
 import 'package:alma/core/models/education_prompt.dart';
-import 'package:alma/core/models/enums/action_category.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/app/constants/sizing.dart';
 import 'package:alma/app/constants/durations.dart';
@@ -183,11 +182,8 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
       HealthTab(
         key: const ValueKey<int>(3),
         state: state,
-        actions: lifeState.availableActions
-            .where((a) => a.category == ActionCategory.health)
-            .toList(),
         timeRemaining: state.timeRemaining,
-        onActionTap: _performAction,
+        controller: ref.read(lifeControllerProvider.notifier),
       ),
       RelationsTab(
         key: const ValueKey<int>(4),

@@ -1,0 +1,80 @@
+[
+  {
+    "id": "asthma_wheezing",
+    "name": "Wheezing",
+    "description": "You sometimes struggle to catch your breath.",
+    "conditionId": "asthma"
+  },
+  {
+    "id": "asthma_tight_chest",
+    "name": "Chest tightness",
+    "description": "Your chest feels tight, especially after physical activity.",
+    "conditionId": "asthma"
+  },
+  {
+    "id": "diabetes_thirst",
+    "name": "Excessive thirst",
+    "description": "You feel constantly thirsty and need to drink more than usual.",
+    "conditionId": "type1_diabetes"
+  },
+  {
+    "id": "diabetes_fatigue",
+    "name": "Unexplained fatigue",
+    "description": "You feel tired and weak even after resting.",
+    "conditionId": "type1_diabetes"
+  },
+  {
+    "id": "depression_sadness",
+    "name": "Persistent sadness",
+    "description": "You feel down most of the time and struggle to find joy in things.",
+    "conditionId": "depression"
+  },
+  {
+    "id": "depression_motivation",
+    "name": "Loss of motivation",
+    "description": "It's hard to get started on even simple tasks.",
+    "conditionId": "depression"
+  },
+  {
+    "id": "adhd_focus",
+    "name": "Difficulty focusing",
+    "description": "Your mind wanders and it's hard to stay on task.",
+    "conditionId": "adhd"
+  },
+  {
+    "id": "adhd_restlessness",
+    "name": "Restlessness",
+    "description": "You feel the need to move or do something constantly.",
+    "conditionId": "adhd"
+  },
+  {
+    "id": "anxiety_worry",
+    "name": "Excessive worry",
+    "description": "You find yourself worrying about many things, often without a clear reason.",
+    "conditionId": "anxiety"
+  },
+  {
+    "id": "anxiety_tension",
+    "name": "Muscle tension",
+    "description": "Your body feels tense and you have trouble relaxing.",
+    "conditionId": "anxiety"
+  },
+  {
+    "id": "broken_bone_pain",
+    "name": "Localized pain",
+    "description": "You have significant pain and swelling in one area.",
+    "conditionId": "broken_bone"
+  },
+  {
+    "id": "cancer_fatigue",
+    "name": "Unexplained weight loss",
+    "description": "You're losing weight without trying and feel unusually tired.",
+    "conditionId": "cancer"
+  },
+  {
+    "id": "burnout_exhaustion",
+    "name": "Emotional exhaustion",
+    "description": "You feel drained and unable to cope with daily demands.",
+    "conditionId": "burnout"
+  }
+]

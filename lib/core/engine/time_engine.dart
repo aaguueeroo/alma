@@ -1,5 +1,6 @@
 import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/action.dart';
+import 'package:alma/core/engine/health_engine.dart';
 import 'package:alma/core/models/skill.dart';
 import 'package:alma/core/models/life_maintenance_item.dart';
 import 'package:alma/core/models/enums/trait_type.dart';
@@ -7,7 +8,10 @@ import 'package:alma/core/engine/time_commitment.dart';
 import 'package:alma/app/constants/time_constants.dart';
 
 class TimeEngine {
+  TimeEngine({HealthEngine? healthEngine}) : _healthEngine = healthEngine;
+
   List<LifeMaintenanceItem> _lifeMaintenance = [];
+  final HealthEngine? _healthEngine;
 
   void loadLifeMaintenance(List<LifeMaintenanceItem> items) {
     _lifeMaintenance = List.from(items);
@@ -38,6 +42,10 @@ class TimeEngine {
     }
     if (state.traits.contains(TraitType.ambitious)) {
       cost *= 0.9;
+    }
+    final HealthEngine? engine = _healthEngine;
+    if (engine != null && engine.isLoaded) {
+      cost *= engine.getTimeCostMultiplier(state.healthState);
     }
     return cost.round().clamp(1, kDaysPerYear);
   }

@@ -12,6 +12,9 @@ import 'package:alma/core/models/name_repository.dart';
 import 'package:alma/core/models/social_country_config.dart';
 import 'package:alma/core/rules/education_country_config.dart';
 import 'package:alma/core/rules/work_country_config.dart';
+import 'package:alma/core/models/condition_definition.dart';
+import 'package:alma/core/models/health_action.dart';
+import 'package:alma/core/models/symptom.dart';
 
 class SeedLoader {
   List<GameEvent>? _cachedEvents;
@@ -29,6 +32,10 @@ class SeedLoader {
   List<RelationshipCategory>? _cachedRelationshipTypes;
   final Map<String, NameRepository> _cachedNameRepos = {};
   Map<String, SocialCountryConfig>? _cachedSocialCountryConfigs;
+  List<ConditionDefinition>? _cachedConditionDefinitions;
+  List<Symptom>? _cachedSymptoms;
+  List<HealthAction>? _cachedHealthActions;
+  List<GameEvent>? _cachedHealthEvents;
 
   Future<List<GameEvent>> loadEvents() async {
     if (_cachedEvents != null) return _cachedEvents!;
@@ -221,5 +228,49 @@ class SeedLoader {
     return _cachedSocialCountryConfigs![country] ??
         _cachedSocialCountryConfigs!['default'] ??
         const SocialCountryConfig(country: 'default');
+  }
+
+  Future<List<ConditionDefinition>> loadConditions() async {
+    if (_cachedConditionDefinitions != null) return _cachedConditionDefinitions!;
+    final String jsonString = await rootBundle
+        .loadString('assets/data/health/conditions.json');
+    final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
+    _cachedConditionDefinitions = jsonList
+        .map((c) => ConditionDefinition.fromJson(c as Map<String, dynamic>))
+        .toList();
+    return _cachedConditionDefinitions!;
+  }
+
+  Future<List<Symptom>> loadSymptoms() async {
+    if (_cachedSymptoms != null) return _cachedSymptoms!;
+    final String jsonString = await rootBundle
+        .loadString('assets/data/health/symptoms.json');
+    final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
+    _cachedSymptoms = jsonList
+        .map((s) => Symptom.fromJson(s as Map<String, dynamic>))
+        .toList();
+    return _cachedSymptoms!;
+  }
+
+  Future<List<HealthAction>> loadHealthActions() async {
+    if (_cachedHealthActions != null) return _cachedHealthActions!;
+    final String jsonString = await rootBundle
+        .loadString('assets/data/health/health_actions.json');
+    final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
+    _cachedHealthActions = jsonList
+        .map((a) => HealthAction.fromJson(a as Map<String, dynamic>))
+        .toList();
+    return _cachedHealthActions!;
+  }
+
+  Future<List<GameEvent>> loadHealthEvents() async {
+    if (_cachedHealthEvents != null) return _cachedHealthEvents!;
+    final String jsonString = await rootBundle
+        .loadString('assets/data/health/health_events.json');
+    final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
+    _cachedHealthEvents = jsonList
+        .map((e) => GameEvent.fromJson(e as Map<String, dynamic>))
+        .toList();
+    return _cachedHealthEvents!;
   }
 }

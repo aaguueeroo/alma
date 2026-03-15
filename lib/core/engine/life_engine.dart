@@ -1,5 +1,7 @@
 import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/life_template.dart';
+import 'package:alma/core/models/health_state.dart';
+import 'package:alma/core/engine/health_engine.dart';
 import 'package:alma/core/models/action.dart';
 import 'package:alma/core/models/game_log.dart';
 import 'package:alma/core/models/relationship.dart';
@@ -24,6 +26,7 @@ const int _kSocialGenericActionRngOffset = 600;
 class LifeEngine {
   LifeEngine({
     required this.actionProcessor,
+    required this.healthEngine,
     required this.eventEngine,
     required this.educationEngine,
     required this.workEngine,
@@ -31,6 +34,7 @@ class LifeEngine {
   });
 
   final ActionProcessor actionProcessor;
+  final HealthEngine healthEngine;
   final EventEngine eventEngine;
   final EducationEngine educationEngine;
   final WorkEngine workEngine;
@@ -53,11 +57,17 @@ class LifeEngine {
     SocialState? socialState = socialEngine.isLoaded
         ? socialEngine.initializeSocial(startingRelationships)
         : null;
+    HealthState? healthState;
+    if (healthEngine.isLoaded) {
+      final SeededRandom rng = SeededRandom(seed);
+      healthState = healthEngine.initializeHealth(rng, template.startingHealth);
+    }
     LifeState initialState = LifeState(
       currentYear: 1,
       age: kStartingAge,
       health: template.startingHealth,
       money: template.startingMoney,
+      healthState: healthState,
       timeRemaining: timeRemaining,
       skills: template.startingSkills,
       traits: template.startingTraits,

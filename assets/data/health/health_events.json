@@ -1,0 +1,187 @@
+[
+  {
+    "id": "heart_attack",
+    "title": "Heart Attack",
+    "description": "You experience chest pain, shortness of breath, and overwhelming fatigue. Emergency services are called.",
+    "triggerConditions": {
+      "minAge": 50,
+      "maxAge": 95,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.02,
+      "triggerPhase": "yearEnd"
+    },
+    "choices": [
+      {
+        "description": "Survive with lasting effects.",
+        "logMessage": "You survived a heart attack but your health has been permanently affected.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {},
+          "healthChange": -25,
+          "moneyChange": -5000,
+          "traitChance": {},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "The damage was too severe.",
+        "logMessage": "Despite emergency care, the heart attack proved fatal.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {},
+          "healthChange": 0,
+          "moneyChange": 0,
+          "traitChance": {},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "severe_depressive_episode",
+    "title": "Severe Depressive Episode",
+    "description": "Your mental state has deteriorated significantly. You struggle to function in daily life.",
+    "triggerConditions": {
+      "minAge": 15,
+      "maxAge": 80,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.03,
+      "triggerPhase": "yearEnd"
+    },
+    "choices": [
+      {
+        "description": "Seek intensive treatment.",
+        "logMessage": "You sought help during a severe depressive episode and began recovery.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {},
+          "healthChange": 5,
+          "moneyChange": -2000,
+          "traitChance": {},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      },
+      {
+        "description": "Withdraw and isolate.",
+        "logMessage": "You withdrew from the world during a dark period.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {},
+          "healthChange": -15,
+          "moneyChange": 0,
+          "traitChance": {},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "surgery_required",
+    "title": "Surgery Required",
+    "description": "A condition has progressed to the point where surgery is necessary. The recovery will take time.",
+    "triggerConditions": {
+      "minAge": 10,
+      "maxAge": 90,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.01,
+      "triggerPhase": "yearEnd"
+    },
+    "choices": [
+      {
+        "description": "Undergo the procedure.",
+        "logMessage": "You had surgery and are recovering.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {},
+          "healthChange": -10,
+          "moneyChange": -3000,
+          "traitChance": {},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "hospitalization",
+    "title": "Extended Hospitalization",
+    "description": "Your condition requires an extended stay in the hospital. Work and daily life will be disrupted.",
+    "triggerConditions": {
+      "minAge": 20,
+      "maxAge": 85,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.015,
+      "triggerPhase": "yearEnd"
+    },
+    "choices": [
+      {
+        "description": "Focus on recovery.",
+        "logMessage": "You spent time in the hospital recovering from a serious health issue.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {},
+          "healthChange": 0,
+          "moneyChange": -8000,
+          "traitChance": {},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "disability_onset",
+    "title": "Disability Onset",
+    "description": "A chronic condition has progressed, significantly affecting your ability to work and live as before.",
+    "triggerConditions": {
+      "minAge": 40,
+      "maxAge": 85,
+      "requiredTraits": [],
+      "forbiddenTraits": [],
+      "minHealth": 0,
+      "baseChance": 0.01,
+      "triggerPhase": "yearEnd"
+    },
+    "choices": [
+      {
+        "description": "Adapt to the new reality.",
+        "logMessage": "You adapted to living with a disability.",
+        "consequences": {
+          "skillChanges": {},
+          "hiddenMetricChanges": {},
+          "healthChange": -20,
+          "moneyChange": -2000,
+          "traitChance": {},
+          "relationshipTargetId": null,
+          "relationshipChange": 0,
+          "unlockEventId": null,
+          "causesDeath": false
+        }
+      }
+    ]
+  }
+]

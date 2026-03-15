@@ -19,9 +19,14 @@ class EventEngine {
 
   final ProbabilityEngine probabilityEngine;
   List<GameEvent> _events = [];
+  Set<String> _healthEventIds = const {};
 
   void loadEvents(List<GameEvent> events) {
     _events = events;
+  }
+
+  void loadHealthEventIds(Set<String> ids) {
+    _healthEventIds = ids;
   }
 
   GameEvent? checkTriggers(
@@ -84,10 +89,12 @@ class EventEngine {
     }
     final String logMessage =
         choice.logMessage ?? '${event.title}: ${choice.description}';
+    final LogCategory logCategory =
+        _healthEventIds.contains(event.id) ? LogCategory.health : LogCategory.event;
     newState = GameLogger.addLog(
       newState,
       message: logMessage,
-      category: LogCategory.event,
+      category: logCategory,
       tags: tags,
     );
     if (consequences.causesDeath) {

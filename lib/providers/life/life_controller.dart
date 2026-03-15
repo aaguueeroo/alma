@@ -1,6 +1,10 @@
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:alma/core/models/life.dart';
 import 'package:alma/core/models/action.dart';
+import 'package:alma/core/models/health_state.dart';
+import 'package:alma/core/models/health_predisposition.dart';
+import 'package:alma/core/models/health_action.dart';
+import 'package:alma/core/models/enums/health_action_type.dart';
 import 'package:alma/core/models/event.dart';
 import 'package:alma/core/models/relationship.dart';
 import 'package:alma/core/models/education_program.dart';
@@ -10,6 +14,7 @@ import 'package:alma/core/models/employment.dart';
 import 'package:alma/core/models/social_state.dart';
 import 'package:alma/core/engine/life_engine.dart';
 import 'package:alma/core/engine/education_engine.dart';
+import 'package:alma/core/engine/health_engine.dart';
 import 'package:alma/core/engine/work_engine.dart';
 import 'package:alma/core/engine/social_engine.dart';
 import 'package:alma/core/engine/npc_factory.dart';
@@ -18,6 +23,9 @@ import 'package:alma/core/engine/seeded_random.dart';
 import 'package:alma/data/repositories/life_repository.dart';
 import 'package:alma/data/seed/seed_loader.dart';
 import 'package:alma/core/engine/event_engine.dart';
+import 'package:alma/core/engine/game_logger.dart';
+import 'package:alma/core/models/enums/log_category.dart';
+import 'package:alma/app/constants/log_narratives.dart';
 import 'package:alma/providers/game/game_state_provider.dart';
 import 'package:alma/app/utils/error_logger.dart';
 
@@ -68,6 +76,7 @@ class LifeController extends StateNotifier<LifeControllerState> {
     required this.lifeEngine,
     required this.lifeRepository,
     required this.seedLoader,
+    required this.healthEngine,
     required this.eventEngine,
     required this.educationEngine,
     required this.workEngine,
@@ -79,6 +88,7 @@ class LifeController extends StateNotifier<LifeControllerState> {
   final LifeEngine lifeEngine;
   final LifeRepository lifeRepository;
   final SeedLoader seedLoader;
+  final HealthEngine healthEngine;
   final EventEngine eventEngine;
   final EducationEngine educationEngine;
   final WorkEngine workEngine;
@@ -91,7 +101,15 @@ class LifeController extends StateNotifier<LifeControllerState> {
     try {
       final List<GameAction> actions = await seedLoader.loadActions();
       final List<GameEvent> events = await seedLoader.loadEvents();
-      eventEngine.loadEvents(events);
+      try {
+        final List<GameEvent> healthEvents = await seedLoader.loadHealthEvents();
+        eventEngine.loadEvents([...events, ...healthEvents]);
+        eventEngine.loadHealthEventIds(
+          healthEvents.map((e) => e.id).toSet(),
+        );
+      } catch (_) {
+        eventEngine.loadEvents(events);
+      }
       final String country = 'default';
       final programs = await seedLoader.loadEducationPrograms();
       final countryConfig = await seedLoader.loadEducationCountryConfig(country);
@@ -138,7 +156,31 @@ class LifeController extends StateNotifier<LifeControllerState> {
       } catch (e) {
         print('Social data not loaded (asset missing or invalid): $e');
       }
+      try {
+        final conditions = await seedLoader.loadConditions();
+        final symptoms = await seedLoader.loadSymptoms();
+        final healthActions = await seedLoader.loadHealthActions();
+        healthEngine.loadData(
+          conditionDefinitions: conditions,
+          symptoms: symptoms,
+          healthActions: healthActions,
+        );
+      } catch (e) {
+        print('Health data not loaded (asset missing or invalid): $e');
+      }
       Life lifeToSet = life;
+      if (life.state.healthState == null && healthEngine.isLoaded) {
+        final double h = life.state.health.toDouble().clamp(0.0, 100.0);
+        final healthState = HealthState(
+          physicalHealth: h,
+          mentalHealth: h,
+          predisposition: const HealthPredisposition(),
+        );
+        lifeToSet = life.copyWith(
+          state: life.state.copyWith(healthState: healthState),
+        );
+        await lifeRepository.saveLife(lifeToSet);
+      }
       final SocialState? loadedSocial = life.state.socialState;
       if (loadedSocial != null &&
           socialEngine.isLoaded &&
@@ -559,6 +601,91 @@ class LifeController extends StateNotifier<LifeControllerState> {
   void clearError() {
     state = state.copyWith(clearError: true);
   }
+
+  List<HealthAction> getHospitalActions() {
+    if (state.currentLife == null || !healthEngine.isLoaded) return [];
+    return healthEngine.getAvailableHospitalActions(
+      state.currentLife!.state.healthState,
+    );
+  }
+
+  List<HealthAction> getGeneralHealthActions() {
+    final Life? life = state.currentLife;
+    if (life == null || !healthEngine.isLoaded) return [];
+    final HealthState? healthState = life.state.healthState;
+    if (healthState == null) return [];
+    final List<String> ids = healthState.generalActionIdsThisYear;
+    final List<String> performed = healthState.performedGeneralActionIdsThisYear;
+    return healthEngine
+        .getHealthActionsByIds(ids)
+        .where((a) => !performed.contains(a.id))
+        .toList();
+  }
+
+  Future<void> performHealthAction(HealthAction action) async {
+    if (state.currentLife == null || !healthEngine.isLoaded) return;
+    try {
+      final Life life = state.currentLife!;
+      final SeededRandom rng = SeededRandom(
+        life.seed + life.state.currentYear * 1000 + life.state.age,
+      );
+      HealthState? healthState = life.state.healthState;
+      if (healthState == null) return;
+      final Set<String> diagnosedBefore =
+          healthState.diagnosedConditionIds.toSet();
+      final Map<String, bool> treatedBefore = {
+        for (final c in healthState.conditions) c.id: c.isTreated,
+      };
+      if (action.type == HealthActionType.hospital) {
+        healthState = healthEngine.performHospitalAction(
+          healthState,
+          action,
+          life.state,
+          rng,
+        );
+      } else {
+        healthState = healthEngine.performGeneralAction(healthState, action);
+      }
+      LifeState newLifeState = life.state.copyWith(healthState: healthState);
+      newLifeState = GameLogger.addLog(
+        newLifeState,
+        message: LogNarratives.healthActionPerformed(action.name),
+        category: LogCategory.health,
+        tags: ['health_action:${action.id}'],
+      );
+      for (final condId in healthState.diagnosedConditionIds) {
+        if (!diagnosedBefore.contains(condId)) {
+          final String condName = healthState.conditions
+                  .where((c) => c.id == condId)
+                  .firstOrNull
+                  ?.name ??
+              condId;
+          newLifeState = GameLogger.addLog(
+            newLifeState,
+            message: LogNarratives.healthConditionDiagnosed(condName),
+            category: LogCategory.health,
+            tags: ['condition_diagnosed:$condId'],
+          );
+        }
+      }
+      for (final cond in healthState.conditions) {
+        if (cond.isTreated && (treatedBefore[cond.id] != true)) {
+          newLifeState = GameLogger.addLog(
+            newLifeState,
+            message: LogNarratives.healthConditionTreated(cond.name),
+            category: LogCategory.health,
+            tags: ['condition_treated:${cond.id}'],
+          );
+        }
+      }
+      final Life updatedLife = life.copyWith(state: newLifeState);
+      await lifeRepository.saveLife(updatedLife);
+      state = state.copyWith(currentLife: updatedLife);
+    } catch (e, stackTrace) {
+      ErrorLogger.logError(e, stackTrace, 'performHealthAction');
+      state = state.copyWith(error: e.toString());
+    }
+  }
 }
 
 final lifeControllerProvider =
@@ -567,6 +694,7 @@ final lifeControllerProvider =
     lifeEngine: ref.watch(lifeEngineProvider),
     lifeRepository: ref.watch(lifeRepositoryProvider),
     seedLoader: ref.watch(seedLoaderProvider),
+    healthEngine: ref.watch(healthEngineProvider),
     eventEngine: ref.watch(eventEngineProvider),
     educationEngine: ref.watch(educationEngineProvider),
     workEngine: ref.watch(workEngineProvider),

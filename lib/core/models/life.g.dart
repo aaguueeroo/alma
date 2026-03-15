@@ -87,6 +87,9 @@ _LifeState _$LifeStateFromJson(Map<String, dynamic> json) => _LifeState(
   socialState: json['socialState'] == null
       ? null
       : SocialState.fromJson(json['socialState'] as Map<String, dynamic>),
+  healthState: json['healthState'] == null
+      ? null
+      : HealthState.fromJson(json['healthState'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$LifeStateToJson(_LifeState instance) =>
@@ -114,6 +117,7 @@ Map<String, dynamic> _$LifeStateToJson(_LifeState instance) =>
       'educationState': instance.educationState,
       'workState': instance.workState,
       'socialState': instance.socialState,
+      'healthState': instance.healthState,
     };
 
 const _$TraitTypeEnumMap = {

@@ -359,6 +359,30 @@ class AppLocalizationsEn extends AppLocalizations {
   String get healthActions => 'Health Actions';
 
   @override
+  String get physicalHealth => 'Physical Health';
+
+  @override
+  String get mentalHealth => 'Mental Health';
+
+  @override
+  String get diagnosedConditions => 'Diagnosed Conditions';
+
+  @override
+  String get symptoms => 'Symptoms';
+
+  @override
+  String youFeelSymptoms(String symptoms) {
+    return 'You feel: $symptoms';
+  }
+
+  @override
+  String get hospital => 'Hospital';
+
+  @override
+  String get noHealthActionsAvailable =>
+      'No health actions available this year.';
+
+  @override
   String get filterAll => 'All';
 
   @override

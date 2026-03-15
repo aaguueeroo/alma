@@ -9,6 +9,7 @@ import 'package:alma/core/models/moral_impact.dart';
 import 'package:alma/core/models/education_state.dart';
 import 'package:alma/core/models/work_state.dart';
 import 'package:alma/core/models/social_state.dart';
+import 'package:alma/core/models/health_state.dart';
 import 'package:alma/core/models/game_log.dart';
 import 'package:alma/core/models/enums/trait_type.dart';
 
@@ -32,6 +33,8 @@ sealed class Life with _$Life {
 
 @freezed
 sealed class LifeState with _$LifeState {
+  const LifeState._();
+
   const factory LifeState({
     required int currentYear,
     required int age,
@@ -56,7 +59,10 @@ sealed class LifeState with _$LifeState {
     EducationState? educationState,
     WorkState? workState,
     SocialState? socialState,
+    HealthState? healthState,
   }) = _LifeState;
+
+  int get displayHealth => healthState?.totalHealth.round() ?? health;
 
   factory LifeState.fromJson(Map<String, dynamic> json) =>
       _$LifeStateFromJson(json);

@@ -49,6 +49,20 @@ class LogNarratives {
   static String workEarnedSalary(String jobName, int salary) =>
       'You earned \$$salary from your work at $jobName.';
 
+  // --- Health ---
+  static String healthActionPerformed(String actionName) =>
+      'You ${actionName[0].toLowerCase()}${actionName.length > 1 ? actionName.substring(1) : ''}.';
+  static String healthConditionDeveloped(String conditionName) =>
+      'You developed $conditionName.';
+  static String healthConditionDiagnosed(String conditionName) =>
+      '$conditionName was diagnosed.';
+  static String healthConditionTreated(String conditionName) =>
+      'You began treatment for $conditionName.';
+  static String healthConditionRecovered(String conditionName) =>
+      'You recovered from $conditionName.';
+  static String healthSymptomAppeared(String symptomDescription) =>
+      'You noticed new symptoms: $symptomDescription.';
+
   // --- Social ---
   static String socialMetNpc(String npcName, String typeLabel) =>
       'You met $npcName, a new $typeLabel.';

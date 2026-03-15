@@ -165,6 +165,18 @@
     }
   },
   "healthActions": "Health Actions",
+  "physicalHealth": "Physical Health",
+  "mentalHealth": "Mental Health",
+  "diagnosedConditions": "Diagnosed Conditions",
+  "symptoms": "Symptoms",
+  "youFeelSymptoms": "You feel: {symptoms}",
+  "@youFeelSymptoms": {
+    "placeholders": {
+      "symptoms": {"type": "String"}
+    }
+  },
+  "hospital": "Hospital",
+  "noHealthActionsAvailable": "No health actions available this year.",
 
   "filterAll": "All",
   "filterFamily": "Family",

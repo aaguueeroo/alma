@@ -6,6 +6,7 @@ import 'package:alma/data/repositories/achievement_repository.dart';
 import 'package:alma/data/seed/seed_loader.dart';
 import 'package:alma/core/engine/time_engine.dart';
 import 'package:alma/core/engine/event_engine.dart';
+import 'package:alma/core/engine/health_engine.dart';
 import 'package:alma/core/engine/education_engine.dart';
 import 'package:alma/core/engine/work_engine.dart';
 import 'package:alma/core/engine/social_engine.dart';
@@ -42,8 +43,12 @@ final achievementRepositoryProvider = Provider<AchievementRepository>((ref) {
   return AchievementRepository(database: ref.watch(databaseProvider));
 });
 
+final healthEngineProvider = Provider<HealthEngine>((ref) {
+  return HealthEngine();
+});
+
 final timeEngineProvider = Provider<TimeEngine>((ref) {
-  return TimeEngine();
+  return TimeEngine(healthEngine: ref.watch(healthEngineProvider));
 });
 
 final probabilityEngineProvider = Provider<ProbabilityEngine>((ref) {
@@ -95,6 +100,7 @@ final socialEngineProvider = Provider<SocialEngine>((ref) {
 final actionProcessorProvider = Provider<ActionProcessor>((ref) {
   return ActionProcessor(
     timeEngine: ref.watch(timeEngineProvider),
+    healthEngine: ref.watch(healthEngineProvider),
     eventEngine: ref.watch(eventEngineProvider),
     educationEngine: ref.watch(educationEngineProvider),
     workEngine: ref.watch(workEngineProvider),
@@ -108,6 +114,7 @@ final actionProcessorProvider = Provider<ActionProcessor>((ref) {
 final lifeEngineProvider = Provider<LifeEngine>((ref) {
   return LifeEngine(
     actionProcessor: ref.watch(actionProcessorProvider),
+    healthEngine: ref.watch(healthEngineProvider),
     eventEngine: ref.watch(eventEngineProvider),
     educationEngine: ref.watch(educationEngineProvider),
     workEngine: ref.watch(workEngineProvider),

@@ -1,0 +1,4 @@
+enum HealthActionType {
+  hospital,
+  general,
+}
