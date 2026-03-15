@@ -41,6 +41,9 @@ sealed class GameAction with _$GameAction {
 
     /// Type of social action (e.g. "friendly", "romantic", "mischievous"). Used to filter actions per relationship type (e.g. romantic not allowed for family). When null, treated as "friendly".
     String? socialActionType,
+
+    /// Optional templates for result dialog after group actions. Keys: "allAccepted", "someRejected", "allRejected". Placeholders: {accepted}, {rejected}.
+    @Default({}) Map<String, String> resultDialogTemplates,
   }) = _GameAction;
 
   factory GameAction.fromJson(Map<String, dynamic> json) =>

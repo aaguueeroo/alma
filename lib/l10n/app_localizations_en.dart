@@ -626,6 +626,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get eventResultDialogTitle => 'What happened';
 
   @override
+  String get socialActionResultDialogTitle => 'What happened';
+
+  @override
   String get actionsThisYear => 'Actions done this year';
 
   @override

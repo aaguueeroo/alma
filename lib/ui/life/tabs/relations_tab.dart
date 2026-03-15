@@ -34,7 +34,7 @@ class RelationsTab extends StatefulWidget {
   final String lifeName;
   final List<GameLog> logs;
   final List<GameAction> genericActions;
-  final void Function(GameAction action, List<String> targetNpcIds)?
+  final Future<void> Function(GameAction action, List<String> targetNpcIds)?
   onGenericActionTap;
   final void Function(GameAction action, String npcId)? onNpcActionTap;
   final List<GameAction> Function(String npcId)? getNpcActions;
@@ -287,7 +287,7 @@ class _GenericActionsSection extends StatelessWidget {
 
   final List<GameAction> actions;
   final List<Relationship> relationships;
-  final void Function(GameAction action, List<String> targetNpcIds)?
+  final Future<void> Function(GameAction action, List<String> targetNpcIds)?
   onActionTap;
   final AppLocalizations l10n;
 
@@ -386,9 +386,11 @@ class _GenericActionsSection extends StatelessWidget {
                 TextButton(
                   onPressed: selectedIds.isEmpty
                       ? null
-                      : () {
+                      : () async {
                           Navigator.of(ctx).pop();
-                          onActionTap?.call(action, selectedIds.toList());
+                          final future =
+                              onActionTap?.call(action, selectedIds.toList());
+                          if (future != null) await future;
                         },
                   child: Text(l10n.performAction),
                 ),

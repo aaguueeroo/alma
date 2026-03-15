@@ -545,8 +545,13 @@
     "sectionPerformanceEffect": 0,
     "isGroupAction": true,
     "relationshipTypeIds": [],
-    "npcResponseChance": 0.0,
-    "logMessage": "You hosted a dinner party, bringing people together over a warm meal and laughter.",
+    "npcResponseChance": 0.18,
+    "logMessage": "Something shifted in the room that evening—warmth, laughter, and a sense of connection.",
+    "resultDialogTemplates": {
+      "allAccepted": "You and {accepted} shared a memorable evening over a warm meal. Something in you shifted.",
+      "someRejected": "You gathered with {accepted}. {rejected} couldn't join. The time together left its mark.",
+      "allRejected": "Plans fell through. You spent the evening alone, but not without reflection."
+    },
     "relationshipEffects": {
       "affection": 8,
       "trust": 4,
@@ -572,8 +577,13 @@
     "sectionPerformanceEffect": 0,
     "isGroupAction": true,
     "relationshipTypeIds": [],
-    "npcResponseChance": 0.0,
-    "logMessage": "You spent your weekends going out, making memories and strengthening bonds.",
+    "npcResponseChance": 0.2,
+    "logMessage": "The nights out left their mark—laughter, shared moments, and bonds that grew a little stronger.",
+    "resultDialogTemplates": {
+      "allAccepted": "You and {accepted} went out together. The night left its mark.",
+      "someRejected": "You went out with {accepted}. {rejected} couldn't join. The time together still left its mark.",
+      "allRejected": "Plans fell through. You spent the time alone, but not without reflection."
+    },
     "relationshipEffects": {
       "affection": 10,
       "trust": 3,
@@ -654,8 +664,13 @@
     "sectionPerformanceEffect": 0,
     "isGroupAction": true,
     "relationshipTypeIds": [],
-    "npcResponseChance": 0.0,
-    "logMessage": "You volunteered together, building a deeper bond through shared purpose.",
+    "npcResponseChance": 0.15,
+    "logMessage": "A shared purpose brought you closer. Something in you and in those around you shifted that day.",
+    "resultDialogTemplates": {
+      "allAccepted": "You and {accepted} volunteered together. The experience left its mark on all of you.",
+      "someRejected": "You and {accepted} gave your time. {rejected} couldn't join. The day still left its mark.",
+      "allRejected": "Plans fell through. You spent the time alone, but not without reflection."
+    },
     "relationshipEffects": {
       "affection": 7,
       "trust": 6,
@@ -786,8 +801,13 @@
     "sectionPerformanceEffect": 0,
     "isGroupAction": true,
     "relationshipTypeIds": [],
-    "npcResponseChance": 0.0,
-    "logMessage": "You exercised together regularly, sharing sweat and motivation.",
+    "npcResponseChance": 0.18,
+    "logMessage": "Sweat and motivation shared. Your body and your bonds felt the difference.",
+    "resultDialogTemplates": {
+      "allAccepted": "You and {accepted} exercised together. Your body and your bonds felt the difference.",
+      "someRejected": "You worked out with {accepted}. {rejected} couldn't join. The session still left its mark.",
+      "allRejected": "Plans fell through. You spent the time alone, but not without reflection."
+    },
     "relationshipEffects": {
       "affection": 5,
       "trust": 4,
@@ -815,8 +835,13 @@
     "sectionPerformanceEffect": 3,
     "isGroupAction": true,
     "relationshipTypeIds": [],
-    "npcResponseChance": 0.0,
-    "logMessage": "You spent time learning together, growing your minds side by side.",
+    "npcResponseChance": 0.15,
+    "logMessage": "Minds grew side by side. Something in you expanded that day.",
+    "resultDialogTemplates": {
+      "allAccepted": "You and {accepted} learned together. Something in you expanded that day.",
+      "someRejected": "You studied with {accepted}. {rejected} couldn't join. The time still left its mark.",
+      "allRejected": "Plans fell through. You spent the time alone, but not without reflection."
+    },
     "relationshipEffects": {
       "affection": 4,
       "trust": 5,
@@ -929,8 +954,13 @@
     "sectionPerformanceEffect": 0,
     "isGroupAction": true,
     "relationshipTypeIds": [],
-    "npcResponseChance": 0.0,
-    "logMessage": "You went on a picnic together, sharing food and conversation under the open sky.",
+    "npcResponseChance": 0.18,
+    "logMessage": "Food and conversation under the open sky. The moment left its mark on you.",
+    "resultDialogTemplates": {
+      "allAccepted": "You and {accepted} shared a picnic. The moment left its mark.",
+      "someRejected": "You picnicked with {accepted}. {rejected} couldn't join. The time together still left its mark.",
+      "allRejected": "Plans fell through. You spent the time alone, but not without reflection."
+    },
     "relationshipEffects": {
       "affection": 6,
       "trust": 3,
@@ -1211,8 +1241,13 @@
       "best_friend",
       "acquaintance"
     ],
-    "npcResponseChance": 0.1,
-    "logMessage": "You went on a weekend trip together, creating shared memories in a new place.",
+    "npcResponseChance": 0.2,
+    "logMessage": "Shared memories in a new place. Something in you shifted from the experience.",
+    "resultDialogTemplates": {
+      "allAccepted": "You and {accepted} went on a weekend trip. The shared memories left their mark.",
+      "someRejected": "You traveled with {accepted}. {rejected} couldn't join. The trip still left its mark.",
+      "allRejected": "Plans fell through. You spent the time alone, but not without reflection."
+    },
     "relationshipEffects": {
       "affection": 12,
       "trust": 6,
@@ -1635,8 +1670,13 @@
       "child",
       "grandparent"
     ],
-    "npcResponseChance": 0.0,
-    "logMessage": "You went on a family road trip full of adventure and togetherness.",
+    "npcResponseChance": 0.12,
+    "logMessage": "Adventure and togetherness on the road. The journey left its mark on all of you.",
+    "resultDialogTemplates": {
+      "allAccepted": "You and {accepted} went on a family road trip. The journey left its mark.",
+      "someRejected": "You hit the road with {accepted}. {rejected} couldn't join. The trip still left its mark.",
+      "allRejected": "Plans fell through. You spent the time alone, but not without reflection."
+    },
     "relationshipEffects": {
       "affection": 10,
       "trust": 5,
@@ -1704,8 +1744,13 @@
       "uncle_aunt",
       "cousin"
     ],
-    "npcResponseChance": 0.0,
-    "logMessage": "You celebrated important milestones together, strengthening the family bond.",
+    "npcResponseChance": 0.1,
+    "logMessage": "Milestones celebrated together. The family bond grew a little stronger.",
+    "resultDialogTemplates": {
+      "allAccepted": "You and {accepted} celebrated together. The moment strengthened the bond between you.",
+      "someRejected": "You celebrated with {accepted}. {rejected} couldn't join. The gathering still left its mark.",
+      "allRejected": "Plans fell through. You spent the time alone, but not without reflection."
+    },
     "relationshipEffects": {
       "affection": 10,
       "trust": 4,
@@ -1871,8 +1916,13 @@
       "classmate",
       "work_spouse"
     ],
-    "npcResponseChance": 0.0,
-    "logMessage": "You shared regular lunches, building a comfortable rapport.",
+    "npcResponseChance": 0.2,
+    "logMessage": "Regular lunches built a comfortable rapport. Something shifted in how you connect.",
+    "resultDialogTemplates": {
+      "allAccepted": "You and {accepted} shared lunch. The rapport between you grew.",
+      "someRejected": "You lunched with {accepted}. {rejected} couldn't join. The time together still left its mark.",
+      "allRejected": "Plans fell through. You spent the time alone, but not without reflection."
+    },
     "relationshipEffects": {
       "affection": 6,
       "trust": 5,

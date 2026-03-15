@@ -4,6 +4,7 @@ import 'package:alma/core/models/social/relationship.dart';
 import 'package:alma/core/models/social/relationship_effects.dart';
 import 'package:alma/core/models/social/relationship_state.dart';
 import 'package:alma/core/models/social/relationship_type.dart';
+import 'package:alma/core/models/social/social_action_result.dart';
 import 'package:alma/core/models/social/social_state.dart';
 import 'package:alma/core/models/social/social_country_config.dart';
 import 'package:alma/core/models/npc.dart';
@@ -148,12 +149,15 @@ class SocialEngine {
     return _shuffleAndTake(eligible, _actionsPerYear, rng);
   }
 
-  LifeState performSocialAction(
+  /// Returns [LifeState] and optionally [SocialActionResult] when [targetNpcIds] is non-empty.
+  /// [seed] is the life seed for deterministic NPC disposition.
+  (LifeState, SocialActionResult?) performSocialAction(
     LifeState state,
     GameAction action,
     List<String> targetNpcIds,
-    SeededRandom rng,
-  ) {
+    SeededRandom rng, {
+    required int seed,
+  }) {
     // Use legacy state.relationships when socialState is null (e.g. life created before social engine was loaded).
     SocialState socialState =
         state.socialState ?? SocialState(relationships: state.relationships);
@@ -177,11 +181,11 @@ class SocialEngine {
         message: action.logMessage ?? '${action.name}.',
         category: LogCategory.social,
       );
-      return state;
+      return (state, null);
     }
 
-    final List<String> acceptedNames = [];
     final List<String> acceptedNpcIds = [];
+    final List<String> rejectedNpcIds = [];
 
     for (final String npcId in targetNpcIds) {
       final int relIndex = socialState.relationships.indexWhere(
@@ -190,21 +194,28 @@ class SocialEngine {
       if (relIndex < 0) continue;
 
       Relationship rel = socialState.relationships[relIndex];
-      final bool npcDeclined =
-          action.npcResponseChance > 0 && rng.chance(action.npcResponseChance);
+      final bool npcDeclined = _computeNpcDeclined(
+        seed: seed,
+        state: state,
+        action: action,
+        npcId: npcId,
+        targetNpcIds: targetNpcIds,
+        rel: rel,
+        socialState: socialState,
+        rng: rng,
+      );
 
       if (npcDeclined) {
         rel = _applyDeclineConsequences(rel, action);
+        rejectedNpcIds.add(npcId);
         state = GameLogger.addLog(
           state,
-          message:
-              '{npc:$npcId} declined your invitation to ${action.name.toLowerCase()}.',
+          message: '{npc:$npcId} couldn\'t make it this time.',
           category: LogCategory.social,
           tags: ['npc:$npcId'],
         );
       } else {
         rel = _applyActionMetrics(rel, action);
-        acceptedNames.add(rel.npc.name);
         acceptedNpcIds.add(npcId);
       }
 
@@ -249,7 +260,127 @@ class SocialEngine {
       state,
       action.relationshipEffects.reputation,
     );
-    return state;
+
+    final SocialActionResult result = SocialActionResult(
+      acceptedNpcIds: acceptedNpcIds,
+      rejectedNpcIds: rejectedNpcIds,
+      resultDialogText: _buildResultDialogText(
+        action: action,
+        acceptedNpcIds: acceptedNpcIds,
+        rejectedNpcIds: rejectedNpcIds,
+        relationships: socialState.relationships,
+      ),
+      hadTargets: true,
+    );
+    return (state, result);
+  }
+
+  bool _computeNpcDeclined({
+    required int seed,
+    required LifeState state,
+    required GameAction action,
+    required String npcId,
+    required List<String> targetNpcIds,
+    required Relationship rel,
+    required SocialState socialState,
+    required SeededRandom rng,
+  }) {
+    final double baseChance = action.npcResponseChance > 0
+        ? action.npcResponseChance
+        : (action.isGroupAction ? 0.15 : 0.0);
+    if (baseChance <= 0) return false;
+
+    final int currentYear = state.currentYear;
+    final int dispositionSeed = seed +
+        npcId.hashCode +
+        currentYear * 100 +
+        action.id.hashCode;
+    final SeededRandom dispositionRng = SeededRandom(dispositionSeed);
+    final double baseDisposition = dispositionRng.nextDouble();
+    final double dispositionContribution = baseDisposition * 0.25;
+
+    double relationshipModifier = 0.0;
+    final int overallValue = rel.metrics.overallValue;
+    if (overallValue >= 60) {
+      relationshipModifier = -0.15;
+    } else if (overallValue <= 30) {
+      relationshipModifier = 0.15;
+    }
+
+    double compatibilityModifier = 0.0;
+    if (targetNpcIds.length > 1) {
+      final List<String> others =
+          targetNpcIds.where((String id) => id != npcId).toList();
+      double avgCompatibility = 0.0;
+      for (final String otherId in others) {
+        avgCompatibility += _getNpcPairCompatibility(seed, npcId, otherId);
+      }
+      avgCompatibility /= others.length;
+      compatibilityModifier = (1.0 - avgCompatibility) * 0.1;
+    }
+
+    final double declineChance = (baseChance +
+            dispositionContribution -
+            relationshipModifier +
+            compatibilityModifier)
+        .clamp(0.0, 1.0);
+    return rng.chance(declineChance);
+  }
+
+  double _getNpcPairCompatibility(int seed, String npcId1, String npcId2) {
+    final String key = npcId1.compareTo(npcId2) < 0
+        ? '$npcId1-$npcId2'
+        : '$npcId2-$npcId1';
+    final SeededRandom rng = SeededRandom(seed + key.hashCode);
+    return rng.nextDouble();
+  }
+
+  String _buildResultDialogText({
+    required GameAction action,
+    required List<String> acceptedNpcIds,
+    required List<String> rejectedNpcIds,
+    required List<Relationship> relationships,
+  }) {
+    final String acceptedPhrase = _formatNpcListPhrase(
+      acceptedNpcIds,
+      relationships,
+    );
+    final String rejectedPhrase = _formatNpcListPhrase(
+      rejectedNpcIds,
+      relationships,
+    );
+
+    final Map<String, String> templates = action.resultDialogTemplates;
+    String template;
+    if (acceptedNpcIds.isEmpty) {
+      template = templates['allRejected'] ??
+          'Plans fell through. You spent the time alone, but not without reflection.';
+    } else if (rejectedNpcIds.isEmpty) {
+      template = templates['allAccepted'] ??
+          'You and $acceptedPhrase shared a memorable moment. Something in you shifted.';
+    } else {
+      template = templates['someRejected'] ??
+          'You gathered with $acceptedPhrase. $rejectedPhrase couldn\'t join. The time together left its mark.';
+    }
+    return template
+        .replaceAll('{accepted}', acceptedPhrase)
+        .replaceAll('{rejected}', rejectedPhrase);
+  }
+
+  String _formatNpcListPhrase(
+    List<String> npcIds,
+    List<Relationship> relationships,
+  ) {
+    if (npcIds.isEmpty) return 'no one';
+    final List<String> names = npcIds.map((String id) {
+      final Relationship? rel = relationships
+          .where((Relationship r) => r.npc.id == id)
+          .firstOrNull;
+      return rel?.npc.alias ?? rel?.npc.name ?? 'someone';
+    }).toList();
+    if (names.length == 1) return names.single;
+    if (names.length == 2) return '${names[0]} and ${names[1]}';
+    return '${names.sublist(0, names.length - 1).join(', ')}, and ${names.last}';
   }
 
   LifeState processYearEnd(LifeState state, SeededRandom rng) {

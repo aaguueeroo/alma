@@ -69,6 +69,11 @@ _GameAction _$GameActionFromJson(Map<String, dynamic> json) => _GameAction(
   minAge: (json['minAge'] as num?)?.toInt(),
   maxAge: (json['maxAge'] as num?)?.toInt(),
   socialActionType: json['socialActionType'] as String?,
+  resultDialogTemplates:
+      (json['resultDialogTemplates'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, e as String),
+      ) ??
+      const {},
 );
 
 Map<String, dynamic> _$GameActionToJson(_GameAction instance) =>
@@ -103,6 +108,7 @@ Map<String, dynamic> _$GameActionToJson(_GameAction instance) =>
       'minAge': instance.minAge,
       'maxAge': instance.maxAge,
       'socialActionType': instance.socialActionType,
+      'resultDialogTemplates': instance.resultDialogTemplates,
     };
 
 const _$ActionCategoryEnumMap = {

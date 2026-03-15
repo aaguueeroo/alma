@@ -15,6 +15,7 @@ import 'package:alma/core/models/education/education_program.dart';
 import 'package:alma/core/models/education/enrollment.dart';
 import 'package:alma/core/models/work/job.dart';
 import 'package:alma/core/models/work/employment.dart';
+import 'package:alma/core/models/social/social_action_result.dart';
 import 'package:alma/core/models/social/social_state.dart';
 import 'package:alma/core/engine/life_engine.dart';
 import 'package:alma/core/engine/education_engine.dart';
@@ -642,30 +643,34 @@ class LifeController extends StateNotifier<LifeControllerState> {
         .toList();
   }
 
-  Future<void> performSocialAction(
+  Future<SocialActionResult?> performSocialAction(
     GameAction action,
     List<String> targetNpcIds,
   ) async {
-    if (state.currentLife == null) return;
+    if (state.currentLife == null) return null;
     try {
       final SeededRandom rng = SeededRandom(
         state.currentLife!.seed +
             state.currentLife!.state.currentYear * 800 +
             state.currentLife!.state.age,
       );
-      LifeState newState = socialEngine.performSocialAction(
+      final (LifeState newState, SocialActionResult? result) =
+          socialEngine.performSocialAction(
         state.currentLife!.state,
         action,
         targetNpcIds,
         rng,
+        seed: state.currentLife!.seed,
       );
       final Life updatedLife = state.currentLife!.copyWith(state: newState);
       final Life finalLife = lifeEngine.performAction(updatedLife, action);
       await lifeRepository.saveLife(finalLife);
       state = state.copyWith(currentLife: finalLife);
+      return result;
     } catch (e, stackTrace) {
       ErrorLogger.logError(e, stackTrace, 'performSocialAction');
       state = state.copyWith(error: e.toString());
+      return null;
     }
   }
 

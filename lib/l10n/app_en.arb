@@ -310,6 +310,7 @@
   "promotionDenied": "Promotion Denied",
   "ok": "OK",
   "eventResultDialogTitle": "What happened",
+  "socialActionResultDialogTitle": "What happened",
   "actionsThisYear": "Actions done this year",
 
   "logAgePrefix": "[Age {age}]",

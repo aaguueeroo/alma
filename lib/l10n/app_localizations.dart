@@ -1204,6 +1204,12 @@ abstract class AppLocalizations {
   /// **'What happened'**
   String get eventResultDialogTitle;
 
+  /// No description provided for @socialActionResultDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What happened'**
+  String get socialActionResultDialogTitle;
+
   /// No description provided for @actionsThisYear.
   ///
   /// In en, this message translates to:

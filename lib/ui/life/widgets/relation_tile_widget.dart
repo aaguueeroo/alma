@@ -86,9 +86,8 @@ class RelationTileWidget extends StatelessWidget {
   IconData _getRoleIcon(NpcRole role) {
     switch (role) {
       case NpcRole.parent:
-        return Icons.family_restroom;
       case NpcRole.sibling:
-        return Icons.people;
+        return Icons.family_restroom;
       case NpcRole.friend:
       case NpcRole.bestFriend:
       case NpcRole.acquaintance:

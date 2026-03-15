@@ -12,6 +12,7 @@ import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/providers/life/life_controller.dart';
 import 'package:alma/ui/life/event_dialog.dart';
 import 'package:alma/ui/life/event_result_dialog.dart';
+import 'package:alma/ui/life/social_action_result_dialog.dart';
 import 'package:alma/ui/life/education_enroll_dialog.dart';
 import 'package:alma/ui/life/job_apply_dialog.dart';
 import 'package:alma/core/models/work/job.dart';
@@ -250,10 +251,22 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
               .read(lifeControllerProvider.notifier)
               .isAttractionAllowedForRelationshipType(typeId);
         },
-        onGenericActionTap: (action, targetNpcIds) {
-          ref
+        onGenericActionTap: (action, targetNpcIds) async {
+          final result = await ref
               .read(lifeControllerProvider.notifier)
               .performSocialAction(action, targetNpcIds);
+          if (!mounted) return;
+          if (result != null &&
+              result.hadTargets &&
+              result.resultDialogText.isNotEmpty) {
+            showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (_) => SocialActionResultDialog(
+                message: result.resultDialogText,
+              ),
+            );
+          }
         },
         onNpcActionTap: (action, npcId) {
           ref.read(lifeControllerProvider.notifier).performSocialAction(
