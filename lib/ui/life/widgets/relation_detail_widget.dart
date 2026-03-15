@@ -9,6 +9,7 @@ import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/ui/life/widgets/person_header_widget.dart';
 import 'package:alma/ui/life/widgets/bidirectional_bar_widget.dart';
 import 'package:alma/ui/life/widgets/log_preview_section.dart';
+import 'package:alma/ui/life/widgets/life_action_tile_widget.dart';
 import 'package:alma/ui/shared/radar_chart_widget.dart';
 
 class RelationDetailWidget extends StatelessWidget {
@@ -129,7 +130,7 @@ class RelationDetailWidget extends StatelessWidget {
                   )
                 else
                   ...npcActions.map((GameAction action) {
-                    return _NpcActionTile(
+                    return LifeActionTileWidget.fromGameAction(
                       action: action,
                       onTap: () => onActionTap?.call(action),
                     );
@@ -267,32 +268,3 @@ class RelationDetailWidget extends StatelessWidget {
   }
 }
 
-class _NpcActionTile extends StatelessWidget {
-  const _NpcActionTile({required this.action, required this.onTap});
-
-  final GameAction action;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(action.name),
-      subtitle: Text(action.description),
-      trailing: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: kSpacing8,
-          vertical: kSpacing4,
-        ),
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surfaceContainerHighest,
-          borderRadius: BorderRadius.circular(kBorderRadiusSmall),
-        ),
-        child: Text(
-          AppLocalizations.of(context)!.timeCostLabel(action.timeCost),
-          style: Theme.of(context).textTheme.labelSmall,
-        ),
-      ),
-      onTap: onTap,
-    );
-  }
-}

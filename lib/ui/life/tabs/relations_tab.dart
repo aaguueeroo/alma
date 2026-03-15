@@ -5,12 +5,12 @@ import 'package:alma/core/models/social/relationship.dart';
 import 'package:alma/core/models/enums/log_category.dart';
 import 'package:alma/core/models/enums/npc_role.dart';
 import 'package:alma/app/constants/spacing.dart';
-import 'package:alma/app/constants/sizing.dart';
 import 'package:alma/app/constants/durations.dart';
 import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/ui/life/widgets/relation_tile_widget.dart';
 import 'package:alma/ui/life/widgets/relation_detail_widget.dart';
 import 'package:alma/ui/life/widgets/log_preview_section.dart';
+import 'package:alma/ui/life/widgets/life_action_tile_widget.dart';
 
 enum _RelationFilter { all, family, friends, love, work }
 
@@ -301,7 +301,7 @@ class _GenericActionsSection extends StatelessWidget {
         ),
         kVerticalGap8,
         ...actions.map((GameAction action) {
-          return _GenericActionTile(
+          return LifeActionTileWidget.fromGameAction(
             action: action,
             displayTitle: _genericActionDisplayTitle(action),
             onTap: () {
@@ -391,37 +391,3 @@ class _GenericActionsSection extends StatelessWidget {
   }
 }
 
-class _GenericActionTile extends StatelessWidget {
-  const _GenericActionTile({
-    required this.action,
-    required this.displayTitle,
-    required this.onTap,
-  });
-
-  final GameAction action;
-  final String displayTitle;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(displayTitle),
-      subtitle: Text(action.description),
-      trailing: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: kSpacing8,
-          vertical: kSpacing4,
-        ),
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surfaceContainerHighest,
-          borderRadius: BorderRadius.circular(kBorderRadiusSmall),
-        ),
-        child: Text(
-          AppLocalizations.of(context)!.timeCostLabel(action.timeCost),
-          style: Theme.of(context).textTheme.labelSmall,
-        ),
-      ),
-      onTap: onTap,
-    );
-  }
-}

@@ -13,6 +13,7 @@ import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/ui/life/widgets/person_header_widget.dart';
 import 'package:alma/ui/life/widgets/log_list_widget.dart';
 import 'package:alma/ui/life/widgets/log_preview_section.dart';
+import 'package:alma/ui/life/widgets/life_action_tile_widget.dart';
 import 'package:alma/ui/shared/stat_bar_widget.dart';
 
 class WorkTab extends StatelessWidget {
@@ -186,7 +187,7 @@ class WorkTab extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: jobActions.map((GameAction action) {
-                    return _WorkActionTile(
+                    return LifeActionTileWidget.fromGameAction(
                       action: action,
                       onTap: () {
                         Navigator.of(ctx).pop();
@@ -379,32 +380,3 @@ class _WorkActionButtonsRow extends StatelessWidget {
   }
 }
 
-class _WorkActionTile extends StatelessWidget {
-  const _WorkActionTile({required this.action, required this.onTap});
-
-  final GameAction action;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(action.name),
-      subtitle: Text(action.description),
-      trailing: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: kSpacing8,
-          vertical: kSpacing4,
-        ),
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surfaceContainerHighest,
-          borderRadius: BorderRadius.circular(kBorderRadiusSmall),
-        ),
-        child: Text(
-          AppLocalizations.of(context)!.timeCostLabel(action.timeCost),
-          style: Theme.of(context).textTheme.labelSmall,
-        ),
-      ),
-      onTap: onTap,
-    );
-  }
-}

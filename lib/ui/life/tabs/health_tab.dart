@@ -9,7 +9,7 @@ import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/ui/life/widgets/person_header_widget.dart';
 import 'package:alma/ui/life/widgets/log_preview_section.dart';
-import 'package:alma/ui/life/widgets/health_action_tile_widget.dart';
+import 'package:alma/ui/life/widgets/life_action_tile_widget.dart';
 import 'package:alma/ui/shared/stat_bar_widget.dart';
 import 'package:alma/providers/life/life_controller.dart';
 
@@ -198,7 +198,7 @@ class HealthTab extends StatelessWidget {
                     final bool canAfford = timeRemaining >= action.timeCost;
                     return Padding(
                       padding: const EdgeInsets.only(bottom: kSpacing8),
-                      child: HealthActionTileWidget(
+                      child: LifeActionTileWidget.fromHealthAction(
                         action: action,
                         isEnabled: canAfford,
                         onTap: () {
@@ -246,7 +246,7 @@ class HealthTab extends StatelessWidget {
                     final bool canAfford = timeRemaining >= action.timeCost;
                     return Padding(
                       padding: const EdgeInsets.only(bottom: kSpacing8),
-                      child: HealthActionTileWidget(
+                      child: LifeActionTileWidget.fromHealthAction(
                         action: action,
                         isEnabled: canAfford,
                         onTap: () {
