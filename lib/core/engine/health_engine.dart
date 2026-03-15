@@ -572,17 +572,25 @@ class HealthEngine {
     return false;
   }
 
+  Set<String> _getDiagnosedButNotTreatedConditionIds(HealthState? healthState) {
+    if (healthState == null) return {};
+    return healthState.conditions
+        .where((c) => c.isDiagnosed && !c.isTreated)
+        .map((c) => c.id)
+        .toSet();
+  }
+
   List<HealthAction> getAvailableHospitalActions(HealthState? healthState) {
     final List<String> performed =
         healthState?.performedHospitalActionIds ?? [];
-    final Set<String> diagnosedIds =
-        healthState?.diagnosedConditionIds.toSet() ?? {};
+    final Set<String> diagnosedButNotTreatedIds =
+        _getDiagnosedButNotTreatedConditionIds(healthState);
     return _healthActions.where((a) {
       if (a.type != HealthActionType.hospital) return false;
       if (performed.contains(a.id)) return false;
       if (a.requiresDiagnosedConditionIds.isEmpty) return true;
       return a.requiresDiagnosedConditionIds.any(
-        (id) => diagnosedIds.contains(id),
+        (id) => diagnosedButNotTreatedIds.contains(id),
       );
     }).toList();
   }
@@ -599,12 +607,13 @@ class HealthEngine {
     LifeState lifeState,
     SeededRandom rng,
   ) {
-    final Set<String> diagnosedIds = healthState.diagnosedConditionIds.toSet();
+    final Set<String> diagnosedButNotTreatedIds =
+        _getDiagnosedButNotTreatedConditionIds(healthState);
     final List<HealthAction> general = _healthActions.where((a) {
       if (a.type != HealthActionType.general) return false;
       if (a.requiresDiagnosedConditionIds.isEmpty) return true;
       return a.requiresDiagnosedConditionIds.any(
-        (id) => diagnosedIds.contains(id),
+        (id) => diagnosedButNotTreatedIds.contains(id),
       );
     }).toList();
     if (general.length <= kHealthGeneralActionsPerYear) {

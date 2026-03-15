@@ -688,12 +688,22 @@ class LifeController extends StateNotifier<LifeControllerState> {
     if (life == null || !healthEngine.isLoaded) return [];
     final HealthState? healthState = life.state.healthState;
     if (healthState == null) return [];
+    final Set<String> diagnosedButNotTreatedIds = healthState.conditions
+        .where((c) => c.isDiagnosed && !c.isTreated)
+        .map((c) => c.id)
+        .toSet();
     final List<String> ids = healthState.generalActionIdsThisYear;
     final List<String> performed =
         healthState.performedGeneralActionIdsThisYear;
     return healthEngine
         .getHealthActionsByIds(ids)
         .where((a) => !performed.contains(a.id))
+        .where((a) {
+          if (a.requiresDiagnosedConditionIds.isEmpty) return true;
+          return a.requiresDiagnosedConditionIds.any(
+            (id) => diagnosedButNotTreatedIds.contains(id),
+          );
+        })
         .toList();
   }
 
