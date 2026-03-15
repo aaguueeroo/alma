@@ -82,6 +82,16 @@ class DebugController {
     }
   }
 
+  Future<void> debugSetName(String value) async {
+    final Life? life = currentLife;
+    if (life == null) return;
+    final Map<String, dynamic> updatedLifeData =
+        Map<String, dynamic>.from(life.state.lifeData);
+    updatedLifeData['name'] = value.isEmpty ? 'Unknown' : value;
+    final LifeState newState = life.state.copyWith(lifeData: updatedLifeData);
+    await lifeController.debugReplaceLife(life.copyWith(state: newState));
+  }
+
   Future<void> debugSetMoney(int value) async {
     final Life? life = currentLife;
     if (life == null) return;

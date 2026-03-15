@@ -1,5 +1,7 @@
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:alma/core/models/life.dart';
+import 'package:alma/core/models/life_template.dart';
+import 'package:alma/core/models/name_repository.dart';
 import 'package:alma/core/models/action.dart';
 import 'package:alma/core/models/health/health_state.dart';
 import 'package:alma/core/models/health/health_predisposition.dart';
@@ -26,6 +28,7 @@ import 'package:alma/data/repositories/life_repository.dart';
 import 'package:alma/data/seed/seed_loader.dart';
 import 'package:alma/core/engine/event_engine.dart';
 import 'package:alma/core/engine/game_logger.dart';
+import 'package:alma/core/engine/player_name_generator.dart';
 import 'package:alma/core/models/enums/log_category.dart';
 import 'package:alma/providers/game/game_state_provider.dart';
 import 'package:alma/app/utils/error_logger.dart';
@@ -176,26 +179,56 @@ class LifeController extends StateNotifier<LifeControllerState> {
         print('Health data not loaded (asset missing or invalid): $e');
       }
       Life lifeToSet = life;
-      if (life.state.healthState == null && healthEngine.isLoaded) {
-        final double h = life.state.health.toDouble().clamp(0.0, 100.0);
+      final String? existingName = life.state.lifeData['name'] as String?;
+      if (existingName == null ||
+          existingName.isEmpty ||
+          existingName == 'Unknown') {
+        try {
+          final List<LifeTemplate> templates =
+              await seedLoader.loadLifeTemplates();
+          final LifeTemplate? template = templates
+              .where((LifeTemplate t) => t.id == life.templateId)
+              .firstOrNull;
+          final String country = template?.country ?? 'default';
+          final NameRepository nameRepo =
+              await seedLoader.loadNameRepository(country);
+          final String name = PlayerNameGenerator.generate(
+            nameRepo,
+            SeededRandom(life.seed),
+          );
+          final Map<String, dynamic> updatedLifeData =
+              Map<String, dynamic>.from(life.state.lifeData);
+          updatedLifeData['name'] = name;
+          lifeToSet = life.copyWith(
+            state: life.state.copyWith(lifeData: updatedLifeData),
+          );
+          await lifeRepository.saveLife(lifeToSet);
+        } catch (e, stackTrace) {
+          ErrorLogger.logError(e, stackTrace, 'loadLife: backfillName');
+        }
+      }
+      if (lifeToSet.state.healthState == null && healthEngine.isLoaded) {
+        final double h = lifeToSet.state.health.toDouble().clamp(0.0, 100.0);
         final healthState = HealthState(
           physicalHealth: h,
           mentalHealth: h,
           predisposition: const HealthPredisposition(),
         );
-        lifeToSet = life.copyWith(
-          state: life.state.copyWith(healthState: healthState),
+        lifeToSet = lifeToSet.copyWith(
+          state: lifeToSet.state.copyWith(healthState: healthState),
         );
         await lifeRepository.saveLife(lifeToSet);
       }
-      final SocialState? loadedSocial = life.state.socialState;
+      final SocialState? loadedSocial = lifeToSet.state.socialState;
       if (loadedSocial != null &&
           socialEngine.isLoaded &&
           loadedSocial.relationships.any(
             (Relationship r) => r.actionIdsThisYear.isEmpty,
           )) {
         final SeededRandom rng = SeededRandom(
-          life.seed + life.state.currentYear * 700 + life.state.age,
+          lifeToSet.seed +
+              lifeToSet.state.currentYear * 700 +
+              lifeToSet.state.age,
         );
         final List<Relationship> updatedRels = loadedSocial.relationships.map((
           Relationship rel,
@@ -203,13 +236,13 @@ class LifeController extends StateNotifier<LifeControllerState> {
           if (rel.actionIdsThisYear.isNotEmpty) return rel;
           final List<String> ids = socialEngine.pickYearlyActionIdsForNpc(
             rel,
-            life.state,
+            lifeToSet.state,
             rng,
           );
           return rel.copyWith(actionIdsThisYear: ids);
         }).toList();
-        lifeToSet = life.copyWith(
-          state: life.state.copyWith(
+        lifeToSet = lifeToSet.copyWith(
+          state: lifeToSet.state.copyWith(
             socialState: loadedSocial.copyWith(relationships: updatedRels),
           ),
         );
@@ -218,15 +251,17 @@ class LifeController extends StateNotifier<LifeControllerState> {
       // Migrate legacy lives that have relationships but no socialState (e.g. created before social engine was loaded).
       if (loadedSocial == null &&
           socialEngine.isLoaded &&
-          life.state.relationships.isNotEmpty) {
+          lifeToSet.state.relationships.isNotEmpty) {
         final SeededRandom rng = SeededRandom(
-          life.seed + life.state.currentYear * 700 + life.state.age,
+          lifeToSet.seed +
+              lifeToSet.state.currentYear * 700 +
+              lifeToSet.state.age,
         );
         SocialState initialized = socialEngine.initializeSocial(
-          life.state.relationships,
+          lifeToSet.state.relationships,
         );
         final List<String> genericIds = socialEngine.pickYearlyGenericActionIds(
-          life.state,
+          lifeToSet.state,
           rng,
         );
         initialized = initialized.copyWith(
@@ -236,15 +271,15 @@ class LifeController extends StateNotifier<LifeControllerState> {
             .map((Relationship rel) {
               final List<String> ids = socialEngine.pickYearlyActionIdsForNpc(
                 rel,
-                life.state,
+                lifeToSet.state,
                 rng,
               );
               return rel.copyWith(actionIdsThisYear: ids);
             })
             .toList();
         initialized = initialized.copyWith(relationships: relsWithActions);
-        lifeToSet = life.copyWith(
-          state: life.state.copyWith(socialState: initialized),
+        lifeToSet = lifeToSet.copyWith(
+          state: lifeToSet.state.copyWith(socialState: initialized),
         );
         await lifeRepository.saveLife(lifeToSet);
       }

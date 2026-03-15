@@ -122,6 +122,17 @@ class MainDebugScreen extends ConsumerWidget {
       children: [
         const DebugSectionHeader(title: 'General'),
         DebugEditableValueTile(
+          label: 'Name',
+          value: state.lifeData['name'] as String? ?? 'Unknown',
+          onEdit: () => _showEditDialog(
+            context,
+            'Name',
+            state.lifeData['name'] as String? ?? 'Unknown',
+            (v) => debugController.debugSetName(v),
+            isText: true,
+          ),
+        ),
+        DebugEditableValueTile(
           label: 'Money',
           value: state.money,
           onEdit: () => _showEditDialog(
@@ -296,8 +307,9 @@ class MainDebugScreen extends ConsumerWidget {
     BuildContext context,
     String label,
     String initialValue,
-    void Function(String) onSave,
-  ) {
+    void Function(String) onSave, {
+    bool isText = false,
+  }) {
     final controller = TextEditingController(text: initialValue);
     showDialog(
       context: context,
@@ -305,7 +317,7 @@ class MainDebugScreen extends ConsumerWidget {
         title: Text('Edit $label'),
         content: TextField(
           controller: controller,
-          keyboardType: TextInputType.number,
+          keyboardType: isText ? TextInputType.text : TextInputType.number,
           autofocus: true,
         ),
         actions: [
