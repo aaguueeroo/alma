@@ -113,7 +113,6 @@ class EducationEngine {
     Enrollment enrollment,
     int performance,
   ) {
-    final int currentPerformance = _getEducationPerformance(state);
     final EducationRecord record = EducationRecord(
       programId: enrollment.programId,
       level: enrollment.level,
@@ -141,7 +140,7 @@ class EducationEngine {
       category: LogCategory.education,
       tags: ['program:${enrollment.programId}'],
     );
-    return _createNextLevelPrompt(state, enrollment, currentPerformance);
+    return _createNextLevelPrompt(state, enrollment, performance);
   }
 
   LifeState _handleYearFailed(
@@ -229,6 +228,8 @@ class EducationEngine {
     Enrollment completedEnrollment,
     int carryOverPerformance,
   ) {
+    final int averagedPerformance =
+        ((carryOverPerformance + _defaultPerformance) / 2).round().clamp(0, 100);
     final EducationLevel? nextLevel = _getNextLevel(completedEnrollment.level);
     if (nextLevel == null) return state;
     final EducationLevelConfig? nextConfig = _getLevelConfig(nextLevel);
@@ -237,7 +238,7 @@ class EducationEngine {
       return _autoEnrollInLevel(
         state,
         nextLevel,
-        initialPerformance: carryOverPerformance,
+        initialPerformance: averagedPerformance,
       );
     }
     final List<EducationProgram> available = programsAvailableForEnrollment(
@@ -254,7 +255,7 @@ class EducationEngine {
           'Would you like to continue your education?',
       availablePrograms: available,
       canDecline: !nextConfig.isCompulsory,
-      carryOverPerformance: carryOverPerformance,
+      carryOverPerformance: averagedPerformance,
     );
     return state.copyWith(
       educationState: eduState.copyWith(pendingPrompt: prompt),
