@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:alma/core/models/game_log.dart';
+import 'package:alma/core/models/enums/log_category.dart';
 import 'package:alma/core/models/social/relationship.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/app/constants/sizing.dart';
 import 'package:alma/ui/life/widgets/log_list_widget.dart';
+
+/// Configuration for a single filter chip option in the log preview dialog.
+class LogPreviewFilterOption {
+  const LogPreviewFilterOption({
+    required this.label,
+    this.category,
+  });
+
+  final String label;
+  final LogCategory? category;
+}
 
 class LogPreviewSection extends StatelessWidget {
   const LogPreviewSection({
@@ -14,6 +26,7 @@ class LogPreviewSection extends StatelessWidget {
     this.logs = const [],
     this.relationships,
     this.contextNpcId,
+    this.filterOptions,
   });
 
   final String title;
@@ -22,6 +35,8 @@ class LogPreviewSection extends StatelessWidget {
   final List<String> logs;
   final List<Relationship>? relationships;
   final String? contextNpcId;
+  /// When provided, the dialog shows filter chips to filter logs by category.
+  final List<LogPreviewFilterOption>? filterOptions;
 
   @override
   Widget build(BuildContext context) {
@@ -89,6 +104,7 @@ class LogPreviewSection extends StatelessWidget {
         logs: logs,
         relationships: relationships,
         contextNpcId: contextNpcId,
+        filterOptions: filterOptions,
       ),
     );
   }
@@ -121,7 +137,7 @@ class _EmptyLogMessage extends StatelessWidget {
   }
 }
 
-class _LogPreviewDialog extends StatelessWidget {
+class _LogPreviewDialog extends StatefulWidget {
   const _LogPreviewDialog({
     required this.title,
     required this.emptyMessage,
@@ -129,6 +145,7 @@ class _LogPreviewDialog extends StatelessWidget {
     required this.logs,
     this.relationships,
     this.contextNpcId,
+    this.filterOptions,
   });
 
   final String title;
@@ -137,10 +154,28 @@ class _LogPreviewDialog extends StatelessWidget {
   final List<String> logs;
   final List<Relationship>? relationships;
   final String? contextNpcId;
+  final List<LogPreviewFilterOption>? filterOptions;
+
+  @override
+  State<_LogPreviewDialog> createState() => _LogPreviewDialogState();
+}
+
+class _LogPreviewDialogState extends State<_LogPreviewDialog> {
+  LogCategory? _selectedFilter;
 
   @override
   Widget build(BuildContext context) {
-    final double maxHeight = MediaQuery.of(context).size.height * 0.4;
+    final double maxHeight = MediaQuery.of(context).size.height * 0.5;
+    final List<GameLog> filteredGameLogs = widget.filterOptions == null
+        ? widget.gameLogs
+        : _selectedFilter == null
+            ? widget.gameLogs
+            : widget.gameLogs
+                .where((GameLog log) => log.category == _selectedFilter)
+                .toList();
+    final List<String> filteredLogs = widget.filterOptions == null
+        ? widget.logs
+        : widget.logs;
     return Dialog(
       child: ConstrainedBox(
         constraints: BoxConstraints(
@@ -157,7 +192,7 @@ class _LogPreviewDialog extends StatelessWidget {
                   Expanded(
                     child: Center(
                       child: Text(
-                        title,
+                        widget.title,
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
                               fontWeight: FontWeight.bold,
                             ),
@@ -173,16 +208,39 @@ class _LogPreviewDialog extends StatelessWidget {
                   ),
                 ],
               ),
+              if (widget.filterOptions != null && widget.filterOptions!.isNotEmpty) ...[
+                kVerticalGap12,
+                SizedBox(
+                  height: kSpacing32 + kSpacing8,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: widget.filterOptions!
+                        .map(
+                          (LogPreviewFilterOption option) => Padding(
+                            padding: const EdgeInsets.only(right: kSpacing8),
+                            child: FilterChip(
+                              label: Text(option.label),
+                              selected: _selectedFilter == option.category,
+                              onSelected: (_) {
+                                setState(() => _selectedFilter = option.category);
+                              },
+                            ),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ),
+              ],
               kVerticalGap12,
               Flexible(
                 child: SingleChildScrollView(
                   child: LogListWidget(
                     title: '',
-                    emptyMessage: emptyMessage,
-                    gameLogs: gameLogs,
-                    logs: logs,
-                    relationships: relationships,
-                    contextNpcId: contextNpcId,
+                    emptyMessage: widget.emptyMessage,
+                    gameLogs: filteredGameLogs,
+                    logs: filteredLogs,
+                    relationships: widget.relationships,
+                    contextNpcId: widget.contextNpcId,
                   ),
                 ),
               ),
