@@ -22,6 +22,7 @@ class WorkTab extends StatelessWidget {
     required this.state,
     required this.actionsByJobId,
     required this.onActionTap,
+    required this.canPerformAction,
     required this.onGetJobTap,
     required this.onQuitJobTap,
     required this.onAskPromotionTap,
@@ -32,6 +33,7 @@ class WorkTab extends StatelessWidget {
   final LifeState state;
   final Map<String, List<GameAction>> actionsByJobId;
   final void Function(GameAction action, {String? workJobId}) onActionTap;
+  final bool Function(GameAction action) canPerformAction;
   final VoidCallback onGetJobTap;
   final void Function(String jobId) onQuitJobTap;
   final void Function(String jobId) onAskPromotionTap;
@@ -187,8 +189,10 @@ class WorkTab extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: jobActions.map((GameAction action) {
+                    final bool canPerform = canPerformAction(action);
                     return LifeActionTileWidget.fromGameAction(
                       action: action,
+                      isEnabled: canPerform,
                       onTap: () {
                         Navigator.of(ctx).pop();
                         onActionTap(action, workJobId: jobId);

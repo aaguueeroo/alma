@@ -53,6 +53,13 @@ class ActionProcessor {
     SeededRandom rng, {
     String? workJobContext,
   }) {
+    final int adjustedCost = timeEngine.calculateAdjustedTimeCost(state, action);
+    if (state.timeRemaining < adjustedCost) {
+      throw StateError(
+        'Not enough time remaining (${state.timeRemaining} days) to perform '
+        'action "${action.name}" (requires $adjustedCost days).',
+      );
+    }
     state = timeEngine.consumeTime(state, action);
     state = _applySkillChanges(state, action);
     state = _applyHealthChange(state, action);

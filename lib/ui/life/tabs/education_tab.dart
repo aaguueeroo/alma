@@ -24,6 +24,7 @@ class EducationTab extends StatelessWidget {
     required this.state,
     required this.actions,
     required this.onActionTap,
+    required this.canPerformAction,
     required this.onEnrollTap,
     required this.onDropOutTap,
     required this.canDropOut,
@@ -34,6 +35,7 @@ class EducationTab extends StatelessWidget {
   final LifeState state;
   final List<GameAction> actions;
   final void Function(GameAction) onActionTap;
+  final bool Function(GameAction action) canPerformAction;
   final VoidCallback onEnrollTap;
   final VoidCallback onDropOutTap;
   final bool canDropOut;
@@ -194,8 +196,10 @@ class EducationTab extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: actions.map((GameAction action) {
+                    final bool canPerform = canPerformAction(action);
                     return LifeActionTileWidget.fromGameAction(
                       action: action,
+                      isEnabled: canPerform,
                       onTap: () {
                         Navigator.of(ctx).pop();
                         onActionTap(action);

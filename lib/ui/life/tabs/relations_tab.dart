@@ -20,6 +20,7 @@ class RelationsTab extends StatefulWidget {
     required this.lifeName,
     this.logs = const [],
     this.genericActions = const [],
+    this.canPerformAction,
     this.onGenericActionTap,
     this.onNpcActionTap,
     this.getNpcActions,
@@ -32,6 +33,7 @@ class RelationsTab extends StatefulWidget {
   final String lifeName;
   final List<GameLog> logs;
   final List<GameAction> genericActions;
+  final bool Function(GameAction action)? canPerformAction;
   final Future<void> Function(GameAction action, List<String> targetNpcIds)?
   onGenericActionTap;
   final void Function(GameAction action, String npcId)? onNpcActionTap;
@@ -95,6 +97,7 @@ class _RelationsTabState extends State<RelationsTab> {
             widget.getIsAttractionAllowed?.call(currentRel.displayTypeId) ??
             true,
         onBack: () => setState(() => _selectedRelationship = null),
+        canPerformAction: widget.canPerformAction,
         onActionTap: (GameAction action) {
           widget.onNpcActionTap?.call(action, npcId);
         },
@@ -167,6 +170,7 @@ class _RelationsTabState extends State<RelationsTab> {
                         _GenericActionsSection(
                           actions: widget.genericActions,
                           relationships: widget.relationships,
+                          canPerformAction: widget.canPerformAction,
                           onActionTap: widget.onGenericActionTap,
                           getRelationshipTypeLabel:
                               widget.getRelationshipTypeLabel,
@@ -196,6 +200,7 @@ class _GenericActionsSection extends StatelessWidget {
     required this.relationships,
     required this.onActionTap,
     required this.l10n,
+    this.canPerformAction,
     this.getRelationshipTypeLabel,
   });
 
@@ -203,6 +208,7 @@ class _GenericActionsSection extends StatelessWidget {
   final List<Relationship> relationships;
   final Future<void> Function(GameAction action, List<String> targetNpcIds)?
   onActionTap;
+  final bool Function(GameAction action)? canPerformAction;
   final String? Function(String typeId)? getRelationshipTypeLabel;
   final AppLocalizations l10n;
 
@@ -226,9 +232,11 @@ class _GenericActionsSection extends StatelessWidget {
         ),
         kVerticalGap8,
         ...actions.map((GameAction action) {
+          final bool canPerform = canPerformAction?.call(action) ?? true;
           return LifeActionTileWidget.fromGameAction(
             action: action,
             displayTitle: _genericActionDisplayTitle(action),
+            isEnabled: canPerform,
             onTap: () {
               if (action.isGroupAction) {
                 if (relationships.isNotEmpty) {
@@ -381,7 +389,8 @@ class _GenericActionsSection extends StatelessWidget {
                   child: Text(l10n.back),
                 ),
                 TextButton(
-                  onPressed: selectedIds.isEmpty
+                  onPressed: selectedIds.isEmpty ||
+                          (canPerformAction?.call(action) == false)
                       ? null
                       : () async {
                           Navigator.of(ctx).pop();

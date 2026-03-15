@@ -23,6 +23,7 @@ class RelationDetailWidget extends StatelessWidget {
     this.relationships = const [],
     this.relationshipTypeLabel,
     this.attractionAllowed = true,
+    this.canPerformAction,
     this.onActionTap,
   });
 
@@ -38,6 +39,9 @@ class RelationDetailWidget extends StatelessWidget {
 
   /// When false (e.g. family), attraction is shown as 0 on the spider chart.
   final bool attractionAllowed;
+
+  /// When provided, used to enable/disable action tiles based on time remaining.
+  final bool Function(GameAction action)? canPerformAction;
   final void Function(GameAction action)? onActionTap;
 
   @override
@@ -130,8 +134,11 @@ class RelationDetailWidget extends StatelessWidget {
                   )
                 else
                   ...npcActions.map((GameAction action) {
+                    final bool canPerform =
+                        canPerformAction?.call(action) ?? true;
                     return LifeActionTileWidget.fromGameAction(
                       action: action,
+                      isEnabled: canPerform,
                       onTap: () => onActionTap?.call(action),
                     );
                   }),

@@ -187,6 +187,8 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
             .read(lifeControllerProvider.notifier)
             .getWorkActions(),
         onActionTap: _performAction,
+        canPerformAction: (action) =>
+            ref.read(lifeControllerProvider.notifier).canPerformAction(action),
         onGetJobTap: () => _showJobApplyDialog(context),
         onQuitJobTap: (String jobId) => _showQuitJobDialog(context, jobId),
         onAskPromotionTap: (String jobId) {
@@ -206,6 +208,8 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
             .read(lifeControllerProvider.notifier)
             .getEducationActions(),
         onActionTap: _performAction,
+        canPerformAction: (action) =>
+            ref.read(lifeControllerProvider.notifier).canPerformAction(action),
         onEnrollTap: () => _showEducationPrompt(context),
         onDropOutTap: () => ref.read(lifeControllerProvider.notifier).dropOut(),
         canDropOut: ref
@@ -225,7 +229,7 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
         timeRemaining: state.timeRemaining,
         controller: ref.read(lifeControllerProvider.notifier),
       ),
-      RelationsTab(
+        RelationsTab(
         key: const ValueKey<int>(4),
         lifeName: state.lifeData['name'] as String? ?? 'Unknown',
         relationships: state.socialState?.relationships ?? state.relationships,
@@ -233,6 +237,8 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
         genericActions: ref
             .read(lifeControllerProvider.notifier)
             .getSocialGenericActions(),
+        canPerformAction: (action) =>
+            ref.read(lifeControllerProvider.notifier).canPerformAction(action),
         getNpcActions: (String npcId) {
           return ref.read(lifeControllerProvider.notifier).getNpcActions(npcId);
         },

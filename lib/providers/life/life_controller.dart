@@ -452,6 +452,16 @@ class LifeController extends StateNotifier<LifeControllerState> {
   bool get hasTimeRemaining =>
       (state.currentLife?.state.timeRemaining ?? 0) > 0;
 
+  /// Returns true if there is enough time remaining in the year to perform
+  /// the given action (using adjusted cost from skills, traits, health).
+  bool canPerformAction(GameAction action) {
+    final Life? life = state.currentLife;
+    if (life == null) return false;
+    final int adjustedCost =
+        timeEngine.calculateAdjustedTimeCost(life.state, action);
+    return life.state.timeRemaining >= adjustedCost;
+  }
+
   bool get isWorkBlockedByHealth {
     final Life? life = state.currentLife;
     if (life == null || !healthEngine.isLoaded) return false;

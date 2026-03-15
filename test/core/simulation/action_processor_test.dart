@@ -72,6 +72,21 @@ void main() {
       expect(result.timeRemaining, lessThan(kDaysPerYear));
     });
 
+    test('performAction throws when not enough time remaining', () {
+      final state = createTestState().copyWith(timeRemaining: 10);
+      final action = GameAction(
+        id: 'study',
+        name: 'Study',
+        description: 'Study hard',
+        category: ActionCategory.education,
+        timeCost: 50,
+      );
+      expect(
+        () => processor.performAction(state, action, rng),
+        throwsStateError,
+      );
+    });
+
     test('performAction applies skill changes', () {
       final state = createTestState();
       final action = GameAction(
