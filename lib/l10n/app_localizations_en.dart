@@ -116,19 +116,38 @@ class AppLocalizationsEn extends AppLocalizations {
   String get compassion => 'Compassion';
 
   @override
+  String get compassionDescription => 'Empathy and kindness toward others.';
+
+  @override
   String get discipline => 'Discipline';
+
+  @override
+  String get disciplineDescription => 'Self-control and dedication to goals.';
 
   @override
   String get courage => 'Courage';
 
   @override
+  String get courageDescription => 'Bravery in facing challenges and fears.';
+
+  @override
   String get wisdom => 'Wisdom';
+
+  @override
+  String get wisdomDescription => 'Insight and sound judgment from experience.';
 
   @override
   String get fun => 'Fun';
 
   @override
+  String get funDescription => 'Joy, playfulness, and enjoyment of life.';
+
+  @override
   String get humility => 'Humility';
+
+  @override
+  String get humilityDescription =>
+      'Modesty and awareness of one\'s limitations.';
 
   @override
   String get nirvana => 'Nirvana';

@@ -26,7 +26,9 @@ class SoulHomeScreen extends ConsumerWidget {
           leading: const BackButtonLeading(),
           title: Text(l10n.saveSlots),
           actions: const [
-            DebugAppBarButton(navigationContext: DebugNavigationContext.mainMenu),
+            DebugAppBarButton(
+              navigationContext: DebugNavigationContext.mainMenu,
+            ),
           ],
         ),
         body: Center(
@@ -39,8 +41,8 @@ class SoulHomeScreen extends ConsumerWidget {
                   l10n.noSoulsYet,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurfaceVariant,
-                      ),
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
                 ),
                 const SizedBox(height: 24),
                 FilledButton(
@@ -68,7 +70,9 @@ class SoulHomeScreen extends ConsumerWidget {
     final bool showNirvana = soul.hasAchievedNirvana;
     final bool showGameOver = soul.isGameOver;
     final themeExt = Theme.of(context).extension<AppThemeExtension>();
-    final padding = themeExt?.screenPadding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
+    final padding =
+        themeExt?.screenPadding ??
+        const EdgeInsets.symmetric(horizontal: 24, vertical: 24);
     final sectionGap = themeExt?.sectionGap ?? 28.0;
     final radius = themeExt?.radiusDefault ?? 12.0;
     final colorScheme = Theme.of(context).colorScheme;
@@ -87,7 +91,8 @@ class SoulHomeScreen extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             if (showNirvana) _Banner(text: l10n.nirvana, color: accentColor),
-            if (showGameOver) _Banner(text: l10n.gameOver, color: colorScheme.error),
+            if (showGameOver)
+              _Banner(text: l10n.gameOver, color: colorScheme.error),
             if (showNirvana || showGameOver) SizedBox(height: sectionGap * 0.5),
             _LivesChip(
               count: soul.remainingLives,
@@ -96,9 +101,9 @@ class SoulHomeScreen extends ConsumerWidget {
             SizedBox(height: sectionGap),
             Text(
               l10n.soulSubjects,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
             SizedBox(height: sectionGap * 0.5),
             GridView.builder(
@@ -189,9 +194,9 @@ class _Banner extends StatelessWidget {
         text,
         textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: color,
-            ),
+          fontWeight: FontWeight.bold,
+          color: color,
+        ),
       ),
     );
   }
@@ -206,7 +211,8 @@ class _LivesChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeExt = Theme.of(context).extension<AppThemeExtension>();
-    final accentColor = themeExt?.accentColor ?? Theme.of(context).colorScheme.secondary;
+    final accentColor =
+        themeExt?.accentColor ?? Theme.of(context).colorScheme.secondary;
     return Chip(
       avatar: Icon(Icons.favorite, color: accentColor, size: 16),
       label: Text(label),
@@ -222,7 +228,8 @@ class _SubjectCard extends StatelessWidget {
 
   Color _colorForSubject(BuildContext context, SoulSubjectType type) {
     final themeExt = Theme.of(context).extension<AppThemeExtension>();
-    final base = themeExt?.accentColor ?? Theme.of(context).colorScheme.secondary;
+    final base =
+        themeExt?.accentColor ?? Theme.of(context).colorScheme.secondary;
     final opacities = <SoulSubjectType, double>{
       SoulSubjectType.compassion: 0.9,
       SoulSubjectType.discipline: 0.75,
@@ -232,6 +239,23 @@ class _SubjectCard extends StatelessWidget {
       SoulSubjectType.humility: 0.8,
     };
     return base.withValues(alpha: opacities[type] ?? 0.8);
+  }
+
+  IconData _iconForSubject(SoulSubjectType type) {
+    switch (type) {
+      case SoulSubjectType.compassion:
+        return Icons.volunteer_activism;
+      case SoulSubjectType.discipline:
+        return Icons.fitness_center;
+      case SoulSubjectType.courage:
+        return Icons.shield;
+      case SoulSubjectType.wisdom:
+        return Icons.lightbulb;
+      case SoulSubjectType.fun:
+        return Icons.celebration;
+      case SoulSubjectType.humility:
+        return Icons.handshake;
+    }
   }
 
   String _labelForSubject(BuildContext context, SoulSubjectType type) {
@@ -252,11 +276,31 @@ class _SubjectCard extends StatelessWidget {
     }
   }
 
+  String _descriptionForSubject(BuildContext context, SoulSubjectType type) {
+    final l10n = AppLocalizations.of(context)!;
+    switch (type) {
+      case SoulSubjectType.compassion:
+        return l10n.compassionDescription;
+      case SoulSubjectType.discipline:
+        return l10n.disciplineDescription;
+      case SoulSubjectType.courage:
+        return l10n.courageDescription;
+      case SoulSubjectType.wisdom:
+        return l10n.wisdomDescription;
+      case SoulSubjectType.fun:
+        return l10n.funDescription;
+      case SoulSubjectType.humility:
+        return l10n.humilityDescription;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final Color color = _colorForSubject(context, subject.type);
     final String label = _labelForSubject(context, subject.type);
+    final String description = _descriptionForSubject(context, subject.type);
+    final IconData icon = _iconForSubject(subject.type);
     final themeExt = Theme.of(context).extension<AppThemeExtension>();
     final radius = themeExt?.radiusDefault ?? 12.0;
     final radiusSmall = themeExt?.radiusSmall ?? 8.0;
@@ -271,39 +315,53 @@ class _SubjectCard extends StatelessWidget {
             : BorderSide.none,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(8),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Icon(Icons.star, color: color, size: 16),
+            Icon(icon, color: color, size: 16),
             kHorizontalGap8,
             Expanded(
-              child: Text(
-                label,
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text(
+                    label,
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.bold,
+                      color: color,
                     ),
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 8,
-                vertical: 4,
-              ),
-              decoration: BoxDecoration(
-                color: subject.isPassed
-                    ? positiveColor.withValues(alpha: 0.2)
-                    : mutedColor.withValues(alpha: 0.2),
-                borderRadius: BorderRadius.circular(radiusSmall),
-              ),
-              child: Text(
-                subject.isPassed ? l10n.passed : l10n.notPassed,
-                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    description,
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(color: mutedColor),
+                  ),
+                  const SizedBox(height: 4),
+                  Spacer(),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
                       color: subject.isPassed
-                          ? positiveColor
-                          : mutedColor,
+                          ? positiveColor.withValues(alpha: 0.2)
+                          : mutedColor.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(radiusSmall),
                     ),
+                    child: Text(
+                      subject.isPassed ? l10n.passed : l10n.notPassed,
+                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        color: subject.isPassed ? positiveColor : mutedColor,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

@@ -280,11 +280,23 @@ abstract class AppLocalizations {
   /// **'Compassion'**
   String get compassion;
 
+  /// No description provided for @compassionDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Empathy and kindness toward others.'**
+  String get compassionDescription;
+
   /// No description provided for @discipline.
   ///
   /// In en, this message translates to:
   /// **'Discipline'**
   String get discipline;
+
+  /// No description provided for @disciplineDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Self-control and dedication to goals.'**
+  String get disciplineDescription;
 
   /// No description provided for @courage.
   ///
@@ -292,11 +304,23 @@ abstract class AppLocalizations {
   /// **'Courage'**
   String get courage;
 
+  /// No description provided for @courageDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Bravery in facing challenges and fears.'**
+  String get courageDescription;
+
   /// No description provided for @wisdom.
   ///
   /// In en, this message translates to:
   /// **'Wisdom'**
   String get wisdom;
+
+  /// No description provided for @wisdomDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Insight and sound judgment from experience.'**
+  String get wisdomDescription;
 
   /// No description provided for @fun.
   ///
@@ -304,11 +328,23 @@ abstract class AppLocalizations {
   /// **'Fun'**
   String get fun;
 
+  /// No description provided for @funDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Joy, playfulness, and enjoyment of life.'**
+  String get funDescription;
+
   /// No description provided for @humility.
   ///
   /// In en, this message translates to:
   /// **'Humility'**
   String get humility;
+
+  /// No description provided for @humilityDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Modesty and awareness of one\'s limitations.'**
+  String get humilityDescription;
 
   /// No description provided for @nirvana.
   ///
