@@ -3,17 +3,15 @@ import 'package:alma/core/models/action.dart';
 import 'package:alma/core/models/game_log.dart';
 import 'package:alma/core/models/social/relationship.dart';
 import 'package:alma/core/models/enums/log_category.dart';
-import 'package:alma/core/models/enums/npc_role.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/app/constants/durations.dart';
 import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/ui/life/widgets/person_header_widget.dart';
 import 'package:alma/ui/life/widgets/relation_tile_widget.dart';
 import 'package:alma/ui/life/widgets/relation_detail_widget.dart';
+import 'package:alma/ui/life/widgets/relation_filter_chips_widget.dart';
 import 'package:alma/ui/life/widgets/log_preview_section.dart';
 import 'package:alma/ui/life/widgets/life_action_tile_widget.dart';
-
-enum _RelationFilter { all, family, friends, love, work }
 
 class RelationsTab extends StatefulWidget {
   const RelationsTab({
@@ -51,7 +49,7 @@ class RelationsTab extends StatefulWidget {
 }
 
 class _RelationsTabState extends State<RelationsTab> {
-  _RelationFilter _selectedFilter = _RelationFilter.all;
+  RelationFilter _selectedFilter = RelationFilter.all;
   Relationship? _selectedRelationship;
 
   @override
@@ -106,8 +104,9 @@ class _RelationsTabState extends State<RelationsTab> {
 
   Widget _buildListView() {
     final AppLocalizations l10n = AppLocalizations.of(context)!;
-    final List<Relationship> filtered = _applyFilter(
+    final List<Relationship> filtered = RelationFilterUtils.applyFilter(
       widget.relationships.where((Relationship r) => r.isActive).toList(),
+      _selectedFilter,
     );
     final List<GameLog> socialLogs = widget.logs
         .where((GameLog log) => log.category == LogCategory.social)
@@ -131,9 +130,10 @@ class _RelationsTabState extends State<RelationsTab> {
               horizontal: kSpacing16,
               vertical: kSpacing12,
             ),
-            child: _FilterChips(
+            child: RelationFilterChipsWidget(
               selected: _selectedFilter,
-              onChanged: (filter) => setState(() => _selectedFilter = filter),
+              onChanged: (RelationFilter filter) =>
+                  setState(() => _selectedFilter = filter),
             ),
           ),
           Expanded(
@@ -168,6 +168,8 @@ class _RelationsTabState extends State<RelationsTab> {
                           actions: widget.genericActions,
                           relationships: widget.relationships,
                           onActionTap: widget.onGenericActionTap,
+                          getRelationshipTypeLabel:
+                              widget.getRelationshipTypeLabel,
                           l10n: l10n,
                         ),
                       ],
@@ -186,95 +188,6 @@ class _RelationsTabState extends State<RelationsTab> {
       ),
     );
   }
-
-  List<Relationship> _applyFilter(List<Relationship> relationships) {
-    switch (_selectedFilter) {
-      case _RelationFilter.all:
-        return relationships;
-      case _RelationFilter.family:
-        return relationships.where((r) => _isFamilyRole(r.npc.role)).toList();
-      case _RelationFilter.friends:
-        return relationships.where((r) => _isFriendRole(r.npc.role)).toList();
-      case _RelationFilter.love:
-        return relationships.where((r) => _isRomanticRole(r.npc.role)).toList();
-      case _RelationFilter.work:
-        return relationships.where((r) => _isWorkRole(r.npc.role)).toList();
-    }
-  }
-
-  bool _isFamilyRole(NpcRole role) {
-    return role == NpcRole.parent ||
-        role == NpcRole.sibling ||
-        role == NpcRole.child ||
-        role == NpcRole.grandparent ||
-        role == NpcRole.uncle ||
-        role == NpcRole.cousin ||
-        role == NpcRole.nephew ||
-        role == NpcRole.grandchild;
-  }
-
-  bool _isFriendRole(NpcRole role) {
-    return role == NpcRole.friend ||
-        role == NpcRole.bestFriend ||
-        role == NpcRole.acquaintance ||
-        role == NpcRole.mentor ||
-        role == NpcRole.rival;
-  }
-
-  bool _isRomanticRole(NpcRole role) {
-    return role == NpcRole.partner ||
-        role == NpcRole.fiance ||
-        role == NpcRole.spouse ||
-        role == NpcRole.ex;
-  }
-
-  bool _isWorkRole(NpcRole role) {
-    return role == NpcRole.coworker ||
-        role == NpcRole.boss ||
-        role == NpcRole.workSpouse ||
-        role == NpcRole.classmate;
-  }
-}
-
-class _FilterChips extends StatelessWidget {
-  const _FilterChips({required this.selected, required this.onChanged});
-
-  final _RelationFilter selected;
-  final ValueChanged<_RelationFilter> onChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    final AppLocalizations l10n = AppLocalizations.of(context)!;
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          _buildChip(context, _RelationFilter.all, l10n.filterAll),
-          kHorizontalGap8,
-          _buildChip(context, _RelationFilter.family, l10n.filterFamily),
-          kHorizontalGap8,
-          _buildChip(context, _RelationFilter.friends, l10n.filterFriends),
-          kHorizontalGap8,
-          _buildChip(context, _RelationFilter.love, l10n.filterLove),
-          kHorizontalGap8,
-          _buildChip(context, _RelationFilter.work, l10n.filterWork),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildChip(
-    BuildContext context,
-    _RelationFilter filter,
-    String label,
-  ) {
-    final bool isSelected = selected == filter;
-    return FilterChip(
-      label: Text(label),
-      selected: isSelected,
-      onSelected: (_) => onChanged(filter),
-    );
-  }
 }
 
 class _GenericActionsSection extends StatelessWidget {
@@ -283,12 +196,14 @@ class _GenericActionsSection extends StatelessWidget {
     required this.relationships,
     required this.onActionTap,
     required this.l10n,
+    this.getRelationshipTypeLabel,
   });
 
   final List<GameAction> actions;
   final List<Relationship> relationships;
   final Future<void> Function(GameAction action, List<String> targetNpcIds)?
   onActionTap;
+  final String? Function(String typeId)? getRelationshipTypeLabel;
   final AppLocalizations l10n;
 
   static String _genericActionDisplayTitle(GameAction action) {
@@ -335,6 +250,7 @@ class _GenericActionsSection extends StatelessWidget {
     final List<Relationship> activeRels = relationships
         .where((Relationship r) => r.isActive)
         .toList();
+    RelationFilter selectedFilter = RelationFilter.all;
     final Set<String> selectedIds = {};
     final String dialogTitle = _genericActionDisplayTitle(action);
     showDialog(
@@ -342,9 +258,19 @@ class _GenericActionsSection extends StatelessWidget {
       builder: (BuildContext ctx) {
         return StatefulBuilder(
           builder: (BuildContext ctx, StateSetter setDialogState) {
+            final List<Relationship> filteredRels =
+                RelationFilterUtils.applyFilter(activeRels, selectedFilter);
+            final double dialogHeight = MediaQuery.of(ctx).size.height * 0.5;
+            final double contentWidth = MediaQuery.of(ctx).size.width * 0.9;
             return AlertDialog(
               title: Text(dialogTitle),
-              content: SingleChildScrollView(
+              content: SizedBox(
+                width: contentWidth,
+                child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: dialogHeight,
+                  maxHeight: dialogHeight,
+                ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -354,28 +280,99 @@ class _GenericActionsSection extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                     kVerticalGap12,
-                    Text(
-                      l10n.selectNpc,
-                      style: Theme.of(context).textTheme.labelMedium,
+                    RelationFilterChipsWidget(
+                      selected: selectedFilter,
+                      onChanged: (RelationFilter filter) {
+                        setDialogState(() {
+                          selectedFilter = filter;
+                        });
+                      },
                     ),
                     kVerticalGap8,
-                    ...activeRels.map((Relationship rel) {
-                      final bool isSelected = selectedIds.contains(rel.npc.id);
-                      return CheckboxListTile(
-                        title: Text(rel.npc.name),
-                        value: isSelected,
-                        onChanged: (bool? val) {
-                          setDialogState(() {
-                            if (val == true) {
-                              selectedIds.add(rel.npc.id);
-                            } else {
-                              selectedIds.remove(rel.npc.id);
-                            }
-                          });
-                        },
-                      );
-                    }),
+                    Expanded(
+                      child: filteredRels.isEmpty
+                          ? Center(
+                              child: Text(
+                                selectedFilter == RelationFilter.all
+                                    ? l10n.noRelationships
+                                    : l10n.noOneInCategory,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSurfaceVariant,
+                                      fontStyle: FontStyle.italic,
+                                    ),
+                              ),
+                            )
+                          : SingleChildScrollView(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: filteredRels
+                                  .map((Relationship rel) {
+                                    final bool isSelected =
+                                        selectedIds.contains(rel.npc.id);
+                                    final String displayName =
+                                        rel.npc.alias ?? rel.npc.name;
+                                    final String? relationshipLabel =
+                                        getRelationshipTypeLabel?.call(
+                                          rel.displayTypeId,
+                                        );
+                                    final bool isFamily =
+                                        RelationFilterUtils.isFamilyRole(
+                                          rel.npc.role,
+                                        );
+                                    final Widget titleWidget = isFamily
+                                        ? Text(displayName)
+                                        : Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Text(displayName),
+                                              if (relationshipLabel != null &&
+                                                  relationshipLabel
+                                                      .isNotEmpty) ...[
+                                                kVerticalGap4,
+                                                Text(
+                                                  relationshipLabel,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall
+                                                      ?.copyWith(
+                                                        color: Theme.of(
+                                                          context,
+                                                        )
+                                                            .colorScheme
+                                                            .onSurfaceVariant,
+                                                      ),
+                                                ),
+                                              ],
+                                            ],
+                                          );
+                                    return CheckboxListTile(
+                                      title: titleWidget,
+                                      value: isSelected,
+                                      onChanged: (bool? val) {
+                                        setDialogState(() {
+                                          if (val == true) {
+                                            selectedIds.add(rel.npc.id);
+                                          } else {
+                                            selectedIds.remove(rel.npc.id);
+                                          }
+                                        });
+                                      },
+                                    );
+                                  })
+                                  .toList(),
+                              ),
+                            ),
+                    ),
                   ],
+                ),
                 ),
               ),
               actions: [
@@ -388,8 +385,10 @@ class _GenericActionsSection extends StatelessWidget {
                       ? null
                       : () async {
                           Navigator.of(ctx).pop();
-                          final future =
-                              onActionTap?.call(action, selectedIds.toList());
+                          final future = onActionTap?.call(
+                            action,
+                            selectedIds.toList(),
+                          );
                           if (future != null) await future;
                         },
                   child: Text(l10n.performAction),
@@ -402,4 +401,3 @@ class _GenericActionsSection extends StatelessWidget {
     );
   }
 }
-

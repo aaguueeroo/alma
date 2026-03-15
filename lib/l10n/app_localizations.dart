@@ -892,6 +892,12 @@ abstract class AppLocalizations {
   /// **'No relationships yet'**
   String get noRelationships;
 
+  /// No description provided for @noOneInCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'No one in this category'**
+  String get noOneInCategory;
+
   /// No description provided for @noInteractionsRecorded.
   ///
   /// In en, this message translates to:

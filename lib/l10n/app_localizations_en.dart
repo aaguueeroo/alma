@@ -442,6 +442,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noRelationships => 'No relationships yet';
 
   @override
+  String get noOneInCategory => 'No one in this category';
+
+  @override
   String get noInteractionsRecorded => 'No interactions recorded yet';
 
   @override
