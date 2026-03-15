@@ -18,6 +18,8 @@ sealed class HealthAction with _$HealthAction {
     @Default([]) List<String> canDiagnoseConditionIds,
     @Default([]) List<String> canTreatConditionIds,
     @Default([]) List<AccessCondition> conditions,
+    @Default([]) List<String> requiresDiagnosedConditionIds,
+    @Default({}) Map<String, double> treatmentSuccessRateByConditionId,
   }) = _HealthAction;
 
   factory HealthAction.fromJson(Map<String, dynamic> json) =>

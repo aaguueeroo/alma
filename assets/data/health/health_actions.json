@@ -33,7 +33,8 @@
     "mentalHealthEffect": 0,
     "canDiagnoseConditionIds": ["asthma", "type1_diabetes", "broken_bone", "cancer"],
     "canTreatConditionIds": ["broken_bone", "asthma"],
-    "conditions": []
+    "conditions": [],
+    "treatmentSuccessRateByConditionId": {"broken_bone": 0.92, "asthma": 0.90}
   },
   {
     "id": "go_to_therapy",
@@ -45,7 +46,64 @@
     "mentalHealthEffect": 5,
     "canDiagnoseConditionIds": ["depression", "anxiety", "burnout"],
     "canTreatConditionIds": ["depression", "anxiety", "burnout"],
-    "conditions": []
+    "conditions": [],
+    "treatmentSuccessRateByConditionId": {"depression": 0.37, "anxiety": 0.45, "burnout": 0.55}
+  },
+  {
+    "id": "asthma_management",
+    "name": "Asthma Management Plan",
+    "description": "Work with a specialist to create an asthma management plan with inhalers and triggers to avoid.",
+    "type": "hospital",
+    "timeCost": 6,
+    "physicalHealthEffect": 2,
+    "mentalHealthEffect": 1,
+    "canDiagnoseConditionIds": [],
+    "canTreatConditionIds": ["asthma"],
+    "conditions": [],
+    "requiresDiagnosedConditionIds": ["asthma"],
+    "treatmentSuccessRateByConditionId": {"asthma": 0.90}
+  },
+  {
+    "id": "diabetes_management",
+    "name": "Diabetes Management",
+    "description": "Get insulin therapy and blood sugar monitoring guidance from an endocrinologist.",
+    "type": "hospital",
+    "timeCost": 8,
+    "physicalHealthEffect": 2,
+    "mentalHealthEffect": 1,
+    "canDiagnoseConditionIds": [],
+    "canTreatConditionIds": ["type1_diabetes"],
+    "conditions": [],
+    "requiresDiagnosedConditionIds": ["type1_diabetes"],
+    "treatmentSuccessRateByConditionId": {"type1_diabetes": 0.95}
+  },
+  {
+    "id": "cancer_treatment",
+    "name": "Cancer Treatment",
+    "description": "Undergo chemotherapy, radiation, or surgery to treat cancer.",
+    "type": "hospital",
+    "timeCost": 20,
+    "physicalHealthEffect": -5,
+    "mentalHealthEffect": -2,
+    "canDiagnoseConditionIds": [],
+    "canTreatConditionIds": ["cancer"],
+    "conditions": [],
+    "requiresDiagnosedConditionIds": ["cancer"],
+    "treatmentSuccessRateByConditionId": {"cancer": 0.50}
+  },
+  {
+    "id": "fracture_care",
+    "name": "Fracture Care",
+    "description": "Receive proper casting and follow-up care for a broken bone.",
+    "type": "hospital",
+    "timeCost": 6,
+    "physicalHealthEffect": 2,
+    "mentalHealthEffect": 1,
+    "canDiagnoseConditionIds": [],
+    "canTreatConditionIds": ["broken_bone"],
+    "conditions": [],
+    "requiresDiagnosedConditionIds": ["broken_bone"],
+    "treatmentSuccessRateByConditionId": {"broken_bone": 0.92}
   },
   {
     "id": "psychiatric_consultation",
@@ -57,7 +115,8 @@
     "mentalHealthEffect": 3,
     "canDiagnoseConditionIds": ["depression", "adhd", "anxiety", "burnout"],
     "canTreatConditionIds": ["depression", "adhd", "anxiety"],
-    "conditions": []
+    "conditions": [],
+    "treatmentSuccessRateByConditionId": {"depression": 0.37, "adhd": 0.70, "anxiety": 0.45}
   },
   {
     "id": "join_support_group",
@@ -178,5 +237,57 @@
     "canDiagnoseConditionIds": [],
     "canTreatConditionIds": ["depression", "anxiety"],
     "conditions": []
+  },
+  {
+    "id": "use_inhaler",
+    "name": "Use Inhaler",
+    "description": "Use your prescribed inhaler to manage asthma symptoms.",
+    "type": "general",
+    "timeCost": 2,
+    "physicalHealthEffect": 2,
+    "mentalHealthEffect": 0,
+    "canDiagnoseConditionIds": [],
+    "canTreatConditionIds": ["asthma"],
+    "conditions": [],
+    "requiresDiagnosedConditionIds": ["asthma"]
+  },
+  {
+    "id": "blood_sugar_monitoring",
+    "name": "Blood Sugar Monitoring",
+    "description": "Carefully monitor and manage your blood sugar levels throughout the day.",
+    "type": "general",
+    "timeCost": 4,
+    "physicalHealthEffect": 3,
+    "mentalHealthEffect": 1,
+    "canDiagnoseConditionIds": [],
+    "canTreatConditionIds": ["type1_diabetes"],
+    "conditions": [],
+    "requiresDiagnosedConditionIds": ["type1_diabetes"]
+  },
+  {
+    "id": "adhd_routine",
+    "name": "ADHD Routine",
+    "description": "Establish a structured routine and use strategies to manage ADHD symptoms.",
+    "type": "general",
+    "timeCost": 5,
+    "physicalHealthEffect": 0,
+    "mentalHealthEffect": 3,
+    "canDiagnoseConditionIds": [],
+    "canTreatConditionIds": ["adhd"],
+    "conditions": [],
+    "requiresDiagnosedConditionIds": ["adhd"]
+  },
+  {
+    "id": "diabetes_diet",
+    "name": "Diabetes Diet",
+    "description": "Follow a balanced diet designed for diabetes management.",
+    "type": "general",
+    "timeCost": 6,
+    "physicalHealthEffect": 4,
+    "mentalHealthEffect": 1,
+    "canDiagnoseConditionIds": [],
+    "canTreatConditionIds": ["type1_diabetes"],
+    "conditions": [],
+    "requiresDiagnosedConditionIds": ["type1_diabetes"]
   }
 ]

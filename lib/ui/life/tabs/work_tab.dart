@@ -24,6 +24,8 @@ class WorkTab extends StatelessWidget {
     required this.onGetJobTap,
     required this.onQuitJobTap,
     required this.onAskPromotionTap,
+    required this.isWorkBlockedByHealth,
+    required this.workPerformancePenalty,
   });
 
   final LifeState state;
@@ -32,6 +34,8 @@ class WorkTab extends StatelessWidget {
   final VoidCallback onGetJobTap;
   final void Function(String jobId) onQuitJobTap;
   final void Function(String jobId) onAskPromotionTap;
+  final bool isWorkBlockedByHealth;
+  final int workPerformancePenalty;
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +58,24 @@ class WorkTab extends StatelessWidget {
             detail: totalSalary > 0 ? l10n.salaryAmount(totalSalary) : '',
           ),
           kVerticalGap24,
+          if (isWorkBlockedByHealth) ...[
+            Container(
+              padding: const EdgeInsets.all(kSpacing12),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.errorContainer.withValues(
+                      alpha: 0.3,
+                    ),
+                borderRadius: BorderRadius.circular(kBorderRadiusSmall),
+              ),
+              child: Text(
+                l10n.healthBlocksWork,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+              ),
+            ),
+            kVerticalGap16,
+          ],
           if (employments.isNotEmpty)
             ...employments.map((Employment employment) {
               final List<GameAction> jobActions =
@@ -75,12 +97,15 @@ class WorkTab extends StatelessWidget {
                   jobActions,
                 ),
                 l10n: l10n,
+                isWorkBlockedByHealth: isWorkBlockedByHealth,
+                workPerformancePenalty: workPerformancePenalty,
               );
             }),
           kVerticalGap12,
           _WorkActionButtonsRow(
             getJobLabel: l10n.getJob,
             onGetJobTap: onGetJobTap,
+            isWorkBlockedByHealth: isWorkBlockedByHealth,
           ),
           kVerticalGap32,
           LogListWidget(
@@ -183,6 +208,8 @@ class _EmploymentCard extends StatelessWidget {
     required this.onPromotionTap,
     required this.onActionsTap,
     required this.l10n,
+    required this.isWorkBlockedByHealth,
+    required this.workPerformancePenalty,
   });
 
   final Employment employment;
@@ -192,6 +219,8 @@ class _EmploymentCard extends StatelessWidget {
   final VoidCallback onPromotionTap;
   final VoidCallback onActionsTap;
   final AppLocalizations l10n;
+  final bool isWorkBlockedByHealth;
+  final int workPerformancePenalty;
 
   @override
   Widget build(BuildContext context) {
@@ -243,7 +272,9 @@ class _EmploymentCard extends StatelessWidget {
               kVerticalGap12,
               StatBarWidget(
                 label: l10n.effort,
-                value: employment.performance / 100,
+                value: (employment.performance + workPerformancePenalty)
+                    .clamp(0, 100) /
+                    100,
               ),
               if (performedThisYear.isNotEmpty) ...[
                 kVerticalGap8,
@@ -278,7 +309,9 @@ class _EmploymentCard extends StatelessWidget {
               ],
               kVerticalGap12,
               OutlinedButton(
-                onPressed: jobActions.isEmpty ? null : onActionsTap,
+                onPressed: (jobActions.isEmpty || isWorkBlockedByHealth)
+                    ? null
+                    : onActionsTap,
                 child: Text(l10n.jobActions),
               ),
               if (employment.type != JobType.casual) ...[
@@ -287,7 +320,8 @@ class _EmploymentCard extends StatelessWidget {
                   children: [
                     Expanded(
                       child: OutlinedButton(
-                        onPressed: onPromotionTap,
+                        onPressed:
+                            isWorkBlockedByHealth ? null : onPromotionTap,
                         child: Text(l10n.askPromotion),
                       ),
                     ),
@@ -313,17 +347,19 @@ class _WorkActionButtonsRow extends StatelessWidget {
   const _WorkActionButtonsRow({
     required this.getJobLabel,
     required this.onGetJobTap,
+    required this.isWorkBlockedByHealth,
   });
 
   final String getJobLabel;
   final VoidCallback onGetJobTap;
+  final bool isWorkBlockedByHealth;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: OutlinedButton(
-        onPressed: onGetJobTap,
+        onPressed: isWorkBlockedByHealth ? null : onGetJobTap,
         child: Text(getJobLabel),
       ),
     );

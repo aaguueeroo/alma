@@ -14,10 +14,14 @@ import 'package:alma/core/rules/education_country_config.dart';
 import 'package:alma/core/models/skill.dart';
 import 'package:alma/app/constants/log_narratives.dart';
 import 'package:alma/core/engine/game_logger.dart';
+import 'package:alma/core/engine/health_engine.dart';
 import 'package:alma/core/engine/seeded_random.dart';
 import 'package:alma/core/engine/time_commitment.dart';
 
 class EducationEngine {
+  EducationEngine({HealthEngine? healthEngine}) : _healthEngine = healthEngine;
+
+  final HealthEngine? _healthEngine;
   EducationCountryConfig? _countryConfig;
   List<EducationProgram> _allPrograms = [];
   List<GameAction> _educationActions = [];
@@ -52,7 +56,10 @@ class EducationEngine {
     }
     final EducationLevelConfig? levelConfig = _getLevelConfig(enrollment.level);
     if (levelConfig == null) return state;
-    final int performance = _getEducationPerformance(state);
+    final int basePerformance = _getEducationPerformance(state);
+    final int studyPenalty =
+        _healthEngine?.getStudyPerformancePenalty(state.healthState) ?? 0;
+    final int performance = (basePerformance + studyPenalty).clamp(0, 100);
     final bool passed = performance >= levelConfig.passThreshold;
     if (passed) {
       state = _handleYearPassed(state, eduState, enrollment, performance);

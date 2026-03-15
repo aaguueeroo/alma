@@ -19,10 +19,14 @@ import 'package:alma/core/models/skill.dart';
 import 'package:alma/core/rules/work_country_config.dart';
 import 'package:alma/app/constants/log_narratives.dart';
 import 'package:alma/core/engine/game_logger.dart';
+import 'package:alma/core/engine/health_engine.dart';
 import 'package:alma/core/engine/seeded_random.dart';
 import 'package:alma/core/engine/time_commitment.dart';
 
 class WorkEngine {
+  WorkEngine({HealthEngine? healthEngine}) : _healthEngine = healthEngine;
+
+  final HealthEngine? _healthEngine;
   WorkCountryConfig? _countryConfig;
   List<Job> _allJobs = [];
   List<GameAction> _workActions = [];
@@ -299,8 +303,12 @@ class WorkEngine {
     final List<WorkRecord> newRecords = [];
     WorkPrompt? promotionPrompt;
     WorkPrompt? firedPrompt;
+    final int workPenalty =
+        _healthEngine?.getWorkPerformancePenalty(state.healthState) ?? 0;
     for (final Employment employment in workState.currentEmployments) {
-      final bool fired = _checkFired(employment, rng);
+      final int effectivePerformance =
+          (employment.performance + workPenalty).clamp(0, 100);
+      final bool fired = _checkFired(employment, rng, effectivePerformance);
       if (fired) {
         newRecords.add(WorkRecord(
           jobId: employment.jobId,
@@ -343,8 +351,10 @@ class WorkEngine {
         yearsWorked: employment.yearsWorked + 1,
       );
       if (promotionPrompt == null) {
+        final int effectivePerf =
+            (updated.performance + workPenalty).clamp(0, 100);
         final _PromotionResult result =
-            _checkPromotion(state, updated, updated.performance, rng);
+            _checkPromotion(state, updated, effectivePerf, rng);
         if (result.promoted) {
           updated = result.employment;
           promotionPrompt = WorkPrompt(
@@ -401,8 +411,12 @@ class WorkEngine {
         .indexWhere((Employment e) => e.jobId == jobId);
     if (index < 0) return state;
     final Employment employment = workState.currentEmployments[index];
+    final int workPenalty =
+        _healthEngine?.getWorkPerformancePenalty(state.healthState) ?? 0;
+    final int effectivePerformance =
+        (employment.performance + workPenalty).clamp(0, 100);
     final _PromotionResult result =
-        _checkPromotion(state, employment, employment.performance, rng,
+        _checkPromotion(state, employment, effectivePerformance, rng,
             isRequest: true);
     if (result.promoted) {
       final List<Employment> updatedEmployments =
@@ -629,9 +643,13 @@ class WorkEngine {
     );
   }
 
-  bool _checkFired(Employment employment, SeededRandom rng) {
+  bool _checkFired(
+    Employment employment,
+    SeededRandom rng,
+    int effectivePerformance,
+  ) {
     if (_countryConfig == null) return false;
-    final int performance = employment.performance;
+    final int performance = effectivePerformance;
     if (performance <= 0 &&
         _countryConfig!.fireAtZeroPerformance) {
       return true;

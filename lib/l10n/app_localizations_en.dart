@@ -383,6 +383,18 @@ class AppLocalizationsEn extends AppLocalizations {
       'No health actions available this year.';
 
   @override
+  String get healthBlocksWork =>
+      'Your health condition prevents you from working this year.';
+
+  @override
+  String get healthBlocksStudy =>
+      'Your health condition prevents you from studying this year.';
+
+  @override
+  String get healthBlocksWorkAndStudy =>
+      'Your health condition prevents you from working and studying this year.';
+
+  @override
   String get filterAll => 'All';
 
   @override

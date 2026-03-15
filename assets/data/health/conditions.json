@@ -16,7 +16,10 @@
     "canDevelopAtBirth": true,
     "minAgeToDevelop": 0,
     "maxAgeToDevelop": 15,
-    "averageDurationYears": null
+    "averageDurationYears": null,
+    "blocksWorkAtSeverity": null,
+    "blocksStudyAtSeverity": null,
+    "defaultTreatmentSuccessRate": 0.90
   },
   {
     "id": "type1_diabetes",
@@ -35,7 +38,10 @@
     "canDevelopAtBirth": true,
     "minAgeToDevelop": 0,
     "maxAgeToDevelop": 30,
-    "averageDurationYears": null
+    "averageDurationYears": null,
+    "blocksWorkAtSeverity": 5,
+    "blocksStudyAtSeverity": 5,
+    "defaultTreatmentSuccessRate": 0.95
   },
   {
     "id": "depression",
@@ -54,7 +60,10 @@
     "canDevelopAtBirth": false,
     "minAgeToDevelop": 12,
     "maxAgeToDevelop": 80,
-    "averageDurationYears": 4
+    "averageDurationYears": 4,
+    "blocksWorkAtSeverity": 4,
+    "blocksStudyAtSeverity": 4,
+    "defaultTreatmentSuccessRate": 0.37
   },
   {
     "id": "adhd",
@@ -73,7 +82,10 @@
     "canDevelopAtBirth": true,
     "minAgeToDevelop": 0,
     "maxAgeToDevelop": 18,
-    "averageDurationYears": null
+    "averageDurationYears": null,
+    "blocksWorkAtSeverity": null,
+    "blocksStudyAtSeverity": null,
+    "defaultTreatmentSuccessRate": 0.70
   },
   {
     "id": "anxiety",
@@ -92,7 +104,10 @@
     "canDevelopAtBirth": false,
     "minAgeToDevelop": 15,
     "maxAgeToDevelop": 70,
-    "averageDurationYears": 3
+    "averageDurationYears": 3,
+    "blocksWorkAtSeverity": null,
+    "blocksStudyAtSeverity": null,
+    "defaultTreatmentSuccessRate": 0.45
   },
   {
     "id": "broken_bone",
@@ -111,7 +126,10 @@
     "canDevelopAtBirth": false,
     "minAgeToDevelop": 5,
     "maxAgeToDevelop": 90,
-    "averageDurationYears": 1
+    "averageDurationYears": 1,
+    "blocksWorkAtSeverity": 4,
+    "blocksStudyAtSeverity": 3,
+    "defaultTreatmentSuccessRate": 0.92
   },
   {
     "id": "cancer",
@@ -130,7 +148,10 @@
     "canDevelopAtBirth": false,
     "minAgeToDevelop": 30,
     "maxAgeToDevelop": 85,
-    "averageDurationYears": 2
+    "averageDurationYears": 2,
+    "blocksWorkAtSeverity": 5,
+    "blocksStudyAtSeverity": 5,
+    "defaultTreatmentSuccessRate": 0.50
   },
   {
     "id": "burnout",
@@ -149,6 +170,9 @@
     "canDevelopAtBirth": false,
     "minAgeToDevelop": 22,
     "maxAgeToDevelop": 65,
-    "averageDurationYears": 2
+    "averageDurationYears": 2,
+    "blocksWorkAtSeverity": 4,
+    "blocksStudyAtSeverity": 4,
+    "defaultTreatmentSuccessRate": 0.55
   }
 ]

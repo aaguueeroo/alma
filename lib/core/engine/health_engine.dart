@@ -451,14 +451,64 @@ class HealthEngine {
     return kBaseMortality + ageFactor + physicalPenalty + stressPenalty;
   }
 
+  bool blocksWork(HealthState? state) {
+    if (state == null) return false;
+    for (final cond in state.conditions) {
+      if (cond.isTreated) continue;
+      final def = _conditionDefinitions
+          .where((d) => d.id == cond.id)
+          .firstOrNull;
+      if (def == null || def.blocksWorkAtSeverity == null) continue;
+      if (cond.severity >= def.blocksWorkAtSeverity!) return true;
+    }
+    return false;
+  }
+
+  int getWorkPerformancePenalty(HealthState? state) {
+    if (state == null) return 0;
+    int penalty = 0;
+    for (final cond in state.conditions) {
+      if (cond.isTreated) continue;
+      penalty += cond.workPerformanceEffect.round();
+    }
+    return penalty;
+  }
+
+  int getStudyPerformancePenalty(HealthState? state) {
+    if (state == null) return 0;
+    int penalty = 0;
+    for (final cond in state.conditions) {
+      if (cond.isTreated) continue;
+      penalty += cond.studyPerformanceEffect.round();
+    }
+    return penalty;
+  }
+
+  bool blocksStudy(HealthState? state) {
+    if (state == null) return false;
+    for (final cond in state.conditions) {
+      if (cond.isTreated) continue;
+      final def = _conditionDefinitions
+          .where((d) => d.id == cond.id)
+          .firstOrNull;
+      if (def == null || def.blocksStudyAtSeverity == null) continue;
+      if (cond.severity >= def.blocksStudyAtSeverity!) return true;
+    }
+    return false;
+  }
+
   List<HealthAction> getAvailableHospitalActions(HealthState? healthState) {
     final List<String> performed =
         healthState?.performedHospitalActionIds ?? [];
-    return _healthActions
-        .where((a) =>
-            a.type == HealthActionType.hospital &&
-            !performed.contains(a.id))
-        .toList();
+    final Set<String> diagnosedIds =
+        healthState?.diagnosedConditionIds.toSet() ?? {};
+    return _healthActions.where((a) {
+      if (a.type != HealthActionType.hospital) return false;
+      if (performed.contains(a.id)) return false;
+      if (a.requiresDiagnosedConditionIds.isEmpty) return true;
+      return a.requiresDiagnosedConditionIds
+          .any((id) => diagnosedIds.contains(id));
+    }).toList();
   }
 
   List<HealthAction> getHealthActionsByIds(List<String> ids) {
@@ -473,8 +523,14 @@ class HealthEngine {
     LifeState lifeState,
     SeededRandom rng,
   ) {
+    final Set<String> diagnosedIds = healthState.diagnosedConditionIds.toSet();
     final List<HealthAction> general = _healthActions
-        .where((a) => a.type == HealthActionType.general)
+        .where((a) {
+          if (a.type != HealthActionType.general) return false;
+          if (a.requiresDiagnosedConditionIds.isEmpty) return true;
+          return a.requiresDiagnosedConditionIds
+              .any((id) => diagnosedIds.contains(id));
+        })
         .toList();
     if (general.length <= kHealthGeneralActionsPerYear) {
       return general;
@@ -521,7 +577,13 @@ class HealthEngine {
     for (final condId in action.canTreatConditionIds) {
       final cond = newState.conditions.where((c) => c.id == condId).firstOrNull;
       if (cond == null || !cond.isDiagnosed) continue;
-      if (rng.chance(0.5)) {
+      double successRate = action.treatmentSuccessRateByConditionId[condId] ??
+          _conditionDefinitions
+              .where((d) => d.id == condId)
+              .firstOrNull
+              ?.defaultTreatmentSuccessRate ??
+          0.5;
+      if (rng.chance(successRate)) {
         newState = newState.copyWith(
           conditions: newState.conditions.map((c) {
             if (c.id == condId) return c.copyWith(isTreated: true);
@@ -536,8 +598,9 @@ class HealthEngine {
   HealthState performGeneralAction(
     HealthState state,
     HealthAction action,
+    SeededRandom rng,
   ) {
-    return state.copyWith(
+    HealthState newState = state.copyWith(
       physicalHealth: (state.physicalHealth + action.physicalHealthEffect)
           .clamp(0.0, kMaxHealthValue.toDouble()),
       mentalHealth: (state.mentalHealth + action.mentalHealthEffect)
@@ -547,6 +610,25 @@ class HealthEngine {
         action.id,
       ],
     );
+    for (final condId in action.canTreatConditionIds) {
+      final cond = newState.conditions.where((c) => c.id == condId).firstOrNull;
+      if (cond == null || !cond.isDiagnosed) continue;
+      double successRate = action.treatmentSuccessRateByConditionId[condId] ??
+          _conditionDefinitions
+              .where((d) => d.id == condId)
+              .firstOrNull
+              ?.defaultTreatmentSuccessRate ??
+          0.5;
+      if (rng.chance(successRate)) {
+        newState = newState.copyWith(
+          conditions: newState.conditions.map((c) {
+            if (c.id == condId) return c.copyWith(isTreated: true);
+            return c;
+          }).toList(),
+        );
+      }
+    }
+    return newState;
   }
 
   double getTimeCostMultiplier(HealthState? healthState) {

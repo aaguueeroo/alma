@@ -189,6 +189,10 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
         onAskPromotionTap: (String jobId) {
           ref.read(lifeControllerProvider.notifier).requestPromotion(jobId);
         },
+        isWorkBlockedByHealth:
+            ref.read(lifeControllerProvider.notifier).isWorkBlockedByHealth,
+        workPerformancePenalty:
+            ref.read(lifeControllerProvider.notifier).workPerformancePenalty,
       ),
       EducationTab(
         key: const ValueKey<int>(1),
@@ -198,6 +202,10 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
         onEnrollTap: () => _showEducationPrompt(context),
         onDropOutTap: () => ref.read(lifeControllerProvider.notifier).dropOut(),
         canDropOut: ref.read(lifeControllerProvider.notifier).canDropOutFromCurrentEnrollment,
+        isStudyBlockedByHealth:
+            ref.read(lifeControllerProvider.notifier).isStudyBlockedByHealth,
+        studyPerformancePenalty:
+            ref.read(lifeControllerProvider.notifier).studyPerformancePenalty,
       ),
       LifeMainTab(key: const ValueKey<int>(2), state: state),
       HealthTab(
@@ -308,6 +316,14 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
   void _showEducationPrompt(BuildContext context) {
     final LifeControllerState lifeState = ref.read(lifeControllerProvider);
     final LifeController controller = ref.read(lifeControllerProvider.notifier);
+    if (controller.isStudyBlockedByHealth) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.healthBlocksStudy),
+        ),
+      );
+      return;
+    }
     EducationPrompt? prompt = lifeState.currentLife?.state.educationState?.pendingPrompt;
     if (prompt == null) {
       final List<EducationProgram> programs = controller.getAvailableProgramsForEnrollment();
@@ -350,6 +366,14 @@ class _LifeShellScreenState extends ConsumerState<LifeShellScreen> {
   void _showJobApplyDialog(BuildContext context) {
     final LifeController controller = ref.read(lifeControllerProvider.notifier);
     final LifeControllerState lifeState = ref.read(lifeControllerProvider);
+    if (controller.isWorkBlockedByHealth) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.healthBlocksWork),
+        ),
+      );
+      return;
+    }
     final List<Job> jobs = controller.getAvailableJobs();
     final int timeRemaining = lifeState.currentLife?.state.timeRemaining ?? 0;
     showDialog(

@@ -82,11 +82,11 @@ final habitProcessorProvider = Provider<HabitProcessor>((ref) {
 });
 
 final educationEngineProvider = Provider<EducationEngine>((ref) {
-  return EducationEngine();
+  return EducationEngine(healthEngine: ref.watch(healthEngineProvider));
 });
 
 final workEngineProvider = Provider<WorkEngine>((ref) {
-  return WorkEngine();
+  return WorkEngine(healthEngine: ref.watch(healthEngineProvider));
 });
 
 final npcFactoryProvider = Provider<NpcFactory>((ref) {

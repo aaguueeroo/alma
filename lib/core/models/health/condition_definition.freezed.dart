@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ConditionDefinition {
 
- String get id; String get name; ConditionType get type; bool get isChronic; int get severity; List<String> get symptomIds; double get physicalHealthEffect; double get mentalHealthEffect; double get timeCostMultiplier; double get workPerformanceEffect; double get studyPerformanceEffect; double get relationshipEffect; double get lifetimeChance; bool get canDevelopAtBirth; int get minAgeToDevelop; int get maxAgeToDevelop; int? get averageDurationYears;
+ String get id; String get name; ConditionType get type; bool get isChronic; int get severity; List<String> get symptomIds; double get physicalHealthEffect; double get mentalHealthEffect; double get timeCostMultiplier; double get workPerformanceEffect; double get studyPerformanceEffect; double get relationshipEffect; double get lifetimeChance; bool get canDevelopAtBirth; int get minAgeToDevelop; int get maxAgeToDevelop; int? get averageDurationYears; int? get blocksWorkAtSeverity; int? get blocksStudyAtSeverity; double? get defaultTreatmentSuccessRate;
 /// Create a copy of ConditionDefinition
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $ConditionDefinitionCopyWith<ConditionDefinition> get copyWith => _$ConditionDef
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ConditionDefinition&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.type, type) || other.type == type)&&(identical(other.isChronic, isChronic) || other.isChronic == isChronic)&&(identical(other.severity, severity) || other.severity == severity)&&const DeepCollectionEquality().equals(other.symptomIds, symptomIds)&&(identical(other.physicalHealthEffect, physicalHealthEffect) || other.physicalHealthEffect == physicalHealthEffect)&&(identical(other.mentalHealthEffect, mentalHealthEffect) || other.mentalHealthEffect == mentalHealthEffect)&&(identical(other.timeCostMultiplier, timeCostMultiplier) || other.timeCostMultiplier == timeCostMultiplier)&&(identical(other.workPerformanceEffect, workPerformanceEffect) || other.workPerformanceEffect == workPerformanceEffect)&&(identical(other.studyPerformanceEffect, studyPerformanceEffect) || other.studyPerformanceEffect == studyPerformanceEffect)&&(identical(other.relationshipEffect, relationshipEffect) || other.relationshipEffect == relationshipEffect)&&(identical(other.lifetimeChance, lifetimeChance) || other.lifetimeChance == lifetimeChance)&&(identical(other.canDevelopAtBirth, canDevelopAtBirth) || other.canDevelopAtBirth == canDevelopAtBirth)&&(identical(other.minAgeToDevelop, minAgeToDevelop) || other.minAgeToDevelop == minAgeToDevelop)&&(identical(other.maxAgeToDevelop, maxAgeToDevelop) || other.maxAgeToDevelop == maxAgeToDevelop)&&(identical(other.averageDurationYears, averageDurationYears) || other.averageDurationYears == averageDurationYears));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ConditionDefinition&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.type, type) || other.type == type)&&(identical(other.isChronic, isChronic) || other.isChronic == isChronic)&&(identical(other.severity, severity) || other.severity == severity)&&const DeepCollectionEquality().equals(other.symptomIds, symptomIds)&&(identical(other.physicalHealthEffect, physicalHealthEffect) || other.physicalHealthEffect == physicalHealthEffect)&&(identical(other.mentalHealthEffect, mentalHealthEffect) || other.mentalHealthEffect == mentalHealthEffect)&&(identical(other.timeCostMultiplier, timeCostMultiplier) || other.timeCostMultiplier == timeCostMultiplier)&&(identical(other.workPerformanceEffect, workPerformanceEffect) || other.workPerformanceEffect == workPerformanceEffect)&&(identical(other.studyPerformanceEffect, studyPerformanceEffect) || other.studyPerformanceEffect == studyPerformanceEffect)&&(identical(other.relationshipEffect, relationshipEffect) || other.relationshipEffect == relationshipEffect)&&(identical(other.lifetimeChance, lifetimeChance) || other.lifetimeChance == lifetimeChance)&&(identical(other.canDevelopAtBirth, canDevelopAtBirth) || other.canDevelopAtBirth == canDevelopAtBirth)&&(identical(other.minAgeToDevelop, minAgeToDevelop) || other.minAgeToDevelop == minAgeToDevelop)&&(identical(other.maxAgeToDevelop, maxAgeToDevelop) || other.maxAgeToDevelop == maxAgeToDevelop)&&(identical(other.averageDurationYears, averageDurationYears) || other.averageDurationYears == averageDurationYears)&&(identical(other.blocksWorkAtSeverity, blocksWorkAtSeverity) || other.blocksWorkAtSeverity == blocksWorkAtSeverity)&&(identical(other.blocksStudyAtSeverity, blocksStudyAtSeverity) || other.blocksStudyAtSeverity == blocksStudyAtSeverity)&&(identical(other.defaultTreatmentSuccessRate, defaultTreatmentSuccessRate) || other.defaultTreatmentSuccessRate == defaultTreatmentSuccessRate));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,type,isChronic,severity,const DeepCollectionEquality().hash(symptomIds),physicalHealthEffect,mentalHealthEffect,timeCostMultiplier,workPerformanceEffect,studyPerformanceEffect,relationshipEffect,lifetimeChance,canDevelopAtBirth,minAgeToDevelop,maxAgeToDevelop,averageDurationYears);
+int get hashCode => Object.hashAll([runtimeType,id,name,type,isChronic,severity,const DeepCollectionEquality().hash(symptomIds),physicalHealthEffect,mentalHealthEffect,timeCostMultiplier,workPerformanceEffect,studyPerformanceEffect,relationshipEffect,lifetimeChance,canDevelopAtBirth,minAgeToDevelop,maxAgeToDevelop,averageDurationYears,blocksWorkAtSeverity,blocksStudyAtSeverity,defaultTreatmentSuccessRate]);
 
 @override
 String toString() {
-  return 'ConditionDefinition(id: $id, name: $name, type: $type, isChronic: $isChronic, severity: $severity, symptomIds: $symptomIds, physicalHealthEffect: $physicalHealthEffect, mentalHealthEffect: $mentalHealthEffect, timeCostMultiplier: $timeCostMultiplier, workPerformanceEffect: $workPerformanceEffect, studyPerformanceEffect: $studyPerformanceEffect, relationshipEffect: $relationshipEffect, lifetimeChance: $lifetimeChance, canDevelopAtBirth: $canDevelopAtBirth, minAgeToDevelop: $minAgeToDevelop, maxAgeToDevelop: $maxAgeToDevelop, averageDurationYears: $averageDurationYears)';
+  return 'ConditionDefinition(id: $id, name: $name, type: $type, isChronic: $isChronic, severity: $severity, symptomIds: $symptomIds, physicalHealthEffect: $physicalHealthEffect, mentalHealthEffect: $mentalHealthEffect, timeCostMultiplier: $timeCostMultiplier, workPerformanceEffect: $workPerformanceEffect, studyPerformanceEffect: $studyPerformanceEffect, relationshipEffect: $relationshipEffect, lifetimeChance: $lifetimeChance, canDevelopAtBirth: $canDevelopAtBirth, minAgeToDevelop: $minAgeToDevelop, maxAgeToDevelop: $maxAgeToDevelop, averageDurationYears: $averageDurationYears, blocksWorkAtSeverity: $blocksWorkAtSeverity, blocksStudyAtSeverity: $blocksStudyAtSeverity, defaultTreatmentSuccessRate: $defaultTreatmentSuccessRate)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $ConditionDefinitionCopyWith<$Res>  {
   factory $ConditionDefinitionCopyWith(ConditionDefinition value, $Res Function(ConditionDefinition) _then) = _$ConditionDefinitionCopyWithImpl;
 @useResult
 $Res call({
- String id, String name, ConditionType type, bool isChronic, int severity, List<String> symptomIds, double physicalHealthEffect, double mentalHealthEffect, double timeCostMultiplier, double workPerformanceEffect, double studyPerformanceEffect, double relationshipEffect, double lifetimeChance, bool canDevelopAtBirth, int minAgeToDevelop, int maxAgeToDevelop, int? averageDurationYears
+ String id, String name, ConditionType type, bool isChronic, int severity, List<String> symptomIds, double physicalHealthEffect, double mentalHealthEffect, double timeCostMultiplier, double workPerformanceEffect, double studyPerformanceEffect, double relationshipEffect, double lifetimeChance, bool canDevelopAtBirth, int minAgeToDevelop, int maxAgeToDevelop, int? averageDurationYears, int? blocksWorkAtSeverity, int? blocksStudyAtSeverity, double? defaultTreatmentSuccessRate
 });
 
 
@@ -65,7 +65,7 @@ class _$ConditionDefinitionCopyWithImpl<$Res>
 
 /// Create a copy of ConditionDefinition
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? type = null,Object? isChronic = null,Object? severity = null,Object? symptomIds = null,Object? physicalHealthEffect = null,Object? mentalHealthEffect = null,Object? timeCostMultiplier = null,Object? workPerformanceEffect = null,Object? studyPerformanceEffect = null,Object? relationshipEffect = null,Object? lifetimeChance = null,Object? canDevelopAtBirth = null,Object? minAgeToDevelop = null,Object? maxAgeToDevelop = null,Object? averageDurationYears = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? type = null,Object? isChronic = null,Object? severity = null,Object? symptomIds = null,Object? physicalHealthEffect = null,Object? mentalHealthEffect = null,Object? timeCostMultiplier = null,Object? workPerformanceEffect = null,Object? studyPerformanceEffect = null,Object? relationshipEffect = null,Object? lifetimeChance = null,Object? canDevelopAtBirth = null,Object? minAgeToDevelop = null,Object? maxAgeToDevelop = null,Object? averageDurationYears = freezed,Object? blocksWorkAtSeverity = freezed,Object? blocksStudyAtSeverity = freezed,Object? defaultTreatmentSuccessRate = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -84,7 +84,10 @@ as double,canDevelopAtBirth: null == canDevelopAtBirth ? _self.canDevelopAtBirth
 as bool,minAgeToDevelop: null == minAgeToDevelop ? _self.minAgeToDevelop : minAgeToDevelop // ignore: cast_nullable_to_non_nullable
 as int,maxAgeToDevelop: null == maxAgeToDevelop ? _self.maxAgeToDevelop : maxAgeToDevelop // ignore: cast_nullable_to_non_nullable
 as int,averageDurationYears: freezed == averageDurationYears ? _self.averageDurationYears : averageDurationYears // ignore: cast_nullable_to_non_nullable
-as int?,
+as int?,blocksWorkAtSeverity: freezed == blocksWorkAtSeverity ? _self.blocksWorkAtSeverity : blocksWorkAtSeverity // ignore: cast_nullable_to_non_nullable
+as int?,blocksStudyAtSeverity: freezed == blocksStudyAtSeverity ? _self.blocksStudyAtSeverity : blocksStudyAtSeverity // ignore: cast_nullable_to_non_nullable
+as int?,defaultTreatmentSuccessRate: freezed == defaultTreatmentSuccessRate ? _self.defaultTreatmentSuccessRate : defaultTreatmentSuccessRate // ignore: cast_nullable_to_non_nullable
+as double?,
   ));
 }
 
@@ -166,10 +169,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  ConditionType type,  bool isChronic,  int severity,  List<String> symptomIds,  double physicalHealthEffect,  double mentalHealthEffect,  double timeCostMultiplier,  double workPerformanceEffect,  double studyPerformanceEffect,  double relationshipEffect,  double lifetimeChance,  bool canDevelopAtBirth,  int minAgeToDevelop,  int maxAgeToDevelop,  int? averageDurationYears)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  ConditionType type,  bool isChronic,  int severity,  List<String> symptomIds,  double physicalHealthEffect,  double mentalHealthEffect,  double timeCostMultiplier,  double workPerformanceEffect,  double studyPerformanceEffect,  double relationshipEffect,  double lifetimeChance,  bool canDevelopAtBirth,  int minAgeToDevelop,  int maxAgeToDevelop,  int? averageDurationYears,  int? blocksWorkAtSeverity,  int? blocksStudyAtSeverity,  double? defaultTreatmentSuccessRate)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ConditionDefinition() when $default != null:
-return $default(_that.id,_that.name,_that.type,_that.isChronic,_that.severity,_that.symptomIds,_that.physicalHealthEffect,_that.mentalHealthEffect,_that.timeCostMultiplier,_that.workPerformanceEffect,_that.studyPerformanceEffect,_that.relationshipEffect,_that.lifetimeChance,_that.canDevelopAtBirth,_that.minAgeToDevelop,_that.maxAgeToDevelop,_that.averageDurationYears);case _:
+return $default(_that.id,_that.name,_that.type,_that.isChronic,_that.severity,_that.symptomIds,_that.physicalHealthEffect,_that.mentalHealthEffect,_that.timeCostMultiplier,_that.workPerformanceEffect,_that.studyPerformanceEffect,_that.relationshipEffect,_that.lifetimeChance,_that.canDevelopAtBirth,_that.minAgeToDevelop,_that.maxAgeToDevelop,_that.averageDurationYears,_that.blocksWorkAtSeverity,_that.blocksStudyAtSeverity,_that.defaultTreatmentSuccessRate);case _:
   return orElse();
 
 }
@@ -187,10 +190,10 @@ return $default(_that.id,_that.name,_that.type,_that.isChronic,_that.severity,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  ConditionType type,  bool isChronic,  int severity,  List<String> symptomIds,  double physicalHealthEffect,  double mentalHealthEffect,  double timeCostMultiplier,  double workPerformanceEffect,  double studyPerformanceEffect,  double relationshipEffect,  double lifetimeChance,  bool canDevelopAtBirth,  int minAgeToDevelop,  int maxAgeToDevelop,  int? averageDurationYears)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  ConditionType type,  bool isChronic,  int severity,  List<String> symptomIds,  double physicalHealthEffect,  double mentalHealthEffect,  double timeCostMultiplier,  double workPerformanceEffect,  double studyPerformanceEffect,  double relationshipEffect,  double lifetimeChance,  bool canDevelopAtBirth,  int minAgeToDevelop,  int maxAgeToDevelop,  int? averageDurationYears,  int? blocksWorkAtSeverity,  int? blocksStudyAtSeverity,  double? defaultTreatmentSuccessRate)  $default,) {final _that = this;
 switch (_that) {
 case _ConditionDefinition():
-return $default(_that.id,_that.name,_that.type,_that.isChronic,_that.severity,_that.symptomIds,_that.physicalHealthEffect,_that.mentalHealthEffect,_that.timeCostMultiplier,_that.workPerformanceEffect,_that.studyPerformanceEffect,_that.relationshipEffect,_that.lifetimeChance,_that.canDevelopAtBirth,_that.minAgeToDevelop,_that.maxAgeToDevelop,_that.averageDurationYears);}
+return $default(_that.id,_that.name,_that.type,_that.isChronic,_that.severity,_that.symptomIds,_that.physicalHealthEffect,_that.mentalHealthEffect,_that.timeCostMultiplier,_that.workPerformanceEffect,_that.studyPerformanceEffect,_that.relationshipEffect,_that.lifetimeChance,_that.canDevelopAtBirth,_that.minAgeToDevelop,_that.maxAgeToDevelop,_that.averageDurationYears,_that.blocksWorkAtSeverity,_that.blocksStudyAtSeverity,_that.defaultTreatmentSuccessRate);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -204,10 +207,10 @@ return $default(_that.id,_that.name,_that.type,_that.isChronic,_that.severity,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  ConditionType type,  bool isChronic,  int severity,  List<String> symptomIds,  double physicalHealthEffect,  double mentalHealthEffect,  double timeCostMultiplier,  double workPerformanceEffect,  double studyPerformanceEffect,  double relationshipEffect,  double lifetimeChance,  bool canDevelopAtBirth,  int minAgeToDevelop,  int maxAgeToDevelop,  int? averageDurationYears)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  ConditionType type,  bool isChronic,  int severity,  List<String> symptomIds,  double physicalHealthEffect,  double mentalHealthEffect,  double timeCostMultiplier,  double workPerformanceEffect,  double studyPerformanceEffect,  double relationshipEffect,  double lifetimeChance,  bool canDevelopAtBirth,  int minAgeToDevelop,  int maxAgeToDevelop,  int? averageDurationYears,  int? blocksWorkAtSeverity,  int? blocksStudyAtSeverity,  double? defaultTreatmentSuccessRate)?  $default,) {final _that = this;
 switch (_that) {
 case _ConditionDefinition() when $default != null:
-return $default(_that.id,_that.name,_that.type,_that.isChronic,_that.severity,_that.symptomIds,_that.physicalHealthEffect,_that.mentalHealthEffect,_that.timeCostMultiplier,_that.workPerformanceEffect,_that.studyPerformanceEffect,_that.relationshipEffect,_that.lifetimeChance,_that.canDevelopAtBirth,_that.minAgeToDevelop,_that.maxAgeToDevelop,_that.averageDurationYears);case _:
+return $default(_that.id,_that.name,_that.type,_that.isChronic,_that.severity,_that.symptomIds,_that.physicalHealthEffect,_that.mentalHealthEffect,_that.timeCostMultiplier,_that.workPerformanceEffect,_that.studyPerformanceEffect,_that.relationshipEffect,_that.lifetimeChance,_that.canDevelopAtBirth,_that.minAgeToDevelop,_that.maxAgeToDevelop,_that.averageDurationYears,_that.blocksWorkAtSeverity,_that.blocksStudyAtSeverity,_that.defaultTreatmentSuccessRate);case _:
   return null;
 
 }
@@ -219,7 +222,7 @@ return $default(_that.id,_that.name,_that.type,_that.isChronic,_that.severity,_t
 @JsonSerializable()
 
 class _ConditionDefinition extends ConditionDefinition {
-  const _ConditionDefinition({required this.id, required this.name, required this.type, required this.isChronic, required this.severity, final  List<String> symptomIds = const [], this.physicalHealthEffect = 0.0, this.mentalHealthEffect = 0.0, this.timeCostMultiplier = 1.0, this.workPerformanceEffect = 0.0, this.studyPerformanceEffect = 0.0, this.relationshipEffect = 0.0, this.lifetimeChance = 0.0, this.canDevelopAtBirth = false, this.minAgeToDevelop = 0, this.maxAgeToDevelop = 100, this.averageDurationYears}): _symptomIds = symptomIds,super._();
+  const _ConditionDefinition({required this.id, required this.name, required this.type, required this.isChronic, required this.severity, final  List<String> symptomIds = const [], this.physicalHealthEffect = 0.0, this.mentalHealthEffect = 0.0, this.timeCostMultiplier = 1.0, this.workPerformanceEffect = 0.0, this.studyPerformanceEffect = 0.0, this.relationshipEffect = 0.0, this.lifetimeChance = 0.0, this.canDevelopAtBirth = false, this.minAgeToDevelop = 0, this.maxAgeToDevelop = 100, this.averageDurationYears, this.blocksWorkAtSeverity, this.blocksStudyAtSeverity, this.defaultTreatmentSuccessRate}): _symptomIds = symptomIds,super._();
   factory _ConditionDefinition.fromJson(Map<String, dynamic> json) => _$ConditionDefinitionFromJson(json);
 
 @override final  String id;
@@ -245,6 +248,9 @@ class _ConditionDefinition extends ConditionDefinition {
 @override@JsonKey() final  int minAgeToDevelop;
 @override@JsonKey() final  int maxAgeToDevelop;
 @override final  int? averageDurationYears;
+@override final  int? blocksWorkAtSeverity;
+@override final  int? blocksStudyAtSeverity;
+@override final  double? defaultTreatmentSuccessRate;
 
 /// Create a copy of ConditionDefinition
 /// with the given fields replaced by the non-null parameter values.
@@ -259,16 +265,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ConditionDefinition&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.type, type) || other.type == type)&&(identical(other.isChronic, isChronic) || other.isChronic == isChronic)&&(identical(other.severity, severity) || other.severity == severity)&&const DeepCollectionEquality().equals(other._symptomIds, _symptomIds)&&(identical(other.physicalHealthEffect, physicalHealthEffect) || other.physicalHealthEffect == physicalHealthEffect)&&(identical(other.mentalHealthEffect, mentalHealthEffect) || other.mentalHealthEffect == mentalHealthEffect)&&(identical(other.timeCostMultiplier, timeCostMultiplier) || other.timeCostMultiplier == timeCostMultiplier)&&(identical(other.workPerformanceEffect, workPerformanceEffect) || other.workPerformanceEffect == workPerformanceEffect)&&(identical(other.studyPerformanceEffect, studyPerformanceEffect) || other.studyPerformanceEffect == studyPerformanceEffect)&&(identical(other.relationshipEffect, relationshipEffect) || other.relationshipEffect == relationshipEffect)&&(identical(other.lifetimeChance, lifetimeChance) || other.lifetimeChance == lifetimeChance)&&(identical(other.canDevelopAtBirth, canDevelopAtBirth) || other.canDevelopAtBirth == canDevelopAtBirth)&&(identical(other.minAgeToDevelop, minAgeToDevelop) || other.minAgeToDevelop == minAgeToDevelop)&&(identical(other.maxAgeToDevelop, maxAgeToDevelop) || other.maxAgeToDevelop == maxAgeToDevelop)&&(identical(other.averageDurationYears, averageDurationYears) || other.averageDurationYears == averageDurationYears));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ConditionDefinition&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.type, type) || other.type == type)&&(identical(other.isChronic, isChronic) || other.isChronic == isChronic)&&(identical(other.severity, severity) || other.severity == severity)&&const DeepCollectionEquality().equals(other._symptomIds, _symptomIds)&&(identical(other.physicalHealthEffect, physicalHealthEffect) || other.physicalHealthEffect == physicalHealthEffect)&&(identical(other.mentalHealthEffect, mentalHealthEffect) || other.mentalHealthEffect == mentalHealthEffect)&&(identical(other.timeCostMultiplier, timeCostMultiplier) || other.timeCostMultiplier == timeCostMultiplier)&&(identical(other.workPerformanceEffect, workPerformanceEffect) || other.workPerformanceEffect == workPerformanceEffect)&&(identical(other.studyPerformanceEffect, studyPerformanceEffect) || other.studyPerformanceEffect == studyPerformanceEffect)&&(identical(other.relationshipEffect, relationshipEffect) || other.relationshipEffect == relationshipEffect)&&(identical(other.lifetimeChance, lifetimeChance) || other.lifetimeChance == lifetimeChance)&&(identical(other.canDevelopAtBirth, canDevelopAtBirth) || other.canDevelopAtBirth == canDevelopAtBirth)&&(identical(other.minAgeToDevelop, minAgeToDevelop) || other.minAgeToDevelop == minAgeToDevelop)&&(identical(other.maxAgeToDevelop, maxAgeToDevelop) || other.maxAgeToDevelop == maxAgeToDevelop)&&(identical(other.averageDurationYears, averageDurationYears) || other.averageDurationYears == averageDurationYears)&&(identical(other.blocksWorkAtSeverity, blocksWorkAtSeverity) || other.blocksWorkAtSeverity == blocksWorkAtSeverity)&&(identical(other.blocksStudyAtSeverity, blocksStudyAtSeverity) || other.blocksStudyAtSeverity == blocksStudyAtSeverity)&&(identical(other.defaultTreatmentSuccessRate, defaultTreatmentSuccessRate) || other.defaultTreatmentSuccessRate == defaultTreatmentSuccessRate));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,type,isChronic,severity,const DeepCollectionEquality().hash(_symptomIds),physicalHealthEffect,mentalHealthEffect,timeCostMultiplier,workPerformanceEffect,studyPerformanceEffect,relationshipEffect,lifetimeChance,canDevelopAtBirth,minAgeToDevelop,maxAgeToDevelop,averageDurationYears);
+int get hashCode => Object.hashAll([runtimeType,id,name,type,isChronic,severity,const DeepCollectionEquality().hash(_symptomIds),physicalHealthEffect,mentalHealthEffect,timeCostMultiplier,workPerformanceEffect,studyPerformanceEffect,relationshipEffect,lifetimeChance,canDevelopAtBirth,minAgeToDevelop,maxAgeToDevelop,averageDurationYears,blocksWorkAtSeverity,blocksStudyAtSeverity,defaultTreatmentSuccessRate]);
 
 @override
 String toString() {
-  return 'ConditionDefinition(id: $id, name: $name, type: $type, isChronic: $isChronic, severity: $severity, symptomIds: $symptomIds, physicalHealthEffect: $physicalHealthEffect, mentalHealthEffect: $mentalHealthEffect, timeCostMultiplier: $timeCostMultiplier, workPerformanceEffect: $workPerformanceEffect, studyPerformanceEffect: $studyPerformanceEffect, relationshipEffect: $relationshipEffect, lifetimeChance: $lifetimeChance, canDevelopAtBirth: $canDevelopAtBirth, minAgeToDevelop: $minAgeToDevelop, maxAgeToDevelop: $maxAgeToDevelop, averageDurationYears: $averageDurationYears)';
+  return 'ConditionDefinition(id: $id, name: $name, type: $type, isChronic: $isChronic, severity: $severity, symptomIds: $symptomIds, physicalHealthEffect: $physicalHealthEffect, mentalHealthEffect: $mentalHealthEffect, timeCostMultiplier: $timeCostMultiplier, workPerformanceEffect: $workPerformanceEffect, studyPerformanceEffect: $studyPerformanceEffect, relationshipEffect: $relationshipEffect, lifetimeChance: $lifetimeChance, canDevelopAtBirth: $canDevelopAtBirth, minAgeToDevelop: $minAgeToDevelop, maxAgeToDevelop: $maxAgeToDevelop, averageDurationYears: $averageDurationYears, blocksWorkAtSeverity: $blocksWorkAtSeverity, blocksStudyAtSeverity: $blocksStudyAtSeverity, defaultTreatmentSuccessRate: $defaultTreatmentSuccessRate)';
 }
 
 
@@ -279,7 +285,7 @@ abstract mixin class _$ConditionDefinitionCopyWith<$Res> implements $ConditionDe
   factory _$ConditionDefinitionCopyWith(_ConditionDefinition value, $Res Function(_ConditionDefinition) _then) = __$ConditionDefinitionCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name, ConditionType type, bool isChronic, int severity, List<String> symptomIds, double physicalHealthEffect, double mentalHealthEffect, double timeCostMultiplier, double workPerformanceEffect, double studyPerformanceEffect, double relationshipEffect, double lifetimeChance, bool canDevelopAtBirth, int minAgeToDevelop, int maxAgeToDevelop, int? averageDurationYears
+ String id, String name, ConditionType type, bool isChronic, int severity, List<String> symptomIds, double physicalHealthEffect, double mentalHealthEffect, double timeCostMultiplier, double workPerformanceEffect, double studyPerformanceEffect, double relationshipEffect, double lifetimeChance, bool canDevelopAtBirth, int minAgeToDevelop, int maxAgeToDevelop, int? averageDurationYears, int? blocksWorkAtSeverity, int? blocksStudyAtSeverity, double? defaultTreatmentSuccessRate
 });
 
 
@@ -296,7 +302,7 @@ class __$ConditionDefinitionCopyWithImpl<$Res>
 
 /// Create a copy of ConditionDefinition
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? type = null,Object? isChronic = null,Object? severity = null,Object? symptomIds = null,Object? physicalHealthEffect = null,Object? mentalHealthEffect = null,Object? timeCostMultiplier = null,Object? workPerformanceEffect = null,Object? studyPerformanceEffect = null,Object? relationshipEffect = null,Object? lifetimeChance = null,Object? canDevelopAtBirth = null,Object? minAgeToDevelop = null,Object? maxAgeToDevelop = null,Object? averageDurationYears = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? type = null,Object? isChronic = null,Object? severity = null,Object? symptomIds = null,Object? physicalHealthEffect = null,Object? mentalHealthEffect = null,Object? timeCostMultiplier = null,Object? workPerformanceEffect = null,Object? studyPerformanceEffect = null,Object? relationshipEffect = null,Object? lifetimeChance = null,Object? canDevelopAtBirth = null,Object? minAgeToDevelop = null,Object? maxAgeToDevelop = null,Object? averageDurationYears = freezed,Object? blocksWorkAtSeverity = freezed,Object? blocksStudyAtSeverity = freezed,Object? defaultTreatmentSuccessRate = freezed,}) {
   return _then(_ConditionDefinition(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -315,7 +321,10 @@ as double,canDevelopAtBirth: null == canDevelopAtBirth ? _self.canDevelopAtBirth
 as bool,minAgeToDevelop: null == minAgeToDevelop ? _self.minAgeToDevelop : minAgeToDevelop // ignore: cast_nullable_to_non_nullable
 as int,maxAgeToDevelop: null == maxAgeToDevelop ? _self.maxAgeToDevelop : maxAgeToDevelop // ignore: cast_nullable_to_non_nullable
 as int,averageDurationYears: freezed == averageDurationYears ? _self.averageDurationYears : averageDurationYears // ignore: cast_nullable_to_non_nullable
-as int?,
+as int?,blocksWorkAtSeverity: freezed == blocksWorkAtSeverity ? _self.blocksWorkAtSeverity : blocksWorkAtSeverity // ignore: cast_nullable_to_non_nullable
+as int?,blocksStudyAtSeverity: freezed == blocksStudyAtSeverity ? _self.blocksStudyAtSeverity : blocksStudyAtSeverity // ignore: cast_nullable_to_non_nullable
+as int?,defaultTreatmentSuccessRate: freezed == defaultTreatmentSuccessRate ? _self.defaultTreatmentSuccessRate : defaultTreatmentSuccessRate // ignore: cast_nullable_to_non_nullable
+as double?,
   ));
 }
 

@@ -26,6 +26,8 @@ class EducationTab extends StatelessWidget {
     required this.onEnrollTap,
     required this.onDropOutTap,
     required this.canDropOut,
+    required this.isStudyBlockedByHealth,
+    required this.studyPerformancePenalty,
   });
 
   final LifeState state;
@@ -34,12 +36,16 @@ class EducationTab extends StatelessWidget {
   final VoidCallback onEnrollTap;
   final VoidCallback onDropOutTap;
   final bool canDropOut;
+  final bool isStudyBlockedByHealth;
+  final int studyPerformancePenalty;
 
   @override
   Widget build(BuildContext context) {
     final AppLocalizations l10n = AppLocalizations.of(context)!;
     final Section? eduSection = _findSection(SectionType.education);
-    final int performance = eduSection?.performance ?? 0;
+    final int basePerformance = eduSection?.performance ?? 0;
+    final int performance =
+        (basePerformance + studyPerformancePenalty).clamp(0, 100);
     final EducationState? eduState = state.educationState;
     final Enrollment? enrollment = eduState?.currentEnrollment;
     final String subtitle = _buildSubtitle(enrollment, l10n);
@@ -55,10 +61,28 @@ class EducationTab extends StatelessWidget {
             detail: detail,
           ),
           kVerticalGap24,
+          if (isStudyBlockedByHealth) ...[
+            Container(
+              padding: const EdgeInsets.all(kSpacing12),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.errorContainer.withValues(
+                      alpha: 0.3,
+                    ),
+                borderRadius: BorderRadius.circular(kBorderRadiusSmall),
+              ),
+              child: Text(
+                l10n.healthBlocksStudy,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+              ),
+            ),
+            kVerticalGap16,
+          ],
           if (enrollment != null) ...[
             StatBarWidget(
               label: l10n.effort,
-              value: performance / 100,
+              value: (performance + studyPerformancePenalty).clamp(0, 100) / 100,
             ),
             kVerticalGap24,
           ],
@@ -72,6 +96,7 @@ class EducationTab extends StatelessWidget {
             onEnrollTap: onEnrollTap,
             onDropOutTap: onDropOutTap,
             onActionsTap: () => _showActionsDialog(context, l10n),
+            isStudyBlockedByHealth: isStudyBlockedByHealth,
           ),
           kVerticalGap32,
           LogListWidget(
@@ -185,6 +210,7 @@ class _ActionButtonsRow extends StatelessWidget {
     required this.onEnrollTap,
     required this.onDropOutTap,
     required this.onActionsTap,
+    required this.isStudyBlockedByHealth,
   });
 
   final String enrollLabel;
@@ -196,6 +222,7 @@ class _ActionButtonsRow extends StatelessWidget {
   final VoidCallback onEnrollTap;
   final VoidCallback onDropOutTap;
   final VoidCallback onActionsTap;
+  final bool isStudyBlockedByHealth;
 
   @override
   Widget build(BuildContext context) {
@@ -205,14 +232,16 @@ class _ActionButtonsRow extends StatelessWidget {
           child: OutlinedButton(
             onPressed: isEnrolled
                 ? (canDropOut ? onDropOutTap : null)
-                : (canEnroll ? onEnrollTap : null),
+                : (isStudyBlockedByHealth ? null : (canEnroll ? onEnrollTap : null)),
             child: Text(isEnrolled ? dropOutLabel : enrollLabel),
           ),
         ),
         kHorizontalGap12,
         Expanded(
           child: OutlinedButton(
-            onPressed: isEnrolled ? onActionsTap : null,
+            onPressed: isEnrolled && !isStudyBlockedByHealth
+                ? onActionsTap
+                : null,
             child: Text(actionsLabel),
           ),
         ),

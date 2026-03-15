@@ -32,6 +32,15 @@ _HealthAction _$HealthActionFromJson(Map<String, dynamic> json) =>
               ?.map((e) => AccessCondition.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      requiresDiagnosedConditionIds:
+          (json['requiresDiagnosedConditionIds'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
+      treatmentSuccessRateByConditionId:
+          (json['treatmentSuccessRateByConditionId'] as Map<String, dynamic>?)
+              ?.map((k, e) => MapEntry(k, (e as num).toDouble())) ??
+          const {},
     );
 
 Map<String, dynamic> _$HealthActionToJson(_HealthAction instance) =>
@@ -46,6 +55,9 @@ Map<String, dynamic> _$HealthActionToJson(_HealthAction instance) =>
       'canDiagnoseConditionIds': instance.canDiagnoseConditionIds,
       'canTreatConditionIds': instance.canTreatConditionIds,
       'conditions': instance.conditions,
+      'requiresDiagnosedConditionIds': instance.requiresDiagnosedConditionIds,
+      'treatmentSuccessRateByConditionId':
+          instance.treatmentSuccessRateByConditionId,
     };
 
 const _$HealthActionTypeEnumMap = {

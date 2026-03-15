@@ -27,6 +27,9 @@ sealed class ConditionDefinition with _$ConditionDefinition {
     @Default(0) int minAgeToDevelop,
     @Default(100) int maxAgeToDevelop,
     int? averageDurationYears,
+    int? blocksWorkAtSeverity,
+    int? blocksStudyAtSeverity,
+    double? defaultTreatmentSuccessRate,
   }) = _ConditionDefinition;
 
   Condition toCondition({

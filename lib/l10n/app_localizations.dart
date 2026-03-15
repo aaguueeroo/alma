@@ -784,6 +784,24 @@ abstract class AppLocalizations {
   /// **'No health actions available this year.'**
   String get noHealthActionsAvailable;
 
+  /// No description provided for @healthBlocksWork.
+  ///
+  /// In en, this message translates to:
+  /// **'Your health condition prevents you from working this year.'**
+  String get healthBlocksWork;
+
+  /// No description provided for @healthBlocksStudy.
+  ///
+  /// In en, this message translates to:
+  /// **'Your health condition prevents you from studying this year.'**
+  String get healthBlocksStudy;
+
+  /// No description provided for @healthBlocksWorkAndStudy.
+  ///
+  /// In en, this message translates to:
+  /// **'Your health condition prevents you from working and studying this year.'**
+  String get healthBlocksWorkAndStudy;
+
   /// No description provided for @filterAll.
   ///
   /// In en, this message translates to:

@@ -177,6 +177,9 @@
   },
   "hospital": "Hospital",
   "noHealthActionsAvailable": "No health actions available this year.",
+  "healthBlocksWork": "Your health condition prevents you from working this year.",
+  "healthBlocksStudy": "Your health condition prevents you from studying this year.",
+  "healthBlocksWorkAndStudy": "Your health condition prevents you from working and studying this year.",
 
   "filterAll": "All",
   "filterFamily": "Family",

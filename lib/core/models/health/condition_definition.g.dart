@@ -33,6 +33,10 @@ _ConditionDefinition _$ConditionDefinitionFromJson(
   minAgeToDevelop: (json['minAgeToDevelop'] as num?)?.toInt() ?? 0,
   maxAgeToDevelop: (json['maxAgeToDevelop'] as num?)?.toInt() ?? 100,
   averageDurationYears: (json['averageDurationYears'] as num?)?.toInt(),
+  blocksWorkAtSeverity: (json['blocksWorkAtSeverity'] as num?)?.toInt(),
+  blocksStudyAtSeverity: (json['blocksStudyAtSeverity'] as num?)?.toInt(),
+  defaultTreatmentSuccessRate: (json['defaultTreatmentSuccessRate'] as num?)
+      ?.toDouble(),
 );
 
 Map<String, dynamic> _$ConditionDefinitionToJson(
@@ -55,6 +59,9 @@ Map<String, dynamic> _$ConditionDefinitionToJson(
   'minAgeToDevelop': instance.minAgeToDevelop,
   'maxAgeToDevelop': instance.maxAgeToDevelop,
   'averageDurationYears': instance.averageDurationYears,
+  'blocksWorkAtSeverity': instance.blocksWorkAtSeverity,
+  'blocksStudyAtSeverity': instance.blocksStudyAtSeverity,
+  'defaultTreatmentSuccessRate': instance.defaultTreatmentSuccessRate,
 };
 
 const _$ConditionTypeEnumMap = {

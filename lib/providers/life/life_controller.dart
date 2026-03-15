@@ -5,6 +5,7 @@ import 'package:alma/core/models/health/health_state.dart';
 import 'package:alma/core/models/health/health_predisposition.dart';
 import 'package:alma/core/models/health/health_action.dart';
 import 'package:alma/core/models/health/health_action_type.dart';
+import 'package:alma/core/models/enums/action_category.dart';
 import 'package:alma/core/models/event.dart';
 import 'package:alma/core/models/social/relationship.dart';
 import 'package:alma/core/models/education/education_program.dart';
@@ -265,6 +266,12 @@ class LifeController extends StateNotifier<LifeControllerState> {
 
   Future<void> performAction(GameAction action, {String? workJobContext}) async {
     if (state.currentLife == null) return;
+    if (action.category == ActionCategory.work && isWorkBlockedByHealth) {
+      return;
+    }
+    if (action.category == ActionCategory.education && isStudyBlockedByHealth) {
+      return;
+    }
     try {
       final Life updatedLife = lifeEngine.performAction(
         state.currentLife!,
@@ -374,6 +381,10 @@ class LifeController extends StateNotifier<LifeControllerState> {
   List<EducationProgram> getAvailableProgramsForEnrollment() {
     final Life? life = state.currentLife;
     if (life == null) return [];
+    if (healthEngine.isLoaded &&
+        healthEngine.blocksStudy(life.state.healthState)) {
+      return [];
+    }
     return educationEngine.getAvailableProgramsForEnrollment(life.state);
   }
 
@@ -390,9 +401,37 @@ class LifeController extends StateNotifier<LifeControllerState> {
   bool get hasTimeRemaining =>
       (state.currentLife?.state.timeRemaining ?? 0) > 0;
 
+  bool get isWorkBlockedByHealth {
+    final Life? life = state.currentLife;
+    if (life == null || !healthEngine.isLoaded) return false;
+    return healthEngine.blocksWork(life.state.healthState);
+  }
+
+  bool get isStudyBlockedByHealth {
+    final Life? life = state.currentLife;
+    if (life == null || !healthEngine.isLoaded) return false;
+    return healthEngine.blocksStudy(life.state.healthState);
+  }
+
+  int get workPerformancePenalty {
+    final Life? life = state.currentLife;
+    if (life == null || !healthEngine.isLoaded) return 0;
+    return healthEngine.getWorkPerformancePenalty(life.state.healthState);
+  }
+
+  int get studyPerformancePenalty {
+    final Life? life = state.currentLife;
+    if (life == null || !healthEngine.isLoaded) return 0;
+    return healthEngine.getStudyPerformancePenalty(life.state.healthState);
+  }
+
   List<Job> getAvailableJobs() {
     final Life? life = state.currentLife;
     if (life == null) return [];
+    if (healthEngine.isLoaded &&
+        healthEngine.blocksWork(life.state.healthState)) {
+      return [];
+    }
     final SeededRandom rng = SeededRandom(
       life.seed + life.state.currentYear * 200 + life.state.age,
     );
@@ -659,7 +698,11 @@ class LifeController extends StateNotifier<LifeControllerState> {
           rng,
         );
       } else {
-        healthState = healthEngine.performGeneralAction(healthState, action);
+        healthState = healthEngine.performGeneralAction(
+          healthState,
+          action,
+          rng,
+        );
       }
       LifeState newLifeState = life.state.copyWith(healthState: healthState);
       newLifeState = GameLogger.addLog(

@@ -4,6 +4,7 @@ import 'package:alma/core/models/health/health_action.dart';
 import 'package:alma/core/models/health/health_state.dart';
 import 'package:alma/core/models/game_log.dart';
 import 'package:alma/core/models/enums/log_category.dart';
+import 'package:alma/app/constants/sizing.dart';
 import 'package:alma/app/constants/spacing.dart';
 import 'package:alma/l10n/app_localizations.dart';
 import 'package:alma/ui/life/widgets/person_header_widget.dart';
@@ -83,6 +84,28 @@ class HealthTab extends StatelessWidget {
                     ),
                   )
                   .toList(),
+            ),
+          ],
+          if (controller.isWorkBlockedByHealth || controller.isStudyBlockedByHealth) ...[
+            kVerticalGap16,
+            Container(
+              padding: const EdgeInsets.all(kSpacing12),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.errorContainer.withValues(
+                      alpha: 0.3,
+                    ),
+                borderRadius: BorderRadius.circular(kBorderRadiusSmall),
+              ),
+              child: Text(
+                controller.isWorkBlockedByHealth && controller.isStudyBlockedByHealth
+                    ? l10n.healthBlocksWorkAndStudy
+                    : controller.isWorkBlockedByHealth
+                        ? l10n.healthBlocksWork
+                        : l10n.healthBlocksStudy,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+              ),
             ),
           ],
           if (symptoms.isNotEmpty) ...[
