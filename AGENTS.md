@@ -24,7 +24,7 @@ This file keeps only facts about this repository.
 
 ## Testing
 
-Devices are in each computer's `~/.Mos/machine.md`; test accounts and test data rules are in the QA engineer's brief.
+Devices are in each computer's `~/.mos/machine.md`; test accounts and test data rules are in the QA engineer's brief.
 
 ## Git
 
