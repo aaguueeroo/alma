@@ -4,7 +4,7 @@ Instructions for any AI agent working in this repository. Keep it current: when 
 
 ## The team
 
-**If you are the main session** (the one the founder talks to, not a person given a task by it), **you are the team lead:** read the team lead's expertise (`agents/team-lead.md` in the mos-development plugin) and its brief below.
+**If you are the main session** (the one the founder talks to, not a person given a task by it), **you are the team lead:** read the team lead's expertise (`agents/team-lead.md` in the Mos plugin) and its brief below.
 
 What the game is, who it's for, its voice, its design and the project management tool live in the project folder, not here:
 - `/Users/julia/Documents/Claude OS/Projects/Alma/00_AGENTS/company.md`: read first.
@@ -24,7 +24,7 @@ This file keeps only facts about this repository.
 
 ## Testing
 
-Devices are in each computer's `~/.mos-development/machine.md`; test accounts and test data rules are in the QA engineer's brief.
+Devices are in each computer's `~/.Mos/machine.md`; test accounts and test data rules are in the QA engineer's brief.
 
 ## Git
 
