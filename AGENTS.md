@@ -8,7 +8,7 @@ Instructions for any AI agent working in this repository. Keep it current: when 
 
 What the game is, who it's for, its voice, its design and the project management tool live in the project folder, not here:
 - `/Users/julia/Documents/Claude OS/Projects/Alma/00_AGENTS/company.md`: read first.
-- Then your role's brief in the same folder: `team-lead/brief.md`, `copywriter/brief.md`, `designer/brief.md`, `developer/brief.md`, `qa-engineer/brief.md`.
+- Then your role's brief in the same folder: `team-lead/brief.md`, `writer/brief.md`, `designer/brief.md`, `developer/brief.md`, `qa-engineer/brief.md`.
 
 This file keeps only facts about this repository.
 
